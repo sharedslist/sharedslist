@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shared Shopping List</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="http://view.jquerymobile.com/1.3.2/dist/demos/css/themes/default/jquery.mobile.min.css">
+<link rel="stylesheet"
+	href="http://view.jquerymobile.com/1.3.2/dist/demos/_assets/css/jqm-demos.css">
+<link rel="shortcut icon"
+	href="http://view.jquerymobile.com/1.3.2/dist/demos/favicon.ico">
+<script src="http://view.jquerymobile.com/1.3.2/dist/demos/js/jquery.js"></script>
+<script
+	src="http://view.jquerymobile.com/1.3.2/dist/demos/_assets/js/index.js"></script>
+<script>
+	$(document).bind('mobileinit', function() {
+		$.mobile.activeBtnClass = 'unused';
+	});
+</script>
+<script
+	src="http://view.jquerymobile.com/1.3.2/dist/demos/js/jquery.mobile.min.js"></script>
+<script>
+	function mostrarMensajes() {
+		$.ajax({
+			url : '/nuevoMensaje.php',
+			type : 'POST',
+			async : true,
+			data : {
+				'textoMensaje' : document.getElementById("mensaje").value
+			},
+			success : function(result) { /* a ejecutar cuando se reciban resultados del servidor*/
+
+				document.getElementById("mensajes").innerHTML = result;
+
+			}
+		});
+		document.getElementById("mensaje").value = '';
+	}
+	var interval = setInterval('mostrarMensajes();', 10000); //busca nuevos mensajes cada 10s
+</script>
+</head>
+<body onload="mostrarMensajes()">
+
+	<form id="formMensaje">
+		<label for="mensaje"><b>Escribe un mensaje:</b></label> 
+		<input type="text" name="mensaje" id="mensaje" value="">
+		<input type="button" value="Enviar" data-role="button" data-inline="true"
+			data-icon="plus" data-iconpos="right" data-mini="true" data-theme="e"
+			onclick="mostrarMensajes()">
+	</form>
+	<br>
+	<div id="mensajes"></div>
+
+</body>
+</html>
