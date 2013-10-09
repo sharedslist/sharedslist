@@ -21,32 +21,17 @@
 </script>
 <script
 	src="http://view.jquerymobile.com/1.3.2/dist/demos/js/jquery.mobile.min.js"></script>
+<script src="funciones.js"></script>
 <script>
-	function mostrarMensajes() {
-		$.ajax({
-			url : '/nuevoMensaje.php',
-			type : 'POST',
-			async : true,
-			data : {
-				'textoMensaje' : document.getElementById("mensaje").value
-			},
-			success : function(result) { /* a ejecutar cuando se reciban resultados del servidor*/
-
-				document.getElementById("mensajes").innerHTML = result;
-
-			}
-		});
-		document.getElementById("mensaje").value = '';
-	}
 	var interval = setInterval('mostrarMensajes();', 10000); //busca nuevos mensajes cada 10s
 </script>
 </head>
 <body onload="mostrarMensajes()">
 
 	<form id="formMensaje">
-		<label for="mensaje"><b>Escribe un mensaje:</b></label> 
-		<input type="text" name="mensaje" id="mensaje" value="">
-		<input type="button" value="Enviar" data-role="button" data-inline="true"
+		<label for="mensaje"><b>Escribe un mensaje:</b></label> <input
+			type="text" name="mensaje" id="mensaje" value=""> <input
+			type="button" value="Enviar" data-role="button" data-inline="true"
 			data-icon="plus" data-iconpos="right" data-mini="true" data-theme="e"
 			onclick="mostrarMensajes()">
 	</form>
