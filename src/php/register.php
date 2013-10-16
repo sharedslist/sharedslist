@@ -25,8 +25,8 @@
 		die ('Por favor, introduzca un e-mail correcto');
 	}
 
-	//Comprobar que el e-mail es único
-	$sqlEmail = "select count(id) from users where emailAddress='$e'";
+	//Comprobar que el e-mail es ï¿½nico
+	$sqlEmail = "select count(idUser) from user where emailAddress='$e'";
 	
 	$result = mysqli_query($con, $sqlEmail);
 	$row = mysqli_fetch_array($result);
@@ -35,7 +35,7 @@
 	}
 	mysqli_close($con);
 	
-	//Crea objeto usuario y llama a la función insertar
+	//Crea objeto usuario y llama a la funciï¿½n insertar
 	
 	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
     $user->encryptPassword();
