@@ -42,7 +42,7 @@ class User
   */
 
   public function __construct( $data=array() ) {
-    if ( isset( $data['id'] ) ) $this->id = (int) $data['id'];
+    if ( isset( $data['idUser'] ) ) $this->id = (int) $data['idUser'];
 	if ( isset( $data['userName'] ) ) $this->userName = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['userName'] );
     if ( isset( $data['emailAddress'] ) ) $this->emailAddress = preg_replace ( "/[^\.\-\_\@a-zA-Z0-9]/", "", $data['emailAddress'] );
     if ( isset( $data['plaintextPassword'] ) ) $this->plaintextPassword = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['plaintextPassword'] );
@@ -85,7 +85,7 @@ class User
 
   public function sendPassword() {
      // por hacer
-	 //no se si debemos enviar la contraseña en texto plano...
+	 //no se si debemos enviar la contraseï¿½a en texto plano...
   }
 
 
@@ -152,7 +152,7 @@ class User
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	} 
-	$sql = "SELECT * FROM users WHERE emailAddress = '".$email."'";
+	$sql = "SELECT * FROM user WHERE emailAddress = '".$email."'";
 	
 	
 	
@@ -182,10 +182,10 @@ class User
 	}
 
     // Insert the User
-	$sql = "INSERT INTO users (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
+	$sql = "INSERT INTO user (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
     mysqli_query($con, $sql);
 	
-    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha añadido en la bd
+    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha aï¿½adido en la bd
 
 	mysqli_close($con);
   }
