@@ -4,7 +4,7 @@
 	require( "User.php" );
 	
 	
-    //LOG 
+    //LOG por si se quiere logear algo
 		//$myFile = "log.txt";
 		//$fh = fopen($myFile, 'w') or die("can't open file");
 		//fwrite($fh, $sqlEmail);
@@ -35,7 +35,7 @@
 	}
 	mysqli_close($con);
 	
-	//Crea onjeto usuario y llama a la función insertar
+	//Crea objeto usuario y llama a la función insertar
 	
 	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
     $user->encryptPassword();
