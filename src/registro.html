@@ -12,38 +12,7 @@
   <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-	<script>
 
-		  function registrar (e) {
-			//e.preventDefault();
-			$('#message').slideUp('fast');
-
-			$.ajax({
-				data:  $('#formRegistro').serialize(),
-				url:   'php/register.php',
-				type:  'post',
-				success:  function (data)
-					   {
-						var code = data.trim();
-						alert(code);
-						if(code == 'success') {
-							$('#message').html(' Register was successful.');
-						}
-						else {
-							$('#message').html(data);
-						}
-						$('#message').slideDown('fast');	
-					   },
-				error: function () {
-						$('#message').html('An error occurred, please try again.');
-						$('#message').slideDown('fast');
-					}
-			});
-			
-			return false;
-		  };
-		
-	</script>
 	<style type="text/css">
 		#message {
 			
@@ -91,9 +60,11 @@
       </form>
 
     </div>
+	
+	<script src="js/register.js"></script>
 
   </div>
-
+   
 </body>
 </html>
 
