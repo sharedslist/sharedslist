@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="es">
 <head>
 	<title>Shared Shopping List</title>
 
@@ -12,26 +12,27 @@
 </head>
 <body>
 
-<div data-role="page" id="nuevaLista" date-theme="c">
+<div data-role="page" id="create_list" date-theme="c">
 
 	<div data-role="header" data-position="inline" data-theme="b">
 		<h1>Nueva lista de compras</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<label for="listName">Nombre de la lista:</label>
+		<label for="listName"><b>Nombre de la lista:</b></label>
 		<input type="text" name="listName" id="listName" data-clear-btn="true" />
 		<hr/>
-		<label for="productName">Nombre del producto:</label>
+		<p>Opcionalmente, puedes indicar los productos iniciales de la nueva lista de compras.</p>
+		<label for="productName"><b>Nombre del producto:</b></label>
 		<li data-role="fieldcontain">
 			<input type="text" name="productName" id="productName" data-clear-btn="true" />
-			<input type="button" data-inline="true" data-iconpos="notext" data-icon="plus" onclick="addProduct()" />
+			<input type="button" data-inline="true" data-iconpos="notext" data-icon="plus" onclick="addProduct()" title="Añadir"/>
 		</li>
-		<ul name="initialProducts" id="initialProducts" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="delete">
+		<ul style="display:none;" name="initialProducts" id="initialProducts" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="delete" >
 			<li data-role="list-divider" role="header">Productos iniciales</li>
 		</ul>
 		<br/>
-		<a id="guardarLista" href="#" data-role="button" data-icon="check" data-inline="true" >Guardar</a>
+		<a id="guardarLista" href="#" data-role="button" data-icon="check" data-inline="true" title="Guardar">Guardar</a>
 	</div><!-- /content -->
 </div><!-- /page -->
 
