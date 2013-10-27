@@ -5,13 +5,14 @@
 	$emails = $_POST["users"];
 	$group_name = $_POST["group_name"];
 	
+	session_start();
 	$group = new Group;
 	$user = new User;
-	$uSesion = $user->getLoggedInUser();
-	$group->admin = $uSesion->id;
+	$userSession = $user->getLoggedInUser();
+	$group->admin = $userSession->id;
 	$group->group_name = $group_name;
 	$group->insert();
-	$group->insertUser($uSesion->emailAddress);
+	$group->insertUser($userSession->emailAddress);
 	foreach($emails as $email) {
 		$group->insertUser($email['name']);
 	}
