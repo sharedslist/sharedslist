@@ -1,7 +1,10 @@
 <?php
 	require("Group.php");
+	require("User.php");
 	
 	$group = new Group;
-	$names = $group->listGroups('usuario_sesion');
+	$user = new User;
+	$user_id = $user->getLoggedInUser()->id;
+	$names = $group->listGroups($user_id);
 	echo '{"names":'. json_encode($names) .'}'; 
 	?>

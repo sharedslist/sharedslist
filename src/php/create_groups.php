@@ -1,15 +1,18 @@
 ﻿<?php
 	require("Group.php");
+	require("User.php");
 	
-	$users = $_POST["users"];
+	$emails = $_POST["users"];
 	$group_name = $_POST["group_name"];
 	
 	$group = new Group;
-	$group->admin = "usuario_sesion";
+	$user = new User;
+	$uSesion = $user->getLoggedInUser();
+	$group->admin = $uSesion->id;
 	$group->group_name = $group_name;
 	$group->insert();
-	$group->insertUser($group->admin);
-	foreach($users as $user) {
-		$group->insertUser($user['name']);
+	$group->insertUser($uSesion->emailAddress);
+	foreach($emails as $email) {
+		$group->insertUser($email['name']);
 	}
 	?>

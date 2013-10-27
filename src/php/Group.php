@@ -31,7 +31,7 @@ class Group
 	}
 
   
-	public function insertUser($user) {
+	public function insertUser($email) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
     
@@ -39,8 +39,13 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
-		$sql = "INSERT INTO groupanduser (idGroup, idUser) values ('".$this->id."', '".$user."')";
-		mysqli_query($con, $sql);
+		$sql = "SELECT (idUser) FROM `user` WHERE emailAddress = '".$email."'";
+		$rows = mysqli_query($con, $sql);
+		while ($row=mysqli_fetch_row($rows))
+		{		
+			$sql = "INSERT INTO groupanduser (idGroup, idUser) values ('".$this->id."', '".$row[0]."')";
+			mysqli_query($con, $sql);
+		}
 		mysqli_close($con);
 	}
   
@@ -64,6 +69,7 @@ class Group
 				array_push($groups, $name[0]);
 			}
 		}
+		mysqli_close($con);
 		return $groups;
 	}
 	
