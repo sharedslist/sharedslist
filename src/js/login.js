@@ -1,7 +1,6 @@
 function login () {
 			
 			$('#message').slideUp('fast');
-			alert("cjperez");
 			$.ajax({
 				data:  $('#formLogin').serialize(),
 				url:   'php/login.php',
@@ -9,10 +8,10 @@ function login () {
 				success:  function (data)
 					   {
 						var code = data.trim();
-						alert(code);
+					
 						if(code == 'success') {
-							window.location.replace("list_groups.html");
-							$('#message').html(' Register was successful.');
+							window.location.href = 'list_groups.html';
+							$('#message').html(' Se ha autenticado correctamente.');
 						}
 						else {
 							$('#message').html(data);

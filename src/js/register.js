@@ -12,7 +12,7 @@
 						if(code == 'success') {
 							$('#message').html(' Registrado correcamente.');
 							//redirects to welcome page
-							location.href = "http://www.google.es";
+							location.location.href = "list_groups.html";
 						}
 						else {
 							$('#message').html(data);

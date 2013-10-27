@@ -6,7 +6,7 @@
 	
 
 
-		session_start(); //inicia la sesión
+		
 		// User has posted the login form: attempt to log the user in
 
 		if ( $user = User::getByEmailAddress( $_POST['emailAddress'] ) ) {
@@ -20,7 +20,7 @@
 		  } else {
 
 			// Login failed: display an error message to the user
-			die('contraseña incorrectos');
+			die('contraseÃ±a incorrectos');
 		  }
 
 		} else {

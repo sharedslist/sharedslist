@@ -71,7 +71,7 @@ class User
 
 
   /**
-  * Genera una nueva contraseña aleatoria para el cliente.
+  * Genera una nueva contraseï¿½a aleatoria para el cliente.
   * La LOPD establece que debe contener tanto letras coo numeros y una longitud
   * minima de 8 letras.
   */
@@ -83,27 +83,27 @@ class User
 		$cad .= substr($str,rand(0,62),1);
 	}
 	$cad .= substr($str,rand(52,62),1);
-	// Asigna la nueva contraseña a los atributos.
+	// Asigna la nueva contraseï¿½a a los atributos.
 	$this->plaintextPassword = $cad;
 	$this->password=crypt($cad);
   }
 
 
   /**
-  * Envia por email una ueva contraseña generada aleatoriamente.
+  * Envia por email una ueva contraseï¿½a generada aleatoriamente.
   */
 
   public function sendPassword() {
     $headers = "From: noreply@sharedslist.hol.es";
 	$to = $this->emailAddress;
-	$subject = "Nueva contraseña";
+	$subject = "Nueva contraseÃ±a";
 	$message = "Hola ";
 	$message .= $this->userName;
-	$message .="\n Te enviamos tu nueva contraseña generada aleatoriamente.\nContraseña:";
+	$message .="\n Te enviamos tu nueva contraseï¿½a generada aleatoriamente.\nContraseÃ±a:";
 	$message .=$this->plaintextPassword;
-	$message .="\nPuedes cambiarla por una nueva en la configuración de usuario.\n\n";
+	$message .="\nPuedes cambiarla por una nueva en la configuraciÃ³n de usuario.\n\n";
 	$message .="Un saludo,\n el equipo de Shared Shopping List.";
-	// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
+	// la funciÃ³n mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
 	// de envio de correos.
 	$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
 	return $enviado;
@@ -122,15 +122,16 @@ class User
   }
   
 
-  /**
+/**
   * Creates a valid login session for this user, logging them in.
   */
 
   function createLoginSession() {
-    session_regenerate_id( true );
+	try{
+	session_start();
+	}catch (Exception $e){}
     $_SESSION['userId'] = $this->id;
-    srand();
-    $_SESSION['authToken'] = rand( 10e16, 10e20 );
+    
   }
 
 
@@ -156,10 +157,19 @@ class User
   */
 
   public static function getById( $id ) {
-    //por hacer
+   $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+	if (!$con) {
+		die('Could not connect: ' . mysqli_error($con));
+	} 
+	$sql = "SELECT * FROM user WHERE idUser = '".$id."'";
+	
+	$result = mysqli_query($con, $sql);
+
+	$row = mysqli_fetch_array($result);
     if ( $row ) return new User( $row );
   }
-
+  
+ 
   /**
   * Returns a User object matching the given email address.
   *
@@ -206,7 +216,7 @@ class User
 	$sql = "INSERT INTO user (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
     mysqli_query($con, $sql);
 	
-    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha aï¿½adido en la bd
+    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha aÃ±adido en la bd
 
 	mysqli_close($con);
   }
@@ -229,7 +239,7 @@ class User
 
     mysqli_query($con, $sql);
 	
-    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha añadido en la bd
+    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha aï¿½adido en la bd
 
 	mysqli_close($con);
    
