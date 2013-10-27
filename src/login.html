@@ -12,38 +12,7 @@
   <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-	<script>
-
-		  function login (e) {
-			//e.preventDefault();
-			$('#message').slideUp('fast');
-			alert("cjperez");
-			$.ajax({
-				data:  $('#formLogin').serialize(),
-				url:   'php/login.php',
-				type:  'post',
-				success:  function (data)
-					   {
-						var code = data.trim();
-						alert(code);
-						if(code == 'success') {
-							$('#message').html(' Register was successful.');
-						}
-						else {
-							$('#message').html(data);
-						}
-						$('#message').slideDown('fast');	
-					   },
-				error: function () {
-						$('#message').html('An error occurred, please try again2222222222.');
-						$('#message').slideDown('fast');
-					}
-			});
-			
-			return false;
-		  };
-		
-	</script>
+	<script src="js/register.js"></script>
 	<style type="text/css">
 		#message {
 			
@@ -52,6 +21,7 @@
 		}
 	</style>
 </head>
+
 <body>
 
   <div data-role="page" id="login" data-theme="b">
