@@ -1,27 +1,27 @@
-Prioridad	Requisitos	Talla	Día/Persona	Comprobación
-1	SetUp/Aprendizaje	M	1	Instalar BD, servidor web… probar que funciona
-1	Registrarse	M	2	El usuario puede introducir datos: identificador (e-mail), nombre, contraseña
-1	Identificarse	S	1	El usuario accede al sistema mediante su identificador y contraseña
-1	Crear grupo (usuarios iniciales)	M	3	Se crea un grupo con usuarios
-1	Crear lista	M	1	Se crea una lista con un nombre, fecha (timestamp),una lista de productos iniciales, comentarios/notas
-1	Ver lista grupos	M	1	Se ven todos los grupos a los que se pertenece
-1	Añadir ítem de la lista	S	1	Se ha añadido un ítem a la lista con sus atributos
-1	Documentación	M	1	Se ha creado toda la documentación necesaria
-1	Eliminar ítem de la lista	S	0,5	El usuario ha eliminado el ítem seleccionado de la lista
-5	Borrar lista			
-5	Marcar/desmarcar ítem como comprado	M		Todos los del grupo ven el nuevo estado del producto
-5	Cerrar la lista	M		Si todo esta comprado se cierra la lista
-5	Ver y acceder a todas las listas (abiertas y cerradas)	L		Se ven todas las listas y 
-5	Recuperar contraseña por e-mail	S	1	Se ha recibido un e-mail con la nueva contraseña y se puede acceder a ella
-5	Añadir usuario a grupo	S	1	Se ha añadido un usuario existente a un grupo
-9	Borrar usuario de grupo	S		
-9	Borrar grupo	L		
-9	Usuario abandonar grupo	S		
-9	Configuración cuenta	S		Cambiar contraseña, e-mail, nombre, foto… y acceder al sistema con los nuevos datos
-9	Invitar a gente por e-mail	S		Han recibido el e-mail
-9	Anotar y comparar históricamente precios de mis listas	XXL		
-9	Gamificación	XXXL		
-9	Plantillas de listas	M		
-9	Búsquedas en listas	XXXL		Búsqueda por fecha, producto
-9	Asignación de productos a usuarios	XXXL		
-9	Cerrar lista manualmente			
+Prioridad,Requisitos,Talla,Día/Persona,Comprobación
+1,SetUp/Aprendizaje,M,1,"Instalar BD, servidor web… probar que funciona"
+1,Registrarse,M,2,"El usuario puede introducir datos: identificador (e-mail), nombre, contraseña"
+1,Identificarse,S,1,El usuario accede al sistema mediante su identificador y contraseña
+1,Crear grupo (usuarios iniciales),M,3,Se crea un grupo con usuarios
+1,Crear lista,M,1,"Se crea una lista con un nombre, fecha (timestamp),una lista de productos iniciales, comentarios/notas"
+1,Ver lista grupos,M,1,Se ven todos los grupos a los que se pertenece
+1,Añadir item de la lista,S,1,Se ha añadido un item a la lista con sus atributos
+1,Documentación,M,1,Se ha creado toda la documentación necesaria
+1,Eliminar item de la lista,S,"0,5",El usuario ha eliminado el item seleccionado de la lista
+5,Borrar lista,,,
+5,Marcar/desmarcar item como comprado,M,,Todos los del grupo ven el nuevo estado del producto
+5,Cerrar la lista,M,,Si todo esta comprado se cierra la lista
+5,Ver y acceder a todas las listas (abiertas y cerradas),L,,Se ven todas las listas y 
+5,Recuperar contraseña por e-mail,S,1,Se ha recibido un e-mail con la nueva contraseña y se puede acceder a ella
+5,Añadir usuario a grupo,S,1,Se ha añadido un usuario existente a un grupo
+9,Borrar usuario de grupo,S,,
+9,Borrar grupo,L,,
+9,Usuario abandonar grupo,S,,
+9,Configuración cuenta,S,,"Cambiar contraseña, e-mail, nombre, foto… y acceder al sistema con los nuevos datos"
+9,Invitar a gente por e-mail,S,,Han recibido el e-mail
+9,Anotar y comparar históricamente precios de mis listas,XXL,,
+9,Gamificación,XXXL,,
+9,Plantillas de listas,M,,
+9,Búsquedas en listas,XXXL,,"Búsqueda por fecha, producto"
+9,Asignación de productos a usuarios,XXXL,,
+9,Cerrar lista manualmente,,,
