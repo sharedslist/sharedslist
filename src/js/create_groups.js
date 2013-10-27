@@ -30,6 +30,6 @@ function createGroup()
 		dataType: 'text',
 		type:  'post',
 		success:  function (response)
-			   {location.reload(true);}
+			   {window.location.href = 'list_groups.html';}
 		});
 }

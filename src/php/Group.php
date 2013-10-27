@@ -20,11 +20,7 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 	
-		$fp = fopen('data', 'w');
-	
 		$sql = "INSERT INTO `group` (groupName, idAdmin) values ('".$this->group_name."', '".$this->admin."')";
-		fwrite($fp, $sql);
-		fclose($fp);
 		mysqli_query($con, $sql);
 		$this->id = mysqli_insert_id($con);
 		mysqli_close($con);
