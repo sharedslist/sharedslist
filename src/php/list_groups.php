@@ -2,6 +2,7 @@
 	require("Group.php");
 	require("User.php");
 	
+	session_start();
 	$group = new Group;
 	$user = new User;
 	$user_id = $user->getLoggedInUser()->id;

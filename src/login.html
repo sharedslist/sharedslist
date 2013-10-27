@@ -12,7 +12,6 @@
   <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-	<script src="js/register.js"></script>
 	<style type="text/css">
 		#message {
 			
@@ -23,7 +22,7 @@
 </head>
 
 <body>
-
+	<script src="js/login.js"></script>
   <div data-role="page" id="login" data-theme="b">
 
     <div data-role="header" data-theme="b">
@@ -49,7 +48,7 @@
           <input type="password" name="password" id="password" placeholder="Contraseña" required maxlength="30">
         </div>
 		
-		<h4 id="message">mensaje</h4>
+		<h4 id="message"> </h4>
 		
         <input type="submit" name="loginButton" id="loginButton" value="Acceder" onClick="login()" />
       </form>
