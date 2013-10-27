@@ -71,21 +71,42 @@ class User
 
 
   /**
-  * Generates a new random password for the user.
+  * Genera una nueva contraseña aleatoria para el cliente.
+  * La LOPD establece que debe contener tanto letras coo numeros y una longitud
+  * minima de 8 letras.
   */
 
   public function generatePassword() {
-		// por hacer
+	$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+	$cad = "";
+	for($i=0;$i<9;$i++) {
+		$cad .= substr($str,rand(0,62),1);
+	}
+	$cad .= substr($str,rand(52,62),1);
+	// Asigna la nueva contraseña a los atributos.
+	$this->plaintextPassword = $cad;
+	$this->password=crypt($cad);
   }
 
 
   /**
-  * Sends the user's plaintext password to their email address.
+  * Envia por email una ueva contraseña generada aleatoriamente.
   */
 
   public function sendPassword() {
-     // por hacer
-	 //no se si debemos enviar la contraseï¿½a en texto plano...
+    $headers = "From: noreply@sharedslist.hol.es";
+	$to = $this->emailAddress;
+	$subject = "Nueva contraseña";
+	$message = "Hola ";
+	$message .= $this->userName;
+	$message .="\n Te enviamos tu nueva contraseña generada aleatoriamente.\nContraseña:";
+	$message .=$this->plaintextPassword;
+	$message .="\nPuedes cambiarla por una nueva en la configuración de usuario.\n\n";
+	$message .="Un saludo,\n el equipo de Shared Shopping List.";
+	// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
+	// de envio de correos.
+	$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
+	return $enviado;
   }
 
 
@@ -195,9 +216,22 @@ class User
   * Updates the current User object in the database.
   */
 
-  public function update() {
+  public function updatePassword() {
 
-    // por hacer
+    $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+	if (!$con) {
+		die('Could not connect: ' . mysqli_error($con));
+	}
+
+	
+    // Insert the User
+	$sql = "UPDATE user SET password='".$this->password."' WHERE emailAddress='".$this->emailAddress."'";
+
+    mysqli_query($con, $sql);
+	
+    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha añadido en la bd
+
+	mysqli_close($con);
    
   }
 
