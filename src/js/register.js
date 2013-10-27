@@ -12,7 +12,7 @@
 						if(code == 'success') {
 							$('#message').html(' Registrado correcamente.');
 							//redirects to welcome page
-							location.location.href = "list_groups.html";
+							window.location.href = "list_groups.html";
 						}
 						else {
 							$('#message').html(data);

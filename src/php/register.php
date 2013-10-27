@@ -40,7 +40,7 @@
 	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
     $user->encryptPassword();
     $user->insert();
-	
+	$user->createLoginSession();
 
 
 	
