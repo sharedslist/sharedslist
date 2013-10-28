@@ -6,9 +6,20 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 		<script src="js/create_groups.js"></script>
+		<script src="js/connected.js"></script>
+		<style type="text/css">
+			#message {
+				color:red;
+				text-align: center;
+			}
+		</style>
 	</head>
 	
 	<body>
+		<script>
+			isConnected();
+		</script>
+	
 		<div data-role="page" id="create_groups" data-theme="c">
 			<div data-role="header" data-theme="b">
 				<h1>Nuevo grupo</h1>
@@ -21,11 +32,11 @@
 		
 			<form id="createform" >	
 				<div data-role="fieldcontain">
-					<input type="text" data-clear-btn="true" id="text-1" required autofocus placeholder="Nombre de grupo"/>
+					<input type="text" data-clear-btn="true" id="text-1" autofocus placeholder="Nombre de grupo"/>
 				</div>
 				
 				<div data-role="fieldcontain">
-					<input type="email" data-clear-btn="true" data-inline="true"  id="text-2" placeholder="Correo electrónico"/>
+					<input data-clear-btn="true" data-inline="true"  id="text-2" placeholder="Correo electrónico"/>
 					<input type="button" data-icon="plus" data-iconpos="notext" data-inline="true" data-role="button" onclick="addUsers()"/>
 				</div>
 				
@@ -35,9 +46,11 @@
 				</div>
 				
 				<div>
-					<input type="submit" data-mini="true" name="create" id="create" value="Crear grupo" data-theme="c" onclick="createGroup()"/>
+					<input type="button" data-mini="true" name="create" id="create" value="Crear grupo" data-theme="c" onclick="createGroup()"/>
 				</div>
 			</form>
+			
+			<h4 id="message"></h4>
 		</div>	
 	</body>
 </html>
