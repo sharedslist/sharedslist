@@ -24,7 +24,16 @@
 	if( !preg_match("^[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+(\.[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,})$^", $e) ) {
 		die ('Por favor, introduzca un e-mail correcto');
 	}
-
+	
+		//Comprobar user bien formado
+	if( !preg_match("^[0-9A-Za-z_]+$^", $u) ) {
+		die ('Nombre de usuario incorrecto');
+	}
+	
+	
+	
+	
+	
 	//Comprobar que el e-mail es �nico
 	$sqlEmail = "select count(idUser) from user where emailAddress='$e'";
 	
