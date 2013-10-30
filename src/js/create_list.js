@@ -25,6 +25,7 @@ function addProduct() {
 		divBlock1.setAttribute("style", "width:85%;");
 		var a1 = document.createElement('a');
 		var span = document.createElement('span');
+		span.setAttribute("id", "spanProductName");
 		span.innerHTML = name;
 		divBlock1.appendChild(span);
 		var divBlock2 = document.createElement('div');
@@ -73,11 +74,29 @@ function addProduct() {
 }
 
 function createList() {
-	var cantidades = new Array();
-	$("#initialProducts li select").each(function(i, select) {
-		cantidades[i] = $(select).mobiscroll('getValue')[0];
+	var newList = [];
+	listName = {};
+	listName ["listName"] = $("#listName").val();
+	newList.push(listName);
+	var productsList = [];
+	$("#initialProducts li:not('.first')").each(function(i, li) {
+		product = {};
+		//asignamos el nombre y cantidad del producto
+		product ["prodName"] = $(li).find("#spanProductName").html();
+		product ["prodQt"] = $(li).find("select").mobiscroll('getValue')[0];
+		productsList.push(product);
 	});
-	alert(cantidades.toString());
+	newList.push(productsList);
+	//convertimos el objeto newList a JSON
+	var newListJSON = JSON.stringify(newList);
+	$.ajax({
+		data:  "newList" : newListJSON,
+		url:   document.URL+'/../php/create_list.php',
+		dataType: 'json',
+		type:  'post',
+		success:  function (response)
+			   {//redirigir a 'acceder a la lista de compra'}
+	});
 }
 
 /*
