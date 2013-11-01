@@ -6,8 +6,13 @@ function listSLists() {
 		type:  'post',
 		success:  function (response)
 			   {
-				   list_slists(JSON.parse(response));
-			   }
+					var groupAndSLists = JSON.parse(response.trim());
+					$("#list_slists_header > h1").append(': ' + groupAndSLists.groupName);
+					list_slists(groupAndSLists.slists);
+			   },
+		error: 	function() {
+					$("#message").html("Ha ocurrido un error recuperando las listas de compra");
+				}
 	});
 }
 
