@@ -11,11 +11,14 @@
 	}
 	
 	$user = User::getByEmailAddress($e);
+	if ( $user== FALSE){
+		die ("No existe un usuario con el e-mail indicado");
+	}
 	$user -> generatePassword();
 	$enviado = ($user -> sendPassword());
 	
 	if (!$enviado){
-		die ("No se ha podido enviar la nueva contraseña.\n\t Por favor intentelo de nuevo.");
+		die ("No se ha podido enviar la nueva contraseÃ±a.\n\t Por favor intentelo de nuevo.");
 	}
 	$user -> encryptPassword();
 	$user -> updatePassword();

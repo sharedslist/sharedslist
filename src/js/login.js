@@ -9,7 +9,7 @@ function login () {
 					   {
 						var code = data.trim();
 					
-						if(code == 'success') {
+						if(code == 'Conectado correctamente') {
 							window.location.href = 'list_groups.html';
 							$('#message').html(' Se ha autenticado correctamente.');
 						}
