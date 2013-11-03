@@ -1,5 +1,7 @@
 <?php
 
+require_once("config.php");
+
 /**
  * Class to handle app users
  */
