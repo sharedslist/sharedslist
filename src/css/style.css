@@ -3,3 +3,11 @@
 	font-weight:bold;
 	text-align: center;
 }
+
+.comprado {
+	text-decoration:line-through;
+}
+
+.ui-header h1 {
+	white-space: normal!important;
+}
