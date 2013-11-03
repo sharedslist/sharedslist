@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shared Shopping List</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/create_item.js"></script>
+	<script src="js/connected.js"></script>
+	<style type="text/css">
+		#message {
+			color:red;
+			text-align: center;
+		}
+	</style>
+
+</head>
+<body>
+<script>
+	isConnected();
+</script>
+<div data-role="page" id="create_item" date-theme="c">
+
+	<div data-role="header" data-position="inline" data-theme="b">
+		<h1>Nuevo producto</h1>
+	</div><!-- /header -->
+	<div data-role="content">
+		<form id="createform" >
+			<div data-role="fieldcontain">
+				<label for="itemName">Nombre del producto:</label>
+				<input type="text" name="itemName" id="itemName" required autofocus data-clear-btn="true" />
+			</div>
+			<div data-role="fieldcontain">
+				<label for="quantity">Cantidad a comprar:</label>
+				<input type="text" data-role="spinbox" name="quantity" id="quantity" value="1" min="1"/>
+			</div>
+			<h4 id="message"></h4>
+			<br/>
+			<div align="right">
+				<input type="button" data-mini="true" name="create" id="create" value="Guardar" data-theme="c" onclick="createItem()"/>
+			</div>
+		</form><!-- /createform -->
+	</div><!-- /content -->
+</div>
+
+</body>
+</html>
