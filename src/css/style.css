@@ -4,6 +4,11 @@
 	text-align: center;
 }
 
+#message {
+	color: red;
+	text-align: center;
+}
+
 .comprado {
 	text-decoration:line-through;
 }

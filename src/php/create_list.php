@@ -1,6 +1,8 @@
 ﻿<?php
 	require_once("ShoppingList.php");
 	require_once("Item.php");
+	require_once("Group.php");
+	require_once("User.php");
 	
 	//decodificamos la lista que nos viene en JSON
 	$newList = json_decode( $_POST['newList'] );
@@ -12,20 +14,39 @@
 	
 	//Comprobar que nombre lista no contenga caracteres prohibidos
 	$listName = $newList[0]->listName;
-	if( preg_match("[<>]", $listName) ) {
+	if( preg_match('/<.*?>/msi', $listName) ) {
 		die ('El nombre de la lista contiene carácteres prohibidos');
 	}
 	
 	//Comprobar que ningún producto contiene carácteres prohibidos
 	foreach($newList[1] as $product) {
-		if( preg_match("[<>]", $product->prodName) || preg_match("[<>]", $product->prodQt) ) {
+		$prodName = $product->prodName;
+		$prodQt = $product->prodQt;
+		if( preg_match('/<.*?>/msi', $prodName) OR preg_match('/<.*?>/msi', $prodQt) ) {
 			die ('Un producto contiene carácteres prohibidos');
 		}
 	}
 	
 	session_start();
-	//$idGroup = $_SESSION['idGroup'] //obtenemos el id del grupo a partir de la sesión
-	$idGroup = 1 ; //lo pongo a 1 mientras no pueda obtener el idGroup de la sesión
+	$idGroup;
+	if( isset($_SESSION['idGroup']) ) {
+		$idGroup = $_SESSION['idGroup']; //obtenemos el id del grupo a partir de la sesión
+	}
+	else if ( isset($_POST['idGroup']) ) {
+		$idGroup = $_POST['idGroup']; //obtenemos el id del grupo a partir de la variable POST
+	}
+	else {
+		die ('No se ha seleccionado un grupo');
+	}
+	
+	//comprobamos que el usuario se ha autenticado y pertenece al grupo cuyas listas quiere listar
+	$currentUser = User::getLoggedInUser();
+	if( !$currentUser ) {
+		die ('Necesitas autenticarte para acceder a esta funcionalidad');
+	}
+	if( !Group::userBelongsToGroup($currentUser->id, $idGroup) ) {
+		die ("No perteneces al grupo con id $idGroup!");
+	}
 	
 	//insertamos la nueva lista en la base de datos
 	$list = new ShoppingList( array( 'listName' => $listName, 'idGroup' => $idGroup ) );
