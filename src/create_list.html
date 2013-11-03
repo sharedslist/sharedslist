@@ -16,9 +16,13 @@
 		<script src="js/mobiscroll/mobiscroll.scroller.jqm.js" type="text/javascript"></script>
 		<script src="js/mobiscroll/mobiscroll.i18n.es.js" type="text/javascript"></script>
 		<script src="js/create_list.js"></script>
+		<script src="js/connected.js"></script>
 	</head>
 	
 	<body>
+		<script>
+			isConnected();
+		</script>
 		<div data-role="page" id="create_list" date-theme="b">
 		
 			<div data-role="header" data-position="inline" data-theme="b">
@@ -49,7 +53,7 @@
 					</ul>
 					<br/>
 					<h4 id="message"></h4>
-					<input type="button" value="Crear" id="createListBtn" onClick="createList()">
+					<input type="button" value="Crear" id="createListBtn" data-theme="b" onClick="createList()">
 				</form>
 			</div><!-- /content -->
 			
