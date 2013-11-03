@@ -20,17 +20,6 @@ $(document).on('click', '.removeProduct', function() {
 	$("#initialProducts").listview('refresh');
 });
 
-$('#quantityNewProduct').on("rrrreload", function() {
-	// cargamos la extensión mobiscroll para la cantidad
-	$('#quantityNewProduct').mobiscroll().select({
-		theme : 'jqm',
-		lang : 'es',
-		display : 'bottom',
-		mode : 'mixed',
-		inputClass : 'textoCantidad'
-	});
-});
-
 // lo que se va a ejecutar cuando la página esté cargada
 $(document).on("pageshow", function() {
 	// cargamos las opciones de cantidad para el nuevo producto

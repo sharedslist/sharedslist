@@ -1,22 +1,17 @@
 <?php
 
-require("config.php");
+require_once("config.php");
 
 class Group
 {
-	// Identificador númerico de grupo
+
 	public $id = null;
   
-	// Nombre de grupo
 	public $group_name = null;
   
-	// Identificador númerico del [Usuario] administrador 
 	public $admin = null;
 
   
-	/*
-	 * Inserta la clase [Grupo] en la base de datos
-	 */
 	public function insert() {
 
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -32,10 +27,6 @@ class Group
 	}
 
   
-	/*
-	 * Inserta al [Usuario] cuyo email coincide con el parametro de entrada $email
-	 * como un nuevo miembro de la clase [Grupo] en la base de datos
-	 */
 	public function insertUser($email) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -54,11 +45,6 @@ class Group
 		mysqli_close($con);
 	}
   
-	/*
-	 * Devuelve una lista con los nombres de [Grupo] a los que
-	 * pertenece el parametro de entrada $user, el cual es un 
-	 * identificador de [Usuario]
-	 */
 	public function listGroups($user) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -81,6 +67,26 @@ class Group
 		}
 		mysqli_close($con);
 		return $groups;
+	}
+	
+	/**
+      * Comprueba si el usuario 'idUser' pertenece al grupo 'idGroup'
+      *
+      * @return true si, y solo si el usuario con id 'idUser' pertenece al grupo con id 'idGroup'
+      */	
+	public static function userBelongsToGroup($idUser, $idGroup) {
+	
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+    
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		
+		$sql = "SELECT * FROM groupanduser WHERE idUser = $idUser AND idGroup = $idGroup";
+		$result = mysqli_query($con, $sql);
+		$numRows = mysqli_num_rows($result);
+		mysqli_close($con);
+		return $numRows == 1;
 	}
 	
 }
