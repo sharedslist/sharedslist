@@ -7,9 +7,8 @@
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){
-				alert(response);
 				if(response == 'success') {
-					$('#message').html('Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.');
+					$('#message').html('Se ha generado una nueva contraseÃ±a aleatoria y se ha enviado a su email.');
 					
 				}else {
 					$('#message').html(response);

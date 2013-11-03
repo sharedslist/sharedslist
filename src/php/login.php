@@ -17,19 +17,12 @@
 			$user->createLoginSession();
 			die('Conectado correctamente');
 
-		  } else {
-
-			// Login failed: display an error message to the user
-			die('contraseña incorrectos');
-		  }
-
-		} else {
-
-		  // Login failed: display an error message to the user
-			die('E-mail  incorrectos');
+		  } 
+		  
 		}
 
-
+		// Login failed: display an error message to the user
+		echo 'Contraseña o E-mail  incorrecto.';
 
 	
 ?>
