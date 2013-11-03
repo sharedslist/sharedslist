@@ -8,41 +8,41 @@ require("config.php");
 class Item {
   
 	/**
-      * @var int The list ID from the database
-      */
+          * @var int The list ID from the database
+          */
 	public $idList = null;
   
 	/**
-      * @var int The item ID from the database
-      */
+          * @var int The item ID from the database
+          */
 	public $idItem = null;
 
 	/**
-      * @var string The item's name
-      */
+          * @var string The item's name
+          */
 	public $itemName = null;
   
 	/**
-      * @var string The item's state
-      */
+          * @var string The item's state
+          */
 	public $itemState = null;
 
 	/**
-      * @var string The item's quantity
-      */
+          * @var string The item's quantity
+          */
 	public $quantity = null;
 
 	/**
-      * @var string The item's quantity left
-      */
+          * @var string The item's quantity left
+          */
 	public $quantityBought = null;
 
 
 	/**
-      * Sets the object's properties using the values in the supplied array
-      *
-      * @param assoc The property values
-      */
+          * Sets the object's properties using the values in the supplied array
+          *
+          * @param assoc The property values
+          */
 	public function __construct( $data=array() ) {
 		if ( isset( $data['idList'] ) ) $this->idList = (int) $data['idList'];
 		if ( isset( $data['idItem'] ) ) $this->idItem = (int) $data['idItem'];
@@ -53,11 +53,11 @@ class Item {
 	}
 
 	/**
-      * Returns a Item object matching the given ID.
-      *
-      * @param int The Item ID
-      * @return Item|null The Item object, or null if the record was not found or there was a problem
-      */
+          * Returns a Item object matching the given ID.
+          *
+          * @param int The Item ID
+          * @return Item|null The Item object, or null if the record was not found or there was a problem
+          */
 	public static function getItemById( $idItem ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
@@ -70,62 +70,48 @@ class Item {
 		mysqli_close($con);
 	}
 	
-	/**
-      * Creates a cookie for this item.
-      */
-	function createItemSession() {
-		$_SESSION['Item'] = $this->id;
-		srand();
-	}
 	
 	/**
-      * Get the value item with idItem of Ite,.
-      *
-      * @return Item|false. idItem object, or null if the record was not found or there was a problem
-      */
-	static function getItem() {
-		if ( !isset( $_ITEM['Item']) ) return false;
-		return Item::getById( (int)$_ITEM['Item'] );
-	}
-	
-	/**
-      * Inserts the current Item object into the database, and sets its ID property.
-      */
+          * Inserts the current Item object into the database, and sets its ID property.
+          */
 	public function insertItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "INSERT INTO Item (idList, itemName, itemState, quantity, quantityBought) VALUES ('".$this->idList."','".$this->itemName."', '".$this->itemState."', '".$this->quantity."', '".$this->quantityBought."')";
+		$sql = "INSERT INTO `item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$this->itemName."', '".$this->itemState."', '".$this->quantity."', '".$this->quantityBought."')";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
+
 	/**
-      * Updates the current Item object in the database.
+          * Updates the current Item object in the database.
 	  */
 	public function editItem() {
 
 	}
 
+
 	/**
-      * Deletes the current Item object from the database.
-      */
+          * Deletes the current Item object from the database.
+          */
 	public function deleteItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "DELETE FROM Item WHERE idItem='".$this->idItem."'";
+		$sql = "DELETE FROM `item` WHERE idItem = '".$this->idItem."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
+
 	/**
 	  * Lists the items of list
 	  */
-	public function listItems($list) {
-
+	public function listItems() {
+	
 		$items = array();
 
 		return $items;
