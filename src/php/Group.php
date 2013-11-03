@@ -1,17 +1,22 @@
-<?php
+﻿<?php
 
 require_once("config.php");
 
 class Group
 {
-
+	// Identificador numérico de grupo
 	public $id = null;
   
+	// Nombre de grupo
 	public $group_name = null;
   
+	// Identificador numérico del [Usuario] administrador 
 	public $admin = null;
 
   
+	/*
+	 * Inserta la clase [Grupo] en la base de datos
+	 */
 	public function insert() {
 
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -27,6 +32,10 @@ class Group
 	}
 
   
+	/*
+	 * Inserta al [Usuario] cuyo email coincide con el parametro de entrada $email
+	 * como un nuevo miembro de la clase [Grupo] en la base de datos
+	 */
 	public function insertUser($email) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -45,6 +54,11 @@ class Group
 		mysqli_close($con);
 	}
   
+	/*
+	 * Devuelve una lista con los nombres de [Grupo] a los que
+	 * pertenece el parametro de entrada $user, el cual es un 
+	 * identificador de [Usuario]
+	 */
 	public function listGroups($user) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
