@@ -4,36 +4,30 @@
 	require( "User.php" );
 	
 	
-    //LOG por si se quiere logear algo
-		//$myFile = "log.txt";
-		//$fh = fopen($myFile, 'w') or die("can't open file");
-		//fwrite($fh, $sqlEmail);
-		//fclose($fh);
-	//fin log
-	
+
+	//Conectar a la base de datos
 	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	}
-    $u = isset( $_POST['userName'] ) ? $_POST['userName'] : "a";
-	$e = isset( $_POST['emailAddress'] ) ? $_POST['emailAddress'] : "b";
-	$p = isset( $_POST['password'] ) ? $_POST['password'] : "c";
 	
-	//Comprobar mail bien formado
+	// Se guardan los datos en variables
+    $u = $_POST['userName'];
+	$e = $_POST['emailAddress'];
+	$p = $_POST['password']; 
+	
+	//Comprobar email bien formado
 	if( !preg_match("^[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+(\.[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,})$^", $e) ) {
 		die ('Por favor, introduzca un e-mail correcto');
 	}
 	
-		//Comprobar user bien formado
+	//Comprobar nombre de usuario bien formado
 	if( !preg_match("^[0-9A-Za-z_]+$^", $u) ) {
 		die ('Nombre de usuario incorrecto');
 	}
 	
-	
-	
-	
-	
-	//Comprobar que el e-mail es �nico
+
+	//Comprobar que el e-mail es unico
 	$sqlEmail = "select count(idUser) from `User` where emailAddress='$e'";
 	
 	$result = mysqli_query($con, $sqlEmail);
@@ -43,7 +37,7 @@
 	}
 	mysqli_close($con);
 	
-	//Crea objeto usuario y llama a la funci�n insertar
+	//Crea objeto usuario y llama a la funcion insertar
 	
 	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
     $user->encryptPassword();

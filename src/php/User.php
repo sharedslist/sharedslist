@@ -1,44 +1,43 @@
 <?php
 
 /**
- * Class to handle app users
+ * Clase para manejar Usuarios
  */
 
 class User
 {
-  // Properties
+ 
 
   /**
-  * @var int The user ID from the database
+  * @var int La ID del usuario en la BD
   */
   public $id = null;
 
    /**
-  * @var string The user's name
+  * @var string El nombre de usuario
   */
   public $userName = null;
   
   
   /**
-  * @var string The user's email address
+  * @var string El email del usuario
   */
   public $emailAddress = null;
 
   /**
-  * @var string The user's plaintext password
+  * @var string La contraseña en texto plano
   */
   public $plaintextPassword = null;
 
   /**
-  * @var string The user's encrypted password
+  * @var string La contraseña encriptada
   */
   public $password = null;
 
 
   /**
-  * Sets the object's properties using the values in the supplied array
+  * Constructor del objeto User
   *
-  * @param assoc The property values
   */
 
   public function __construct( $data=array() ) {
@@ -51,7 +50,7 @@ class User
 
 
   /**
-  * Encrypts the plaintext password in the plaintextPassword property, and stores the result in encryptedPassword.
+  * Encripta la contraseña de texto plano y la almacena en la variable encryptedPassword.
   */
 
   public function encryptPassword() {
@@ -60,9 +59,9 @@ class User
 
 
   /**
-  * Checks that the supplied plaintext password is correct for this user
+  * Comprueba que la contraseña en texto plano es correcta para este usuario.
   *
-  * @param string The plaintext password
+  * @param string Contraseña en texto plano
   */
 
   public function checkPassword( $p ) {
@@ -90,7 +89,7 @@ class User
 
 
   /**
-  * Envia por email una ueva contrase�a generada aleatoriamente.
+  * Envia por email una nueva contraseña generada aleatoriamente.
   */
 
   public function sendPassword() {
@@ -111,9 +110,8 @@ class User
 
 
   /**
-  * Get the logged-in user (if any).
-  *
-  * @return User|false The logged-in user, or false if no login session could be found
+  * Cierra la sesión del usuario (si hay alguna)
+  * @return Usuario|false El usuario loggeado, o falso si no hay sesión.
   */
 
   static function getLoggedInUser() {
@@ -123,7 +121,7 @@ class User
   
 
 /**
-  * Creates a valid login session for this user, logging them in.
+  * Crea una sesión valida para este usuario, y lo logea.
   */
 
   function createLoginSession() {
@@ -136,7 +134,7 @@ class User
 
 
   /**
-  * Destroy a login session, logging the user out.
+  * Destruye la sesión de usuario.
   */
 
   function destroyLoginSession() {
@@ -150,10 +148,10 @@ class User
 
 
   /**
-  * Returns a User object matching the given ID.
+  * Devuelve un objeto Usuario correspondiente con la ID dada.
   *
-  * @param int The user ID
-  * @return User|null The User object, or null if the record was not found or there was a problem
+  * @param int La ID de usuario
+  * @return User| null El objeto usuario, o null si ha habido un problema o no existe.
   */
 
   public static function getById( $id ) {
@@ -170,11 +168,11 @@ class User
   }
   
  
-  /**
-  * Returns a User object matching the given email address.
+    /**
+  * Devuelve un objeto Usuario correspondiente con el email dado.
   *
-  * @param int The email address
-  * @return User|null The User object, or null if the record was not found or there was a problem
+  * @param string El email del usuario
+  * @return User| null El objeto usuario, o null si ha habido un problema o no existe.
   */
 
   public static function getByEmailAddress( $email) {
@@ -185,12 +183,7 @@ class User
 	} 
 	$sql = "SELECT * FROM `User` WHERE emailAddress = '".$email."'";
 	
-	
-	
-	
-	
 	$result = mysqli_query($con, $sql);
-
 
 	$row = mysqli_fetch_array($result);
 
@@ -202,7 +195,7 @@ class User
 
 
   /**
-  * Inserts the current User object into the database, and sets its ID property.
+  * Inserta el objeto User actual en la base de datos, y fija el atributo ID.
   */
 
   public function insert() {
@@ -212,7 +205,7 @@ class User
 		die('Could not connect: ' . mysqli_error($con));
 	}
 
-    // Insert the User
+    // Isnerta el usuario
 	$sql = "INSERT INTO `User` (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
     mysqli_query($con, $sql);
 	
@@ -223,7 +216,7 @@ class User
 
 
   /**
-  * Updates the current User object in the database.
+  * Actualiza la contraseña el Usuario actual en la base de datos.
   */
 
   public function updatePassword() {
@@ -233,8 +226,6 @@ class User
 		die('Could not connect: ' . mysqli_error($con));
 	}
 
-	
-    // Insert the User
 	$sql = "UPDATE `User` SET password='".$this->password."' WHERE emailAddress='".$this->emailAddress."'";
 
     mysqli_query($con, $sql);
@@ -247,7 +238,7 @@ class User
 
 
   /**
-  * Deletes the current User object from the database.
+  * Borra al usuario de la base de datos.
   */
 
   public function delete() {
