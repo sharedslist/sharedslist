@@ -11,7 +11,6 @@
 		//fclose($fh);
 	//fin log
 	
-	
 	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
@@ -35,7 +34,7 @@
 	
 	
 	//Comprobar que el e-mail es �nico
-	$sqlEmail = "select count(idUser) from user where emailAddress='$e'";
+	$sqlEmail = "select count(idUser) from `User` where emailAddress='$e'";
 	
 	$result = mysqli_query($con, $sqlEmail);
 	$row = mysqli_fetch_array($result);
