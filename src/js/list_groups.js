@@ -1,3 +1,7 @@
+/*
+ * Envía una petición ajax y lista los nombres de 
+ * los grupos a los que pertenece el usuario en sesión.
+ */
 function listGroups()
 {
 	$.ajax({
@@ -11,6 +15,10 @@ function listGroups()
 		});
 }
 
+/*
+ * Lista los nombres de los grupos a los que 
+ * pertenece el usuario en sesión.
+ */
 function list(groups)
 {
 	var name;

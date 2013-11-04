@@ -1,3 +1,7 @@
+/*
+ * Envía una petición ajax para comprobar
+ * si hay un usuario en sesión.
+ */
 function isConnected() 
 {	
 	$.ajax({

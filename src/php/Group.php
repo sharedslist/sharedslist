@@ -25,7 +25,7 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 	
-		$sql = "INSERT INTO `group` (groupName, idAdmin) values ('".$this->group_name."', '".$this->admin."')";
+		$sql = "INSERT INTO `Group` (groupName, idAdmin) values ('".$this->group_name."', '".$this->admin."')";
 		mysqli_query($con, $sql);
 		$this->id = mysqli_insert_id($con);
 		mysqli_close($con);
@@ -44,11 +44,11 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
-		$sql = "SELECT (idUser) FROM `user` WHERE emailAddress = '".$email."'";
+		$sql = "SELECT (idUser) FROM `User` WHERE emailAddress = '".$email."'";
 		$rows = mysqli_query($con, $sql);
 		while ($row=mysqli_fetch_row($rows))
 		{		
-			$sql = "INSERT INTO groupanduser (idGroup, idUser) values ('".$this->id."', '".$row[0]."')";
+			$sql = "INSERT INTO `GroupAndUser` (idGroup, idUser) values ('".$this->id."', '".$row[0]."')";
 			mysqli_query($con, $sql);
 		}
 		mysqli_close($con);
@@ -67,12 +67,12 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
-		$sql = "SELECT (idGroup) FROM groupanduser WHERE idUser = '".$user."'";
+		$sql = "SELECT (idGroup) FROM `GroupAndUser` WHERE idUser = '".$user."'";
 		$rows = mysqli_query($con, $sql);
 		$groups = array();
 		while ($row=mysqli_fetch_row($rows))
 		{
-			$sql = "SELECT (groupName) FROM `group` WHERE idGroup = ".$row[0]."";
+			$sql = "SELECT (groupName) FROM `Group` WHERE idGroup = ".$row[0]."";
 			$names = mysqli_query($con, $sql);
 			while ($name=mysqli_fetch_row($names))
 			{
@@ -96,7 +96,7 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
-		$sql = "SELECT * FROM groupanduser WHERE idUser = $idUser AND idGroup = $idGroup";
+		$sql = "SELECT * FROM `GroupAndUser` WHERE idUser = $idUser AND idGroup = $idGroup";
 		$result = mysqli_query($con, $sql);
 		$numRows = mysqli_num_rows($result);
 		mysqli_close($con);
