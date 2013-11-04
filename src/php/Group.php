@@ -86,14 +86,16 @@ class Group
 	/**
       * Comprueba si el usuario 'idUser' pertenece al grupo 'idGroup'
       *
-      * @return true si, y solo si el usuario con id 'idUser' pertenece al grupo con id 'idGroup'
+	  * @param int $idUser El ID del usuario que se quiere comprobar
+	  * @param int $idGroup El ID del grupo donde se quiere comprobar la pertenencia
+      * @return boolean Devuelve true si, y solo si, el usuario con id 'idUser' pertenece al grupo con id 'idGroup'
       */	
 	public static function userBelongsToGroup($idUser, $idGroup) {
 	
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
     
 		if (!$con) {
-			die('Could not connect: ' . mysqli_error($con));
+			die('No se ha podido conectar: ' . mysqli_error($con));
 		}
 		
 		$sql = "SELECT * FROM `GroupAndUser` WHERE idUser = $idUser AND idGroup = $idGroup";

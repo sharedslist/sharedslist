@@ -152,10 +152,10 @@ function createList() {
 			url:   'php/create_list.php',
 			type:  'post',
 			success:  function (response)
-				   {//redirigir a 'acceder a la lista de compra'
+				   {
 						var code = response.trim();
 						if(code == 'success'){
-							window.location.href = "list_groups.html";
+							window.location.href = "list_slists.html";
 						}
 						else{
 							$("#message").html(response);
@@ -163,7 +163,7 @@ function createList() {
 				   },
 			error: function () 
 					{
-						$('#message').html('An error occurred, please try again.');
+						$('#message').html('Ha ocurrido un error, intentalo de nuevo');
 					}
 		});				
 	}

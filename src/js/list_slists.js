@@ -77,7 +77,6 @@ function list_slists(slists) {
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#slists").trigger('create');
-	//$("#slists ul").listview('refresh');
 }
 
 /*
