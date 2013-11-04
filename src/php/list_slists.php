@@ -13,7 +13,7 @@
 	else {
 		//die ('No se ha seleccionado un grupo');
 	}
-	$idGroup = 1 ; //lo pongo a 1 mientras no pueda obtener el idGroup de la sesión
+	$idGroup = 3 ; //lo pongo a 3 mientras no pueda obtener el idGroup de la sesión
 	
 	//comprobamos que el usuario se ha autenticado y pertenece al grupo cuyas listas quiere listar
 	$currentUser = User::getLoggedInUser();
@@ -26,7 +26,7 @@
 	
 	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 	if (!$con) {
-		die('Could not connect: ' . mysqli_error($con));
+		die('No se ha podido conectar: ' . mysqli_error($con));
 	}
 	
 	//obtenemos el nombre del grupo actualmente seleccionado

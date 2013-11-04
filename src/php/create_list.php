@@ -9,7 +9,7 @@
 	
 	$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 	if (!$con) {
-		die('Could not connect: ' . mysqli_error($con));
+		die('No se ha podido conectar: ' . mysqli_error($con));
 	}
 	
 	//Comprobar que nombre lista no contenga caracteres prohibidos
