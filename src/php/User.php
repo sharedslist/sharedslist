@@ -161,7 +161,7 @@ class User
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	} 
-	$sql = "SELECT * FROM user WHERE idUser = '".$id."'";
+	$sql = "SELECT * FROM `User` WHERE idUser = '".$id."'";
 	
 	$result = mysqli_query($con, $sql);
 
@@ -183,7 +183,7 @@ class User
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	} 
-	$sql = "SELECT * FROM user WHERE emailAddress = '".$email."'";
+	$sql = "SELECT * FROM `User` WHERE emailAddress = '".$email."'";
 	
 	
 	
@@ -213,7 +213,7 @@ class User
 	}
 
     // Insert the User
-	$sql = "INSERT INTO user (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
+	$sql = "INSERT INTO `User` (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
     mysqli_query($con, $sql);
 	
     $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha añadido en la bd
@@ -235,7 +235,7 @@ class User
 
 	
     // Insert the User
-	$sql = "UPDATE user SET password='".$this->password."' WHERE emailAddress='".$this->emailAddress."'";
+	$sql = "UPDATE `User` SET password='".$this->password."' WHERE emailAddress='".$this->emailAddress."'";
 
     mysqli_query($con, $sql);
 	
