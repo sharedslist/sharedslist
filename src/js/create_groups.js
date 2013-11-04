@@ -1,5 +1,9 @@
-var id = 1;
+var id = 1; // Identificador de los checkbox
 
+/*
+ * Añade el correo del campo #text-2 a la lista de correo
+ * si y sólo si es un correo válido.
+ */
 function addUsers()
 {
 	var txt = $("#text-2");
@@ -16,12 +20,21 @@ function addUsers()
 	}
 }
 
+/*
+ * Devuelve cierto si y solo si el parámetro de entrada 
+ * email tiene la estructura de un correo electrónico. 
+ * En caso contrario devuelve falso.
+ */
 function validateEmail(email) 
 { 
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 } 
 
+/*
+ * Devuelve cierto si y solo si el parámetro de entrada name 
+ * no se encuentra vacío. En caso contrario devuelve falso.
+ */
 function validateName(name) 
 { 	
 	if($.trim(name) == ""){
@@ -32,6 +45,11 @@ function validateName(name)
 	}
 }
 
+/*
+ * Envía una petición ajax con el nombre del grupo y los
+ * correos electrónicos seleccionados en la lista de correos.
+ * Crea el grupo y devuelve la página encargada de listar grupos.
+ */
 function createGroup()
 {
 	var users = new Array();
