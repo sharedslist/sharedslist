@@ -2,47 +2,48 @@
 
 require("config.php");
 
+
 /**
-  * Class to handle app items
+  * Clase que maneja los items de la aplicación
   */
 class Item {
   
 	/**
-          * @var int The list ID from the database
-          */
+      * @var int El identificador de la lista en la base de datos a la que pertenece el item
+      */
 	public $idList = null;
   
 	/**
-          * @var int The item ID from the database
-          */
+      * @var int El identificador del item en la base de datos
+      */
 	public $idItem = null;
 
 	/**
-          * @var string The item's name
-          */
+      * @var string El nombre del item
+      */
 	public $itemName = null;
   
 	/**
-          * @var string The item's state
-          */
+      * @var string El estado del item: true-> comprado, false-> no comprado
+      */
 	public $itemState = null;
 
 	/**
-          * @var string The item's quantity
-          */
+      * @var string La cantidad de items que hay que comprar
+      */
 	public $quantity = null;
 
 	/**
-          * @var string The item's quantity left
-          */
+      * @var string La cantidad de items que se han comprado
+      */
 	public $quantityBought = null;
 
 
 	/**
-          * Sets the object's properties using the values in the supplied array
-          *
-          * @param assoc The property values
-          */
+      * Establece los atributos del item a partir del array proporcionado
+      *
+      * @param assoc Valores del item
+      */
 	public function __construct( $data=array() ) {
 		if ( isset( $data['idList'] ) ) $this->idList = (int) $data['idList'];
 		if ( isset( $data['idItem'] ) ) $this->idItem = (int) $data['idItem'];
@@ -53,10 +54,10 @@ class Item {
 	}
 
 	/**
-          * Returns a Item object matching the given ID.
+          * Devuelve un item cuyo identificador es idItem
           *
-          * @param int The Item ID
-          * @return Item|null The Item object, or null if the record was not found or there was a problem
+          * @param int Identificador de un item
+          * @return Item|null El objeto Item o null si no se ha encontrado o ha habido un error
           */
 	public static function getItemById( $idItem ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -72,7 +73,7 @@ class Item {
 	
 	
 	/**
-          * Inserts the current Item object into the database, and sets its ID property.
+          * Inserta el objeto Item actual en la base de datos y le da un identificador
           */
 	public function insertItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -86,7 +87,7 @@ class Item {
 
 
 	/**
-          * Updates the current Item object in the database.
+          * Actualiza el objeto Item actual en la base de datos
 	  */
 	public function editItem() {
 
@@ -94,7 +95,7 @@ class Item {
 
 
 	/**
-          * Deletes the current Item object from the database.
+          * Elimina el objeto Item actual de la base de datos
           */
 	public function deleteItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -108,7 +109,7 @@ class Item {
 
 
 	/**
-	  * Lists the items of list
+	  * Lista los items de una lista
 	  */
 	public function listItems() {
 	
