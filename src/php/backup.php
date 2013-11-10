@@ -1,7 +1,7 @@
 ﻿<?php
 
-require ("php/config.php");
-require_once ("php/DropboxClient.php");
+require_once ("includes/config.php");
+require_once ("includes/DropboxClient.php");
 
 $timeToDoBackup = FALSE;
 $lastBackupLogExists = FALSE;
@@ -10,12 +10,12 @@ if (file_exists ( HOME . "/../TEMP/LastBackup.txt" )) {
 	$lastBackupLogExists = TRUE;
 	$time_24h_ago = time () - (60 * 60 * 24);
 	$timeLastBackup = date ( 'Y-m-d H:i:s', strtotime ( file_get_contents ( HOME . "/../TEMP/LastBackup.txt" ) ) );
-	if ($time_24h_ago > strtotime ( $timeLastBackup )) {
+	if ($time_24h_ago >= strtotime ( $timeLastBackup )) {
 		$timeToDoBackup = TRUE;
 	} else
-		echo "No han pasado 24h desde el anterior Backup!";
+		echo "No han pasado 24h desde el anterior Backup!<br/>";
 }
-if ($timeToDoBackup || ! $lastBackupLogExists || TRUE) {
+if ($timeToDoBackup || ! $lastBackupLogExists) {
 	$backupFilesName = "SharedSList_backup_files-" . date ( "Y.m.d" ) . '.zip';
 	$backupsPath = HOME . "/../TEMP/backups/";
 	$backupFiles = $backupsPath . $backupFilesName;
@@ -31,36 +31,36 @@ if ($timeToDoBackup || ! $lastBackupLogExists || TRUE) {
 			'app_full_access' => false 
 	), 'en' );
 	
-	// first try to load existing access token
+	// intentamos recuperar el token de acceso
 	$access_token = load_token ( "access" );
 	if (! empty ( $access_token )) {
 		$dropbox->SetAccessToken ( $access_token );
-	} elseif (! empty ( $_GET ['auth_callback'] )) 	// are we coming from dropbox's auth page?
+	} elseif (! empty ( $_GET ['auth_callback'] )) 	// si estamos volviendo de la página de autenticación
 	{
-		// then load our previously created request token
+		// cargamos el token recien creado
 		$request_token = load_token ( $_GET ['oauth_token'] );
 		if (empty ( $request_token ))
-			die ( 'Request token not found!' );
+			die ( 'No se ha podido obtener el request token!' );
 			
-			// get & store access token, the request token is not needed anymore
+			// obtenemos y guardamos el token de acceso
 		$access_token = $dropbox->GetAccessToken ( $request_token );
 		store_token ( $access_token, "access" );
 		delete_token ( $_GET ['oauth_token'] );
 	}
 	
-	// checks if access token is required
+	// comprobamos si es necesario el token de acceso
 	if (! $dropbox->IsAuthorized ()) {
-		// redirect user to dropbox auth page
+		// redireccionamos a la web de autenticación
 		$return_url = "http://" . $_SERVER ['HTTP_HOST'] . $_SERVER ['SCRIPT_NAME'] . "?auth_callback=1";
 		$auth_url = $dropbox->BuildAuthorizeUrl ( $return_url );
 		$request_token = $dropbox->GetRequestToken ();
 		store_token ( $request_token, $request_token ['t'] );
-		die ( "Authentication required. <a href='$auth_url'>Click here.</a>" );
+		die ( "Autenticación necesaria. <a href='$auth_url'>Pulsa aquí.</a>" );
 	}
 	
-	echo "<b>Uploading $backupFilesName</b><br/>";
+	echo "<b>Guardando $backupFilesName</b><br/>";
 	$dropbox->UploadFile ( $backupFiles );
-	echo "<b>Uploading $backupDBName.zip</b>";
+	echo "<b>Guardando $backupDBName.zip</b>";
 	$dropbox->UploadFile ( $backupDB . ".zip" );
 	unlink ( $backupFiles );
 	unlink ( $backupDB );
@@ -68,15 +68,40 @@ if ($timeToDoBackup || ! $lastBackupLogExists || TRUE) {
 	// escribimos la fecha del backup en un fichero
 	file_put_contents ( HOME . "/../TEMP/LastBackup.txt", date ( "Y-m-d H:i:s", time () ) );
 }
+
+/**
+ * La función store_token guarda el token
+ *
+ * @param array $token
+ *        	el token que se quiere guardar
+ * @param string $name
+ *        	la ruta destino del token
+ */
 function store_token($token, $name) {
 	if (! file_put_contents ( HOME . "/../tokens/$name.token", serialize ( $token ) ))
-		die ( '<br />Could not store token! <b>Make sure that the directory `tokens` exists and is writable!</b>' );
+		die ( '<br />No se ha podido guardar el token! <b>Asegurate de que el directorio `tokens` existe y tiene permisos de escritura!</b>' );
 }
+
+/**
+ * La función load_token recupera el token
+ *
+ * @param string $name
+ *        	la ruta origen del token
+ * @return array|null
+ * 			el token recuperado o null
+ */
 function load_token($name) {
 	if (! file_exists ( HOME . "/../tokens/$name.token" ))
 		return null;
 	return @unserialize ( @file_get_contents ( HOME . "/../tokens/$name.token" ) );
 }
+
+/**
+ * La función delete_token elimina el token
+ *
+ * @param string $name
+ *        	la ruta origen del token
+ */
 function delete_token($name) {
 	@unlink ( HOME . "/../tokens/$name.token" );
 }
@@ -136,24 +161,24 @@ function Zip($source, $destination) {
 function backupDB($backup_dir) {
 	$con = mysqli_connect ( DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME );
 	
-	// get all of the tables
+	// obtenemos todas las tablas
 	$tables = array ();
 	$result = mysqli_query ( $con, 'SHOW TABLES' );
 	while ( $row = mysqli_fetch_array ( $result ) ) {
 		$tables [] = $row [0];
 	}
 	
-	// cycle through the tables
+	// iteramos sobre todas las tablas
 	foreach ( $tables as $table ) {
 		$result = mysqli_query ( $con, "SELECT * FROM `$table`");
 		$num_fields = mysqli_num_fields ( $result );
 		$num_rows = mysqli_num_rows( $result );
-		$return .= "--\n-- Structure for the table $table\n--\n\n";
+		$return .= "--\n-- Estructura de tabla para la tabla $table\n--\n\n";
 		$return .= "DROP TABLE IF EXISTS `$table`;";
 		$row2 = mysqli_fetch_array ( mysqli_query ( $con, "SHOW CREATE TABLE `$table`" ) );
 		$return .= "\n\n" . $row2 [1] . ";\n\n";
 		if ($num_rows > 0) {
-			$return .= "--\n-- Data dump for the table $table\n--\n\n";
+			$return .= "--\n-- Volcado de datos para la tabla $table\n--\n\n";
 		}
 		$i = 0;
 		while ( $row = mysqli_fetch_array ( $result ) ) {
@@ -165,7 +190,6 @@ function backupDB($backup_dir) {
 				if ($j == 0) {
 					$return .= '(';
 				}
-				$row [$j] = addslashes ( $row [$j] );
 				$row [$j] = mysqli_real_escape_string ( $con, $row [$j] );
 				if (isset ( $row [$j] )) {
 					$return .= '"' . $row [$j] . '"';
@@ -185,25 +209,27 @@ function backupDB($backup_dir) {
 		}
 		$return .= "\n";
 		
-		// get all of the triggers for this table
+		// obtenemos los triggers de la tabla
 		$triggers = array ();
 		$result = mysqli_query ( $con, "SHOW TRIGGERS LIKE '$table'");
 		while ( $row = mysqli_fetch_array ( $result ) ) {
 			$triggers [] = $row [0];
 		}
 		if (sizeof($triggers) > 0) {
-			$return .= "--\n-- Triggers for the table `$table`\n--\n\n";
-			// cycle through the triggers of the table
+			$return .= "--\n-- Triggers de la tabla `$table`\n--\n\n";
+			// iteramos sobre los triggers de la tabla
 			foreach ( $triggers as $trigger ) {
 				$result = mysqli_fetch_array ( mysqli_query ( $con, "SHOW CREATE TRIGGER $trigger" ) );
 				$return .= "\nDROP TRIGGER IF EXISTS `$trigger`;\n";
-				$return .= $result [2] . ";\n";
+				$return .= "DELIMITER //\n";
+				$return .= $result [2] . "\n//\n";
+				$return .= "DELIMITER ;\n";
 			}
 			$return .= "\n\n";
 		}	
 	}
 	
-	// save file
+	// guardamos el fichero
 	$handle = fopen ( $backup_dir, 'w+' );
 	fwrite ( $handle, $return );
 	fclose ( $handle );
