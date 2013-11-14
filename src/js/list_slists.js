@@ -68,8 +68,7 @@ function list_slists(slists) {
 			$(li).html(item.itemName);
 			var spanCantidad = document.createElement('span');
 			spanCantidad.setAttribute("class", "ui-li-count");
-			var textoFaltan = numFaltan <= 1 ? 'falta' : 'faltan';
-			$(spanCantidad).html(textoFaltan + ' ' + numFaltan);
+			$(spanCantidad).html(item.quantityBought + '/' + item.quantity);
 			li.appendChild(spanCantidad);
 			ul.appendChild(li);
 		});
