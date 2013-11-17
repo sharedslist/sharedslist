@@ -11,8 +11,26 @@ function listGroups()
 		success:  function (response)
 			   {
 			   obj = JSON.parse(response);
-			   list(obj.names);}
+			   list(obj);}
 		});
+}
+
+function selectGroup()
+{
+	var parameter = {"idGroup" : $(this).attr('id')};
+	$.ajax({
+	url: 'php/select_group.php',
+	data: parameter,
+	type:  'post',
+	success:  function (response)
+	{
+		window.location.href = 'list_slists.html';
+	},
+	error: 	function() 
+	{
+		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
+	}
+	});
 }
 
 /*
@@ -22,10 +40,10 @@ function listGroups()
 function list(groups)
 {
 	var name;
-	for(var i=0; i< groups.length; i++)
+	var id;
+	for(var i=0; i< groups.name.length; i++)
 	{
-		name = groups[i].name;
-		$("#mylist").append('<li id="group'+i+'"><a href="#">'+groups[i]+'</a></li>');
+		$("#mylist").append('<li id="'+groups.id[i]+'" onclick="selectGroup()"><a href="#">'+groups.name[i]+'</a></li>');
 		$("#mylist").listview('refresh');
 	}
 }

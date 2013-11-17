@@ -13,6 +13,17 @@ class Group
 	// Identificador numérico del [Usuario] administrador 
 	public $admin = null;
 
+	/**
+	 * Crea una sesión valida para este usuario, y lo logea.
+	 */
+
+	public function createGroupSession() {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idGroup'] = $this->id;
+  }
   
 	/*
 	 * Inserta la clase [Grupo] en la base de datos
@@ -62,25 +73,26 @@ class Group
 	public function listGroups($user) {
   
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
-    
+		$groupId = array();
+		$groupName = array();
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
 		$sql = "SELECT (idGroup) FROM `GroupAndUser` WHERE idUser = '".$user."'";
 		$rows = mysqli_query($con, $sql);
-		$groups = array();
-		while ($row=mysqli_fetch_row($rows))
+		while ($id=mysqli_fetch_row($rows))
 		{
-			$sql = "SELECT (groupName) FROM `Group` WHERE idGroup = ".$row[0]."";
+			array_push($groupId, $id[0]);
+			$sql = "SELECT (groupName) FROM `Group` WHERE idGroup = ".$id[0]."";
 			$names = mysqli_query($con, $sql);
 			while ($name=mysqli_fetch_row($names))
 			{
-				array_push($groups, $name[0]);
+				array_push($groupName, $name[0]);
 			}
 		}
 		mysqli_close($con);
-		return $groups;
+		return array( 'id' => $groupId, 'name' => $groupName);
 	}
 	
 	/**
