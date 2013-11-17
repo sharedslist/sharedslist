@@ -15,9 +15,9 @@ function listGroups()
 		});
 }
 
-function selectGroup()
+function selectGroup(id)
 {
-	var parameter = {"idGroup" : $(this).attr('id')};
+	var parameter = {"idGroup" : id};
 	$.ajax({
 	url: 'php/select_group.php',
 	data: parameter,
@@ -43,7 +43,7 @@ function list(groups)
 	var id;
 	for(var i=0; i< groups.name.length; i++)
 	{
-		$("#mylist").append('<li id="'+groups.id[i]+'" onclick="selectGroup()"><a href="#">'+groups.name[i]+'</a></li>');
+		$("#mylist").append('<li id="'+groups.id[i]+'" onclick="selectGroup(id)"><a href="#">'+groups.name[i]+'</a></li>');
 		$("#mylist").listview('refresh');
 	}
 }
