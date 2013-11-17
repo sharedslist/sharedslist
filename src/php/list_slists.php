@@ -13,7 +13,6 @@
 	else {
 		//die ('No se ha seleccionado un grupo');
 	}
-	$idGroup = 3 ; //lo pongo a 3 mientras no pueda obtener el idGroup de la sesión
 	
 	//comprobamos que el usuario se ha autenticado y pertenece al grupo cuyas listas quiere listar
 	$currentUser = User::getLoggedInUser();
