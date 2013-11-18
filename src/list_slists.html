@@ -22,7 +22,18 @@
 			</div>
 			
 			<div data-role="content">
-				<div id="slists"></div>
+				<div id="slists" data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+					<div id="open" data-role="collapsible" data-collapsed="false" data-theme="b">
+						<h3>Listas abiertas</h3>
+						<ul id="open_list" data-role="listview">
+						</ul>
+					</div>
+					<div id="close" data-role="collapsible" data-theme="b">
+						<h3>Listas cerradas</h3>
+						<ul id="close_list" data-role="listview">
+						</ul>
+					</div>
+				</div>
 				<h4 id="message"></h4>
 			</div><!-- /content -->
 			
