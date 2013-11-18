@@ -23,58 +23,26 @@ function listSLists() {
 
 // función que crea los elementos 'ul' y 'li' correspondientes a las listas y sus items
 function list_slists(slists) {
-	//vaciamos la lista por si queda basura
-	$("#slists").html("");
+	$("#open_list").html("");
+	$("#close_list").html("");
 	$.each(slists, function(i, slist) {
-		var ul = document.createElement('ul');
-		ul.setAttribute("data-role", "listview");
-		ul.setAttribute("data-inset", "true");
-		ul.setAttribute("data-divider-theme", "b");
-		//creamos la cabecera de la lista
-		var divider = document.createElement('li');
-		divider.setAttribute("data-role", "list-divider");
-		var div = document.createElement('div');
-		div.setAttribute("class", "ui-grid-a");
-		var divBlockA = document.createElement('div');
-		divBlockA.setAttribute("class", "ui-block-a");
-		$(divBlockA).html(slist.listName);
-		$(divBlockA).append(", creada " + slist.listCreated);
-		divBlockA.setAttribute("style", "margin-top:10px");
-		var divBlockB = document.createElement('div');
-		divBlockB.setAttribute("class", "ui-block-b");
-		divBlockB.setAttribute("style", "text-align:right");
-		var a = document.createElement('a');
-		a.setAttribute("href", "#");
-		a.setAttribute("class", "btnVerLista");
-		a.setAttribute("data-role", "button");
-		a.setAttribute("data-iconpos", "notext");
-		a.setAttribute("data-icon", "edit");
-		a.setAttribute("data-theme", "b");
-		a.setAttribute("data-inline", "true");
-		a.setAttribute("idList", slist.idList );
-		$(a).html("Ver y editar");
-		divBlockB.appendChild(a);
-		div.appendChild(divBlockA);
-		div.appendChild(divBlockB);
-		divider.appendChild(div);
-		ul.appendChild(divider);
-		//creamos un list item por cada item de la lista
-		$.each(slist.items, function(i,item) {
-			var li = document.createElement('li');
-			var numFaltan = item.quantity - item.quantityBought;
-			if( numFaltan == 0 ) {
-				li.setAttribute("class", "comprado");
-			}
-			$(li).html(item.itemName);
-			var spanCantidad = document.createElement('span');
-			spanCantidad.setAttribute("class", "ui-li-count");
-			$(spanCantidad).html(item.quantityBought + '/' + item.quantity);
-			li.appendChild(spanCantidad);
-			ul.appendChild(li);
-		});
-		$("#slists").append(ul);
+		var divider = '<li data-theme = "d">';
+		var div =  '<div>';
+		var divBlockA = '<div style="display:inline-block; margin-top:10px">'+ slist.listName + ", creada " + slist.listCreated+'</div>';
+		var a = '<a href ="#" class= "btnVerLista" data-role = "button"	data-iconpos="notext" data-theme = "b" data-icon = "edit" data-inline = true" ';
+		a = a + 'idList="'+slist.idList+'">Ver y editar</a>';
+		var divBlockB = '<div style="display:inline-block; float:right" >'+ a +'</div>';
+		div = div + divBlockA + divBlockB +'</div>' ;
+		divider = divider + div + '</li>';
+		if(slist.listState == 0){
+			$("#open_list").append(divider);
+		}
+		else{
+			$("#close_list").append(divider);
+		}
 	});
-	// enviamos el evento create para que jQuery Mobile cambie el estilo
+	$("#open_list").listview( "refresh" );
+	$("#close_list").listview( "refresh" );
 	$("#slists").trigger('create');
 }
 
