@@ -28,7 +28,7 @@ function list_slists(slists) {
 	$.each(slists, function(i, slist) {
 		var divider = '<li data-theme = "d">';
 		var div =  '<div>';
-		var divBlockA = '<div style="display:inline-block; margin-top:10px">'+ slist.listName + ", creada " + slist.listCreated+'</div>';
+		var divBlockA = '<div style="display:inline-block; margin-top:10px">'+ slist.listName + '<p style="margin-top: 2px">Creada ' + slist.listCreated+'</p></div>';
 		var a = '<a href ="#" class= "btnVerLista" data-role = "button"	data-iconpos="notext" data-theme = "b" data-icon = "edit" data-inline = true" ';
 		a = a + 'idList="'+slist.idList+'">Ver y editar</a>';
 		var divBlockB = '<div style="display:inline-block; float:right" >'+ a +'</div>';

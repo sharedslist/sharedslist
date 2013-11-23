@@ -12,6 +12,9 @@ function isConnected()
 				if(response == "Error: no login"){
 					window.location.href = 'login.html';
 				}
+				else{
+					$("body").show();
+				}
 			}
 	});
 };
