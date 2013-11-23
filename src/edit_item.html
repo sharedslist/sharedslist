@@ -3,10 +3,19 @@
 <head>
 	<title>Shared Shopping List</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<link href="css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+	<link href="css/mobiscroll.scroller.jqm.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/mobiscroll/mobiscroll.jqmobi.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.core.js"></script>
+	<script src="js/mobiscroll/mobiscroll.scroller.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.select.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.scroller.jqm.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.i18n.es.js" type="text/javascript"></script>
 	<script src="js/edit_item.js"></script>
 	<script src="js/connected.js"></script>
 	<style type="text/css">
@@ -17,7 +26,7 @@
 	</style>
 
 </head>
-<body>
+<body type="hidden">
 
 <div data-role="page" id="create_item" date-theme="c">
 
@@ -25,22 +34,32 @@
 		<h1>Editar producto</h1>
 	</div><!-- /header -->
 	<div data-role="content">
-		<form id="createform" >
+		<form id="editItemForm" >
 			<div data-role="fieldcontain">
 				<input type="text" name="itemName" id="itemName" value="Nombre producto" required autofocus data-clear-btn="true"/>
-			<div data-role="fieldcontain">
 			</div>
-				<input type="text" data-role="spinbox" name="spin" id="quantity" value="Cantidad" min="1" data-options="{"type":"vertical"}"/>
-			<div data-role="fieldcontain">
+			<div class="ui-grid-a" id="quantityGrid">
+				<div class="ui-block-a" style="width:150px;">
+					<p>Cantidad a comprar </p>
+				</div>
+				<div class="ui-block-b" style="width:75px;">
+					<select name="Cantidad" id="quantity" data-role="none"></select>
+				</div>
 			</div>
-				<input type="text" data-role="spinbox" name="spin" id="quantityBought" value="Cantidad comprada" min="1" data-options="{"type":"vertical"}"/>
+			<div class="ui-grid-a" id="quantityBoughtGrid">
+				<div class="ui-block-a" style="width:150px;">
+					<p>Cantidad comprada </p>
+				</div>
+				<div class="ui-block-b" style="width:75px;">
+					<select name="Cantidad comprada" id="quantityBought" data-role="none"></select>
+				</div>
 			</div>
+			<h4 id="message"></h4>
 			<br/>
-			<div align="right">
+			<div>
 				<input type="button" data-mini="true" name="edit" id="edit" value="Guardar" data-theme="b" onclick="editItem()"/>
 				<input type="button" data-mini="true" name="delete" id="delete" value="Eliminar" data-theme="c" onclick="deleteItem()"/>
 			</div>
-			<h4 id="message"></h4>
 		</form><!-- /createform -->
 	</div><!-- /content -->
 </div>
