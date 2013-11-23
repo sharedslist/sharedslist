@@ -1,4 +1,4 @@
-// función que hace una llamada AJAX al servidor por las listas de un grupo
+﻿// función que hace una llamada AJAX al servidor por las listas de un grupo
 function listItems() {
 	
 	$.ajax({

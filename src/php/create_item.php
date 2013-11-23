@@ -1,12 +1,12 @@
-<?php
-	require("Item.php");
+﻿<?php
+	require_once("Item.php");
 
 	$itemName = $_POST["itemName"];
 	$quantity = $_POST["quantity"];
 	
 	session_start();
 	$item = new Item;
-//$item->idList = getListId();
+	//$item->idList = getListId();
 	$item->idList = 1;
 	$item->itemName = $itemName;
 	$item->itemState = false;

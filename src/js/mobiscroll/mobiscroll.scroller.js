@@ -1,4 +1,4 @@
-/*jslint eqeq: true, plusplus: true, undef: true, sloppy: true, vars: true, forin: true, nomen: true */
+﻿/*jslint eqeq: true, plusplus: true, undef: true, sloppy: true, vars: true, forin: true, nomen: true */
 (function ($) {
 
     $.mobiscroll.classes.Scroller = function (elem, settings) {

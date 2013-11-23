@@ -1,6 +1,6 @@
 ﻿<?php
-	require("Group.php");
-	require("User.php");
+	require_once("Group.php");
+	require_once("User.php");
 
     $group_name = $_POST["group_name"];				// Desempaqueta el nombre del grupo
 	

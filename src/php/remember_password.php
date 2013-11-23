@@ -1,6 +1,6 @@
-<?php
-	REQUIRE ("config.php");
-	require( "User.php" );
+﻿<?php
+	require_once("config.php");
+	require_once( "User.php" );
 	
 	
 	$e = isset( $_POST['emailAddress'] ) ? $_POST['emailAddress'] : "b";

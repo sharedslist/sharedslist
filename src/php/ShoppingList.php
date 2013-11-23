@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 require_once("config.php");
 require_once("Item.php");
@@ -29,7 +29,7 @@ class ShoppingList
 	public $listState = null;
 	
 	/**
-      * @var string El timestampo de la creación de la lista
+      * @var string El timestampo de la creaciÃ³n de la lista
       */
 	public $listCreated = null;
 	
@@ -82,7 +82,7 @@ class ShoppingList
 		$sql = "SELECT * FROM `ShoppingList` WHERE idGroup = $group";
 		$result = mysqli_query($con, $sql);
 		$lists = [];
-		//iteramos sobre las listas y las añadimos al vector de listas
+		//iteramos sobre las listas y las aÃ±adimos al vector de listas
 		while ($row=mysqli_fetch_array($result)) {
 			$slist = new ShoppingList($row);
 			$lists[] = $slist;
