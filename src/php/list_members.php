@@ -15,7 +15,7 @@ require_once("User.php");
 		die('Could not connect: ' . mysqli_error($con));
 	}
 	
-	//obtenemos el nombre del grupo actualmente seleccionado
+	//obtenemos todos los usuarios del grupo
 	$sql = "SELECT * FROM `GroupAndUser` WHERE idGroup = ".$idGroup;
 	$result = mysqli_query($con, $sql);
 	$users = array ();
@@ -23,12 +23,12 @@ require_once("User.php");
 		array_push ($users,$row['idUser']);
 	}
 	
+	// Si el usuario no pertenece al grupo no se muestran los miembros.
 	if (! in_array($idUser, $users)){
-
 		die("El usuario con id ".$idUser." no pertence al grupo " .$idGroup);
 	}
 
-	//obtenemos el nombre del grupo actualmente seleccionado
+	//Selecciona los nombres de usuarios a mostrar.
 	$ids = join(',',$users); 
 	$sql1 = "SELECT idUser,Username FROM `User` WHERE idUser IN ($ids)";
 	$result1 = mysqli_query($con, $sql1);
