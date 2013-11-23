@@ -32,6 +32,12 @@ function selectGroup(id)
 	}
 	});
 }
+
+/**
+ * Cuando mete en sesion el grupo sobre el cual
+ * se ha hecho long press.
+ * @param id
+ */
 function selectGroupLongPress(id)
 {
 	var parameter = {"idGroup" : id};
@@ -64,17 +70,25 @@ function list(groups)
 	}
 }
 
+// Asigna el evento taphold a los elementos de la lista.
 $(document).on('taphold', '.btnVerLista', longPress);
 
+/*
+ * Muestra o crea el menu popup.
+ */
 function longPress (event){
 	selectGroupLongPress(event.currentTarget.id);
 	if ( $('#ulPopUP').length > 0){
-		$('#popupBasic').popup("open");
-	}else {
-		tapholdHandler(event);
+		$('#ulPopUP').remove();
 	}
+	tapholdHandler(event);
+	
 }
 
+/**
+ * crea el menu popup.
+ * @param event
+ */
 function tapholdHandler( event ){
 	event.preventDefault();
 	//alert(event.currentTarget.attributes.idGroup.value);			
