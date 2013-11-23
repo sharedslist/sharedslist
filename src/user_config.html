@@ -18,7 +18,7 @@
 		}
 	</style>
 </head>
-<body hidden>
+<body>
 	<script>isConnected();</script>
   <div data-role="page" id="userConfig" data-theme="b">
 
@@ -31,23 +31,24 @@
       <div style="text-align: center;">
         
 		Aquí puedes cambiar tu nombre de usuario y contraseña. Deberás introducir
-		tu antigua contraseña para poder realizar los cambios.
+		tu antigua contraseña para poder realizar los cambios. Si no deseas cambiar un campo
+		dejalo vacío.
 		
       </div>
 	  
 	  
       <form method="post" id="formUserConfig">
 	  
-		<p>Nombre actual:  <b id="currentUserName">hola</b> </p>
+		<p>Nombre actual:  <b id="currentUserName">Desconocido</b> </p>
 		
 		<div data-role="fieldcontain">
           <input type="text" name="userName" id="userName" placeholder="Nuevo nombre de usuario" required autofocus maxlength="50">
 		  </p>
-		  <input type="password" name="password" id="newPassword" placeholder="Contraseña nueva" required maxlength="30">
+		  <input type="password" name="newPassword" id="newPassword" placeholder="Contraseña nueva" required maxlength="30">
         </div>
 
         <div data-role="fieldcontain">
-          <input type="password" name="password" id="oldPassword" placeholder="Contraseña antigua" required maxlength="30">
+          <input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña actual" required maxlength="30">
         </div>
 
 		
@@ -58,7 +59,6 @@
 
       </form>
 	  	<script>
-			alert('HOLA'); 
 			getName();
 		</script>
     </div>

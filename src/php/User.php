@@ -236,6 +236,27 @@ class User
    
   }
 
+    /**
+  * Actualiza el nombre de usuario del Usuario actual en la base de datos.
+  */
+
+  public function updateUserName() {
+
+    $con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+  if (!$con) {
+    die('Could not connect: ' . mysqli_error($con));
+  }
+
+  $sql = "UPDATE `User` SET userName='".$this->userName."' WHERE emailAddress='".$this->emailAddress."'";
+
+    mysqli_query($con, $sql);
+  
+    $this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha a�adido en la bd
+
+  mysqli_close($con);
+   
+  }
+
 
   /**
   * Borra al usuario de la base de datos.
