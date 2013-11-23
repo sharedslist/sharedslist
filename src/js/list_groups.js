@@ -10,7 +10,7 @@ function listGroups()
 		type:  'post',
 		success:  function (response)
 			   {
-			   obj = JSON.parse(response);
+			   obj = JSON.parse(response.trim());
 			   list(obj);}
 		});
 }
