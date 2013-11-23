@@ -36,6 +36,7 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 	
+		$this->group_name=mysqli_real_escape_string($con,$this->group_name);
 		$sql = "INSERT INTO `Group` (groupName, idAdmin) values ('".$this->group_name."', '".$this->admin."')";
 		mysqli_query($con, $sql);
 		$this->id = mysqli_insert_id($con);
@@ -55,6 +56,7 @@ class Group
 			die('Could not connect: ' . mysqli_error($con));
 		}
 		
+		$email = mysqli_real_escape_string($con,$email);
 		$sql = "SELECT (idUser) FROM `User` WHERE emailAddress = '".$email."'";
 		$rows = mysqli_query($con, $sql);
 		while ($row=mysqli_fetch_row($rows))
@@ -78,7 +80,7 @@ class Group
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		
+
 		$sql = "SELECT (idGroup) FROM `GroupAndUser` WHERE idUser = '".$user."'";
 		$rows = mysqli_query($con, $sql);
 		while ($id=mysqli_fetch_row($rows))

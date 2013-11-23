@@ -56,11 +56,11 @@ function createGroup()
 	var group_name = $("#text-1").val();
 	if(validateName(group_name)){
 		var n = $('form#createform').find('input:checked');
-		var name;
+		var email;
 		for(var i=1; i< n.length+1; i++)
 		{	
-			name = $("#"+n[i-1].id).next("label").text();
-			users[i-1] = {'name' : $.trim(name)};
+			email = $("#"+n[i-1].id).next("label").text();
+			users[i-1] = {'email' : $.trim(email)};
 		}
 		var parameters = { "users" : users, "group_name" : group_name};
 		$.ajax({
@@ -69,10 +69,25 @@ function createGroup()
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
-				   {window.location.href = 'list_groups.html';}
+				   {
+					var code = response.trim();
+					if(code == 'success') {
+						window.location.href = 'list_groups.html';
+					}
+					else{
+						$('#message').html(response);
+					}},
+			error: function () {
+					$('#message').html('An error occurred, please try again.');
+			}
 			});
 	}
 	else{
-		$('#message').html('Nombre de grupo vacio');
+		$('#message').html('Nombre de grupo incorrecto');
 	}
 }
+
+// lo que se va a ejecutar cuando la página esté lista para ser visualizada
+$(document).ready(function() {
+	isConnected() ;
+});
