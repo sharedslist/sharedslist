@@ -1,8 +1,8 @@
-var id = 1; // Identificador de los checkbox
+Ôªøvar id = 1; // Identificador de los checkbox
 
 /*
- * AÒade el correo del campo #text-2 a la lista de correo
- * si y sÛlo si es un correo v·lido.
+ * A√±ade el correo del campo #text-2 a la lista de correo
+ * si y s√≥lo si es un correo v√°lido.
  */
 function addUsers()
 {
@@ -21,8 +21,8 @@ function addUsers()
 }
 
 /*
- * Devuelve cierto si y solo si el par·metro de entrada 
- * email tiene la estructura de un correo electrÛnico. 
+ * Devuelve cierto si y solo si el par√°metro de entrada 
+ * email tiene la estructura de un correo electr√≥nico. 
  * En caso contrario devuelve falso.
  */
 function validateEmail(email) 
@@ -32,8 +32,8 @@ function validateEmail(email)
 } 
 
 /*
- * Devuelve cierto si y solo si el par·metro de entrada name 
- * no se encuentra vacÌo. En caso contrario devuelve falso.
+ * Devuelve cierto si y solo si el par√°metro de entrada name 
+ * no se encuentra vac√≠o. En caso contrario devuelve falso.
  */
 function validateName(name) 
 { 	
@@ -46,9 +46,9 @@ function validateName(name)
 }
 
 /*
- * EnvÌa una peticiÛn ajax con el nombre del grupo y los
- * correos electrÛnicos seleccionados en la lista de correos.
- * Crea el grupo y devuelve la p·gina encargada de listar grupos.
+ * Env√≠a una petici√≥n ajax con el nombre del grupo y los
+ * correos electr√≥nicos seleccionados en la lista de correos.
+ * Crea el grupo y devuelve la p√°gina encargada de listar grupos.
  */
 function createGroup()
 {
@@ -87,7 +87,7 @@ function createGroup()
 	}
 }
 
-// lo que se va a ejecutar cuando la p·gina estÈ lista para ser visualizada
+// lo que se va a ejecutar cuando la p√°gina est√© lista para ser visualizada
 $(document).ready(function() {
 	isConnected() ;
 });

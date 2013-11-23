@@ -1,6 +1,6 @@
-/*
- * Envía una petición ajax y lista los nombres de 
- * los grupos a los que pertenece el usuario en sesión.
+ï»¿/*
+ * EnvÃ­a una peticiÃ³n ajax y lista los nombres de 
+ * los grupos a los que pertenece el usuario en sesiÃ³n.
  */
 function listGroups()
 {
@@ -35,7 +35,7 @@ function selectGroup(id)
 
 /*
  * Lista los nombres de los grupos a los que 
- * pertenece el usuario en sesión.
+ * pertenece el usuario en sesiÃ³n.
  */
 function list(groups)
 {

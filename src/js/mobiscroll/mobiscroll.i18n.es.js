@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
     $.mobiscroll.i18n.es = $.extend($.mobiscroll.i18n.es, {
         // Core
         setText: 'Aceptar',

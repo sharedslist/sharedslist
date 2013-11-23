@@ -1,4 +1,4 @@
-	function remember_password () {
+﻿	function remember_password () {
 		var email = $("#email").val();
 		var parameters = { "emailAddress" : email};
 		$.ajax({

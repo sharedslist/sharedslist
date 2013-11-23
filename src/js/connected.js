@@ -1,6 +1,6 @@
-/*
- * Envía una petición ajax para comprobar
- * si hay un usuario en sesión.
+ï»¿/*
+ * EnvÃ­a una peticiÃ³n ajax para comprobar
+ * si hay un usuario en sesiÃ³n.
  */
 function isConnected() 
 {	

@@ -1,4 +1,4 @@
-		  function registrar (e) {
+﻿		  function registrar (e) {
 			//e.preventDefault();
 			$('#message').slideUp('fast');
 

@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 	require_once("Item.php");
 	//require_once("User.php");
-	require("config.php");
+	require_once("config.php");
 	
 	session_start();
 	$idList = $_POST['idList'] //obtenemos el id del grupo a partir de la sesión

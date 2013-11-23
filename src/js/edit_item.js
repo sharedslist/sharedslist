@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Obtiene datos del formulario de la página html, los valida y envía los datos a edit_item.php
  * para editar el item en la base de datos. Si ocurre un error se le comunica al
  * usuario, de lo contrario se redirige a la página list_items.html.

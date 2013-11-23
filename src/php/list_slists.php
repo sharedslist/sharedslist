@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 	require_once("ShoppingList.php");
 	require_once("User.php");
 	require_once("Group.php");
 	
 	session_start();
 	if( isset($_SESSION['idGroup']) ) {
-		$idGroup = $_SESSION['idGroup']; //obtenemos el id del grupo a partir de la sesi�n
+		$idGroup = $_SESSION['idGroup']; //obtenemos el id del grupo a partir de la sesión
 	}
 	else if ( isset($_POST['idGroup']) ) {
 		$idGroup = $_POST['idGroup']; //obtenemos el id del grupo a partir de la variable POST

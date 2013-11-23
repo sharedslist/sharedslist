@@ -1,5 +1,5 @@
-<?php
-	require("Group.php");
+﻿<?php
+	require_once("Group.php");
 
 	$idGroup = $_POST["idGroup"];
 	

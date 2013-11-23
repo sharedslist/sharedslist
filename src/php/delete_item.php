@@ -1,5 +1,5 @@
-<?php
-	require("Item.php");
+﻿<?php
+	require_once("Item.php");
 	
 	$idItem = $_POST["idItem"];
 	

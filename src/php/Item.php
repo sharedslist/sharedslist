@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-require("config.php");
+require_once("config.php");
 
 
 /**

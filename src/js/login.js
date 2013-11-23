@@ -1,4 +1,4 @@
-function login () {
+﻿function login () {
 			
 			$('#message').slideUp('fast');
 			$.ajax({

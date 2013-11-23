@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2012 Sergio Gabriel Teves
 All rights reserved.
 

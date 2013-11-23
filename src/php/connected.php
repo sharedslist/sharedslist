@@ -1,10 +1,10 @@
-<?php
-	require("User.php");
+ï»¿<?php
+	require_once("User.php");
 	
-	session_start(); 						 // Inicia o reinicia la sesión
+	session_start(); 						 // Inicia o reinicia la sesiÃ³n
 	$user = new User;						 // Crea un [Usuario]
-	$userSession = $user->getLoggedInUser(); // Devuelve el usuario en sesión
-	if($userSession == false){				 // Si $userSession es igual a falso no hay un usuario en sesión 
+	$userSession = $user->getLoggedInUser(); // Devuelve el usuario en sesiÃ³n
+	if($userSession == false){				 // Si $userSession es igual a falso no hay un usuario en sesiÃ³n 
 		echo "Error: no login";				 // Informa del error
 	}	
 	?>
