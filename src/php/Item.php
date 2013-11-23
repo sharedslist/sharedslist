@@ -53,71 +53,96 @@ class Item {
 		if ( isset( $data['quantityBought'] ) ) $this->quantityBought = (int) $data['quantityBought'];
 	}
 
-	/**
-          * Devuelve un item cuyo identificador es idItem
-          *
-          * @param int Identificador de un item
-          * @return Item|null El objeto Item o null si no se ha encontrado o ha habido un error
-          */
-	public static function getItemById( $idItem ) {
-		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
-		if (!$con) {
-			die('Could not connect: ' . mysqli_error($con));
-		} 
-		$sql = "SELECT * FROM item WHERE idItem = '".$idItem."'";
-		if ( $row ) return new Item( $row );
-		$result = mysqli_query($con, $sql);
-		$row = mysqli_fetch_array($result);
-		mysqli_close($con);
-	}
-	
 	
 	/**
-          * Inserta el objeto Item actual en la base de datos y le da un identificador
-          */
+      * Inserta el objeto Item actual en la base de datos y le da un identificador
+      */
 	public function insertItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "INSERT INTO `item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$this->itemName."', '".$this->itemState."', '".$this->quantity."', '".$this->quantityBought."')";
+		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values (".$this->idList.",".$this->itemName.", ".$this->itemState.", ".$this->quantity.", ".$this->quantityBought.")";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
 
 	/**
-          * Actualiza el objeto Item actual en la base de datos
+      * Actualiza el objeto Item actual en la base de datos
 	  */
 	public function editItem() {
-
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$sql = "UPDATE `Item` SET itemName=".$this->itemName.", itemState=".$this->itemState.", quantity=".$this->quantity.", quantityBought=".$this->quantityBought." WHERE idItem=".$this->idItem."";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
 	}
 
 
 	/**
-          * Elimina el objeto Item actual de la base de datos
-          */
+      * Elimina el objeto Item actual de la base de datos
+      */
 	public function deleteItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "DELETE FROM `item` WHERE idItem = '".$this->idItem."'";
+		$sql = "DELETE FROM `Item` WHERE idItem = ".$this->idItem."";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
-
-	/**
-	  * Lista los items de una lista
-	  */
-	public function listItems() {
 	
-		$items = array();
-
-		return $items;
+	/**
+	  * Devuelve un array con el nombre, el estado y los items
+	  * de una lista cuyo identificador es idList.
+	  *
+      * @param int Identificador de una lista
+	  */
+	public function listItems($idList) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList = ".$idList."";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($result);
+		$listName = $row['listName'];
+		$listState = $row['listState'];
+		
+		$sql = "SELECT * FROM `Item` WHERE idList = ".$idList."";
+        $rows = mysqli_query($con, $sql);
+        while ($item=mysqli_fetch_row($rows))
+            {
+                array_push($items, $item);
+            }
+        }
+        mysqli_close($con);
+        return array( 'listName' => $listName, 'listState' => $listState, 'items' => $items);
 	}
   
+  
+	/**
+      * Devuelve un item cuyo identificador es idItem
+      *
+      * @param int Identificador de un item
+      * @return Item|null El objeto Item o null si no se ha encontrado o ha habido un error
+      */
+	public static function getItemById( $idItem ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		} 
+		$sql = "SELECT * FROM `Item` WHERE idItem = ".$idItem."";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($result);
+		mysqli_close($con);
+		return new Item( $row );
+	}
+	
 }
 
 ?>
