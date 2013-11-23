@@ -30,13 +30,19 @@
 			
 			//Se comprueba si se quiere actualizar el nombre de usuario y se actualiza de ser así
 			if($newName !== ''){ //comprueba que no este vacío
+
+				//Comprobar nombre de usuario bien formado
+				if( !preg_match("/^[0-9A-Za-z_]+$/", $newName) ) {
+					die ('Nombre de usuario incorrecto');
+				}
+
 				$user->userName = $newName;
 				$user->updateUserName();
 			}
 
 			//Se comprueba si se tiene que actualizar la contraseña y se actualiza de ser así
 			if($newPassword !== ''){ //comprueba que no este vacía
-				$user->plaintextPassword = $newPassword; //cambia la contraseña en texto plano en el objeto user
+				$user -> plaintextPassword = $newPassword; //cambia la contraseña en texto plano en el objeto user
 				$user -> encryptPassword(); //cifra la contraseña y la guarda en el objeto user
 				$user -> updatePassword(); // almacena los cambios en la base de datos
 

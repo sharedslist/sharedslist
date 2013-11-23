@@ -225,7 +225,8 @@ class User
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	}
-
+  // Se limpia la contraseña de caracteres inseguros antes de hacer la consulta
+  $this->password = mysqli_real_escape_string($con,$this->password);
 	$sql = "UPDATE `User` SET password='".$this->password."' WHERE emailAddress='".$this->emailAddress."'";
 
     mysqli_query($con, $sql);
@@ -246,7 +247,9 @@ class User
   if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
   }
-
+  // Se limpia el userName de caracteres inseguros antes de hacer la consulta
+  $this->userName = mysqli_real_escape_string($con,$this->userName);
+  //Se actualiza el usuario
   $sql = "UPDATE `User` SET userName='".$this->userName."' WHERE emailAddress='".$this->emailAddress."'";
 
     mysqli_query($con, $sql);
