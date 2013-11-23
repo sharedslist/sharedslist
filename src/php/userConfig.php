@@ -1,7 +1,7 @@
 ﻿<?php
 
-	require("config.php");
-	require( "User.php" );
+	require_once("config.php");
+	require_once( "User.php" );
 	session_start();
 
 	// Se recupera el usuario actual
