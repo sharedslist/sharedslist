@@ -1,4 +1,4 @@
-
+﻿
 function getName() 
 {	
 	$('#currentUserName').slideUp('fast');
