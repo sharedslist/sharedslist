@@ -18,24 +18,63 @@
 		
 			<div id="list_slists_header" data-role="header" data-theme="b">
 				<h1>Las listas de compra del grupo </h1>
-				<a href="create_list.html" data-ajax="false" data-icon="plus" class="ui-btn-right">Crear</a>
+				<a href="create_list.html" data-ajax="false" data-icon="plus" class="ui-btn-right">
+					Crear
+				</a>
 			</div>
 			
 			<div data-role="content">
 				<div id="slists" data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
 					<div id="open" data-role="collapsible" data-collapsed="false" data-theme="b">
 						<h3>Listas abiertas</h3>
-						<ul id="open_list" data-role="listview">
+						<ul id="open_list" data-role="listview" data-split-icon="gear" data-split-theme="b">
 						</ul>
 					</div>
 					<div id="close" data-role="collapsible" data-theme="b">
 						<h3>Listas cerradas</h3>
-						<ul id="close_list" data-role="listview">
+						<ul id="close_list" data-role="listview" data-split-icon="gear" data-split-theme="b">
 						</ul>
 					</div>
 				</div>
 				<h4 id="message"></h4>
 			</div><!-- /content -->
+			
+			<!-- El popup que muestra el menú de las opciones sobre una lista -->
+			<div data-role="popup" id="popupListSLists">
+				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+				<ul id="ulPopupListSLists" data-role="listview" data-inset="true" data-divider-theme="b">
+					<li id="popupNombreLista" data-role="list-divider" role="heading">Lista : </li>
+					<li id="popupBtnVer" data-inset="true" role="heading">
+						<a href="#" class="btnVerLista">
+							Ver y editar
+						</a>
+					</li>
+					<li data-inset="true" role="heading">
+						<a href="#" class="confirmOpt" opt="1">
+							Cerrar lista
+						</a>
+					</li>
+					<li data-inset="true" role="heading">
+						<a href="#" class="confirmOpt" opt="2">
+							Borrar lista
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+			<!-- El popup para confirmar la operación -->
+			<div data-role="popup" id="popup_confirm" data-overlay-theme="a">
+				 <div data-role="content">
+					<h3>Estás seguro?</h3>
+					<p id="txtConfirm"></p>
+					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+						Cancelar
+					</a>
+					<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
+						OK
+					</a>
+				</div>
+			</div>			
 			
 		</div><!-- /page -->
 		
