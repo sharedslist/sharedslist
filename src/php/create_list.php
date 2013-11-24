@@ -13,17 +13,22 @@
 	}
 	
 	//Comprobar que nombre lista no contenga caracteres prohibidos
-	$listName = $newList[0]->listName;
-	if( preg_match('/<.*?>/msi', $listName) ) {
-		die ('El nombre de la lista contiene carácteres prohibidos');
+	$listName = mysqli_real_escape_string($con,$newList[0]->listName);
+	if(!preg_match("/^[0-9A-Za-z_\s]+$/", $listName) OR trim($listName) == "") {
+		die ('El nombre de lista incorrecto');
 	}
 	
-	//Comprobar que ningún producto contiene carácteres prohibidos
+	//Comprobar si los productos contienen carácteres prohibidos
 	foreach($newList[1] as $product) {
 		$prodName = $product->prodName;
 		$prodQt = $product->prodQt;
-		if( preg_match('/<.*?>/msi', $prodName) OR preg_match('/<.*?>/msi', $prodQt) ) {
-			die ('Un producto contiene carácteres prohibidos');
+		if( !preg_match('/<.*?>/msi', $prodName) AND !preg_match('/<.*?>/msi', $prodQt) ) {
+			$prodName = $product->prodName;
+			$prodQt = $product->prodQt;
+		}
+		else{
+			// Se elimina el elemento que contiene carácteres prohibidos
+			unset($newList[$product]);
 		}
 	}
 	
