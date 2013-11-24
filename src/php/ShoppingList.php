@@ -93,6 +93,21 @@ class ShoppingList
 		return $lists;
 	}
 	
+	/**
+	  * Elimina la lista de compra identificada por el ID 'idList'
+	  *
+	  * @param int $idList El ID de la lista que quiere eliminar
+	  */
+	public static function deleteList($idList) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('No se ha podido conectar: ' . mysqli_error($con));
+		}
+		$sql = "DELETE FROM `ShoppingList` WHERE idList = $idList";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
 	
 	/**
       * Pone el estado de la lista actual a true, es decir, cierra la lista.
