@@ -53,7 +53,7 @@ function list_slists(slists) {
  */
 $(document).on('click', '.btnVerLista', function() {
 	var form = document.createElement('form');
-	form.setAttribute('method', 'POST');
+	form.setAttribute('method', 'GET');
 	form.setAttribute('action', 'list_items.html');
 	inputIdList = document.createElement('input');
 	inputIdList.setAttribute('name', 'idList');

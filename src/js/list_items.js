@@ -4,10 +4,10 @@ function listItems() {
 	$.ajax({
 		url: 'php/list_items.php',
 		dataType: 'text',
+		data: { idList : getUrlVars()["idList"] },
 		type:  'post',
 		success:  function (response)
 			   {
-				
 					var items = JSON.parse(response.trim());
 					//$("#list_slists_header > h1").append(': ' + listName);
 					list_items(items);
@@ -16,6 +16,17 @@ function listItems() {
 					$("#message").html("Ha ocurrido un error recuperando las listas con sus artículos");
 				}
 	});
+}
+//parsea la URL para obtener los parámetros GET;
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
 }
 function list_items(response){
 	$("#items").html("");
