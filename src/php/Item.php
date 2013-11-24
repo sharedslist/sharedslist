@@ -115,6 +115,7 @@ class Item {
 		
 		$sql = "SELECT * FROM `Item` WHERE idList = ".$idList."";
         $rows = mysqli_query($con, $sql);
+		$items = array();
         while ($item=mysqli_fetch_row($rows)) {
 			array_push($items, $item);
         }
