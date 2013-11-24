@@ -119,6 +119,45 @@ class Group
 		return $numRows == 1;
 	}
 	
+	
+	/**
+      * Comprueba si el usuario 'idUser' es el administrador del grupo 'idGroup'
+      *
+	  * @param int $idUser El ID del usuario que se quiere comprobar
+	  * @param int $idGroup El ID del grupo donde se quiere comprobar la pertenencia
+      * @return boolean Devuelve true si, y solo si, el usuario con id 'idUser' pertenece al grupo con id 'idGroup'
+      */	
+	public static function userAdminsGroup($idUser, $idGroup) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+    
+		if (!$con) {
+			die('No se ha podido conectar: ' . mysqli_error($con));
+		}
+		
+		$sql = "SELECT * FROM `Group` WHERE idAdmin = $idUser AND idGroup = $idGroup";
+
+		$result = mysqli_query($con, $sql);
+		$numRows = mysqli_num_rows($result);
+		mysqli_close($con);
+		return $numRows == 1;
+	}
+	
+	/**
+      * Elimina el objeto Grupo de la base de datos
+	  * @param int $idUser El ID del usuario que se quiere comprobar
+	  * @param int $idGroup El ID del grupo donde se quiere comprobar la pertenencia
+      */
+	public static function deleteGroup($idUser, $idGroup){
+	
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$sql = "DELETE FROM `Group` WHERE idAdmin = $idUser AND idGroup = $idGroup";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
 }
 
 ?>

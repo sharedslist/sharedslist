@@ -114,10 +114,29 @@ function tapholdHandler( event ){
 	var Abandonar = document.createElement('li');
 		Abandonar.setAttribute("data-inset","true");
 		Abandonar.setAttribute("role","heading");
-		$(Abandonar).html('<a href="#">Abandonar Grupo</a>');
+		$(Abandonar).html('<a href="#" onclick="exit()">Abandonar Grupo</a>');
 		ul.appendChild(Abandonar);
 
 	$('#popupBasic').append(ul);
 	$("#popupBasic").trigger("create");
 	$('#popupBasic').popup("open");
+}
+
+function exit () {
+	$.ajax({
+		url: 'php/delete_group.php',
+		type:  'post',
+		success:  function (response)
+		{
+			var code = response.trim();
+			window.location.href = 'list_groups.html';
+			if(code != "success"){
+				$("#message").html("Ha ocurrido al abandonar el grupo");
+			}
+		},
+		error: 	function() 
+		{
+			$("#message").html("Ha ocurrido al abandonar el grupo");
+		}
+	});
 }
