@@ -5,7 +5,7 @@
     $group_name = $_POST["group_name"];				// Desempaqueta el nombre del grupo
 	
 	//Comprobar que el nombre del grupo está bien formado
-	if( !preg_match("^[0-9A-Za-z_]+$^", $group_name) ) {
+	if(!preg_match("/^[0-9A-Za-z_\s]+$/", $group_name) OR trim($group_name) == "") {
 		die ('Nombre de grupo incorrecto');
 	}
 	
