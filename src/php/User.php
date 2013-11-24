@@ -205,6 +205,11 @@ class User
 		die('Could not connect: ' . mysqli_error($con));
 	}
 
+  //Escapamos los carácteres potencialmente inseguros
+  $this->userName = mysqli_real_escape_string($con,$this->userName);
+  $this->password = mysqli_real_escape_string($con,$this->password);
+  $this->emailAddress = mysqli_real_escape_string($con,$this->emailAddress);
+
     // Isnerta el usuario
 	$sql = "INSERT INTO `User` (userName, emailAddress, password) values ('".$this->userName."', '".$this->emailAddress."', '".$this->password."')";
     mysqli_query($con, $sql);

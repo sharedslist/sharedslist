@@ -22,10 +22,14 @@
 	}
 	
 	//Comprobar nombre de usuario bien formado
-	if( !preg_match("^[0-9A-Za-z_]+$^", $u) ) {
+	if( !preg_match("/^[0-9A-Za-z_]+$/", $u) ) {
 		die ('Nombre de usuario incorrecto');
 	}
-	
+
+	//Comprobar contraseña no vacía
+	if($p == ''){
+		die('Contraseña vacía');
+	}
 
 	//Comprobar que el e-mail es unico
 	$sqlEmail = "select count(idUser) from `User` where emailAddress='$e'";
