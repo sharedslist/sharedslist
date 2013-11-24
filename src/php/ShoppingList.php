@@ -1,6 +1,7 @@
 ﻿<?php
 
 require_once("config.php");
+require_once("Group.php");
 require_once("Item.php");
 
 /**
@@ -92,6 +93,40 @@ class ShoppingList
 		return $lists;
 	}
 	
+	
+	/**
+      * Pone el estado de la lista actual a true, es decir, cierra la lista.
+      */
+	public static function closeList() {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		} 
+		$this->listState = true;
+		$sql = "UPDATE `ShoppingList` SET listState=".$this->listState." WHERE idList=".$this->idList."";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
+	/**
+      * Comprueba si el usuario 'idUser' pertenece al grupo al que pertenece la lista'idList'
+      *
+      * @param int $idUser El ID del usuario que se quiere comprobar
+      * @param int $idList El ID de la lista cuyo grupo se quiere comprobar la pertenencia
+      * @return boolean Devuelve true si, y solo si, el usuario con id 'idUser' pertenece al grupo de la lista con id 'idList'
+      */ 
+	public static function userBelongsToGroupOfList( $idUser, $idList ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		} 
+		$sql = "SELECT `idGroup` FROM `ShoppingList` WHERE idList=".$idList."";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($result);
+		mysqli_close($con);
+		$idGroup = $row['idGroup'];
+		return (Group::userBelongsToGroup($idUser, $idGroup));
+	}
 }
 
 ?>
