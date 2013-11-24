@@ -41,6 +41,12 @@ function list_slists(slists) {
 			$("#close_list").append(divider);
 		}
 	});
+	if($("#open_list").html() == ""){
+		$("#open_list").html("<li> No hay listas abiertas </li>");
+	}
+	if($("#close_list").html() == ""){
+		$("#close_list").html("<li> No hay listas cerradas </li>");
+	}
 	$("#open_list").listview( "refresh" );
 	$("#close_list").listview( "refresh" );
 	$("#slists").trigger('create');
