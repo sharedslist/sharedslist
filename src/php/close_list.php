@@ -16,7 +16,7 @@
 		die ('Necesitas autenticarte para acceder a esta funcionalidad');
 	}
 	if( !ShoppingList::userBelongsToGroupOfList($currentUser->id,$idList) ) {
-		die ("No perteneces al grupo de la lista con id $idList!");
+		die ("No perteneces al grupo de la lista!");
 	}
 	
 	// cerramos la lista con identificador idList
