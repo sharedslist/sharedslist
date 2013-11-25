@@ -12,12 +12,21 @@
 	}
 	if( isset($_POST["itemName"]) ) {
 		$itemName = $_POST["itemName"]; //obtenemos el nombre del item a partir de la variable POST
+
+		//Se comprueba que no contenga caracteres inválidos. Sólo permite letras (min o mayus), números y barra baja.
+		if( !preg_match("/^[0-9A-Za-z_]+$/", $itemName) ) {
+			die('Nombre de producto incorrecto');
+		}
 	}
 	else {
 		//die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST['quantity']) ) {
 		$quantity = $_POST["quantity"]; //obtenemos la cantidad del item a partir de la variable POST
+		//Se comprueba que no contenga caracteres inválidos. Sólo permite números.
+		if( !preg_match("/^[0-9]+$/", $quantity) ) {
+			die('Cantidad incorrecta');
+		}
 	}
 	else {
 		//die ('No se ha seleccionado un item');

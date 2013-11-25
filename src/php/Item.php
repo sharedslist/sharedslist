@@ -62,6 +62,14 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
+
+		//Escapamos los carácteres potencialmente inseguros
+  		$this->idList = mysqli_real_escape_string($con,$this->idList);
+ 		$this->itemName = mysqli_real_escape_string($con,$this->itemName);
+ 		$this->itemState = mysqli_real_escape_string($con,$this->itemState);
+ 		$this->quantity = mysqli_real_escape_string($con,$this->quantity);
+ 		$this->quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+
 		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values (".$this->idList.",".$this->itemName.", ".$this->itemState.", ".$this->quantity.", ".$this->quantityBought.")";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
