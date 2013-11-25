@@ -27,9 +27,9 @@ function list_slists(slists) {
 	$("#close_list").html("");
 	$.each(slists, function(i, slist) {
 		var divider = '<li data-theme = "d" idList="' + slist.idList + '">';
-		var nombre_fecha = '<a href="#" class="btnVerLista"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
-		var opciones = '<a href ="#" class="btnOpcionesLista" idList="'+slist.idList+'">Opciones de la lista</a>';
-		divider = divider + nombre_fecha + opciones + '</li>';
+		var name_date = '<a href="#" class="btnViewList"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
+		var options = '<a href ="#" class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
+		divider = divider + name_date + options + '</li>';
 		if(slist.listState == 0){
 			//Lista abierta
 			$("#open_list").append(divider);
@@ -51,11 +51,11 @@ function list_slists(slists) {
 }
 
 /*
- * Asociamos el evento 'click' a los elementos de la clase '.btnVerLista' con
+ * Asociamos el evento 'click' a los elementos de la clase '.btnViewList' con
  * esta función que redirecciona al usuario a la pagina donde podra ver y editar
  * la lista seleccionada, pasando el identificador de la lista por GET.
  */
-$(document).on('click', '.btnVerLista', function() {
+$(document).on('click', '.btnViewList', function() {
 	var form = document.createElement('form');
 	form.setAttribute('method', 'GET');
 	form.setAttribute('action', 'list_items.html');
@@ -80,11 +80,11 @@ $(document).on('click', '.confirmOpt', function() {
 	var confirmMessage = "";
 
 	switch(operation) {
-		case "1":
+		case "close":
 			//cerrar lista
 			confirmMessage = "Esta operación va a marcar la lista como cerrada";
 			break;
-		case "2":
+		case "delete":
 			//borrar lista
 			confirmMessage = "Esta acción es irreversible";
 			break;
@@ -109,7 +109,7 @@ $(document).on('click', '.btnConfirm', function() {
 	var idList = $('#popup_confirm').attr("idList");
 
 	switch(operation) {
-		case "1":
+		case "close":
 			//cerrar lista
 			$.ajax({
 				url: 'php/close_list.php',
@@ -126,7 +126,7 @@ $(document).on('click', '.btnConfirm', function() {
 						}
 			});
 			break;
-		case "2":
+		case "delete":
 			//borrar lista
 			$.ajax({
 				url: 'php/delete_list.php',
@@ -154,9 +154,9 @@ $(document).on('click', '.btnConfirm', function() {
 });
 
 // Asigna el evento taphold a las listas.
-$(document).on('taphold', '.btnVerLista', tapholdHandler);
+$(document).on('taphold', '#slists .btnViewList', tapholdHandler);
 // Asigna el evento click al botón de las opciones de la lista.
-$(document).on('click', '.btnOpcionesLista', tapholdHandler);
+$(document).on('click', '.btnSListOptions', tapholdHandler);
 
 
 /**
@@ -164,12 +164,19 @@ $(document).on('click', '.btnOpcionesLista', tapholdHandler);
  * @param event
  */
 function tapholdHandler(){
-	//alert($(this).closest("li").attr('idList'));
 	//asociamos el nombre de la lista al popup
-	$("#popupNombreLista").html("Lista : " + $(this).closest("li").find("h2").html());
+	$("#popupListName").html("Lista : " + $(this).closest("li").find("h2").html());
 	//asignamos el id de la lista seleccionada para que lo sepan los popups
 	var idList = $(this).closest("li").attr('idList');
-	$('#popupBtnVer').attr("idList", idList);
+	//mostramos u ocultamos la opción de cerrar lista dependiendo del estado de la misma
+	if( $(this).closest("ul").attr("id") == "open_list" ) {
+		//mostramos la opción cerrar lista para las listas abiertas
+		$('.confirmOpt[opt="close"]').closest("li").show();
+	} else {
+		//ocultamos la opción cerrar lista para las listas cerradas
+		$('.confirmOpt[opt="close"]').closest("li").hide();
+	}
+	$('#popupBtnView').attr("idList", idList);
 	$('#popup_confirm').attr("idList", idList);
 	//mostramos el popup con las opciones de la lista
 	$('#popupListSLists').popup("open");
