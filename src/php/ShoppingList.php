@@ -115,9 +115,9 @@ class ShoppingList
 	public static function closeList($idList) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
-			die('Could not connect: ' . mysqli_error($con));
+			die('No se ha podido conectar: ' . mysqli_error($con));
 		} 
-		$sql = "UPDATE `ShoppingList` SET listState=1 WHERE idList="$idList"";
+		$sql = "UPDATE `ShoppingList` SET listState=1 WHERE idList='".$idList."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -132,9 +132,9 @@ class ShoppingList
 	public static function userBelongsToGroupOfList( $idUser, $idList ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
-			die('Could not connect: ' . mysqli_error($con));
+			die('No se ha podido conectar: ' . mysqli_error($con));
 		} 
-		$sql = "SELECT `idGroup` FROM `ShoppingList` WHERE idList=".$idList."";
+		$sql = "SELECT `idGroup` FROM `ShoppingList` WHERE idList='".$idList."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		mysqli_close($con);
