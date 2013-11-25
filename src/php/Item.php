@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once("config.php");
 
@@ -62,14 +62,6 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-
-		//Escapamos los carácteres potencialmente inseguros
-  		$this->idList = mysqli_real_escape_string($con,$this->idList);
- 		$this->itemName = mysqli_real_escape_string($con,$this->itemName);
- 		$this->itemState = mysqli_real_escape_string($con,$this->itemState);
- 		$this->quantity = mysqli_real_escape_string($con,$this->quantity);
- 		$this->quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
-
 		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values (".$this->idList.",".$this->itemName.", ".$this->itemState.", ".$this->quantity.", ".$this->quantityBought.")";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
@@ -115,17 +107,18 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList = ".$idList."";
+		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList ='".$idList."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		$listName = $row['listName'];
 		$listState = $row['listState'];
 		
-		$sql = "SELECT * FROM `Item` WHERE idList = ".$idList."";
+		$sql = "SELECT * FROM `Item` WHERE idList='".$idList."'";
         $rows = mysqli_query($con, $sql);
 		$items = array();
-        while ($item=mysqli_fetch_row($rows)) {
-			array_push($items, $item);
+        while ($itemRow=mysqli_fetch_row($rows))
+        {
+			array_push($items, new Item ($itemRow));
         }
         mysqli_close($con);
         return array( 'listName' => $listName, 'listState' => $listState, 'items' => $items);
@@ -143,7 +136,7 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		} 
-		$sql = "SELECT * FROM `Item` WHERE idItem = ".$idItem."";
+		$sql = "SELECT * FROM `Item` WHERE idItem ='".$idItem."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		mysqli_close($con);
