@@ -181,6 +181,10 @@ class User
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error($con));
 	} 
+
+  // Se escapan los caracteres potencialmente peligrosos, para evitar inyecciones SQL
+  $email = mysqli_real_escape_string($con,$email);
+
 	$sql = "SELECT * FROM `User` WHERE emailAddress = '".$email."'";
 	
 	$result = mysqli_query($con, $sql);

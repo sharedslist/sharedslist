@@ -2,28 +2,29 @@
 
 	require_once("config.php");
 	require_once( "User.php" );
-	
-	
-
-
 		
-		// User has posted the login form: attempt to log the user in
 
-		if ( $user = User::getByEmailAddress( $_POST['emailAddress'] ) ) {
+	//Se comprueba que el email esté bien formado
+	if( !preg_match("^[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+(\.[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,})$^", $_POST['emailAddress']) ) {
+		die ('Por favor, introduzca un e-mail correcto');
+	}
+		
+	// Recupera el objeto usuario con el email pasado.
+	if ( $user = User::getByEmailAddress( $_POST['emailAddress'] ) ) {
 
-		  if ( $user->checkPassword( $_POST['password'] ) ) {
+		//Comprueba que la contraseña es correcta
+		if ( $user->checkPassword( $_POST['password'] ) ) {
 
-			// Login successful: Create a session and redirect to the to-do list
-			$user->createLoginSession();
+		// Login exitoso: Crea la sesión y redirige a la pantalla de grupos.
+		$user->createLoginSession();
 			die('Conectado correctamente');
 
-		  } 
+		} 
 		  
-		}
+	}
 
-		// Login failed: display an error message to the user
-		echo 'Contraseña o E-mail  incorrecto.';
-
+	//Login ha fallado, se muestra mensaje al usuario.
+	echo 'Contraseña o E-mail  incorrecto.';
 	
 ?>
 
