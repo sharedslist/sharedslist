@@ -1,76 +1,61 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.mobile.min.js"></script>
-		<script src="js/list_items.js"></script>
-		
-		
-		
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mobile.min.js"></script>
+        <script src="js/list_items.js"></script>
 		<script src="js/connected.js"></script>
-	</head>
-	
-	<body hidden>
-		<script>
-			isConnected();
-		</script>
-		<div data-role="page" id="list_items" data-theme="c">
-			<div data-role="header" data-theme="b">
-				<h1>Ejemplo de lista de items</h1>
-				<a href="#" data-icon="gear" class="ui-btn-right btnOptions">Opciones</a>
-			</div>
-			<div id="list" data-role="content">
-				<ul id="myList" class="customIconColor"  data-role="listview" data-filter="true">
-					
-					
-					<li id="item1" data-theme="c"><a href="edit_item.html" data-transition="slide">Manzanas</a><span class="ui-li-count">2/5</span></li>
-					<li id="item1" data-theme="c"><a href="edit_item.html" data-transition="slide">Peras</a><span class="ui-li-count">0/3</span></li>
-					<li id="item1" data-theme="c"><a href="edit_item.html" data-transition="slide">Naranjas</a><span class="ui-li-count">2/2</span></li>
-					
-					
-				</ul>
-			</div>
-			
-			<!-- El popup que muestra el menú de las opciones de la lista -->
-			<div data-role="popup" id="popupListItems">
-				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
-				<ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
-					<li id="popupListName" data-role="list-divider" role="heading">Lista : </li>
-					<li data-inset="true" role="heading">
-						<a href="create_item.html">
-							Nuevo producto
-						</a>
-					</li>
-					<li data-inset="true" role="heading">
-						<a href="#" class="confirmOptListItems" opt="close">
-							Cerrar lista
-						</a>
-					</li>
-					<li data-inset="true" role="heading">
-						<a href="#" class="confirmOptListItems" opt="delete">
-							Borrar lista
-						</a>
-					</li>
-				</ul>
-			</div>
-			
-			<!-- El popup para confirmar la operación -->
-			<div data-role="popup" id="popupConfirmListItems" data-overlay-theme="a">
-				 <div data-role="content">
-					<h3>Estás seguro?</h3>
-					<p id="txtConfirmListItems"></p>
-					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
-						Cancelar
-					</a>
-					<a href="#" id="btnConfirmListItems" class="btnConfirmListItems" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
+    </head>
+    <body hidden>
+        <script>
+            isConnected();
+        </script>
+        <div data-role="page" id="list_items" data-theme="c">
+            <div data-role="header" data-theme="b">
+                <h1 id="list_name"></h1>
+                <a href="#" data-icon="gear" class="ui-btn-right btnOptions">Opciones</a>
+            </div>
+            <div id="itemlist" data-role="content"> </div>
+                        
+            <!-- El popup que muestra el menú de las opciones de la lista -->
+            <div data-role="popup" id="popupListItems">
+                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                <ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
+                    <li id="popupListName" data-role="list-divider" role="heading">Lista : </li>
+                    <li data-inset="true" role="heading">
+                        <a href="#" id="createItem" action="createItem()">
+                            Nuevo producto
+                        </a>
+                    </li>
+                    <li data-inset="true" role="heading">
+                        <a href="#" id="closeList" class="confirmOptListItems" opt="close">
+                            Cerrar lista
+                        </a>
+                    </li>
+                    <li data-inset="true" role="heading">
+                        <a href="#" class="confirmOptListItems" opt="delete">
+                            Borrar lista
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                        
+            <!-- El popup para confirmar la operación -->
+            <div data-role="popup" id="popupConfirmListItems" data-overlay-theme="a">
+                <div data-role="content">
+                    <h3>¿Estás seguro?</h3>
+                    <p id="txtConfirmListItems"></p>
+                    <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+                        Cancelar
+                    </a>
+                    <a href="#" id="btnConfirmListItems" class="btnConfirmListItems" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
 						OK
-					</a>
-				</div>
-			</div>			
-			
-		</div>
-	</body>
+                    </a>
+                </div>
+            </div>                        
+        </div>
+    </body>
 </html>
