@@ -31,9 +31,11 @@ function list_slists(slists) {
 		var opciones = '<a href ="#" class="btnOpcionesLista" idList="'+slist.idList+'">Opciones de la lista</a>';
 		divider = divider + nombre_fecha + opciones + '</li>';
 		if(slist.listState == 0){
+			//Lista abierta
 			$("#open_list").append(divider);
 		}
-		else{
+		else if(slist.listState == 1) {
+			//Lista cerrada
 			$("#close_list").append(divider);
 		}
 	});
