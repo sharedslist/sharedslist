@@ -11,7 +11,7 @@
 		$idGroup = $_POST['idGroup']; //obtenemos el id del grupo a partir de la variable POST
 	}
 	else {
-		//die ('No se ha seleccionado un grupo');
+		die ('No se ha seleccionado un grupo');
 	}
 	
 	//comprobamos que el usuario se ha autenticado y pertenece al grupo cuyas listas quiere listar
