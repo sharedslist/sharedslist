@@ -158,6 +158,24 @@ class Group
 		mysqli_close($con);
 	}
 	
+	/**
+      * Función que elimina la relación de un usuario con un grupo,
+	  * es decir, hace que dicho usuario abandone el grupo
+	  *
+	  * @param int $idUser El ID del usuario que quiere abandonar el grupo
+	  * @param int $idGroup El ID del grupo que se quiere abandonar
+      */
+	public static function leaveGroup($idUser, $idGroup){
+	
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('No se ha podido conectar: ' . mysqli_error($con));
+		}
+		$sql = "DELETE FROM `GroupAndUser` WHERE idUser = $idUser AND idGroup = $idGroup";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
 }
 
 ?>

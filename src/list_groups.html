@@ -32,14 +32,26 @@
 					listGroups();
 				</script>
 			</ul>
+			<h4 id="message"></h4>
+		</div>
+		<div data-role="popup" id="popupBasic">
+				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+				
+				
 		</div>
 		
-		<h4 id="message"></h4>
-		
-		<div data-role="popup" id="popupBasic">
-				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				
-				
+		<!-- El popup para confirmar la operación -->
+		<div data-role="popup" id="popupConfirmListGroups" data-overlay-theme="a">
+			 <div data-role="content">
+				<h3>Estás seguro?</h3>
+				<p id="txtConfirm"></p>
+				<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+					Cancelar
+				</a>
+				<a href="#" id="btnConfirmListGroups" class="btnConfirmListGroups" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
+					OK
+				</a>
+			</div>
 		</div>
 	</body>
 </html>
