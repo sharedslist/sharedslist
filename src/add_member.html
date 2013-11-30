@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="js/add_member.js"></script>
+		<script src="js/connected.js"></script>
+	</head>
+	
+	<body hidden>
+		<script>
+			isConnected();
+		</script>
+	
+		<div data-role="page" id="create_groups" data-theme="c">
+			<div data-role="header" data-theme="b">
+				<h1>Añadir Miembros</h1>
+			</div>
+		
+			<form id="createform" >	
+				
+				<div data-role="fieldcontain">
+					<input data-clear-btn="true" data-inline="true"  id="text-2" placeholder="Correo electrónico"/>
+					<input type="button" data-icon="plus" data-iconpos="notext" data-inline="true" data-role="button" onclick="addCorreos()"/>
+				</div>
+				
+				<div id="check" data-role="fieldcontain">
+					<fieldset data-role="controlgroup" id="check2">
+					</fieldset> 
+				</div>
+				
+				<div>
+					<input type="button" data-mini="true" name="create" id="create" value="Añadir miembros" data-theme="b" onclick="addMembers()"/>
+				</div>
+			</form>
+			
+			<h4 id="message"></h4>
+		</div>	
+	</body>
+</html>
