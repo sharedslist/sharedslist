@@ -77,13 +77,61 @@ $(document).on('taphold', '.btnVerLista', longPress);
  * Muestra o crea el menu popup.
  */
 function longPress (event){
-	selectGroupLongPress(event.currentTarget.id);
+	var idGroup = event.currentTarget.id;
+	selectGroupLongPress(idGroup);
+	//asignamos el atributo idGroup al popup de confirmación para que el popup lo sepa
+	$('#popupConfirmListGroups').attr("idGroup", idGroup);
 	if ( $('#ulPopUP').length > 0){
 		$('#ulPopUP').remove();
 	}
 	tapholdHandler(event);
 	
 }
+
+/*
+ * Asociamos el evento 'click' a los elementos de la clase '.confirmOptListGroups' con
+ * esta función solicita confirmación de la operación.
+ */
+$(document).on('click', '.confirmOptListGroups', function() {
+	//mostramos un mensaje informando de la operación a realizar
+	$("#txtConfirm").html("Esta acción es irreversible");
+	//cerramos el popup de las opciones
+	$('#popupBasic').popup("close");
+	//mostramos el popup de la confirmación
+	setTimeout( function(){ $('#popupConfirmListGroups').popup( 'open', { transition: "pop" } ) }, 100 );
+});
+
+/*
+ * Asociamos el evento 'click' al botón de confirmación del abandono del grupo
+ */
+$(document).on('click', '.btnConfirmListGroups', function() {
+	//obtenemos el ID del grupo que se quiere abandonar
+	var idGroup = $('#popupConfirmListGroups').attr("idGroup");
+
+	//abandonar grupo
+	$.ajax({
+		url: 'php/delete_group.php',
+		dataType: 'text',
+		data: {"idGroup" : idGroup},
+		type:  'post',
+		success:  function (response)
+				{
+					var status = response.trim();
+					if(status == 'success') {
+						//refrescamos la página
+						location.reload();
+					} else {
+						$('#message').html(status);
+					}
+				},
+		error: 	function() {
+					$("#message").html("Ha ocurrido un error intentando abandonar el grupo");
+				}
+	});
+	//cerramos el popup de la confirmación
+	$('#popupConfirmListGroups').popup('close');
+});
+
 
 /**
  * crea el menu popup.
@@ -114,29 +162,10 @@ function tapholdHandler( event ){
 	var Abandonar = document.createElement('li');
 		Abandonar.setAttribute("data-inset","true");
 		Abandonar.setAttribute("role","heading");
-		$(Abandonar).html('<a href="#" onclick="exit()">Abandonar Grupo</a>');
+		$(Abandonar).html('<a href="#" class="confirmOptListGroups">Abandonar Grupo</a>');
 		ul.appendChild(Abandonar);
 
 	$('#popupBasic').append(ul);
 	$("#popupBasic").trigger("create");
 	$('#popupBasic').popup("open");
-}
-
-function exit () {
-	$.ajax({
-		url: 'php/delete_group.php',
-		type:  'post',
-		success:  function (response)
-		{
-			var code = response.trim();
-			window.location.href = 'list_groups.html';
-			if(code != "success"){
-				$("#message").html("Ha ocurrido al abandonar el grupo");
-			}
-		},
-		error: 	function() 
-		{
-			$("#message").html("Ha ocurrido al abandonar el grupo");
-		}
-	});
 }
