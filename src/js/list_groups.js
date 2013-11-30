@@ -15,9 +15,9 @@ function listGroups()
 		});
 }
 
-function selectGroup(id)
+function selectGroup()
 {
-	var parameter = {"idGroup" : id};
+	var parameter = {"idGroup" : $(this).closest("li").attr('id')};
 	$.ajax({
 	url: 'php/select_group.php',
 	data: parameter,
@@ -65,26 +65,33 @@ function list(groups)
 	var id;
 	for(var i=0; i< groups.name.length; i++)
 	{
-		$("#mylist").append('<li id="'+groups.id[i]+'" class = "btnVerLista" onclick="selectGroup(id)"><a href="#">'+groups.name[i]+'</a></li>');
+		var li = '<li id="'+groups.id[i]+'"><a href="#" class="groupName">'+groups.name[i]+'</a>';
+		li += '<a href="#" class="btnListGroupsOpts">Opciones del grupo</a></li>';
+		$("#mylist").append(li);
 		$("#mylist").listview('refresh');
 	}
 }
 
 // Asigna el evento taphold a los elementos de la lista.
-$(document).on('taphold', '.btnVerLista', longPress);
+$(document).on('taphold', '.groupName', longPress);
+// Asigna el evento click a los botones de opciones del grupo
+$(document).on('click', '.btnListGroupsOpts', longPress);
+// Asigna el evento click a los nombres de las listas
+$(document).on('click', '.groupName', selectGroup);
 
 /*
  * Muestra o crea el menu popup.
  */
 function longPress (event){
-	var idGroup = event.currentTarget.id;
+	var idGroup = $(this).closest("li").attr('id');
+	var groupName = $(this).closest("li").find(".groupName").html();
 	selectGroupLongPress(idGroup);
 	//asignamos el atributo idGroup al popup de confirmación para que el popup lo sepa
 	$('#popupConfirmListGroups').attr("idGroup", idGroup);
 	if ( $('#ulPopUP').length > 0){
 		$('#ulPopUP').remove();
 	}
-	tapholdHandler(event);
+	tapholdHandler(groupName);
 	
 }
 
@@ -137,8 +144,8 @@ $(document).on('click', '.btnConfirmListGroups', function() {
  * crea el menu popup.
  * @param event
  */
-function tapholdHandler( event ){
-	event.preventDefault();
+function tapholdHandler( groupName ){
+	//event.preventDefault();
 	//alert(event.currentTarget.attributes.idGroup.value);			
 	var ul = document.createElement('ul');
 		ul.setAttribute("id", "ulPopUP");
@@ -149,7 +156,7 @@ function tapholdHandler( event ){
 	var cabecera = document.createElement('li');
 		cabecera.setAttribute("data-role","list-divider");
 		cabecera.setAttribute("role","heading");
-		$(cabecera).html("Grupo: " + event.currentTarget.firstChild.firstChild.textContent);
+		$(cabecera).html("Grupo: " + groupName);
 		ul.appendChild(cabecera);
 		
 
