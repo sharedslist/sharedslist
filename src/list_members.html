@@ -9,19 +9,36 @@
  	<meta name="apple-mobile-web-app-capable" content="yes">
  	<link rel="stylesheet" href="css/style.css" />
  	<script src="js/list_members.js"></script>
-	
+	<script src="js/add_member.js"></script>
+	<script src="js/connected.js"></script>
 </head>
 <body>
 	
 		<div data-role="page" id="list_groups" data-theme="b">
 			<div data-role="header" data-theme="b">
 				<h1>Miembros del grupo</h1>
+				<a href="add_member.html" data-icon="gear" class="ui-btn-right">Añadir miembro</a>
 			</div>
 			
 		<div id="list" data-role="content">
-			<ul id="miembros"  data-role="listview" data-filter="true" data-theme="c">
+			<ul id="miembros"  data-role="listview" data-filter="true" data-theme="c" data-split-icon="delete" data-split-theme="b">
 				
 			</ul>
+		</div>
+				<!-- El popup para confirmar la operación -->
+		<div data-role="popup" id="popupConfirmDeleteMember" data-overlay-theme="a">
+			 <div data-role="content">
+				<h3>Estás seguro?</h3>
+				<p id="txtConfirm"></p>
+				<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
+					Cancelar
+				</a>
+				<a href="#" id="btnConfirmDelete" class="btnConfirmDelete" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
+					OK
+				</a>
+			</div>
+		</div>
+		<div id="message">
 		</div>
 		<script>
 		$(document).ready(
