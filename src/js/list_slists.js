@@ -27,8 +27,8 @@ function list_slists(slists) {
 	$("#close_list").html("");
 	$.each(slists, function(i, slist) {
 		var divider = '<li data-theme = "d" idList="' + slist.idList + '">';
-		var name_date = '<a href="#" class="btnViewList"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
-		var options = '<a href ="#" class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
+		var name_date = '<a class="btnViewList"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
+		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
 		divider = divider + name_date + options + '</li>';
 		if(slist.listState == 0){
 			//Lista abierta
