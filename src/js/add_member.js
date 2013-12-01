@@ -8,7 +8,6 @@ function addCorreos()
 {
 	var txt = $("#text-2");
 	var val = txt.val();
-	alert(val);
 	if(validateEmail(val)){
 		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
 		$("#check").trigger("create");
