@@ -34,18 +34,8 @@
 			<div data-role="fieldcontain">
 				<input type="text" name="itemName" id="itemName" value="Nombre producto" required autofocus data-clear-btn="true" />
 			</div>
-			<div class="ui-grid-a" id="newProduct">
-				<div class="ui-block-a" style="width:75px;">
-					<select name="Cantidad" id="quantity" data-role="none" value="Cantidad"></select>
-				</div>
-				<div class="ui-block-b" style="width:150px;">
-					<select name="quantityMetric" id="quantityMetric" data-native-menu="false">
-						<option value="units" selected="selected">Unidades</option>
-						<option value="kilogram">Kg.</option>
-						<option value="gram">g.</option>
-						<option value="liter">L.</option>
-					</select>
-				</div>
+			<div id="newProduct" style="width:75px;">
+				<select name="Cantidad" id="quantity" data-role="none" value="Cantidad"></select>
 			</div>
 			<h4 id="message"></h4>
 			<br/>
