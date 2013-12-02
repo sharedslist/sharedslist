@@ -1,4 +1,4 @@
-// Rellena los campos del formulario con la información del item
+﻿// Rellena los campos del formulario con la información del item
 $(document).on("pageshow", function() {
 	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
 	$.ajax({
@@ -88,11 +88,6 @@ $('#quantityBought').on("rrrreload", function() {
 });
 
 
-$(document).bind('quantityMetric',function(){
-   $.mobile.selectmenu.prototype.options.nativeMenu = false;
-});
-
-
 //parsea la URL para obtener los parámetros GET;
 function getUrlVars(){
     var vars = {};
@@ -177,6 +172,7 @@ function deleteItem(){
 					inputIdList.setAttribute('name', 'idList');
 					inputIdList.setAttribute('type', 'hidden');
 					inputIdList.setAttribute('value', getUrlVars()['idList']);
+					form.appendChild(inputIdList);
 					document.body.appendChild(form);
 					form.submit();
 				},
