@@ -169,7 +169,7 @@ function tapholdHandler( groupName ){
 	var Abandonar = document.createElement('li');
 		Abandonar.setAttribute("data-inset","true");
 		Abandonar.setAttribute("role","heading");
-		$(Abandonar).html('<a href="#" class="confirmOptListGroups">Abandonar Grupo</a>');
+		$(Abandonar).html('<a href="#" class="confirmOptListGroups">Abandonar grupo</a>');
 		ul.appendChild(Abandonar);
 
 	$('#popupBasic').append(ul);
