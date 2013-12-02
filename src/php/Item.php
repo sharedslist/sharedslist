@@ -80,10 +80,11 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
 		$itemName = mysqli_real_escape_string($con,$this->itemName);
 		$quantity = mysqli_real_escape_string($con,$this->quantity);
 		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
-		$sql = "UPDATE `Item` SET itemName='".$this->itemName."', itemState='".$this->itemState."', quantity='".$this->quantity."', quantityBought='".$this->quantityBought."' WHERE idItem='".$this->idItem."'";
+		$sql = "UPDATE `Item` SET itemName='".$itemName."', itemState='".$this->itemState."', quantity='".$quantity."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -97,7 +98,8 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "DELETE FROM `Item` WHERE idItem='".$this->idItem."'";
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
+		$sql = "DELETE FROM `Item` WHERE idItem='".$idItem."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -145,13 +147,14 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList='".$idList."'";
+		$idSList = mysqli_real_escape_string($con,$idList);
+		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList='".$idSList."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		$listName = $row['listName'];
 		$listState = $row['listState'];
 		
-		$sql = "SELECT * FROM `Item` WHERE idList='".$idList."'";
+		$sql = "SELECT * FROM `Item` WHERE idList='".$idSList."'";
         $rows = mysqli_query($con, $sql);
 		$items = array();
         while ($row=mysqli_fetch_array($rows)) {
@@ -173,8 +176,9 @@ class Item {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
-		} 
-		$sql = "SELECT * FROM `Item` WHERE idItem='".$idItem."'";
+		}
+		$idSItem = mysqli_real_escape_string($con,$idItem);
+		$sql = "SELECT * FROM `Item` WHERE idItem='".$idSItem."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		$item = new Item($row);
@@ -194,13 +198,15 @@ class Item {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
-		} 
-		$sql = "SELECT `idList` FROM `Item` WHERE idItem='".$idItem."'";
+		}
+		$idSList = mysqli_real_escape_string($con,$idList);
+		$idSItem = mysqli_real_escape_string($con,$idItem);
+		$sql = "SELECT `idList` FROM `Item` WHERE idItem='".$idSItem."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		mysqli_close($con);
 		$idListItem = $row['idList'];
-		if($idListItem == $idList){
+		if($idListItem == $idSList){
 			return (ShoppingList::userBelongsToGroupOfList($idUser, $idListItem));
 		}
 		else{
