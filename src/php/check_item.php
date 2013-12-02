@@ -24,4 +24,12 @@
 		die ("No perteneces al grupo de la lista cuyos productos quieres listar");
 	}
 	Item::checkItem($idItem);
+	//comprobamos si el item que se acaba de marcar como comprado 
+	//fue el último que faltaba por comprar en la lista
+	if( ShoppingList::isCompleted($idList) ) {
+		//cerramos la lista
+		ShoppingList::closeList($idList);
+		//informamos de que se ha cerrado la lista de compra
+		echo "closed";
+	}
 ?>

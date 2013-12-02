@@ -141,6 +141,24 @@ class ShoppingList
 		$idGroup = $row['idGroup'];
 		return (Group::userBelongsToGroup($idUser, $idGroup));
 	}
+	
+	/**
+      * Comprueba si la lista de compra 'idList' está completada
+      *
+      * @param int $idList El ID de la lista que se quiere comprobar
+      * @return boolean Devuelve true si, y solo si, la lista con id 'idList' solo contiene items comprados
+      */ 
+	public static function isCompleted( $idList ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('No se ha podido conectar: ' . mysqli_error($con));
+		} 
+		$sql = "SELECT COUNT(idItem) FROM `Item` WHERE idList=$idList AND itemState=0";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_row($result);
+		mysqli_close($con);
+		return $row[0] == 0;
+	}
 }
 
 ?>

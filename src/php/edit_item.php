@@ -46,7 +46,8 @@
 	$item = new Item;
 	$item->idItem = $idItem;
 	$item->itemName = $itemName;
-	if($quantity == $quantityBought){
+	$itemComprado = ($quantity == $quantityBought);
+	if($itemComprado){
 		$item->itemState = true;
 	}
 	else{
@@ -55,4 +56,14 @@
 	$item->quantity = $quantity;
 	$item->quantityBought = $quantityBought;
 	$item->editItem();
+	if($itemComprado){
+		//comprobamos si el item que se acaba de marcar como comprado 
+		//fue el último que faltaba por comprar en la lista
+		if( ShoppingList::isCompleted($idList) ) {
+			//cerramos la lista
+			ShoppingList::closeList($idList);
+			//informamos de que se ha cerrado la lista de compra
+			echo "closed";
+		}
+	}
 ?>
