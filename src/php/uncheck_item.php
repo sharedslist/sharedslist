@@ -9,24 +9,19 @@
 	else {
 		die ('No se ha seleccionado una lista');
 	}
-	if( isset($_POST['idItem']) ) {
-		$idItem = $_POST["idItem"]; //obtenemos el id del item a partir de la variable POST
+	if ( isset($_POST['idItem']) ) {
+		$idItem = $_POST['idItem']; //obtenemos el id del item a partir de la variable POST
 	}
 	else {
-		die ('No se ha seleccionado un item');
+		die ('No se ha seleccionado una lista');
 	}
-	
-	//comprobamos que el usuario se ha autenticado y pertenece al grupo en cuya lista se encuentra el item eliminar
+	//comprobamos que el usuario se ha autenticado y pertenece al grupo a cuya lista pertenece el item a marcar como comprado
 	$currentUser = User::getLoggedInUser();
 	if( !$currentUser ) {
 		die ('Necesitas autenticarte para acceder a esta funcionalidad');
 	}
 	if( !Item::userBelongsToGroupOfItemList($currentUser->id, $idList, $idItem) ) {
-		die ("No perteneces al grupo de la lista cuyo item quieres editar");
+		die ("No perteneces al grupo de la lista cuyos productos quieres listar");
 	}
-	
-	$item = new Item;
-	$item->idItem = $idItem;
-	$item->deleteItem();
-
+	Item::uncheckItem($idItem);
 ?>
