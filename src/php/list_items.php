@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	require_once("Item.php");
 	require_once("User.php");
 	require_once("ShoppingList.php");

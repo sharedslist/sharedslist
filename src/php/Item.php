@@ -1,6 +1,7 @@
-<?php
+﻿<?php
 
 require_once("config.php");
+require_once("ShoppingList.php");
 
 
 /**
@@ -24,7 +25,7 @@ class Item {
 	public $itemName = null;
   
 	/**
-      * @var string El estado del item: true-> comprado, false-> no comprado
+      * @var string El estado del item: 1 -> comprado, 0 -> no comprado
       */
 	public $itemState = null;
 
@@ -62,14 +63,10 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		 //Escapamos los carácteres potencialmente inseguros
-		$this->idList = mysqli_real_escape_string($con,$this->idList);
-		$this->itemName = mysqli_real_escape_string($con,$this->itemName);
-		$this->itemState = mysqli_real_escape_string($con,$this->itemState);
-		$this->quantity = mysqli_real_escape_string($con,$this->quantity);
-		$this->quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
-
-		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values (".$this->idList.",".$this->itemName.", ".$this->itemState.", ".$this->quantity.", ".$this->quantityBought.")";
+		$itemName = mysqli_real_escape_string($con,$this->itemName);
+		$quantity = mysqli_real_escape_string($con,$this->quantity);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$quantityBought."')";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -83,7 +80,10 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "UPDATE `Item` SET itemName=".$this->itemName.", itemState=".$this->itemState.", quantity=".$this->quantity.", quantityBought=".$this->quantityBought." WHERE idItem=".$this->idItem."";
+		$itemName = mysqli_real_escape_string($con,$this->itemName);
+		$quantity = mysqli_real_escape_string($con,$this->quantity);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		$sql = "UPDATE `Item` SET itemName='".$this->itemName."', itemState='".$this->itemState."', quantity='".$this->quantity."', quantityBought='".$this->quantityBought."' WHERE idItem='".$this->idItem."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -97,11 +97,42 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "DELETE FROM `Item` WHERE idItem = ".$this->idItem."";
+		$sql = "DELETE FROM `Item` WHERE idItem='".$this->idItem."'";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
+	
+	/**
+      * Pone a 1 (comprado) el estado del item con identificador [idItem]
+      */
+	public function checkItem( $idItem ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$sql = "SELECT `quantity` FROM `Item` WHERE idItem='".$idItem."'";
+		$result = mysqli_query($con, $sql);
+		$item = mysqli_fetch_array($result);
+		$sql = "UPDATE `Item` SET itemState='1', quantityBought='".$item['quantity']."' WHERE idItem='".$idItem."'";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
+	
+	/**
+      * Pone a 0 (no comprado) el estado del item con identificador [idItem]
+      */
+	public function uncheckItem( $idItem ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$sql = "UPDATE `Item` SET itemState='0', quantityBought='0' WHERE idItem='".$idItem."'";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
 	
 	/**
 	  * Devuelve un array con el nombre, el estado y los items
@@ -109,12 +140,12 @@ class Item {
 	  *
       * @param int Identificador de una lista
 	  */
-	public function listItems($idList) {
+	public static function listItems( $idList ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList ='".$idList."'";
+		$sql = "SELECT `listName`, `listState` FROM `ShoppingList` WHERE idList='".$idList."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		$listName = $row['listName'];
@@ -123,9 +154,9 @@ class Item {
 		$sql = "SELECT * FROM `Item` WHERE idList='".$idList."'";
         $rows = mysqli_query($con, $sql);
 		$items = array();
-        while ($itemRow=mysqli_fetch_row($rows))
-        {
-			array_push($items, new Item ($itemRow));
+        while ($row=mysqli_fetch_array($rows)) {
+			$item = new Item($row);
+			array_push($items, $item);
         }
         mysqli_close($con);
         return array( 'listName' => $listName, 'listState' => $listState, 'items' => $items);
@@ -143,13 +174,40 @@ class Item {
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		} 
-		$sql = "SELECT * FROM `Item` WHERE idItem ='".$idItem."'";
+		$sql = "SELECT * FROM `Item` WHERE idItem='".$idItem."'";
+		$result = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($result);
+		$item = new Item($row);
+		mysqli_close($con);
+		return $item;
+	}
+	
+
+	/**
+      * Comprueba si el usuario 'idUser' pertenece al grupo al que pertenece la lista del item 'idList'
+      *
+      * @param int $idUser El ID del usuario que se quiere comprobar
+      * @param int $idItem El ID del item de la lista cuyo grupo se quiere comprobar la pertenencia
+      * @return boolean Devuelve true si, y solo si, el usuario con id 'idUser' pertenece al grupo de la lista del item con id 'idList'
+      */ 
+	public static function userBelongsToGroupOfItemList( $idUser, $idList, $idItem ) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		} 
+		$sql = "SELECT `idList` FROM `Item` WHERE idItem='".$idItem."'";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
 		mysqli_close($con);
-		return new Item( $row );
+		$idListItem = $row['idList'];
+		if($idListItem == $idList){
+			return (ShoppingList::userBelongsToGroupOfList($idUser, $idListItem));
+		}
+		else{
+			return false;
+		}
 	}
-	
+
 }
 
 ?>
