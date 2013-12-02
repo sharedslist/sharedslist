@@ -132,7 +132,8 @@ function editItem(){
 			url:   'php/edit_item.php',
 			dataType: 'text',
 			type:  'post',
-			success:  function (){
+			success:  function (response){
+						var closed = response.trim()=='closed';
 						var form = document.createElement('form');
 						form.setAttribute('method', 'GET');
 						form.setAttribute('action', 'list_items.html');
@@ -141,6 +142,13 @@ function editItem(){
 						inputIdList.setAttribute('type', 'hidden');
 						inputIdList.setAttribute('value', getUrlVars()['idList']);
 						form.appendChild(inputIdList);
+						if(closed) {
+							var inputListClosed = document.createElement('input');
+							inputListClosed.setAttribute('name', 'listClosed');
+							inputListClosed.setAttribute('type', 'hidden');
+							inputListClosed.setAttribute('value', closed);
+							form.appendChild(inputListClosed);
+						}
 						document.body.appendChild(form);
 						form.submit();
 					},
