@@ -108,7 +108,7 @@ class Item {
 	/**
       * Pone a 1 (comprado) el estado del item con identificador [idItem]
       */
-	public function checkItem( $idItem ) {
+	public static function checkItem( $idItem ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
@@ -125,7 +125,7 @@ class Item {
 	/**
       * Pone a 0 (no comprado) el estado del item con identificador [idItem]
       */
-	public function uncheckItem( $idItem ) {
+	public static function uncheckItem( $idItem ) {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
