@@ -5,6 +5,7 @@
 // función que hace una llamada AJAX al servidor por las listas de un grupo
 function listItems(){
 	var parameters = { "idList" : getUrlVars()["idList"] };
+	var closed = getUrlVars()["listClosed"];
 	$.ajax({
 		url: 'php/list_items.php',
 		dataType: 'text',
@@ -18,7 +19,10 @@ function listItems(){
 					$("#btnOptions").attr('idList', parameters.idList);
 					$("#btnOptions").attr('listName', listAndItems.listName);
 					$("#btnOptions").attr('listState', listAndItems.listState);
-					list_items(listAndItems);					
+					list_items(listAndItems);
+					if(closed) {
+						informListClosed();
+					}
 			   },
 		error: 	function() {
 					$("#message").html("Ha ocurrido un error recuperando las listas con sus artículos");
@@ -26,6 +30,10 @@ function listItems(){
 	});
 }
 
+//función que muestra un mensaje indicando que se acaba de cerrar la lista de compra
+function informListClosed() {
+	$("#message").html("La lista de compra acaba de ser cerrada, buen trabajo!");
+}
 
 //parsea la URL para obtener los parámetros GET;
 function getUrlVars(){
@@ -89,8 +97,11 @@ $(document).on('change', '.item_check', function() {
 				dataType: 'text',
 				data: parameters,
 				type:  'post',
-				success: function () {
+				success: function (response) {
 							listItems();
+							if( response.trim()=='closed' ) {
+								informListClosed();
+							}
 						},
 				error: 	function() {
 							$("#message").html("Ha ocurrido un error intentando marcar el item como comprado");
