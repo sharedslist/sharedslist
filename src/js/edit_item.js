@@ -1,4 +1,8 @@
-﻿// Rellena los campos del formulario con la información del item
+﻿$(document).ready(function() {
+	isConnected() ;
+});
+
+// Rellena los campos del formulario con la información del item
 $(document).on("pageshow", function() {
 	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
 	$.ajax({
@@ -132,8 +136,7 @@ function editItem(){
 			url:   'php/edit_item.php',
 			dataType: 'text',
 			type:  'post',
-			success:  function (response){
-						var closed = response.trim()=='closed';
+			success:  function (){
 						var form = document.createElement('form');
 						form.setAttribute('method', 'GET');
 						form.setAttribute('action', 'list_items.html');
@@ -142,13 +145,6 @@ function editItem(){
 						inputIdList.setAttribute('type', 'hidden');
 						inputIdList.setAttribute('value', getUrlVars()['idList']);
 						form.appendChild(inputIdList);
-						if(closed) {
-							var inputListClosed = document.createElement('input');
-							inputListClosed.setAttribute('name', 'listClosed');
-							inputListClosed.setAttribute('type', 'hidden');
-							inputListClosed.setAttribute('value', closed);
-							form.appendChild(inputListClosed);
-						}
 						document.body.appendChild(form);
 						form.submit();
 					},
@@ -212,7 +208,7 @@ function validateItemName(name) {
  * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
  */
 function validateQuantity(quantity) { 	
-	if(($.trim(quantity) == "") || !(quantity>0)){
+	if(($.trim(quantity) == "") || parseInt(quantity)>0){
 		return false;
 	}
 	else{
@@ -227,7 +223,7 @@ function validateQuantity(quantity) {
  * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
  */
 function validateQuantityBought(quantityBought, quantity) { 	
-	if(($.trim(quantityBought) == "") || !(quantityBought>=0) || quantityBought>quantity){
+	if(($.trim(quantityBought) == "") || parseInt(quantityBought)<0 || parseInt(quantityBought)>parseInt(quantity)){
 		return false;
 	}
 	else{

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	isConnected() ;
+});
+
 // lo que se va a ejecutar cuando la página esté cargada
 $(document).on("pageshow", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
@@ -112,7 +116,7 @@ function validateItemName(name) {
  * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
  */
 function validateQuantity(quantity) { 	
-	if(($.trim(quantity) == "") || !(quantity>0)){
+	if(($.trim(quantity) == "") || parseInt(quantity)<=0){
 		return false;
 	}
 	else{
