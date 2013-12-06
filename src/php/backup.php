@@ -1,7 +1,7 @@
 ﻿<?php
 
-require_once ("includes/config.php");
-require_once ("includes/DropboxClient.php");
+require_once ("config.php");
+require_once ("DropboxClient.php");
 
 $timeToDoBackup = FALSE;
 $lastBackupLogExists = FALSE;
