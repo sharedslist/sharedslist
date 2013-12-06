@@ -4,7 +4,7 @@
 	text-align: center;
 }
 
-#message {
+[id^="message"] {
 	color: red;
 	text-align: center;
 }

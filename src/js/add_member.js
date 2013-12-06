@@ -13,10 +13,10 @@ function addCorreos()
 		$("#check").trigger("create");
 		id = id +1;
 		$("#text-2").val("");
-		$('#message').html('');
+		$('#messageAddMember').html('');
 	}
 	else{
-		$('#message').html('Email incorrecto');
+		$('#messageAddMember').html('Email incorrecto');
 	}
 }
 
@@ -61,10 +61,10 @@ function addMembers()
 						window.location.href = 'list_members.html';
 					}
 					else{
-						$('#message').html(response);
+						$('#messageAddMember').html(response);
 					}},
 			error: function () {
-					$('#message').html('An error occurred, please try again.');
+					$('#messageAddMember').html('An error occurred, please try again.');
 			}
 			});
 	
