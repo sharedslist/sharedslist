@@ -82,11 +82,11 @@ $(document).on('click', '.confirmOpt', function() {
 	switch(operation) {
 		case "close":
 			//cerrar lista
-			confirmMessage = "Esta operación va a marcar la lista como cerrada";
+			confirmMessage = "Esta operación va a marcar la lista como completada";
 			break;
 		case "delete":
 			//borrar lista
-			confirmMessage = "Esta acción es irreversible";
+			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar

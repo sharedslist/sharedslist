@@ -74,14 +74,14 @@
 			
 			<!-- El popup para confirmar la operación -->
 			<div data-role="popup" id="popup_confirm" data-overlay-theme="a">
-				 <div data-role="content">
-					<h3>Estás seguro?</h3>
+				 <div data-role="content" style="text-align: center;">
+					<h3>¿Estás seguro?</h3>
 					<p id="txtConfirm"></p>
-					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">
-						Cancelar
+					<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-inline="true" data-transition="flow" data-theme="c">
+						Sí
 					</a>
-					<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-inline="true" data-transition="flow" data-theme="b">
-						OK
+					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="b">
+						No
 					</a>
 				</div>
 			</div>			
