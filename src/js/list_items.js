@@ -17,6 +17,7 @@ function listItems(){
 					$("#list_name").append(listAndItems.listName);
 					$("#list_name").trigger('create');
 					$("#btnOptions").attr('idList', parameters.idList);
+					$("#popupConfirm").attr('idList', parameters.idList);
 					$("#btnOptions").attr('listName', listAndItems.listName);
 					$("#btnOptions").attr('listState', listAndItems.listState);
 					list_items(listAndItems);
@@ -28,11 +29,6 @@ function listItems(){
 					$("#message").html("Ha ocurrido un error recuperando las listas con sus artículos");
 				}
 	});
-}
-
-//función que muestra un mensaje indicando que se acaba de cerrar la lista de compra
-function informListClosed() {
-	$("#message").html("La lista de compra acaba de ser cerrada, buen trabajo!");
 }
 
 //parsea la URL para obtener los parámetros GET;
@@ -100,7 +96,7 @@ $(document).on('change', '.item_check', function() {
 				success: function (response) {
 							listItems();
 							if( response.trim()=='closed' ) {
-								informListClosed();
+								confirmCloseList();
 							}
 						},
 				error: 	function() {
@@ -124,6 +120,20 @@ $(document).on('change', '.item_check', function() {
         }
 });
 
+/*
+ * Pide confirmación antes de cerrar la lista automáticamente
+ */
+function confirmCloseList() {
+	//guardamos la operación close en el atributo 'opt' del botón de confirmación
+	$("#btnConfirm").attr("opt", "close");
+	var warning = "Esta operación va a cerrar la lista automáticamente";
+	warning += " y redirigirte al listado de tus listas de compra";
+	$("#txtConfirm").html(warning);
+	//cerramos el popup de las opciones
+	$('#popupListSLists').popup("close");
+	//mostramos el popup de la confirmación
+	setTimeout( function(){ $('#popupConfirm').popup( 'open', { transition: "pop" } ) }, 100 );
+}
 
 /*
  * Asociamos el evento 'click' a los elementos de la clase '.btnEditItem' con

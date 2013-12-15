@@ -27,9 +27,7 @@
 	//comprobamos si el item que se acaba de marcar como comprado 
 	//fue el último que faltaba por comprar en la lista
 	if( ShoppingList::isCompleted($idList) ) {
-		//cerramos la lista
-		ShoppingList::closeList($idList);
-		//informamos de que se ha cerrado la lista de compra
+		//informamos de que se han marcado todos los items como comprados
 		echo "closed";
 	}
 ?>
