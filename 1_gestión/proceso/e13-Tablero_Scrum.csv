@@ -1,9 +1,9 @@
-﻿Sin empezar;;;En proceso;;;;Terminadas;;;;
+Sin empezar;;;En proceso;;;;Terminadas;;;;
 Tarea;Estimación;;Tarea;Estimación;Responsable;;Tarea;Estimación;Esfuerzo real;Responsable;Fecha finalización
-Añadir usuario a grupo: Añadir comentarios php;0:00;;Mecanismos de usabilidad: Terminología de la página;0:30;Álvaro;;;;;;
-Borrar lista: Corregir ortografía y cambiar estado;0:00;;Mecanismos de usabilidad: Interfaz pop-up;1:30;Álvaro;;;;;;
+Añadir usuario a grupo: Añadir comentarios php;0:00;;Mecanismos de usabilidad: Terminología de la página;0:30;Álvaro;;Cerrar lista (automáticamente): Interfaz y lógica;1:00;01:00;Lukas;15/12/13
+Borrar lista: Corregir ortografía y cambiar estado;0:00;;Mecanismos de usabilidad: Interfaz pop-up;1:30;Álvaro;;Cerrar lista (automáticamente): Pruebas y documentación;1:00;01:00;Lukas;15/12/13
 Usuario abandonar grupo: Corregir ortografía;0:00;;Mecanismos de usabilidad: Editar items separado del proceso compra;0:30;Marta;;;;;;
-Cerrar lista manualmente: Corregir ortografía;0:00;;Cerrar lista (automáticamente): Interfaz y lógica;1:00;Lukas;;;;;;
+Cerrar lista manualmente: Corregir ortografía;0:00;;;;;;;;;;
 Configuración cuenta: Añadir comentarios js;0:00;;;;;;;;;;
 Navegación: Interfaz y lógica;4:00;;;;;;;;;;
 Navegación: Pruebas y documentación;2:00;;;;;;;;;;
