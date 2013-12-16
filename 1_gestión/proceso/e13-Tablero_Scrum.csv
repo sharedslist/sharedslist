@@ -1,32 +1,32 @@
-Sin empezar;;;En proceso;;;;Terminadas;;;;
-Tarea;Estimación;;Tarea;Estimación;Responsable;;Tarea;Estimación;Esfuerzo real;Responsable;Fecha finalización
-Añadir usuario a grupo: Añadir comentarios php;0:00;;Mecanismos de usabilidad: Terminología de la página;0:30;Álvaro;;Cerrar lista (automáticamente): Interfaz y lógica;1:00;01:00;Lukas;15/12/13
-Borrar lista: Corregir ortografía y cambiar estado;0:00;;Mecanismos de usabilidad: Interfaz pop-up;1:30;Álvaro;;Cerrar lista (automáticamente): Pruebas y documentación;1:00;01:00;Lukas;15/12/13
-Usuario abandonar grupo: Corregir ortografía;0:00;;Mecanismos de usabilidad: Editar items separado del proceso compra;0:30;Marta;;;;;;
-Cerrar lista manualmente: Corregir ortografía;0:00;;;;;;;;;;
-Configuración cuenta: Añadir comentarios js;0:00;;;;;;;;;;
-Navegación: Interfaz y lógica;4:00;;;;;;;;;;
-Navegación: Pruebas y documentación;2:00;;;;;;;;;;
-Crear aplicación para Android (Phonegap): Encapsulación;1:30;;;;;;;;;;
-Crear aplicación para Android (Phonegap): Pruebas y documentación;2:00;;;;;;;;;;
-Recordar usario y contraseña: Interfaz y lógica;1:30;;;;;;;;;;
-Recordar usario y contraseña: Pruebas y documentación;1:00;;;;;;;;;;
-Unir HTML identidicadores únicos y precargar funciones js necesarias: Encapsulación;3:30;;;;;;;;;;
-Unir HTML identidicadores únicos y precargar funciones js necesarias: Pruebas;1:30;;;;;;;;;;
-Cerrar sesión: Interfaz y lógica;1:00;;;;;;;;;;
-Cerrar sesión: Pruebas y documentación;1:00;;;;;;;;;;
-Importar contactos desde el móvil: Interfaz y lógica;4:00;;;;;;;;;;
-Importar contactos desde el móvil: Pruebas y documentación;3:00;;;;;;;;;;
-Mecanismos de usabilidad: Informar error formulario;1:00;;;;;;;;;;
-Mecanismos de usabilidad: Mobilscroll marcar/desmarcar;3:00;;;;;;;;;;
-Abrir listas: Interfaz y lógica;1:00;;;;;;;;;;
-Abrir listas: Pruebas y documentación;1:00;;;;;;;;;;
-Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos;0:30;;;;;;;;;;
-Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y lógica;2:00;;;;;;;;;;
-Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentación;1:30;;;;;;;;;;
-Invitar a gente por e-mail: Modelo de datos;0:30;;;;;;;;;;
-Invitar a gente por e-mail: Interfaz y lógica;4:00;;;;;;;;;;
-Invitar a gente por e-mail: Pruebas y documentación;2:00;;;;;;;;;;
-Internalización de la interfaz: Modelo de datos;0:30;;;;;;;;;;
-Internalización de la interfaz: Interfaz y lógica;8:00;;;;;;;;;;
-Internalización de la interfaz: Pruebas y documentación;2:30;;;;;;;;;;
+Sin empezar,,,En proceso,,,,Terminadas,,,,
+Tarea,Estimación,,Tarea,Estimación,Responsable,,Tarea,Estimación,Esfuerzo real,Responsable,Fecha finalización
+Añadir usuario a grupo: Añadir comentarios php,0:00,,Mecanismos de usabilidad: Terminología de la página,0:30,Álvaro,,Cerrar lista (automáticamente): Interfaz y lógica,1:00,01:00,Lukas,15/12/13
+Borrar lista: Corregir ortografía y cambiar estado,0:00,,Mecanismos de usabilidad: Interfaz pop-up,1:30,Álvaro,,Cerrar lista (automáticamente): Pruebas y documentación,1:00,01:00,Lukas,15/12/13
+Usuario abandonar grupo: Corregir ortografía,0:00,,Mecanismos de usabilidad: Editar items separado del proceso compra,0:30,Marta,,,,,,
+Cerrar lista manualmente: Corregir ortografía,0:00,,,,,,,,,,
+Configuración cuenta: Añadir comentarios js,0:00,,,,,,,,,,
+Navegación: Interfaz y lógica,4:00,,,,,,,,,,
+Navegación: Pruebas y documentación,2:00,,,,,,,,,,
+Crear aplicación para Android (Phonegap): Encapsulación,1:30,,,,,,,,,,
+Crear aplicación para Android (Phonegap): Pruebas y documentación,2:00,,,,,,,,,,
+Recordar usario y contraseña: Interfaz y lógica,1:30,,,,,,,,,,
+Recordar usario y contraseña: Pruebas y documentación,1:00,,,,,,,,,,
+"Unir HTML, identidicadores únicos y precargar funciones js necesarias: Encapsulación",3:30,,,,,,,,,,
+"Unir HTML, identidicadores únicos y precargar funciones js necesarias: Pruebas",1:30,,,,,,,,,,
+Cerrar sesión: Interfaz y lógica,1:00,,,,,,,,,,
+Cerrar sesión: Pruebas y documentación,1:00,,,,,,,,,,
+Importar contactos desde el móvil: Interfaz y lógica,4:00,,,,,,,,,,
+Importar contactos desde el móvil: Pruebas y documentación,3:00,,,,,,,,,,
+Mecanismos de usabilidad: Informar error formulario,1:00,,,,,,,,,,
+Mecanismos de usabilidad: Mobilscroll marcar/desmarcar,3:00,,,,,,,,,,
+Abrir listas: Interfaz y lógica,1:00,,,,,,,,,,
+Abrir listas: Pruebas y documentación,1:00,,,,,,,,,,
+Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos,0:30,,,,,,,,,,
+Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y lógica,2:00,,,,,,,,,,
+Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentación,1:30,,,,,,,,,,
+Invitar a gente por e-mail: Modelo de datos,0:30,,,,,,,,,,
+Invitar a gente por e-mail: Interfaz y lógica,4:00,,,,,,,,,,
+Invitar a gente por e-mail: Pruebas y documentación,2:00,,,,,,,,,,
+Internalización de la interfaz: Modelo de datos,0:30,,,,,,,,,,
+Internalización de la interfaz: Interfaz y lógica,8:00,,,,,,,,,,
+Internalización de la interfaz: Pruebas y documentación,2:30,,,,,,,,,,
