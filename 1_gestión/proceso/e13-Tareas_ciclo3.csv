@@ -1,0 +1,36 @@
+Código,Requisito,Prioridad cliente,Tareas,Ciclo de vida,Responsable,Fecha de finalización,Estimaciones,Esfuerzo total,Comentarios
+01,Añadir usuario a grupo,1,Añadir comentarios php,3,Ricardo,/1/2014,0:00,,
+02,Borrar lista,1,Corregir ortografía y cambiar estado,3,Ricardo,/1/2014,0:00,,
+03,Cerrar lista (automáticamente),1,Interfaz y lógica,3,Lukas,15/12/2013,1:00,1:00,
+04,Cerrar lista (automáticamente),1,Pruebas y documentación,3,Lukas,15/12/2013,1:00,1:00,
+05,Usuario abandonar grupo,1,Corregir ortografía,3,Ricardo,/1/2014,0:00,,
+06,Cerrar lista manualmente,1,Corregir ortografía,3,Ricardo,/1/2014,0:00,,
+07,Configuración cuenta,1,Añadir comentarios js,3,Ricardo,/1/2014,0:00,,
+08,Navegación,1,Interfaz y lógica,3,,/1/2014,4:00,,
+09,Navegación,1,Pruebas y documentación,3,,/1/2014,2:00,,
+10,Crear aplicación para Android (Phonegap),1,Encapsulación,3,,/1/2014,1:30,,
+11,Crear aplicación para Android (Phonegap),1,Pruebas y documentación,3,,/1/2014,2:00,,
+12,Recordar usuario y contraseña,1,Interfaz y lógica,3,Ricardo,/1/2014,1:30,,
+13,Recordar usuario y contraseña,1,Pruebas y documentación,3,Ricardo,/1/2014,1:00,,
+14,"Unir HTML, identificadores únicos y precargar funciones js necesarias",5,Encapsulación,3,,/1/2014,3:30,,
+15,"Unir HTML, identificadores únicos y precargar funciones js necesarias",5,Pruebas,3,,/1/2014,1:30,,
+16,Cerrar sesión,5,Interfaz y lógica,3,Lukas,/1/2014,1:00,,
+17,Cerrar sesión,5,Pruebas y documentación,3,Lukas,/1/2014,1:00,,
+18,Importar contactos desde el movil,5,Interfaz y lógica,3,,/1/2014,4:00,,
+19,Importar contactos desde el movil,5,Pruebas y documentación,3,,/1/2014,3:00,,
+20,Mecanismos de usabilidad,5,Terminología de la página,3,Álvaro,/1/2014,0:30,,Listas abiertas/ cerradas -> pendientes/completadas
+21,Mecanismos de usabilidad,5,Interfaz pop-up,3,Álvaro,/1/2014,1:30,,Botón sí/no y poner pistas de que se está haciendo
+22,Mecanismos de usabilidad,5,Informar error formulario,3,Álvaro,/1/2014,1:00,,Especificar al usuario su error
+23,Mecanismos de usabilidad,5,Editar items separado del proceso compra,3,Marta,/1/2014,0:30,,"Quitar ""Cantidad a comprar"" de edit_item.html"
+24,Mecanismos de usabilidad,5,Mobilscroll marcar/desmarcar,3,Marta,/1/2014,3:00,,"Al interactuar con el checkbox de un producto, aparece un mobilscroll para seleccionar el número de productos a comprar"
+25,Abrir listas,7,Interfaz y lógica,3,,/1/2014,1:00,,
+26,Abrir listas,7,Pruebas y documentación,3,,/1/2014,1:00,,
+27,"Establecer cantidades de producto en unidades (kg, metro, unidad, ...)",7,Modelo de datos,3,,/1/2014,0:30,,
+28,"Establecer cantidades de producto en unidades (kg, metro, unidad, ...)",7,Interfaz y lógica,3,,/1/2014,2:00,,
+29,"Establecer cantidades de producto en unidades (kg, metro, unidad, ...)",7,Pruebas y documentación,3,,/1/2014,1:30,,
+30,Invitar a gente por e-mail,9,Modelo de datos,3,Claudiu,/1/2014,0:30,,
+31,Invitar a gente por e-mail,9,Interfaz y lógica,3,Claudiu,/1/2014,4:00,,
+32,Invitar a gente por e-mail,9,Pruebas y documentación,3,Claudiu,/1/2014,2:00,,
+33,Internalización de la interfaz,9,Modelo de datos,3,Lukas,/1/2014,0:30,,
+34,Internalización de la interfaz,9,Interfaz y lógica,3,,/1/2014,8:00,,
+35,Internalización de la interfaz,9,Pruebas y documentación,3,,/1/2014,2:30,,
