@@ -1,4 +1,4 @@
-﻿
+﻿//Obtiene el nombre del usuario
 function getName() 
 {	
 	$('#currentUserName').slideUp('fast');
@@ -20,7 +20,7 @@ function getName()
 	return false;
 
 };
-
+//Actualiza el nomre y/o la contraseña del usuario
 function updateProfile (e) {
 	//e.preventDefault();
 	$('#message').slideUp('fast');
