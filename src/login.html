@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
   <title>SShopping List</title>
@@ -9,6 +9,9 @@
 	<script src="js/jquery.mobile.min.js"></script>
 
   <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
 </head>
 <script>
 
@@ -47,14 +50,17 @@
         <div data-role="fieldcontain">
           <input type="password" name="password" id="password" placeholder="Contraseña" required maxlength="30">
         </div>
-		
-		<h4 id="message"> </h4>
+		    
+        <label><input type="checkbox" id="remember" name="remember" data-theme="d">Recordar usuario y contraseña</label>
+
+		    <h4 id="message"> </h4>
 		
         <input type="button" name="loginButton" id="loginButton" value="Acceder" onClick="login()" />
       </form>
 	<a href="register.html" data-role="button" data-theme="d">Registrar</a>
     </div>
 
+    <script>checkLogin();</script>
   </div>
 
 </body>

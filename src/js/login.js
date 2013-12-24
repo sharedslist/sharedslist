@@ -1,4 +1,19 @@
-﻿function login () {
+function login () {
+
+            var checkbox = $('#remember'),
+            emailField = $('#emailAddress'),
+            passwordField = $('#password'),
+            keyUser = 'savedEmail',
+            keyPassword = 'savedPassword';
+
+            if (checkbox.prop('checked')) {
+                window.localStorage.setItem(keyUser, emailField.val());
+                window.localStorage.setItem(keyPassword, passwordField.val());
+            }
+            else {
+                window.localStorage.clear();
+            }
+
 			
 			$('#message').slideUp('fast');
 			$.ajax({
@@ -26,3 +41,40 @@
 			
 			return false;
 		  };
+
+
+
+
+    //Comprueba que esten guardados el usuario y la contraseña
+    function checkLogin() {
+        var checkbox = $('#remember'),
+            emailField = $('#emailAddress'),
+            passwordField = $('#password'),
+ 
+        // assign the key name to a variable
+        // so we don't have to type it up every time
+         keyUser = 'savedEmail',
+         keyPassword = 'savedPassword';
+
+        var savedEmail = window.localStorage.getItem(keyUser);
+        var savedPassword = window.localStorage.getItem(keyPassword);
+
+        // if a username was saved from previous session
+        // set the value of the username field to that
+        // tick off the checkbox and set focus on password field
+        if (savedEmail) {
+            emailField.val(savedEmail);
+            passwordField.val(savedPassword);
+            checkbox.prop('checked', true);
+        }
+     
+        // if username wasn't saved then
+        // set username field value to blank and focus on it
+        // and make sure the checkbox is unchecked
+        else {
+            emailField.val('');
+            passwordField.val('');
+            checkbox.prop('checked', false);
+        }
+
+    };
