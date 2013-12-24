@@ -1,13 +1,13 @@
 "Sin empezar",,,"En proceso",,,,"Terminadas",,,,
 "Tarea","Estimación",,"Tarea","Estimación","Responsable",,"Tarea","Estimación","Esfuerzo real","Responsable","Fecha finalización"
-"Añadir usuario a grupo: Añadir comentarios php","0:00",,"Mecanismos de usabilidad: Terminología de la página","0:30","Álvaro",,"Cerrar lista (automáticamente): Interfaz y lógica","1:00","01:00","Lukas","15/12/13"
-"Borrar lista: Corregir ortografía y cambiar estado","0:00",,"Mecanismos de usabilidad: Interfaz pop-up","1:30","Álvaro",,"Cerrar lista (automáticamente): Pruebas y documentación","1:00","01:00","Lukas","15/12/13"
-"Usuario abandonar grupo: Corregir ortografía","0:00",,"Mecanismos de usabilidad: Editar items separado del proceso compra","0:30","Marta",,"Recordar usario y contraseña: Interfaz y lógica","2:00",02:00:00,"Ricardo",18/12/13
-"Cerrar lista manualmente: Corregir ortografía","0:00",,"Recordar usario y contraseña: Pruebas y documentación","1:00","Ricardo",,,,,,
-"Configuración cuenta: Añadir comentarios js","0:00",,,,,,,,,,
-"Navegación: Interfaz y lógica","4:00",,,,,,,,,,
-"Navegación: Pruebas y documentación","2:00",,,,,,,,,,
-"Crear aplicación para Android (Phonegap): Encapsulación","1:30",,,,,,,,,,
+,,,"Mecanismos de usabilidad: Terminología de la página","0:30","Álvaro",,"Cerrar lista (automáticamente): Interfaz y lógica","1:00","01:00","Lukas","15/12/13"
+,,,"Mecanismos de usabilidad: Interfaz pop-up","1:30","Álvaro",,"Cerrar lista (automáticamente): Pruebas y documentación","1:00","01:00","Lukas","15/12/13"
+,,,"Mecanismos de usabilidad: Editar items separado del proceso compra","0:30","Marta",,"Recordar usario y contraseña: Interfaz y lógica","2:00","02:00:00","Ricardo","18/12/13"
+,,,"Recordar usario y contraseña: Pruebas y documentación","1:00","Ricardo",,"Añadir usuario a grupo: Añadir comentarios php","0:00","0:00","Ricardo","24/12/13"
+,,,,,,,"Borrar lista: Corregir ortografía y cambiar estado","0:00","0:00","Ricardo",24/12/13
+"Navegación: Interfaz y lógica","4:00",,,,,,"Usuario abandonar grupo: Corregir ortografía","0:00","0:00","Ricardo",24/12/13
+"Navegación: Pruebas y documentación","2:00",,,,,,"Cerrar lista manualmente: Corregir ortografía","0:00","0:00","Ricardo",24/12/13
+"Crear aplicación para Android (Phonegap): Encapsulación","1:30",,,,,,"Configuración cuenta: Añadir comentarios js","0:00","0:00","Ricardo",24/12/13
 "Crear aplicación para Android (Phonegap): Pruebas y documentación","2:00",,,,,,,,,,
 "Unir HTML, identidicadores únicos y precargar funciones js necesarias: Encapsulación","3:30",,,,,,,,,,
 "Unir HTML, identidicadores únicos y precargar funciones js necesarias: Pruebas","1:30",,,,,,,,,,
