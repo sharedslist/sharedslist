@@ -36,7 +36,7 @@
 			
 			<!-- El popup que muestra el menú de las opciones sobre una lista -->
             <div data-role="popup" id="popupListSLists">
-                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
+                <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Completar</a>
                 <ul id="ulPopupListSLists" data-role="listview" data-inset="true" data-divider-theme="b">
                     <li id="popupListName" data-role="list-divider" role="heading"> </li>
                     <li id="popupBtnView" data-inset="true" role="heading">
@@ -46,7 +46,7 @@
                     </li>
                     <li data-inset="true" role="heading">
                         <a href="#" class="confirmOpt" opt="close">
-                            Cerrar lista
+                            Completar lista
                         </a>
                     </li>
                     <li data-inset="true" role="heading">
@@ -59,18 +59,18 @@
                         
             <!-- El popup para confirmar la operación -->
             <div data-role="popup" id="popupConfirm" data-overlay-theme="a">
-                <div data-role="content">
+                <div data-role="content" style="text-align: center;">
                     <h3>¿Estás seguro?</h3>
                     <p id="txtConfirm"></p>
                     <fieldset class="ui-grid-a">
 						<div class="ui-block-a">
-							<a href="#" data-role="button" data-rel="back" data-theme="c">
-								No
+							<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-transition="flow" data-theme="c">
+							   Sí
 							</a>
 						</div>
 						<div class="ui-block-b">
-							<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-transition="flow" data-theme="b">
-							   Sí
+							<a href="#" data-role="button" data-rel="back" data-theme="b">
+								No
 							</a>
 						</div>
 					</fieldset>

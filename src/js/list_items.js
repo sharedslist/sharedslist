@@ -44,7 +44,7 @@ function getUrlVars(){
  * Crea una lista cuyos elementos están en el atributo items del parametro listAndItems.
  * Cada item tiene un checkbox cuyo estado depende de si el item está o no comprado.
  * Si el valor del atributo listState de listAndItems es 1, es decir, la lista está
- * cerrada, los checkboxes se desabilitan.
+ * completada, los checkboxes se desabilitan.
  *
  * @param listAndItems Estructura con el identificador listName guarda el nombre de la lista,
  *					   con listState guarda el estado de la lista; y con items, un array de
@@ -121,12 +121,12 @@ $(document).on('change', '.item_check', function() {
 });
 
 /*
- * Pide confirmación antes de cerrar la lista automáticamente
+ * Pide confirmación antes de completar la lista automáticamente
  */
 function confirmCloseList() {
 	//guardamos la operación close en el atributo 'opt' del botón de confirmación
 	$("#btnConfirm").attr("opt", "close");
-	var warning = "Esta operación va a cerrar la lista automáticamente";
+	var warning = "Esta operación va a completar la lista automáticamente";
 	warning += " y redirigirte al listado de tus listas de compra";
 	$("#txtConfirm").html(warning);
 	//cerramos el popup de las opciones
@@ -195,13 +195,13 @@ function tapholdHandler(){
 	$("#popupListName").html($(this).attr('listName'));
 	//asignamos el id de la lista seleccionada para que lo sepan los popups
 	var idList = $(this).attr('idList');
-	//mostramos u ocultamos la opción de cerrar lista dependiendo del estado de la misma
+	//mostramos u ocultamos la opción de completar lista dependiendo del estado de la misma
 	if( $(this).attr('listState')==0) {
-		//mostramos la opción crear producto y cerrar lista para las listas abiertas
+		//mostramos la opción crear producto y completar lista para las listas pendientes
 		$('.btnCreateItem').closest("li").show();
 		$('.confirmOpt[opt="close"]').closest("li").show();
 	} else {
-		//ocultamos la opción crear producto y cerrar lista para las listas cerradas
+		//ocultamos la opción crear producto y completar lista para las listas completadas
 		$('.btnCreateItem').closest("li").hide();
 		$('.confirmOpt[opt="close"]').closest("li").hide();
 	}
@@ -224,12 +224,12 @@ $(document).on('click', '.confirmOpt', function() {
 	var confirmMessage = "";
 	switch(operation) {
 		case "close":
-			//cerrar lista
-			confirmMessage = "Esta operación va a marcar la lista como cerrada";
+			//completar lista
+			confirmMessage = "Esta operación va a marcar la lista como completada";
 			break;
 		case "delete":
 			//borrar lista
-			confirmMessage = "Esta acción es irreversible";
+			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar
@@ -254,7 +254,7 @@ $(document).on('click', '.btnConfirm', function() {
 
 	switch(operation) {
 		case "close":
-			//cerrar lista
+			//completar lista
 			$.ajax({
 				url: 'php/close_list.php',
 				dataType: 'text',
@@ -266,7 +266,7 @@ $(document).on('click', '.btnConfirm', function() {
 							window.location.href="list_slists.html";
 					   },
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando cerrar la lista");
+							$("#message").html("Ha ocurrido un error intentando completar la lista");
 						}
 			});
 			break;
