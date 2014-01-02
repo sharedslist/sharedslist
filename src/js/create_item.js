@@ -63,10 +63,10 @@ function createItem(){
 	var itemName = $("#itemName").val();
 	var quantity = $("#quantity").val();
 	if(!validateItemName(itemName)){
-		$('#message').html('Nombre del producto inválido');
+		$('#messageCreateItem').html('Nombre del producto inválido');
 	}
 	else if(!validateQuantity(quantity)){
-		$('#message').html('Cantidad del producto inválida');
+		$('#messageCreateItem').html('Cantidad del producto inválida');
 	}
 	else {
 		var parameters = { "idList" : idList, "itemName" : itemName, "quantity" : quantity };
@@ -88,7 +88,7 @@ function createItem(){
 						form.submit();
 				   },
 			error: function () {
-						$('#message').html('An error occurred, please try again.');
+						$('#messageCreateItem').html('An error occurred, please try again.');
 					}
 		});
 	}

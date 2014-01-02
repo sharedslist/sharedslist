@@ -1,6 +1,6 @@
 ﻿		  function registrar (e) {
 			//e.preventDefault();
-			$('#message').slideUp('fast');
+			$('#messageRegister').slideUp('fast');
 
 			$.ajax({
 				data:  $('#formRegistro').serialize(),
@@ -10,18 +10,18 @@
 					   {
 						var code = data.trim();
 						if(code == 'success') {
-							$('#message').html(' Registrado correcamente.');
+							$('#messageRegister').html(' Registrado correcamente.');
 							//redirects to welcome page
 							window.location.href = "list_groups.html";
 						}
 						else {
-							$('#message').html(data);
+							$('#messageRegister').html(data);
 						}
-						$('#message').slideDown('fast');	
+						$('#messageRegister').slideDown('fast');	
 					   },
 				error: function () {
-						$('#message').html('An error occurred, please try again.');
-						$('#message').slideDown('fast');
+						$('#messageRegister').html('An error occurred, please try again.');
+						$('#messageRegister').slideDown('fast');
 					}
 			});
 			

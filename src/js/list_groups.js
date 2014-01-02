@@ -28,7 +28,7 @@ function selectGroup()
 	},
 	error: 	function() 
 	{
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
+		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
 	}
 	});
 }
@@ -51,7 +51,7 @@ function selectGroupLongPress(id)
 	},
 	error: 	function() 
 	{
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
+		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
 	}
 	});
 }
@@ -128,11 +128,11 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 						//refrescamos la página
 						location.reload();
 					} else {
-						$('#message').html(status);
+						$('#messageListGroups').html(status);
 					}
 				},
 		error: 	function() {
-					$("#message").html("Ha ocurrido un error intentando abandonar el grupo");
+					$("#messageListGroups").html("Ha ocurrido un error intentando abandonar el grupo");
 				}
 	});
 	//cerramos el popup de la confirmación

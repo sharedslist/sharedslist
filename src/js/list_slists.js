@@ -12,11 +12,11 @@ function listSLists() {
 						list_slists(groupAndSLists.slists);
 					}
 					catch(e) {
-						$("#message").html(response);
+						$("#messageListSList").html(response);
 					}
 			   },
 		error: 	function() {
-					$("#message").html("Ha ocurrido un error recuperando las listas de compra");
+					$("#messageListSList").html("Ha ocurrido un error recuperando las listas de compra");
 				}
 	});
 }
@@ -122,7 +122,7 @@ $(document).on('click', '.btnConfirm', function() {
 							location.reload();
 					   },
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando cerrar la lista");
+							$("#messageListSList").html("Ha ocurrido un error intentando cerrar la lista");
 						}
 			});
 			break;
@@ -140,11 +140,11 @@ $(document).on('click', '.btnConfirm', function() {
 								//reiniciamos la página
 								location.reload();
 							} else {
-								$('#message').html(status);
+								$('#messageListSList').html(status);
 							}
 					   },
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando borrar la lista");
+							$("#messageListSList").html("Ha ocurrido un error intentando borrar la lista");
 						}
 			});
 			break;

@@ -129,7 +129,7 @@ function createLiItem(name){
  */
 function createList() {
 	if(!validateListName()){
-		$('#message').html('Intoduce el nombre de la lista correctamente');
+		$('#messageCreateList').html('Intoduce el nombre de la lista correctamente');
 	}
 	else {
 		var newList = [];
@@ -158,12 +158,12 @@ function createList() {
 							window.location.href = "list_slists.html";
 						}
 						else{
-							$("#message").html(response);
+							$("#messageCreateList").html(response);
 						}
 				   },
 			error: function () 
 					{
-						$('#message').html('Ha ocurrido un error, intentalo de nuevo');
+						$('#messageCreateList').html('Ha ocurrido un error, intentalo de nuevo');
 					}
 		});				
 	}

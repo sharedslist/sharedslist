@@ -17,7 +17,7 @@ $(document).on("pageshow", function() {
 						$('#quantityBought').val(item.quantityBought).change();
 					},
 			error: function () {
-						$('#message').html('No ha sido posible obtener los datos del producto');
+						$('#messageEditItem').html('No ha sido posible obtener los datos del producto');
 					}
 		});
 });
@@ -113,13 +113,13 @@ function editItem(){
 	var quantity = $("#quantity").val();
 	var quantityBought = $("#quantityBought").val();
 	if(!validateItemName(itemName)){
-		$('#message').html('Nombre del producto inválido');
+		$('#messageEditItem').html('Nombre del producto inválido');
 	}
 	else if(!validateQuantity(quantity)){
-		$('#message').html('Cantidad del producto inválida');
+		$('#messageEditItem').html('Cantidad del producto inválida');
 	}
 	else if(!validateQuantityBought(quantityBought, quantity)){
-		$('#message').html('Cantidad comprada del producto inválida');
+		$('#messageEditItem').html('Cantidad comprada del producto inválida');
 	}
 	else {
 		if($.trim(quantity)==$.trim(quantityBought))
@@ -157,7 +157,7 @@ function editItem(){
 						form.submit();
 					},
 			error: function (){
-						$('#message').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
+						$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
 					}
 		});
 	}
@@ -189,7 +189,7 @@ function deleteItem(){
 					form.submit();
 				},
 		error: function (){
-					$('#message').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
+					$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
 				}
 	});
 }

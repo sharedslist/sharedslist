@@ -26,7 +26,7 @@ function listItems(){
 					}
 			   },
 		error: 	function() {
-					$("#message").html("Ha ocurrido un error recuperando las listas con sus artículos");
+					$("#messageListItems").html("Ha ocurrido un error recuperando las listas con sus artículos");
 				}
 	});
 }
@@ -100,7 +100,7 @@ $(document).on('change', '.item_check', function() {
 							}
 						},
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando marcar el item como comprado");
+							$("#messageListItems").html("Ha ocurrido un error intentando marcar el item como comprado");
 						}
 			});
 		}
@@ -114,7 +114,7 @@ $(document).on('change', '.item_check', function() {
 							listItems();
 						},
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando marcar el item como no comprado");
+							$("#messageListItems").html("Ha ocurrido un error intentando marcar el item como no comprado");
 						}
 			});
         }
@@ -266,7 +266,7 @@ $(document).on('click', '.btnConfirm', function() {
 							window.location.href="list_slists.html";
 					   },
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando completar la lista");
+							$("#messageListItems").html("Ha ocurrido un error intentando completar la lista");
 						}
 			});
 			break;
@@ -284,11 +284,11 @@ $(document).on('click', '.btnConfirm', function() {
 								//redirige a listar las listas del grupo
 								window.location.href="list_slists.html";
 							} else {
-								$('#message').html(status);
+								$('#messageListItems').html(status);
 							}
 					   },
 				error: 	function() {
-							$("#message").html("Ha ocurrido un error intentando borrar la lista");
+							$("#messageListItems").html("Ha ocurrido un error intentando borrar la lista");
 						}
 			});
 			break;

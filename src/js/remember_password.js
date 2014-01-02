@@ -8,16 +8,16 @@
 		type:  'post',
 		success:  function (response){
 				if(response == 'success') {
-					$('#message').html('Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.');
+					$('#messageRememberPassword').html('Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.');
 					
 				}else {
-					$('#message').html(response);
+					$('#messageRememberPassword').html(response);
 				}
-				$('#message').slideDown('fast');	
+				$('#messageRememberPassword').slideDown('fast');	
 			},
 			   
 		error: function () {
-			$('#message').html('errror');
+			$('#messageRememberPassword').html('errror');
 		}
 		});
 	}

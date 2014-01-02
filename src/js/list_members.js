@@ -11,8 +11,8 @@ function listMembers() {
 						admin=obj1.admin;
 						listarMiembros(obj1);
 					}catch (err){
-						$("#message").html("");
-						$("#message").html("Ha ocurrido un error. Pruebe de nuevo.");
+						$("#messageListMembers").html("");
+						$("#messageListMembers").html("Ha ocurrido un error. Pruebe de nuevo.");
 					}
 				}
 		});
@@ -74,11 +74,11 @@ $(document).on('click', '.btnConfirmDelete', function() {
 						//refrescamos la página
 						location.reload();
 					} else {
-						$('#message').html(status);
+						$('#messageListMembers').html(status);
 					}
 				},
 		error: 	function() {
-					$("#message").html("Ha ocurrido un error intentando expulsar al usuario");
+					$("#messageListMembers").html("Ha ocurrido un error intentando expulsar al usuario");
 				}
 	});
 	//cerramos el popup de la confirmación
