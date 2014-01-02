@@ -31,19 +31,19 @@ function list_slists(slists) {
 		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
 		divider = divider + name_date + options + '</li>';
 		if(slist.listState == 0){
-			//Lista abierta
+			//Lista pendiente
 			$("#open_list").append(divider);
 		}
 		else if(slist.listState == 1) {
-			//Lista cerrada
+			//Lista completada
 			$("#close_list").append(divider);
 		}
 	});
 	if($("#open_list").html() == ""){
-		$("#open_list").html("<li> No hay listas abiertas </li>");
+		$("#open_list").html("<li> No hay listas pendientes </li>");
 	}
 	if($("#close_list").html() == ""){
-		$("#close_list").html("<li> No hay listas cerradas </li>");
+		$("#close_list").html("<li> No hay listas completadas </li>");
 	}
 	$("#open_list").listview( "refresh" );
 	$("#close_list").listview( "refresh" );
@@ -170,10 +170,10 @@ function tapholdHandler(){
 	var idList = $(this).closest("li").attr('idList');
 	//mostramos u ocultamos la opción de cerrar lista dependiendo del estado de la misma
 	if( $(this).closest("ul").attr("id") == "open_list" ) {
-		//mostramos la opción cerrar lista para las listas abiertas
+		//mostramos la opción cerrar lista para las listas pendientes
 		$('.confirmOpt[opt="close"]').closest("li").show();
 	} else {
-		//ocultamos la opción cerrar lista para las listas cerradas
+		//ocultamos la opción cerrar lista para las listas completadas
 		$('.confirmOpt[opt="close"]').closest("li").hide();
 	}
 	$('#popupBtnView').attr("idList", idList);
