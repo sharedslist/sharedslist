@@ -101,7 +101,7 @@ function longPress (event){
  */
 $(document).on('click', '.confirmOptListGroups', function() {
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirm").html("Esta acción es irreversible");
+	$("#txtConfirm").html("Vd. va a abandonar el grupo, si Vd. es el administrador tenga en cuenta que el grupo será eliminado.Esta acción es irreversible");
 	//cerramos el popup de las opciones
 	$('#popupBasic').popup("close");
 	//mostramos el popup de la confirmación
