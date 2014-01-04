@@ -36,17 +36,17 @@
 			<div data-role="content">
 				<div id="slists" data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-content-theme="b">
 					<div id="open" data-role="collapsible" data-collapsed="false" data-theme="b">
-						<h3>Listas abiertas</h3>
+						<h3>Listas pendientes</h3>
 						<ul id="open_list" data-role="listview" data-split-icon="gear" data-split-theme="b">
 						</ul>
 					</div>
 					<div id="close" data-role="collapsible" data-theme="b">
-						<h3>Listas cerradas</h3>
+						<h3>Listas completadas</h3>
 						<ul id="close_list" data-role="listview" data-split-icon="gear" data-split-theme="b">
 						</ul>
 					</div>
 				</div>
-				<h4 id="message"></h4>
+				<h4 id="messageListSList"></h4>
 			</div><!-- /content -->
 			
 			<!-- El popup que muestra el menú de las opciones sobre una lista -->
@@ -61,7 +61,7 @@
 					</li>
 					<li data-inset="true" role="heading">
 						<a href="#" class="confirmOpt" opt="close">
-							Cerrar lista
+							Completar lista
 						</a>
 					</li>
 					<li data-inset="true" role="heading">
@@ -77,12 +77,18 @@
 				 <div data-role="content" style="text-align: center;">
 					<h3>¿Estás seguro?</h3>
 					<p id="txtConfirm"></p>
-					<a href="#" id="btnConfirm" class="btnConfirm" data-role="button" data-inline="true" data-transition="flow" data-theme="c">
-						Sí
-					</a>
-					<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="b">
-						No
-					</a>
+					<fieldset class="ui-grid-a">
+						<div class="ui-block-a">
+							<a href="#" id="btnConfirm" class="btnConfirm" data-role="button"  data-transition="flow" data-theme="c">
+								Sí
+							</a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-rel="back" data-theme="b">
+								No
+							</a>
+						</div>
+					</fieldset>
 				</div>
 			</div>			
 			

@@ -23,7 +23,7 @@ function getName()
 //Actualiza el nomre y/o la contraseña del usuario
 function updateProfile (e) {
 	//e.preventDefault();
-	$('#message').slideUp('fast');
+	$('#messageUserConfig').slideUp('fast');
 
 	$.ajax({
 		data:  $('#formUserConfig').serialize(),
@@ -32,13 +32,13 @@ function updateProfile (e) {
 		success:  function (data)
 			   {
 				var code = data.trim();
-				$('#message').html(code);
-				$('#message').slideDown('fast');
+				$('#messageUserConfig').html(code);
+				$('#messageUserConfig').slideDown('fast');
 				getName();	
 			   },
 		error: function () {
-				$('#message').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
-				$('#message').slideDown('fast');
+				$('#messageUserConfig').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
+				$('#messageUserConfig').slideDown('fast');
 			}
 	});
 			

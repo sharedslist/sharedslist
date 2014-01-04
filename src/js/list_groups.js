@@ -28,7 +28,7 @@ function selectGroup()
 	},
 	error: 	function() 
 	{
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
+		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
 	}
 	});
 }
@@ -51,7 +51,7 @@ function selectGroupLongPress(id)
 	},
 	error: 	function() 
 	{
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
+		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
 	}
 	});
 }
@@ -101,7 +101,7 @@ function longPress (event){
  */
 $(document).on('click', '.confirmOptListGroups', function() {
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirm").html("Esta acción es irreversible");
+	$("#txtConfirm").html("Vd. va a abandonar el grupo, si Vd. es el administrador tenga en cuenta que el grupo será eliminado.Esta acción es irreversible");
 	//cerramos el popup de las opciones
 	$('#popupBasic').popup("close");
 	//mostramos el popup de la confirmación
@@ -128,11 +128,11 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 						//refrescamos la página
 						location.reload();
 					} else {
-						$('#message').html(status);
+						$('#messageListGroups').html(status);
 					}
 				},
 		error: 	function() {
-					$("#message").html("Ha ocurrido un error intentando abandonar el grupo");
+					$("#messageListGroups").html("Ha ocurrido un error intentando abandonar el grupo");
 				}
 	});
 	//cerramos el popup de la confirmación

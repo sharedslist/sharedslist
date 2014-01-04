@@ -13,10 +13,10 @@ function addUsers()
 		$("#check").trigger("create");
 		id = id +1;
 		$("#text-2").val("");
-		$('#message').html('');
+		$('#messageCreateGroups').html('');
 	}
 	else{
-		$('#message').html('Email incorrecto');
+		$('#messageCreateGroups').html('Email incorrecto');
 	}
 }
 
@@ -75,15 +75,15 @@ function createGroup()
 						window.location.href = 'list_groups.html';
 					}
 					else{
-						$('#message').html(response);
+						$('#messageCreateGroups').html(response);
 					}},
 			error: function () {
-					$('#message').html('An error occurred, please try again.');
+					$('#messageCreateGroups').html('An error occurred, please try again.');
 			}
 			});
 	}
 	else{
-		$('#message').html('Nombre de grupo incorrecto');
+		$('#messageCreateGroups').html('Nombre de grupo incorrecto');
 	}
 }
 
