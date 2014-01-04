@@ -31,6 +31,7 @@
 		
 		<div data-role="page" id="list_groups" data-theme="c">
 			<div data-role="header" data-theme="b">
+				<a href="#menu" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 				<h1>Mis grupos</h1>
 				<a href="create_groups.html" data-icon="gear" class="ui-btn-right">Crear</a>
 			</div>
@@ -46,6 +47,33 @@
 			</ul>
 			<h4 id="messageListGroups"></h4>
 		</div>
+
+		        <!-- menu -->
+        <div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menu" data-theme="b">
+
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="list_groups.html">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="user_config.html">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" data-rel="close">Cerrar sesión</a>
+            </li> 
+
+          </ul>
+
+          <!-- panel content goes here -->
+        </div><!-- /manu -->
+
 		<div data-role="popup" id="popupBasic">
 				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
 				
