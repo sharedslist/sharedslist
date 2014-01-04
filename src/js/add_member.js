@@ -141,7 +141,7 @@ function inviteUsers () {
 			}
 }
 
-}
+
 
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
 $(document).ready(function() {

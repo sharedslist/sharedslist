@@ -24,6 +24,7 @@
 	<body hidden>
 	
 		<div data-role="page" id="create_groups" data-theme="c">
+		<div id = "page1">
 			<div data-role="header" data-theme="b">
 				<h1>Añadir Miembros</h1>
 			</div>
@@ -44,7 +45,23 @@
 					<input type="button" data-mini="true" name="create" id="create" value="Añadir miembros" data-theme="b" onclick="addMembers()"/>
 				</div>
 			</form>
-			
+
+			</div>
+			<div id = "page2" style="display:none">
+				<div data-role="header" data-theme="b">
+					<h1>No registrados</h1>
+				</div>
+				<h3>Los siguientes emails no están registrados, ¿quieres invitarlos a usar la aplicación?</h3>
+
+			<form id="inviteform" >	
+				<div id="noRegistrados" data-role="fieldcontain">
+					<fieldset data-role="controlgroup" id="checkNoRegistrados">
+
+					</fieldset> 
+				</div>
+				<input type="button" data-mini="true" name="create" id="create" value="Invitar" data-theme="b" onclick="inviteUsers()"/>
+				</form>
+			</div>
 			<h4 id="messageAddMember"></h4>
 		</div>	
 	</body>
