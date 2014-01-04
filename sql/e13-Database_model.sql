@@ -43,6 +43,16 @@ CREATE TABLE `Item` (
 	PRIMARY KEY (idItem)
 );
 
+CREATE TABLE `Invitation` (
+	idInvitation					int unsigned NOT NULL AUTO_INCREMENT,
+	email							varchar(50) NOT NULL UNIQUE,
+	expireDate						timestamp NOT NULL,
+	idGroup							int unsigned NOT NULL,
+	security						varchar(25) NOT NULL,
+	
+	PRIMARY KEY (idInvitation)
+);
+
 #Creación de los triggers que mantengan la integridad de la base de datos
 
 delimiter |

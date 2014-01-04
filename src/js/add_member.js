@@ -58,7 +58,7 @@ function addMembers()
 				   {
 					var code = response.trim();
 					if(code == 'success') {
-						window.location.href = 'list_members.html';
+						getNotInvited(parameters);
 					}
 					else{
 						$('#messageAddMember').html(response);
@@ -67,7 +67,79 @@ function addMembers()
 					$('#messageAddMember').html('An error occurred, please try again.');
 			}
 			});
-	
+}
+/*
+* De la lista de los correos anteriores devuelve cuales no están registrados
+* en la base de datos.
+*/
+function getNotInvited(parameters){
+	$.ajax({
+			data:  parameters,
+			url:   document.URL+'/../php/not_invited.php',
+			dataType: 'text',
+			type:  'post',
+			success:  function (response)
+				   {
+						var noRegistrados = JSON.parse(response.trim());
+
+						if (noRegistrados.length == 0){
+							window.location.href = 'list_members.html';
+						}else {
+							mostrarNoRegistrados(noRegistrados);
+						}
+						
+					},
+			error: function () {
+					$('#messageAddMember').html('An error occurred, please try again.');
+			}
+			});
+}
+
+//Dado una lista de correos los muestra en la division correspondiente.
+function mostrarNoRegistrados (noRegistrados) {
+
+	for (var i = noRegistrados.length - 1; i >= 0; i--) {
+
+		$("#checkNoRegistrados").append('<input type="checkbox" checked id="b'+i+'"/><label id="b'+i+'"for="b'+i+'">'+noRegistrados[i]+'</label>');
+		$("#checkNoRegistrados").trigger("create");
+		$('#messageAddMember').html('');
+	}
+
+	$("#page1").hide();
+	$("#page2").show();
+
+};
+
+//Coje del formulario los correos seleccionados y envia
+// por correo una invitacion.
+function inviteUsers () {
+		var n = $('form#inviteform').find('input:checked');
+		var email;
+		var users = new Array();
+		for(var i=0; i< n.length; i++)
+		{	
+			email = $("#"+n[i].id).next("label").text();
+			
+			var parameters = { "email" : $.trim(email)};
+			$.ajax({
+				data:  parameters,
+				url:   document.URL+'/../php/invite_user.php',
+				dataType: 'text',
+				type:  'post',
+				success:  function (response)
+					   {
+							$('#messageAddMember').html('Se han enviado las peticiones a los correos indicados.');
+							setTimeout(function() { 
+							    window.location.href = "list_members.html"; 
+							 }, 2000);
+							
+						},
+				error: function () {
+						$('#messageAddMember').html('An error occurred, please try again.');
+				}
+				});
+			}
+}
 
 }
 
