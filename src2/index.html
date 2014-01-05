@@ -333,7 +333,7 @@
 						<input type="text" name="productName" id="productName" data-clear-btn="true" placeholder="Nombre del producto" />
 					</div>
 					<div class="ui-block-b" style="width:10%;">
-						
+						<select name="Cantidad" id="quantityNewProduct" data-role="none"></select>
 					</div>
 					<div class="ui-block-c" style="width:10%;">
 						<a href="#" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" onClick="addProduct()" ></a>
@@ -363,10 +363,10 @@
 				<h4 id="messageListItems"></h4>
 		</div>			
 		<!-- El popup que muestra el menú de las opciones sobre una lista -->
-        <div data-role="popup" id="popupListSLists">
+        <div data-role="popup" id="popupListItems">
             <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Completar</a>
-            <ul id="ulPopupListSLists" data-role="listview" data-inset="true" data-divider-theme="b">
-                <li id="popupListName" data-role="list-divider" role="heading"> </li>
+            <ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li id="popupItemtName" data-role="list-divider" role="heading"> </li>
                 <li id="popupBtnView" data-inset="true" role="heading">
                     <a href="#" class="btnCreateItem">
                         Nuevo producto
@@ -385,7 +385,7 @@
             </ul>
         </div>                  
         <!-- El popup para confirmar la operación -->
-        <div data-role="popup" id="popupConfirm" data-overlay-theme="a">
+        <div data-role="popup" id="popupConfirmItems" data-overlay-theme="a">
 			<div data-role="content" style="text-align: center;">
 				<h3>¿Estás seguro?</h3>
                 <p id="txtConfirmItems"></p>

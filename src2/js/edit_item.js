@@ -3,7 +3,7 @@
 });
 
 // Rellena los campos del formulario con la información del item
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#edit_item", function() {
 	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
 	$.ajax({
 		url: 'php/get_item_info.php',
@@ -20,26 +20,6 @@ $(document).on("pageshow", function() {
 						$('#messageEditItem').html('No ha sido posible obtener los datos del producto');
 					}
 		});
-});
-
-
-$(document).on("pageshow", function() {
-	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 1; i <= 999; i++) {
-		$('<option/>', {
-			value : i,
-			text : i
-		}).appendTo('#quantity');
-	};
-	// cargamos la extensión mobiscroll para la cantidad
-	$('#quantity').mobiscroll().select({
-		theme : 'jqm',
-		lang : 'es',
-		display : 'bottom',
-		mode : 'mixed',
-		inputClass : 'quantityText'
-	});
-	// enviamos el evento create para que jQuery Mobile cambie el estilo
 });
 
 $(document).on("pageshow", "#edit_item", function() {
@@ -139,7 +119,7 @@ function editItem(){
 						var closed = response.trim()=='closed';
 						var form = document.createElement('form');
 						form.setAttribute('method', 'GET');
-						form.setAttribute('action', 'list_items.html');
+						form.setAttribute('action', '#list_items');
 						inputIdList = document.createElement('input');
 						inputIdList.setAttribute('name', 'idList');
 						inputIdList.setAttribute('type', 'hidden');
@@ -178,7 +158,7 @@ function deleteItem(){
 		success:  function (){
 					var form = document.createElement('form');
 					form.setAttribute('method', 'GET');
-					form.setAttribute('action', 'list_items.html');
+					form.setAttribute('action', '#list_items');
 					inputIdList = document.createElement('input');
 					inputIdList.setAttribute('name', 'idList');
 					inputIdList.setAttribute('type', 'hidden');

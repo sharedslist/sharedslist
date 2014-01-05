@@ -25,7 +25,7 @@ function login () {
 						var code = data.trim();
 					
 						if(code == 'Conectado correctamente') {
-							window.location.href = '#list_groups';
+							$.mobile.changePage('#list_groups');
 							$('#message').html(' Se ha autenticado correctamente.');
 						}
 						else {

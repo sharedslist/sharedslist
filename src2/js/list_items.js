@@ -15,6 +15,7 @@ function listItems(){
 					var listAndItems = JSON.parse(response.trim());
 					$("#list_name").html("");
 					$("#list_name").append(listAndItems.listName);
+					$("#list_name").trigger('create');
 					$("#btnOptions").attr('idList', parameters.idList);
 					$("#popupConfirm").attr('idList', parameters.idList);
 					$("#btnOptions").attr('listName', listAndItems.listName);
@@ -74,6 +75,7 @@ function list_items(listAndItems){
 	});
 	aux = aux + '</ul>';
 	$("#itemlist").html(aux);
+	$("#itemlist").trigger('create');
 }
 
 
@@ -126,7 +128,7 @@ function confirmCloseList() {
 	$("#btnConfirm").attr("opt", "close");
 	var warning = "Esta operación va a completar la lista automáticamente";
 	warning += " y redirigirte al listado de tus listas de compra";
-	$("#txtConfirmItems").html(warning);
+	$("#txtConfirm").html(warning);
 	//cerramos el popup de las opciones
 	$('#popupListSLists').popup("close");
 	//mostramos el popup de la confirmación
@@ -142,7 +144,7 @@ $(document).on('click', '.btnEditItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
 		var form = document.createElement('form');
 		form.setAttribute('method', 'GET');
-		form.setAttribute('action', 'edit_item.html');
+		form.setAttribute('action', '#edit_items');
 		inputIdList = document.createElement('input');
 		inputIdList.setAttribute('name', 'idList');
 		inputIdList.setAttribute('type', 'hidden');
@@ -169,7 +171,7 @@ $(document).on('click', '.btnCreateItem', function() {
 	$('#popupListSLists').popup("close");
 	var form = document.createElement('form');
 	form.setAttribute('method', 'GET');
-	form.setAttribute('action', 'create_item.html');
+	form.setAttribute('action', '#create_items');
 	inputIdList = document.createElement('input');
 	inputIdList.setAttribute('name', 'idList');
 	inputIdList.setAttribute('type', 'hidden');
@@ -181,14 +183,14 @@ $(document).on('click', '.btnCreateItem', function() {
 
 
 // Asigna el evento click al botón de las opciones de la lista.
-$(document).on('click', '#btnOptions', tapholdHandlerItems);
+$(document).on('click', '#btnOptions', tapholdHandler);
 
 
 /**
  * crea el menu popup.
  * @param event
  */
-function tapholdHandlerItems(){
+function tapholdHandler(){
 	//asociamos el nombre de la lista al popup
 	$("#popupListName").html($(this).attr('listName'));
 	//asignamos el id de la lista seleccionada para que lo sepan los popups
@@ -231,7 +233,7 @@ $(document).on('click', '.confirmOpt', function() {
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirmItems").html(confirmMessage);
+	$("#txtConfirm").html(confirmMessage);
 	//cerramos el popup de las opciones
 	$('#popupListSLists').popup("close");
 	//mostramos el popup de la confirmación
@@ -245,7 +247,7 @@ $(document).on('click', '.confirmOpt', function() {
  * el menú de las opciones sobre una lista con esta función que averigua la operación 
  * seleccionada y procede a realizarla.
  */
-$(document).on('click', '.btnConfirmItems', function() {
+$(document).on('click', '.btnConfirm', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 	var idList = $('#popupConfirm').attr("idList");
@@ -261,7 +263,7 @@ $(document).on('click', '.btnConfirmItems', function() {
 				success:  function (response)
 					   {
 							//redirige a listar las listas del grupo
-							window.location.href="list_slists.html";
+							window.location.href="#list_slists";
 					   },
 				error: 	function() {
 							$("#messageListItems").html("Ha ocurrido un error intentando completar la lista");
@@ -280,7 +282,7 @@ $(document).on('click', '.btnConfirmItems', function() {
 							var status = response.trim();
 							if(status == 'success') {
 								//redirige a listar las listas del grupo
-								window.location.href="list_slists.html";
+								window.location.href="#list_slists";
 							} else {
 								$('#messageListItems').html(status);
 							}

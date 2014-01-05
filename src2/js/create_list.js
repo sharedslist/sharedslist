@@ -21,7 +21,7 @@ $(document).on('click', '.removeProduct', function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#create_list", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 1; i <= maxProducts; i++) {
 		$('<option/>', {
@@ -38,7 +38,8 @@ $(document).on("pageshow", function() {
 		inputClass : 'textoCantidad'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
-	$.mobile.activePage.trigger('pagecreate');
+	$(document).trigger('create');
+
 });
 
 /*
@@ -155,7 +156,7 @@ function createList() {
 				   {
 						var code = response.trim();
 						if(code == 'success'){
-							window.location.href = "list_slists.html";
+							window.location.href = "#list_slists";
 						}
 						else{
 							$("#messageCreateList").html(response);

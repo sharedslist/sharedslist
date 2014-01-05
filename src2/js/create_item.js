@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#create_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 1; i <= 999; i++) {
 		$('<option/>', {
@@ -20,6 +20,7 @@ $(document).on("pageshow", function() {
 		inputClass : 'quantityText'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
+	$("#create_items").trigger('create');
 });
 
 
@@ -77,7 +78,7 @@ function createItem(){
 			success:  function () {
 						var form = document.createElement('form');
 						form.setAttribute('method', 'GET');
-						form.setAttribute('action', 'list_items.html');
+						form.setAttribute('action', '#list_items');
 						inputIdList = document.createElement('input');
 						inputIdList.setAttribute('name', 'idList');
 						inputIdList.setAttribute('type', 'hidden');
