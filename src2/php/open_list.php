@@ -3,8 +3,8 @@
 	require_once("ShoppingList.php");
 	
 	session_start();
-	if ( isset($_POST['idList']) ) {
-		$idList = $_POST['idList']; //obtenemos el id de la lista a partir de la variable POST
+	if ( isset($_SESSION['idList']) ) {
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
 	}
 	else {
 		//die ('No se ha seleccionado una lista');

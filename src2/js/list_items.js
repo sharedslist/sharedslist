@@ -13,8 +13,6 @@ function listItems(){
 					$("#list_name").html("");
 					$("#list_name").append(listAndItems.listName);
 					$("#list_name").trigger('create');
-					$("#btnOptions").attr('idList', parameters.idList);
-					$("#popupConfirm").attr('idList', parameters.idList);
 					$("#btnOptions").attr('listName', listAndItems.listName);
 					$("#btnOptions").attr('listState', listAndItems.listState);
 					list_items(listAndItems);
@@ -71,7 +69,7 @@ function list_items(listAndItems){
 $(document).on('change', '.item_check', function() {
 		var input = $(this);
 		var idItem = input.closest("li").attr('idItem');
-		var parameters = { "idList" : getUrlVars()["idList"] , "idItem" : idItem };
+		var parameters = { "idItem" : idItem };
         if(input.attr('value')=="false"){
 			$.ajax({
 				url: 'php/check_item.php',
@@ -178,8 +176,6 @@ $(document).on('click', '#btnOptions', tapholdHandler);
 function tapholdHandler(){
 	//asociamos el nombre de la lista al popup
 	$("#popupListName").html($(this).attr('listName'));
-	//asignamos el id de la lista seleccionada para que lo sepan los popups
-	var idList = $(this).attr('idList');
 	//mostramos u ocultamos la opción de completar lista dependiendo del estado de la misma
 	if( $(this).attr('listState')==0) {
 		//mostramos la opción crear producto y completar lista para las listas pendientes
@@ -192,10 +188,8 @@ function tapholdHandler(){
 		$('.btnCreateItem').closest("li").hide();
 		$('.confirmOpt[opt="close"]').closest("li").hide();
 	}
-	$('.btnCreateItem').attr("idList", idList);
-	$('#popupConfirm').attr("idList", idList);
 	//mostramos el popup con las opciones de la lista
-	$('#popupListSLists').popup("open");
+	$('#popupListItems').popup("open");
 }
 
 
@@ -241,7 +235,6 @@ $(document).on('click', '.confirmOpt', function() {
 $(document).on('click', '.btnConfirm', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
-	var idList = $('#popupConfirm').attr("idList");
 
 	switch(operation) {
 		case "close":
@@ -249,7 +242,6 @@ $(document).on('click', '.btnConfirm', function() {
 			$.ajax({
 				url: 'php/close_list.php',
 				dataType: 'text',
-				data: {"idList" : idList},
 				type:  'post',
 				success:  function (response)
 					   {
@@ -266,7 +258,6 @@ $(document).on('click', '.btnConfirm', function() {
 			$.ajax({
 				url: 'php/open_list.php',
 				dataType: 'text',
-				data: {"idList" : idList},
 				type:  'post',
 				success:  function (response)
 					   {
@@ -282,7 +273,6 @@ $(document).on('click', '.btnConfirm', function() {
 			$.ajax({
 				url: 'php/delete_list.php',
 				dataType: 'text',
-				data: {"idList" : idList},
 				type:  'post',
 				success:  function (response)
 					   {
