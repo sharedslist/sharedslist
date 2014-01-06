@@ -123,6 +123,23 @@ class ShoppingList
 	}
 	
 	/**
+      * Pone el estado de la lista actual a false, es decir, abre la lista.
+	  * Desmarca todos los items.
+      */
+	public static function openList($idList) {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('No se ha podido conectar: ' . mysqli_error($con));
+		} 
+		$sql = "UPDATE `ShoppingList` SET listState=0 WHERE idList='".$idList."'";
+		mysqli_query($con, $sql);
+		$sql = "UPDATE `Item` SET itemState=0, quantityBought=0 WHERE idList='".$idList."'";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
+	
+	
+	/**
       * Comprueba si el usuario 'idUser' pertenece al grupo al que pertenece la lista'idList'
       *
       * @param int $idUser El ID del usuario que se quiere comprobar
@@ -158,6 +175,19 @@ class ShoppingList
 		$row = mysqli_fetch_row($result);
 		mysqli_close($con);
 		return $row[0] == 0;
+	}
+	
+		
+	/**
+	 * Crea una variable de sesión para el ID de una lista de compra.
+	 */
+
+	public static function createSListSession($idList) {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idList'] = $idList;
 	}
 }
 

@@ -198,10 +198,12 @@ function tapholdHandler(){
 	//mostramos u ocultamos la opción de completar lista dependiendo del estado de la misma
 	if( $(this).attr('listState')==0) {
 		//mostramos la opción crear producto y completar lista para las listas pendientes
+		$('.confirmOpt[opt="open"]').closest("li").hide();
 		$('.btnCreateItem').closest("li").show();
 		$('.confirmOpt[opt="close"]').closest("li").show();
 	} else {
 		//ocultamos la opción crear producto y completar lista para las listas completadas
+		$('.confirmOpt[opt="open"]').closest("li").show();
 		$('.btnCreateItem').closest("li").hide();
 		$('.confirmOpt[opt="close"]').closest("li").hide();
 	}
@@ -226,6 +228,10 @@ $(document).on('click', '.confirmOpt', function() {
 		case "close":
 			//completar lista
 			confirmMessage = "Esta operación va a marcar la lista como completada";
+			break;
+		case "open":
+			//completar lista
+			confirmMessage = "Esta operación va a reiniciar la lista";
 			break;
 		case "delete":
 			//borrar lista
@@ -270,6 +276,22 @@ $(document).on('click', '.btnConfirm', function() {
 						}
 			});
 			break;
+		case "open":
+			//reiniciar lista
+			$.ajax({
+				url: 'php/open_list.php',
+				dataType: 'text',
+				data: {"idList" : idList},
+				type:  'post',
+				success:  function (response)
+					   {
+							//reiniciamos la página
+							location.reload();
+					   },
+				error: 	function() {
+							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
+						}
+			});
 		case "delete":
 			//borrar lista
 			$.ajax({

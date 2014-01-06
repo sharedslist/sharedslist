@@ -282,6 +282,11 @@
 					</a>
 				</li>
 				<li data-inset="true" role="heading">
+					<a href="#" class="confirmOpt" opt="open">
+						Reiniciar lista
+					</a>
+				</li>
+				<li data-inset="true" role="heading">
 					<a href="#" class="confirmOpt" opt="close">
 						Completar lista
 					</a>
@@ -372,6 +377,11 @@
                         Nuevo producto
                     </a>
                 </li>
+				<li data-inset="true" role="heading">
+					<a href="#" class="confirmOpt" opt="open">
+						Reiniciar lista
+					</a>
+				</li>
                 <li data-inset="true" role="heading">
                     <a href="#" class="confirmOpt" opt="close">
                         Completar lista
@@ -431,7 +441,7 @@
 	</div><!-- /page -->
 	
 	<!-- Start of edit items page -->
-	<div data-role="page" id="edit_items" data-theme="c">
+	<div data-role="page" id="edit_items" data-theme="b">
 		<script>
             isConnected();
         </script>
@@ -441,14 +451,14 @@
 		<div data-role="content">
 			<form id="editItemForm">
 				<div data-role="fieldcontain">
-					<input type="text" name="itemName" id="itemName" value="Nombre producto" required data-clear-btn="true"/>
+					<input type="text" name="itemNameEdit" id="itemNameEdit" value="Nombre producto" required data-clear-btn="true"/>
 				</div>
 				<div class="ui-grid-a" id="quantityGrid">
 					<div class="ui-block-a" style="width:150px;">
 						<p>Cantidad a comprar </p>
 					</div>
 					<div class="ui-block-b" style="width:75px;">
-						<select name="Cantidad" id="quantity" data-role="none"></select>
+						<select name="Cantidad" id="quantityEdit" data-role="none"></select>
 					</div>
 				</div>
 				<div class="ui-grid-a" id="quantityBoughtGrid">

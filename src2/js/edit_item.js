@@ -3,7 +3,7 @@
 });
 
 // Rellena los campos del formulario con la información del item
-$(document).on("pageshow", "#edit_item", function() {
+$(document).on("pageshow", "#edit_items", function() {
 	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
 	$.ajax({
 		url: 'php/get_item_info.php',
@@ -12,8 +12,8 @@ $(document).on("pageshow", "#edit_item", function() {
 		type:  'post',
 		success:  function (response){
 						var item = JSON.parse(response.trim());
-						$('#itemName').attr('value', item.itemName);
-						$('#quantity').val(item.quantity).change();
+						$('#itemNameEdit').attr('value', item.itemName);
+						$('#quantityEdit').val(item.quantity).change();
 						$('#quantityBought').val(item.quantityBought).change();
 					},
 			error: function () {
@@ -22,7 +22,7 @@ $(document).on("pageshow", "#edit_item", function() {
 		});
 });
 
-$(document).on("pageshow", "#edit_item", function() {
+$(document).on("pageshow", "#edit_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 0; i <= 999; i++) {
 		$('<option/>', {
@@ -46,8 +46,8 @@ $(document).on("pageshow", "#edit_item", function() {
 /*
  * Carga la extensión mobiscroll para la cantidad
  */
-$('#quantity').on("rrrreload", function() {
-	$('#quantity').mobiscroll().select({
+$('#quantityEdit').on("rrrreload", function() {
+	$('#quantityEdit').mobiscroll().select({
 		theme : 'jqm',
 		lang : 'es',
 		display : 'bottom',
@@ -87,9 +87,9 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function editItem(){
-	var itemName = $("#itemName").val();
+	var itemName = $("#itemNameEdit").val();
 	var itemState;
-	var quantity = $("#quantity").val();
+	var quantity = $("#quantityEdit").val();
 	var quantityBought = $("#quantityBought").val();
 	if(!validateItemName(itemName)){
 		$('#messageEditItem').html('Nombre del producto inválido');

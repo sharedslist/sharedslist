@@ -57,16 +57,16 @@ function list_slists(slists) {
  * la lista seleccionada, pasando el identificador de la lista por GET.
  */
 $(document).on('click', '.btnViewList', function() {
-	var form = document.createElement('form');
-	form.setAttribute('method', 'GET');
-	form.setAttribute('action', '#list_items');
-	inputIdList = document.createElement('input');
-	inputIdList.setAttribute('name', 'idList');
-	inputIdList.setAttribute('type', 'hidden');
-	inputIdList.setAttribute('value', $(this).closest("li").attr('idList'));
-	form.appendChild(inputIdList);
-	document.body.appendChild(form);
-	form.submit();
+	var parameter = {"idList" : $(this).closest("li").attr('idList')};
+	$.ajax({
+	url: 'php/select_slist.php',
+	data: parameter,
+	type:  'post',
+	success:  function (response)
+	{
+		window.location.href = '#list_items';
+	}
+	});
 });
 
 /*
@@ -77,13 +77,17 @@ $(document).on('click', '.confirmOpt', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 	//guardamos la operación en el atributo 'opt' del botón de confirmación
-	$("#btnConfirm").attr("opt", operation);
+	$("#btnConfirmList").attr("opt", operation);
 	var confirmMessage = "";
 
 	switch(operation) {
 		case "close":
 			//cerrar lista
 			confirmMessage = "Esta operación va a marcar la lista como completada";
+			break;
+		case "open":
+			//completar lista
+			confirmMessage = "Esta operación va a reiniciar la lista";
 			break;
 		case "delete":
 			//borrar lista
@@ -127,6 +131,22 @@ $(document).on('click', '.btnConfirmList', function() {
 						}
 			});
 			break;
+		case "open":
+			//reiniciar lista
+			$.ajax({
+				url: 'php/open_list.php',
+				dataType: 'text',
+				data: {"idList" : idList},
+				type:  'post',
+				success:  function (response)
+					   {
+							//reiniciamos la página
+							location.reload();
+					   },
+				error: 	function() {
+							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
+						}
+			});
 		case "delete":
 			//borrar lista
 			$.ajax({
@@ -173,9 +193,11 @@ function tapholdHandler(){
 	if( $(this).closest("ul").attr("id") == "open_list" ) {
 		//mostramos la opción cerrar lista para las listas pendientes
 		$('.confirmOpt[opt="close"]').closest("li").show();
+		$('.confirmOpt[opt="open"]').closest("li").hide();
 	} else {
 		//ocultamos la opción cerrar lista para las listas completadas
-		$('.confirmOpt[opt="close"]').closest("li").hide();
+		$('.confirmOpt[opt="open"]').closest("li").show();
+		$('.confirmOpt[opt="close"]').closest("li").hide();;
 	}
 	$('#popupBtnView').attr("idList", idList);
 	$('#popup_confirm').attr("idList", idList);
