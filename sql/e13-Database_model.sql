@@ -11,6 +11,7 @@ CREATE TABLE `Group` (
 	idGroup 					  int unsigned NOT NULL AUTO_INCREMENT,
 	groupName 					  varchar(50) NOT NULL,
 	idAdmin 					  int unsigned NOT NULL,
+	lang						  varchar(10) NOT NULL,
 	
 	PRIMARY KEY (idGroup)
 );
