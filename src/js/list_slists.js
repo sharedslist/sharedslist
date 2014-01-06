@@ -84,6 +84,10 @@ $(document).on('click', '.confirmOpt', function() {
 			//cerrar lista
 			confirmMessage = "Esta operación va a marcar la lista como completada";
 			break;
+		case "open":
+			//completar lista
+			confirmMessage = "Esta operación va a reiniciar la lista";
+			break;
 		case "delete":
 			//borrar lista
 			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
@@ -123,6 +127,23 @@ $(document).on('click', '.btnConfirm', function() {
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando cerrar la lista");
+						}
+			});
+			break;
+		case "open":
+			//reiniciar lista
+			$.ajax({
+				url: 'php/open_list.php',
+				dataType: 'text',
+				data: {"idList" : idList},
+				type:  'post',
+				success:  function (response)
+					   {
+							//reiniciamos la página
+							location.reload();
+					   },
+				error: 	function() {
+							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
 						}
 			});
 			break;
@@ -172,8 +193,10 @@ function tapholdHandler(){
 	if( $(this).closest("ul").attr("id") == "open_list" ) {
 		//mostramos la opción cerrar lista para las listas pendientes
 		$('.confirmOpt[opt="close"]').closest("li").show();
+		$('.confirmOpt[opt="open"]').closest("li").hide();
 	} else {
 		//ocultamos la opción cerrar lista para las listas completadas
+		$('.confirmOpt[opt="open"]').closest("li").show();
 		$('.confirmOpt[opt="close"]').closest("li").hide();
 	}
 	$('#popupBtnView').attr("idList", idList);
