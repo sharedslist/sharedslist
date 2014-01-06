@@ -123,8 +123,8 @@ $(document).on('click', '.btnConfirmList', function() {
 				type:  'post',
 				success:  function (response)
 					   {
-							//reiniciamos la página
-							location.reload();
+							//actualizamos los datos
+							listSLists();
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando cerrar la lista");
@@ -140,8 +140,8 @@ $(document).on('click', '.btnConfirmList', function() {
 				type:  'post',
 				success:  function (response)
 					   {
-							//reiniciamos la página
-							location.reload();
+							//actualizamos los datos
+							listSLists();
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
@@ -158,8 +158,8 @@ $(document).on('click', '.btnConfirmList', function() {
 					   {
 							var status = response.trim();
 							if(status == 'success') {
-								//reiniciamos la página
-								location.reload();
+								//actualizamos los datos
+								listSLists();
 							} else {
 								$('#messageListSList').html(status);
 							}

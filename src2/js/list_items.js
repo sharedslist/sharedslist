@@ -4,12 +4,9 @@
 
 // función que hace una llamada AJAX al servidor por las listas de un grupo
 function listItems(){
-	var parameters = { "idList" : getUrlVars()["idList"] };
-	var closed = getUrlVars()["listClosed"];
 	$.ajax({
 		url: 'php/list_items.php',
 		dataType: 'text',
-		data: parameters,
 		type:  'post',
 		success:  function (response){
 					var listAndItems = JSON.parse(response.trim());
@@ -21,23 +18,11 @@ function listItems(){
 					$("#btnOptions").attr('listName', listAndItems.listName);
 					$("#btnOptions").attr('listState', listAndItems.listState);
 					list_items(listAndItems);
-					if(closed) {
-						informListClosed();
-					}
 			   },
 		error: 	function() {
 					$("#messageListItems").html("Ha ocurrido un error recuperando las listas con sus artículos");
 				}
 	});
-}
-
-//parsea la URL para obtener los parámetros GET;
-function getUrlVars(){
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
 }
 
 /**
