@@ -38,7 +38,7 @@ $(document).on("pageshow", "#create_list", function() {
 		inputClass : 'textoCantidad'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
-	$(document).trigger('create');
+	$("#create_list").trigger('create');
 
 });
 
@@ -157,6 +157,7 @@ function createList() {
 						var code = response.trim();
 						if(code == 'success'){
 							window.location.href = "#list_slists";
+							return false;
 						}
 						else{
 							$("#messageCreateList").html(response);

@@ -8,7 +8,8 @@ function listSLists() {
 			   {
 					try {
 						var groupAndSLists = JSON.parse(response.trim());
-						$("#list_slists_header > h1").append(': ' + groupAndSLists.groupName);
+						$("#list_slists_header > h1").html('');
+						$("#list_slists_header > h1").html('Las listas de compra del grupo: ' + groupAndSLists.groupName);
 						list_slists(groupAndSLists.slists);
 					}
 					catch(e) {
