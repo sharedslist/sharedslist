@@ -72,8 +72,8 @@ $(document).on('click', '.btnConfirmDelete', function() {
 				{
 					var status = response.trim();
 					if(status == 'success') {
-						//refrescamos la página
-						location.reload();
+						// actualizamos la lista
+						listMembers();
 					} else {
 						$('#messageListMembers').html(status);
 					}

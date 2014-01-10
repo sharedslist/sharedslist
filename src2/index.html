@@ -30,6 +30,8 @@
 	<script src="js/create_item.js"></script>
 	<script src="js/user_config.js"></script>
 	<script src="js/connected.js"></script>
+	<script src="js/logout.js"></script>
+	
 </head>
 <script>
 
@@ -120,10 +122,11 @@
 		<script>
 			isConnected();
 		</script>
-		<div data-role="header" data-theme="b">
-			<h1>Mis grupos</h1>
-			<a href="#create_groups" data-icon="plus" class="ui-btn-right">Crear</a>
-		</div>
+			<div data-role="header" data-theme="b">
+				<a href="#menuListGroups" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+				<h1>Mis grupos</h1>
+				<a href="#create_groups" data-icon="gear" class="ui-btn-right">Crear</a>
+			</div>
 			
 		<div id="list" data-role="content">
 			<ul id="mylist" class="customIconColor" data-role="listview" data-filter="true" data-split-icon="gear" data-split-theme="b">
@@ -133,6 +136,27 @@
 			</ul>
 			<h4 id="messageListGroups"></h4>
 		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
 		<div data-role="popup" id="popupBasic">
 				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>					
 		</div>
@@ -158,14 +182,37 @@
 		</div>
 	</div><!-- /page -->
 	
-	<!-- Start of list groups page -->
+	<!-- Start of create groups page -->
 	<div data-role="page" id="create_groups" data-theme="c">
 		<script>
 			isConnected();
 		</script>	
 		<div data-role="header" data-theme="b">
+			<a href="#menuCreateGroups" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Nuevo grupo</h1>
 		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuCreateGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="content">
 		<div data-role="fieldcontain" style="text-align: center;">
 				Por favor proporciona un nombre para el grupo.
 				Añada usuarios introduciendo su correo electrónico.
@@ -187,14 +234,37 @@
 			</div>
 		</form>
 		<h4 id="messageCreateGroups"></h4>
+		</div>
 	</div><!-- /page -->
 	
 	<!-- Start of add member page -->
 	<div data-role="page" id="add_member" data-theme="c">
 		<div data-role="header" data-theme="b">
+			<a href="#menuAddMembers" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Añadir Miembros</h1>
 		</div>
-		
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuAddMembers" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="content">
 		<form id="addMember" >			
 			<div data-role="fieldcontain">
 				<input data-clear-btn="true" data-inline="true"  id="addMemberEmail" placeholder="Correo electrónico"/>
@@ -209,6 +279,7 @@
 			</div>
 		</form>	
 		<h4 id="messageAddMember"></h4>
+		</div>
 	</div><!-- /page -->
 	
 	<!-- Start of list member page -->
@@ -217,12 +288,34 @@
 			isConnected();
 		</script>
 		<div data-role="header" data-theme="b">
+			<a href="#menuLisMembers" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Miembros del grupo</h1>
 			<a href="#add_member" data-icon="gear" class="ui-btn-right">Añadir miembro</a>
 		</div>	
 		<div id="list" data-role="content">
 			<ul id="miembros"  data-role="listview" data-filter="true" data-theme="c" data-split-icon="delete" data-split-theme="b"></ul>
 		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuLisMembers" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back">Atrás</a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external">Mis grupos</a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external">Mi perfil</a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="location.reload(true)">Refrescar</a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
 		
 		<!-- El popup para confirmar la operación -->
 		<div data-role="popup" id="popupConfirmDeleteMember" data-overlay-theme="a">
@@ -253,11 +346,34 @@
 			isConnected();
 		</script>	
 		<div id="list_slists_header" data-role="header" data-theme="b">
+			<a href="#menuListSList" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Las listas de compra del grupo </h1>
 			<a href="#create_list" data-icon="plus" class="ui-btn-right">
 				Crear
 			</a>
-		</div>			
+		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListSList" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		
 		<div data-role="content">
 			<div id="slists" data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-content-theme="b">
 				<div id="open" data-role="collapsible" data-collapsed="false" data-theme="b">
@@ -323,6 +439,7 @@
 	<!-- Start of create slist page -->
 	<div data-role="page" id="create_list" date-theme="b">
 		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuCresteSList" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Nueva lista de compras</h1>
 		</div><!-- /header -->
 		<div data-role="content">
@@ -352,6 +469,27 @@
 				<input type="button" value="Crear" id="createListBtn" data-theme="b" onClick="createList()"/>
 			</form>
 		</div><!-- /content -->	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuCresteSList" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back">Atrás</a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external">Mis grupos</a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external">Mi perfil</a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="location.reload(true)">Refrescar</a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
 	</div><!-- /page -->
 	
 	<!-- Start of list items page -->
@@ -360,13 +498,35 @@
             isConnected();
         </script>
 		<div data-role="header" data-theme="b">
+			<a href="#menuListItems" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1 id="list_name"></h1>
 			<a href="#" id="btnOptions" data-icon="gear" class="ui-btn-right">Opciones</a>
 		</div>
 		<div data-role="content">
 			<div id="itemlist"></div>
 				<h4 id="messageListItems"></h4>
-		</div>			
+		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuCresteSList" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back">Atrás</a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external">Mis grupos</a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external">Mi perfil</a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="location.reload(true)">Refrescar</a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
 		<!-- El popup que muestra el menú de las opciones sobre una lista -->
         <div data-role="popup" id="popupListItems">
             <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Completar</a>
@@ -485,32 +645,54 @@
             isConnected();
         </script>
 		<div data-role="header" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Configuración</h1>
 		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuUserConfig" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
 		<div data-role="content">
 			<div style="text-align: center;">    
 				Aquí puedes cambiar tu nombre de usuario y contraseña. Deberás introducir
 				tu antigua contraseña para poder realizar los cambios. Si no deseas cambiar un campo
 				dejalo vacío.	
 			</div>	  
-		<!-- Formulario de registro -->	  
-		<form method="post" id="formUserConfig">	  
-			<p>Nombre actual:  <b id="currentUserName">Desconocido</b> </p>		
-			<div data-role="fieldcontain">
-				<input type="text" name="userName" id="userName" placeholder="Nuevo nombre de usuario" required autofocus maxlength="50">
-				</p>
-				<input type="password" name="newPassword" id="newPassword" placeholder="Contraseña nueva" required maxlength="30">
-			</div>
-			<div data-role="fieldcontain">
-			<input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña actual" required maxlength="30">
-			</div>
-			<h4 id="messageUserConfig"></h4>	
-			<input type="button" name="submit" id="submit" value="Actualizar perfil" onClick="updateProfile()" />
-		</form>
-      	<!-- Script que recupera el nombre -->
-	  	<script>
-			getName();
-		</script>
+			<!-- Formulario de registro -->	  
+			<form method="post" id="formUserConfig">	  
+				<p>Nombre actual:  <b id="currentUserName">Desconocido</b> </p>		
+				<div data-role="fieldcontain">
+					<input type="text" name="userName" id="userName" placeholder="Nuevo nombre de usuario" required autofocus maxlength="50">
+					</p>
+					<input type="password" name="newPassword" id="newPassword" placeholder="Contraseña nueva" required maxlength="30">
+				</div>
+				<div data-role="fieldcontain">
+				<input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña actual" required maxlength="30">
+				</div>
+				<h4 id="messageUserConfig"></h4>	
+				<input type="button" name="submit" id="submit" value="Actualizar perfil" onClick="updateProfile()" />
+			</form>
+			<!-- Script que recupera el nombre -->
+			<script>
+				getName();
+			</script>
 		</div>
 	</div><!-- /page -->
 </body>
