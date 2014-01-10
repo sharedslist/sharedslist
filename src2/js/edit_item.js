@@ -11,11 +11,47 @@ $(document).on("pageshow", "#edit_items", function() {
 		success:  function (response){
 						var item = JSON.parse(response.trim());
 						$('#itemNameEdit').attr('value', item.itemName);
+						$('#edit_quantity').val(item.quantity).change();
+						$('#edit_metric').val(item.metric).change();;
 					},
 			error: function () {
 						$('#messageEditItem').html('No ha sido posible obtener los datos del producto');
 					}
 		});
+});
+
+$(document).on("pageshow", "#edit_items", function() {
+	// cargamos las opciones de cantidad para el nuevo producto
+	for (var i = 1; i <= 999; i++) {
+		$('<option/>', {
+			value : i,
+			text : i
+		}).appendTo('#edit_quantity');
+	};
+	// cargamos la extensión mobiscroll para la cantidad
+	$('#edit_quantity').mobiscroll().select({
+		theme : 'jqm',
+		lang : 'es',
+		display : 'bottom',
+		mode : 'mixed',
+		inputClass : 'quantityText'
+	});
+	// enviamos el evento create para que jQuery Mobile cambie el estilo
+	$("#editItemForm").trigger('create');
+});
+
+
+/*
+ * Carga la extensión mobiscroll para la cantidad
+ */
+$('#edit_quantity').on("rrrreload", function() {
+	$('#edit_quantity').mobiscroll().select({
+		theme : 'jqm',
+		lang : 'es',
+		display : 'bottom',
+		mode : 'mixed',
+		inputClass : 'quantityText'
+	});
 });
 
 /*
@@ -25,19 +61,16 @@ $(document).on("pageshow", "#edit_items", function() {
  */
 function editItem(){
 	var itemName = $("#itemNameEdit").val();
+	var quantity = $("#edit_quantity").val();
+	var metric = $("#edit_metric").val();
 	if(!validateItemName(itemName)){
 		$('#messageEditItem').html('Nombre del producto inválido');
 	}
+	else if(!validateQuantity(quantity)){
+		$('#messageEditItem').html('Cantidad del producto inválida');
+	}
 	else {
-		if($.trim(quantity)==$.trim(quantityBought))
-		{
-			itemState = true;
-		}
-		else
-		{
-			itemState = false;
-		}
-		var parameters = {"itemName" : itemName };
+		var parameters = {"itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
 			url:   'php/edit_item.php',
@@ -50,6 +83,7 @@ function editItem(){
 						$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
 					}
 		});
+		
 	}
 }
 
@@ -87,5 +121,4 @@ function validateItemName(name) {
 		return true;
 	}
 }
-
 

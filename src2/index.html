@@ -613,6 +613,24 @@
 				<div data-role="fieldcontain">
 					<input type="text" name="itemNameEdit" id="itemNameEdit" value="Nombre producto" required data-clear-btn="true"/>
 				</div>
+				<div class="ui-grid-a" id="edit_quantityGrid">
+					<div class="ui-block-a" style="width:75px;">
+						<select name="Cantidad" id="edit_quantity" data-role="none"></select>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-select" style="width:150px;">
+							<select name="Unidad" id="edit_metric" data-native-menu="false">
+								<option value="u">Unidades</option>
+								<option value="kg">Kg</option>
+								<option value="g">g</option>
+								<option value="l">L</option>
+								<option value="ml">ml</option>
+								<option value="m">m</option>
+								<option value="cm">cm</option>
+							</select>
+						</div>
+					</div>
+				</div>
 				<h4 id="messageEditItem"></h4>
 				<br/>
 				<div>
