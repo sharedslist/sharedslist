@@ -88,6 +88,21 @@ class Item {
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
+	
+	/**
+      * Actualiza el objeto Item actual en la base de datos
+	  */
+	public function editItemName() {
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
+		$itemName = mysqli_real_escape_string($con,$this->itemName);
+		$sql = "UPDATE `Item` SET itemName='".$itemName."' WHERE idItem='".$idItem."'";
+		mysqli_query($con, $sql);
+		mysqli_close($con);
+	}
 
 
 	/**

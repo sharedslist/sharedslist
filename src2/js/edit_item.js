@@ -11,61 +11,11 @@ $(document).on("pageshow", "#edit_items", function() {
 		success:  function (response){
 						var item = JSON.parse(response.trim());
 						$('#itemNameEdit').attr('value', item.itemName);
-						$('#quantityEdit').val(item.quantity).change();
-						$('#quantityBought').val(item.quantityBought).change();
 					},
 			error: function () {
 						$('#messageEditItem').html('No ha sido posible obtener los datos del producto');
 					}
 		});
-});
-
-$(document).on("pageshow", "#edit_items", function() {
-	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 0; i <= 999; i++) {
-		$('<option/>', {
-			value : i,
-			text : i
-		}).appendTo('#quantityBought');
-	};
-	// cargamos la extensión mobiscroll para la cantidad
-	$('#quantityBought').mobiscroll().select({
-		theme : 'jqm',
-		lang : 'es',
-		display : 'bottom',
-		mode : 'mixed',
-		inputClass : 'quantityBoughtText'
-	});
-	// enviamos el evento create para que jQuery Mobile cambie el estilo
-	$("#editItemForm").trigger('create');
-});
-
-
-/*
- * Carga la extensión mobiscroll para la cantidad
- */
-$('#quantityEdit').on("rrrreload", function() {
-	$('#quantityEdit').mobiscroll().select({
-		theme : 'jqm',
-		lang : 'es',
-		display : 'bottom',
-		mode : 'mixed',
-		inputClass : 'quantityText'
-	});
-});
-
-
-/*
- * Carga la extensión mobiscroll para la cantidad
- */
-$('#quantityBought').on("rrrreload", function() {
-	$('#quantityBought').mobiscroll().select({
-		theme : 'jqm',
-		lang : 'es',
-		display : 'bottom',
-		mode : 'mixed',
-		inputClass : 'quantityBoughtText'
-	});
 });
 
 /*
@@ -75,17 +25,8 @@ $('#quantityBought').on("rrrreload", function() {
  */
 function editItem(){
 	var itemName = $("#itemNameEdit").val();
-	var itemState;
-	var quantity = $("#quantityEdit").val();
-	var quantityBought = $("#quantityBought").val();
 	if(!validateItemName(itemName)){
 		$('#messageEditItem').html('Nombre del producto inválido');
-	}
-	else if(!validateQuantity(quantity)){
-		$('#messageEditItem').html('Cantidad del producto inválida');
-	}
-	else if(!validateQuantityBought(quantityBought, quantity)){
-		$('#messageEditItem').html('Cantidad comprada del producto inválida');
 	}
 	else {
 		if($.trim(quantity)==$.trim(quantityBought))
@@ -96,7 +37,7 @@ function editItem(){
 		{
 			itemState = false;
 		}
-		var parameters = {"itemName" : itemName, "itemState" : itemState, "quantity" : quantity, "quantityBought" : quantityBought };
+		var parameters = {"itemName" : itemName };
 		$.ajax({
 			data:  parameters,
 			url:   'php/edit_item.php',
@@ -119,9 +60,7 @@ function editItem(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function deleteItem(){
-	var parameters = { "idList" : getUrlVars()["idList"], "idItem" : getUrlVars()["idItem"] };
 	$.ajax({
-		data:  parameters,
 		url:   'php/delete_item.php',
 		dataType: 'text',
 		type:  'post',
@@ -150,31 +89,3 @@ function validateItemName(name) {
 }
 
 
-/*
- * Verifica que la cantidad del item es válida
- * 
- * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
- */
-function validateQuantity(quantity) { 	
-	if(($.trim(quantity) == "") || parseInt(quantity)<0){
-		return false;
-	}
-	else{
-		return true;
-	}
-}
-
-
-/*
- * Verifica que la cantidad del item es válida
- * 
- * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
- */
-function validateQuantityBought(quantityBought, quantity) { 	
-	if(($.trim(quantityBought) == "") || parseInt(quantityBought)<0 || parseInt(quantityBought)>parseInt(quantity)){
-		return false;
-	}
-	else{
-		return true;
-	}
-}
