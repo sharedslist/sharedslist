@@ -27,8 +27,8 @@
 	else {
 		die ('No se ha seleccionado un item');
 	}
-	if( isset($_POST['quantityBought']) ) {
-		$quantityBought = $_POST["quantityBought"]; //obtenemos la cantidad comprada del item a partir de la variable POST
+	if( isset($_POST['metric']) ) {
+		$metric = $_POST["metric"]; //obtenemos la unidad metrica del item a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado un item');
@@ -46,15 +46,8 @@
 	$item = new Item;
 	$item->idItem = $idItem;
 	$item->itemName = $itemName;
-	$itemComprado = ($quantity == $quantityBought);
-	if($itemComprado){
-		$item->itemState = true;
-	}
-	else{
-		$item->itemState = false;
-	}
 	$item->quantity = $quantity;
-	$item->quantityBought = $quantityBought;
+	$item->metric = $metric;
 	$item->editItem();
 	if($itemComprado){
 		//comprobamos si el item que se acaba de marcar como comprado 

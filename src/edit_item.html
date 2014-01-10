@@ -37,29 +37,31 @@
 	<div data-role="content">
 		<form id="editItemForm">
 			<div data-role="fieldcontain">
-				<input type="text" name="itemName" id="itemName" value="Nombre producto" required data-clear-btn="true"/>
+				<input type="text" name="itemName" id="edit_itemName" value="Nombre producto" required data-clear-btn="true"/>
 			</div>
-			<div class="ui-grid-a" id="quantityGrid">
-				<div class="ui-block-a" style="width:150px;">
-					<p>Cantidad a comprar </p>
+			<div class="ui-grid-a" id="edit_quantityGrid">
+				<div class="ui-block-a" style="width:75px;">
+					<select name="Cantidad" id="edit_quantity" data-role="none"></select>
 				</div>
-				<div class="ui-block-b" style="width:75px;">
-					<select name="Cantidad" id="quantity" data-role="none"></select>
-				</div>
-			</div>
-			<div class="ui-grid-a" id="quantityBoughtGrid">
-				<div class="ui-block-a" style="width:150px;">
-					<p>Cantidad comprada </p>
-				</div>
-				<div class="ui-block-b" style="width:75px;">
-					<select name="Cantidad comprada" id="quantityBought" data-role="none"></select>
+				<div class="ui-block-b">
+					<div class="ui-select" style="width:150px;">
+						<select name="Unidad" id="edit_metric" data-native-menu="false">
+							<option value="u">Unidades</option>
+							<option value="kg">Kg</option>
+							<option value="g">g</option>
+							<option value="l">L</option>
+							<option value="ml">ml</option>
+							<option value="m">m</option>
+							<option value="cm">cm</option>
+						</select>
+					</div>
 				</div>
 			</div>
 			<h4 id="messageEditItem"></h4>
 			<br/>
 			<div>
-				<input type="button" data-mini="true" name="edit" id="edit" value="Guardar" data-theme="b" onclick="editItem()"/>
-				<input type="button" data-mini="true" name="delete" id="delete" value="Eliminar" data-theme="c" onclick="deleteItem()"/>
+				<input type="button" data-mini="true" name="edit" id="edit_edit" value="Guardar" data-theme="b" onclick="editItem()"/>
+				<input type="button" data-mini="true" name="delete" id="edit_delete" value="Eliminar" data-theme="c" onclick="deleteItem()"/>
 			</div>
 		</form><!-- /createform -->
 	</div><!-- /content -->
