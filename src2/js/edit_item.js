@@ -4,11 +4,9 @@
 
 // Rellena los campos del formulario con la información del item
 $(document).on("pageshow", "#edit_items", function() {
-	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
 	$.ajax({
 		url: 'php/get_item_info.php',
 		dataType: 'text',
-		data: parameters,
 		type:  'post',
 		success:  function (response){
 						var item = JSON.parse(response.trim());
@@ -70,17 +68,6 @@ $('#quantityBought').on("rrrreload", function() {
 	});
 });
 
-
-//parsea la URL para obtener los parámetros GET;
-function getUrlVars(){
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
-
 /*
  * Obtiene datos del formulario de la página html, los valida y envía los datos a edit_item.php
  * para editar el item en la base de datos. Si ocurre un error se le comunica al
@@ -109,31 +96,14 @@ function editItem(){
 		{
 			itemState = false;
 		}
-		var parameters = { "idList" : getUrlVars()["idList"], "idItem" : getUrlVars()["idItem"], "itemName" : itemName, "itemState" : itemState, "quantity" : quantity, "quantityBought" : quantityBought };
+		var parameters = {"itemName" : itemName, "itemState" : itemState, "quantity" : quantity, "quantityBought" : quantityBought };
 		$.ajax({
 			data:  parameters,
 			url:   'php/edit_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response){
-						var closed = response.trim()=='closed';
-						var form = document.createElement('form');
-						form.setAttribute('method', 'GET');
-						form.setAttribute('action', '#list_items');
-						inputIdList = document.createElement('input');
-						inputIdList.setAttribute('name', 'idList');
-						inputIdList.setAttribute('type', 'hidden');
-						inputIdList.setAttribute('value', getUrlVars()['idList']);
-						form.appendChild(inputIdList);
-						if(closed) {
-							var inputListClosed = document.createElement('input');
-							inputListClosed.setAttribute('name', 'listClosed');
-							inputListClosed.setAttribute('type', 'hidden');
-							inputListClosed.setAttribute('value', closed);
-							form.appendChild(inputListClosed);
-						}
-						document.body.appendChild(form);
-						form.submit();
+						window.location.href = '#list_items';
 					},
 			error: function (){
 						$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
@@ -156,16 +126,7 @@ function deleteItem(){
 		dataType: 'text',
 		type:  'post',
 		success:  function (){
-					var form = document.createElement('form');
-					form.setAttribute('method', 'GET');
-					form.setAttribute('action', '#list_items');
-					inputIdList = document.createElement('input');
-					inputIdList.setAttribute('name', 'idList');
-					inputIdList.setAttribute('type', 'hidden');
-					inputIdList.setAttribute('value', getUrlVars()['idList']);
-					form.appendChild(inputIdList);
-					document.body.appendChild(form);
-					form.submit();
+					window.location.href = '#list_items';
 				},
 		error: function (){
 					$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');

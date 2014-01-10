@@ -213,6 +213,17 @@ class Item {
 			return false;
 		}
 	}
+	
+	/**
+	 * Crea una variable de sesión para el ID de un item.
+	 */
+	public static function createItemSession($idItem) {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idItem'] = $idItem;
+	}
 
 }
 

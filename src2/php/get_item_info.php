@@ -3,14 +3,14 @@
 	require_once("User.php");
 	
 	session_start();
-	if ( isset($_POST['idList']) ) {
-		$idList = $_POST['idList']; //obtenemos el id de la lista a partir de la variable POST
+	if ( isset($_SESSION['idList']) ) {
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado una lista');
 	}
-	if ( isset($_POST['idItem']) ) {
-		$idItem = $_POST['idItem']; //obtenemos el id del item a partir de la variable POST
+	if ( isset($_SESSION['idItem']) ) {
+		$idItem = $_SESSION['idItem']; //obtenemos el id del item a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado un item');

@@ -125,21 +125,16 @@ function confirmCloseList() {
  */
 $(document).on('click', '.btnEditItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
-		var form = document.createElement('form');
-		form.setAttribute('method', 'GET');
-		form.setAttribute('action', '#edit_items');
-		inputIdList = document.createElement('input');
-		inputIdList.setAttribute('name', 'idList');
-		inputIdList.setAttribute('type', 'hidden');
-		inputIdList.setAttribute('value', $(this).closest("ul").attr('idList'));
-		form.appendChild(inputIdList);
-		inputIdList = document.createElement('input');
-		inputIdList.setAttribute('name', 'idItem');
-		inputIdList.setAttribute('type', 'hidden');
-		inputIdList.setAttribute('value', $(this).closest("li").attr('idItem'));
-		form.appendChild(inputIdList);
-		document.body.appendChild(form);
-		form.submit();
+		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
+		$.ajax({
+		url: 'php/select_item.php',
+		data: parameter,
+		type:  'post',
+		success:  function (response)
+		{
+			window.location.href = '#edit_items';
+		}
+		});
 	}
 });
 
@@ -150,18 +145,18 @@ $(document).on('click', '.btnEditItem', function() {
  * un item , pasando el identificador de la lista por GET.
  */
 $(document).on('click', '.btnCreateItem', function() {
-	var idList = $(this).attr('idList');
-	$('#popupListSLists').popup("close");
-	var form = document.createElement('form');
-	form.setAttribute('method', 'GET');
-	form.setAttribute('action', '#create_items');
-	inputIdList = document.createElement('input');
-	inputIdList.setAttribute('name', 'idList');
-	inputIdList.setAttribute('type', 'hidden');
-	inputIdList.setAttribute('value', $(this).attr('idList'));
-	form.appendChild(inputIdList);
-	document.body.appendChild(form);
-	form.submit();
+	if($(this).closest("ul").attr("listState")==0){
+		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
+		$.ajax({
+		url: 'php/select_item.php',
+		data: parameter,
+		type:  'post',
+		success:  function (response)
+		{
+			window.location.href = '#create_items';
+		}
+		});
+	}
 });
 
 
