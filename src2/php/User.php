@@ -164,6 +164,7 @@ class User
 	$result = mysqli_query($con, $sql);
 
 	$row = mysqli_fetch_array($result);
+	mysqli_close($con);
     if ( $row ) return new User( $row );
   }
   
