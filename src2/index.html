@@ -521,11 +521,11 @@
 		<div data-role="header" data-theme="b">
 			<a href="#menuListItems" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1 id="listItems_list_name"></h1>
-			<a href="#" id="listItems_btnOptions" data-icon="gear" class="ui-btn-right">Opciones</a>
+			<a href="#" id="btnOptions" data-icon="gear" class="ui-btn-right">Opciones</a>
 		</div>
 		<div data-role="content">
 			<div id="itemlist"></div>
-			<div id="mobiscrollQuantityB"></select></div>
+			<div id="mobiscrollQuantityB"><select id="mobiscrollQuantityBought"></select></div>
 				<h4 id="messageListItems"></h4>
 		</div>	
 		<!-- menu -->
@@ -552,10 +552,10 @@
 		<!-- El popup que muestra el menú de las opciones sobre una lista -->
         <div data-role="popup" id="popupListItems">
             <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
-            <ul id="listItems_ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
-                <li id="listItems_popupItemtName" data-role="list-divider" role="heading"> </li>
+            <ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li id="popupItemtName" data-role="list-divider" role="heading"> </li>
                 <li id="listItems_popupBtnView" data-inset="true" role="heading">
-                    <a href="#" class="listItems_btnCreateItem">
+                    <a href="#" class="btnCreateItem">
                         Nuevo producto
                     </a>
                 </li>
@@ -577,13 +577,13 @@
             </ul>
         </div>                  
         <!-- El popup para confirmar la operación -->
-        <div data-role="popup" id="listItems_popupConfirmItems" data-overlay-theme="a">
+        <div data-role="popup" id="popupConfirmItems" data-overlay-theme="a">
 			<div data-role="content" style="text-align: center;">
 				<h3>¿Estás seguro?</h3>
-                <p id="listItems_txtConfirmItems"></p>
+                <p id="listItems_txtConfirm"></p>
                 <fieldset class="ui-grid-a">
 					<div class="ui-block-a">
-						<a href="#" id="listItems_btnConfirmItems" class="listItems_btnConfirmItems" data-role="button" data-transition="flow" data-theme="c">
+						<a href="#" id="listItems_btnConfirm" class="listItems_btnConfirmItems" data-role="button" data-transition="flow" data-theme="c">
 						   Sí
 						</a>
 					</div>
