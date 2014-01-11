@@ -73,7 +73,7 @@ class Item {
 		$quantity = mysqli_real_escape_string($con,$this->quantity);
 		$metric = mysqli_real_escape_string($con,$this->metric);
 		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
-		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$metric."', '".$quantityBought."')";
+		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought, metric) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$quantityBought."', '".$metric."')";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
