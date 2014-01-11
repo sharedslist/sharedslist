@@ -1,8 +1,7 @@
-function login () {
+function doLogin () {
 
             var checkbox = $('#loginRemember'),
             emailField = $('#loginEmail'),
-            console.log(emailField);
             passwordField = $('#loginPassword'),
             keyUser = 'savedEmail',
             keyPassword = 'savedPassword';
