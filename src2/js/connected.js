@@ -5,7 +5,7 @@
 function isConnected() 
 {	
 	$.ajax({
-		url:   'php/connected.php',
+		url:   URL_SERVER +'php/connected.php',
 		type:  'get',
 			success: function (data) {
 				var response = data.trim();

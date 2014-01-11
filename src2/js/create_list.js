@@ -150,7 +150,7 @@ function createList() {
 		var newListJSON = JSON.stringify(newList);
 		$.ajax({
 			data:  { "newList" : newListJSON },
-			url:   'php/create_list.php',
+			url:   URL_SERVER +'php/create_list.php',
 			type:  'post',
 			success:  function (response)
 				   {

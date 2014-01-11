@@ -65,7 +65,7 @@ function createGroup()
 		var parameters = { "users" : users, "group_name" : group_name};
 		$.ajax({
 			data:  parameters,
-			url:   'php/create_groups.php',
+			url:   URL_SERVER +'php/create_groups.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)

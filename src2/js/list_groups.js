@@ -5,7 +5,7 @@
 function listGroups()
 {
 	$.ajax({
-		url: 'php/list_groups.php',
+		url: URL_SERVER + 'php/list_groups.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response)
@@ -23,7 +23,7 @@ function selectGroup()
 {
 	var parameter = {"idGroup" : $(this).closest("li").attr('id')};
 	$.ajax({
-	url: 'php/select_group.php',
+	url: URL_SERVER +'php/select_group.php',
 	data: parameter,
 	type:  'post',
 	success:  function (response)
@@ -46,7 +46,7 @@ function selectGroupLongPress(id)
 {
 	var parameter = {"idGroup" : id};
 	$.ajax({
-	url: 'php/select_group.php',
+	url: URL_SERVER +'php/select_group.php',
 	data: parameter,
 	type:  'post',
 	success:  function (response)
@@ -122,7 +122,7 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 
 	//abandonar grupo
 	$.ajax({
-		url: 'php/delete_group.php',
+		url: URL_SERVER +'php/delete_group.php',
 		dataType: 'text',
 		data: {"idGroup" : idGroup},
 		type:  'post',

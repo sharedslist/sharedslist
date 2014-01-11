@@ -1,7 +1,7 @@
 ﻿// función que hace una llamada AJAX al servidor por las listas de un grupo
 function listItems(){
 	$.ajax({
-		url: 'php/list_items.php',
+		url: URL_SERVER +'php/list_items.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){
@@ -107,7 +107,7 @@ $("#mobiscrollQuantityBought").on("rrrreload", function() {
 	//Cambiar cantidad comprada en la base de datos
 	var parameters = { "idItem" : $(this).attr('idItem'), "quantityBought" : $(this).attr('value') };
 	$.ajax({
-		url: 'php/buy_item.php',
+		url: URL_SERVER +'php/buy_item.php',
 		dataType: 'text',
 		data: parameters,
 		type:  'post',
@@ -149,7 +149,7 @@ $(document).on('click', '.btnEditItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
 		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
 		$.ajax({
-		url: 'php/select_item.php',
+		url: URL_SERVER +'php/select_item.php',
 		data: parameter,
 		type:  'post',
 		success:  function (response)
@@ -246,7 +246,7 @@ $(document).on('click', '.listItems_btnConfirm', function() {
 		case "close":
 			//completar lista
 			$.ajax({
-				url: 'php/close_list.php',
+				url: URL_SERVER +'php/close_list.php',
 				dataType: 'text',
 				type:  'post',
 				success:  function (response)
@@ -262,7 +262,7 @@ $(document).on('click', '.listItems_btnConfirm', function() {
 		case "open":
 			//reiniciar lista
 			$.ajax({
-				url: 'php/open_list.php',
+				url: URL_SERVER +'php/open_list.php',
 				dataType: 'text',
 				type:  'post',
 				success:  function (response)
@@ -278,7 +278,7 @@ $(document).on('click', '.listItems_btnConfirm', function() {
 		case "delete":
 			//borrar lista
 			$.ajax({
-				url: 'php/delete_list.php',
+				url: URL_SERVER +'php/delete_list.php',
 				dataType: 'text',
 				type:  'post',
 				success:  function (response)

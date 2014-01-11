@@ -55,7 +55,7 @@ function addMembers()
 		var parameters = { "users" : users};
 		$.ajax({
 			data:  parameters,
-			url:   'php/add_members.php',
+			url:   URL_SERVER + 'php/add_members.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
@@ -83,7 +83,7 @@ function addMembers()
 function getNotInvited(parameters){
 	$.ajax({
 			data:  parameters,
-			url:   'php/not_invited.php',
+			url:   URL_SERVER + 'php/not_invited.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
@@ -131,7 +131,7 @@ function inviteUsers () {
 			var parameters = { "email" : $.trim(email)};
 			$.ajax({
 				data:  parameters,
-				url:   'php/invite_user.php',
+				url:   URL_SERVER +'php/invite_user.php',
 				dataType: 'text',
 				type:  'post',
 				success:  function (response)

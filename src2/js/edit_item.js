@@ -5,7 +5,7 @@
 // Rellena los campos del formulario con la información del item
 $(document).on("pageshow", "#edit_items", function() {
 	$.ajax({
-		url: 'php/get_item_info.php',
+		url: URL_SERVER +'php/get_item_info.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){
@@ -73,7 +73,7 @@ function editItem(){
 		var parameters = {"itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
-			url:   'php/edit_item.php',
+			url:   URL_SERVER +'php/edit_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response){
@@ -95,7 +95,7 @@ function editItem(){
  */
 function deleteItem(){
 	$.ajax({
-		url:   'php/delete_item.php',
+		url:   URL_SERVER +'php/delete_item.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (){

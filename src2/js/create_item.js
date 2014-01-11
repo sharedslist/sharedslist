@@ -72,7 +72,7 @@ function createItem(){
 		var parameters = { "itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
-			url:   'php/create_item.php',
+			url:   URL_SERVER +'php/create_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function () {
