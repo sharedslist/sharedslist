@@ -12,7 +12,12 @@
 	if ( isset($_POST['idList']) ) {
 		$idList = $_POST['idList']; //obtenemos el id de la lista a partir de la variable POST
 	} else {
-		die ('No se ha seleccionado una lista');
+		if ( isset($_SESSION['idList']) ) {
+			$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
+		}
+		else {
+			//die ('No se ha seleccionado una lista');
+		}
 	}
 	//comprobamos si el usuario autenticado está autorizado a borrar esta lista
 	if( !ShoppingList::userBelongsToGroupOfList($currentUser->id,$idList) ) {

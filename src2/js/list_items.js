@@ -267,8 +267,8 @@ $(document).on('click', '.listItems_btnConfirm', function() {
 				type:  'post',
 				success:  function (response)
 					   {
-							//reiniciamos la página
-							location.reload();
+							//redirige a listar las listas del grupo
+							window.location.href="#list_slists";
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
