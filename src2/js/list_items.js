@@ -72,12 +72,23 @@ $(document).on('change', '.item_check', function() {
 });
 
 function mobiscroll( idItem, quantity, quantityBought) {
+	$("#mobiscrollQuantityB").html('<select name="Cantidad comprada" id="mobiscrollQuantityBought" idItem="'+idItem+'">');
+	$("#mobiscrollQuantityB").trigger('create');
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 0; i <= quantity; i++) {
-		$('<option/>', {
-			value : i,
-			text : i
-		}).appendTo('#mobiscrollQuantityBought');
+		if(i!=quantityBought){
+			$('<option/>', {
+				value : i,
+				text : i
+			}).appendTo('#mobiscrollQuantityBought');
+		}
+		else{
+			$('<option/>', {
+				value : i,
+				text : i,
+				selected : 'selected'
+			}).appendTo('#mobiscrollQuantityBought');
+		}
 	};
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#mobiscrollQuantityBought').mobiscroll().select({
@@ -85,16 +96,16 @@ function mobiscroll( idItem, quantity, quantityBought) {
 		lang : 'es',
 		display : 'bottom',
 		mode : 'mixed',
-		inputClass : quantityBought
+		inputClass : 'mobiscrollQuantityBoughtText'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#mobiscrollQuantityB").trigger('create');
 }
 
-/*no funciona esto de aqui
+
 $("#mobiscrollQuantityBought").on("rrrreload", function() {
 	//Cambiar cantidad comprada en la base de datos
-	var parameters = { "idItem" : idItem, "quantityBought" : $(this).closest("select").attr('value') };
+	var parameters = { "idItem" : $(this).attr('idItem'), "quantityBought" : $(this).attr('value') };
 	$.ajax({
 		url: 'php/buy_item.php',
 		dataType: 'text',
@@ -111,7 +122,8 @@ $("#mobiscrollQuantityBought").on("rrrreload", function() {
 		error: 	function() {
 				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
 		}
-	})*/
+	})
+});
 
 
 /*
