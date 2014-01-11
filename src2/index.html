@@ -284,7 +284,7 @@
 				<input type="button" data-mini="true" name="create" id="create" value="Añadir miembros" data-theme="b" onclick="addMembers()"/>
 			</div>
 			<div>
-				<input type="button" data-mini="true" name="create" id="import_mobile_contact" value="Importar contactos desde móvil" data-theme="b" onclick="onPhone() display="false"/>
+				<input type="button" data-mini="true" name="create" id="import_mobile_contact" value="Importar contactos desde móvil" data-theme="b" onclick="onPhone()" display="false"/>
 			</div>
 		</form>	
 		</div>
@@ -607,8 +607,32 @@
             isConnected();
         </script>
 		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Nuevo producto</h1>
 		</div><!-- /header -->
+
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		
 		<div data-role="content">
 			<form id="createItemForm" >
 				<div data-role="fieldcontain">
@@ -647,8 +671,32 @@
             isConnected();
         </script>
 		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
 			<h1>Editar producto</h1>
 		</div><!-- /header -->
+
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back">Atrás</a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external">Mis grupos</a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external">Mi perfil</a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="location.reload(true)">Refrescar</a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close">Cerrar sesión</a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+
 		<div data-role="content">
 			<form id="editItemForm">
 				<div data-role="fieldcontain">
