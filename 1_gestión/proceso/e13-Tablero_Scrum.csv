@@ -3,7 +3,7 @@
 ,,,"Unir HTML identidicadores únicos y precargar funciones js necesarias: Encapsulación","3:30","Álvaro",,"Cerrar lista (automáticamente): Interfaz y lógica","1:00","01:00","Lukas","15/12/13"
 "Crear aplicación para Android (Phonegap): Encapsulación","1:30",,"Abrir listas: Pruebas y documentación","1:30","Álvaro",,"Cerrar lista (automáticamente): Pruebas y documentación","1:00","01:00","Lukas","15/12/13"
 "Crear aplicación para Android (Phonegap): Pruebas y documentación","2:00",,"Mecanismos de usabilidad: Editar items separado del proceso compra","0:30","Marta",,"Recordar usuario y contraseña: Interfaz y lógica","2:00","02:00:00","Ricardo","18/12/13"
-"Cerrar sesión: Pruebas y documentación","1:00",,"Unir HTML  identidicadores únicos y precargar funciones js necesarias: Pruebas","1:30","Álvaro",,"Añadir usuario a grupo: Añadir comentarios php","0:00","0:00","Ricardo","24/12/13"
+,,,"Unir HTML  identidicadores únicos y precargar funciones js necesarias: Pruebas","1:30","Álvaro",,"Añadir usuario a grupo: Añadir comentarios php","0:00","0:00","Ricardo","24/12/13"
 "Importar contactos desde el móvil: Interfaz y lógica","4:00",,,,,,"Borrar lista: Corregir ortografía y cambiar estado","0:00","0:00","Ricardo","24/12/13"
 "Importar contactos desde el móvil: Pruebas y documentación","3:00",,"Internalización de la interfaz: Interfaz y lógica","10:00","Lukas",,"Usuario abandonar grupo: Corregir ortografía","0:00","0:00","Ricardo","24/12/13"
 "Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos","0:30",,,,,,"Cerrar lista manualmente: Corregir ortografía","0:00","0:00","Ricardo","24/12/13"
@@ -15,5 +15,6 @@
 "Internalización de la interfaz: Pruebas y documentación","2:30",,,,,,"Mecanismos de usabilidad: Informar error formulario","1:00","01:00","Álvaro","06/01/14"
 ,,,,,,,"Abrir listas: Interfaz y lógica","1:00","0:30","Álvaro","06/01/14"
 ,,,,,,,"Internalización de la interfaz: Modelo de datos","0:30","0:30","Lukas","06/01/13"
-,,,,,,,"Navegación: Pruebas y documentación","2:00",00:30:00,"Ricardo",11/01/14
-,,,,,,,"Navegación: Interfaz y lógica","4:00",02:00:00,"Ricardo",11/01/14
+,,,,,,,"Navegación: Pruebas y documentación","2:00","00:30:00","Ricardo","11/01/14"
+,,,,,,,"Navegación: Interfaz y lógica","4:00","02:00:00","Ricardo","11/01/14"
+,,,,,,,"Cerrar sesión: Pruebas y documentación","1:00",00:30:00,"Ricardo",11/01/14
