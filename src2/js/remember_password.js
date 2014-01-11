@@ -7,7 +7,7 @@
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){
-				if(response == 'success') {
+				if(response.trim() == 'success') {
 					$('#messageRememberPassword').html('Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.');
 					
 				}else {
