@@ -2,6 +2,7 @@ function login () {
 
             var checkbox = $('#loginRemember'),
             emailField = $('#loginEmail'),
+            console.log(emailField);
             passwordField = $('#loginPassword'),
             keyUser = 'savedEmail',
             keyPassword = 'savedPassword';
@@ -18,7 +19,7 @@ function login () {
 			$('#message').slideUp('fast');
 			$.ajax({
 				data:  $('#formLogin').serialize(),
-				url:   'php/login.php',
+				url:   URL_SERVER + 'php/login.php',
 				type:  'post',
 				success:  function (data)
 					   {

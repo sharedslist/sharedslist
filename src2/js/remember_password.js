@@ -3,7 +3,7 @@
 		var parameters = { "emailAddress" : email};
 		$.ajax({
 		data:  parameters,
-		url:   'php/remember_password.php',
+		url:   URL_SERVER +'php/remember_password.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){

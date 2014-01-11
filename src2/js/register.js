@@ -5,7 +5,7 @@
 		if (window.idinvitation == -1) {
 			$.ajax({
 				data:  $('#formRegistro').serialize(),
-				url:   'php/register.php',
+				url:   URL_SERVER +'php/register.php',
 				type:  'post',
 				success:  function (data)
 				   {
@@ -30,7 +30,7 @@
 			var parameters = $('#formRegistro').serialize() + "&idinvitation=" + window.idinvitation;
 			$.ajax({
 				data:  parameters,
-				url:   'php/accept_invitation.php',
+				url:   URL_SERVER +'php/accept_invitation.php',
 				type:  'post',
 				success:  function (data)
 					   {

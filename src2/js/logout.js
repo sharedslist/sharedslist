@@ -2,7 +2,7 @@
 function logout() 
 {	
 	$.ajax({
-		url:   'php/logout.php',
+		url:   URL_SERVER +'php/logout.php',
 		type:  'GET',
 		success:  function (data)
 					{

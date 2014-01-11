@@ -2,7 +2,7 @@ var admin = false;
 
 function listMembers() {
 	$.ajax({
-		url: 'php/list_members.php',
+		url: URL_SERVER +'php/list_members.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response) {
@@ -64,7 +64,7 @@ $(document).on('click', '.btnConfirmDelete', function() {
 
 	//abandonar grupo
 	$.ajax({
-		url: 'php/delete_member.php',
+		url: URL_SERVER +'php/delete_member.php',
 		dataType: 'text',
 		data: {"idMember" : idMember},
 		type:  'post',

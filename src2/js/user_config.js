@@ -4,7 +4,7 @@ function getName()
 	$('#currentUserName').slideUp('fast');
 	$.ajax({
 		data:  {getUser : "usuario"},
-		url:   'php/userConfig.php',
+		url:   URL_SERVER +'php/userConfig.php',
 		type:  'post',
 		success:  function (data)
 					{
@@ -27,7 +27,7 @@ function updateProfile (e) {
 
 	$.ajax({
 		data:  $('#formUserConfig').serialize(),
-		url:   'php/userConfig.php',
+		url:   URL_SERVER +'php/userConfig.php',
 		type:  'post',
 		success:  function (data)
 			   {

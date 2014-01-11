@@ -1,7 +1,7 @@
 ﻿// función que hace una llamada AJAX al servidor por las listas de un grupo
 function listSLists() {
 	$.ajax({
-		url: 'php/list_slists.php',
+		url: URL_SERVER +'php/list_slists.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response)
@@ -60,7 +60,7 @@ function list_slists(slists) {
 $(document).on('click', '.btnViewList', function() {
 	var parameter = {"idList" : $(this).closest("li").attr('idList')};
 	$.ajax({
-	url: 'php/select_slist.php',
+	url: URL_SERVER +'php/select_slist.php',
 	data: parameter,
 	type:  'post',
 	success:  function (response)
@@ -118,7 +118,7 @@ $(document).on('click', '.btnConfirmList', function() {
 		case "close":
 			//cerrar lista
 			$.ajax({
-				url: 'php/close_list.php',
+				url: URL_SERVER +'php/close_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
@@ -135,7 +135,7 @@ $(document).on('click', '.btnConfirmList', function() {
 		case "open":
 			//reiniciar lista
 			$.ajax({
-				url: 'php/open_list.php',
+				url: URL_SERVER +'php/open_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
@@ -152,7 +152,7 @@ $(document).on('click', '.btnConfirmList', function() {
 		case "delete":
 			//borrar lista
 			$.ajax({
-				url: 'php/delete_list.php',
+				url: URL_SERVER +'php/delete_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
