@@ -9,17 +9,22 @@ function addCorreos()
 	var txt = $("#addMemberEmail");
 	var val = txt.val();
 	if(validateEmail(val)){
-		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
-		$("#check").trigger("create");
-		id = id +1;
-		$("#addMemberEmail").val("");
-		$('#messageAddMember').html('');
+		appendCorreo(val);
 	}
 	else{
 		$('#messageAddMember').html('Email incorrecto');
 	}
 }
 
+function appendCorreo(val){
+		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
+		$("#check").trigger("create");
+		id = id +1;
+		$("#addMemberEmail").val("");
+		$('#messageAddMember').html('');
+
+
+}
 /*
  * Devuelve cierto si y solo si el parámetro de entrada 
  * email tiene la estructura de un correo electrónico. 
