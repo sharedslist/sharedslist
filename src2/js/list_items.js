@@ -71,7 +71,6 @@ $(document).on('change', '.item_check', function() {
 	mobiscroll(idItem, quantity, quantityBought);
 });
 
-
 function mobiscroll( idItem, quantity, quantityBought) {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 0; i <= quantity; i++) {
@@ -92,6 +91,7 @@ function mobiscroll( idItem, quantity, quantityBought) {
 	$("#mobiscrollQuantityB").trigger('create');
 }
 
+/*no funciona esto de aqui
 $("#mobiscrollQuantityBought").on("rrrreload", function() {
 	//Cambiar cantidad comprada en la base de datos
 	var parameters = { "idItem" : idItem, "quantityBought" : $(this).closest("select").attr('value') };
@@ -111,8 +111,7 @@ $("#mobiscrollQuantityBought").on("rrrreload", function() {
 		error: 	function() {
 				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
 		}
-	});
-}
+	})*/
 
 
 /*
