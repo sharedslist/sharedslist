@@ -281,6 +281,7 @@ $(document).on('click', '.listItems_btnConfirm', function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
 						}
 			});
+			break;
 		case "delete":
 			//borrar lista
 			$.ajax({
