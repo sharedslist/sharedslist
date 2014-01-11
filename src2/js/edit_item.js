@@ -10,7 +10,7 @@ $(document).on("pageshow", "#edit_items", function() {
 		type:  'post',
 		success:  function (response){
 						var item = JSON.parse(response.trim());
-						$('#itemNameEdit').attr('value', item.itemName);
+						$('#edit_itemName').attr('value', item.itemName);
 						$('#edit_quantity').val(item.quantity).change();
 						$('#edit_metric').val(item.metric).change();;
 					},
@@ -60,7 +60,7 @@ $('#edit_quantity').on("rrrreload", function() {
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function editItem(){
-	var itemName = $("#itemNameEdit").val();
+	var itemName = $("#edit_itemName").val();
 	var quantity = $("#edit_quantity").val();
 	var metric = $("#edit_metric").val();
 	if(!validateItemName(itemName)){

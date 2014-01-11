@@ -4,25 +4,31 @@
 	
 	session_start();
 	if ( isset($_SESSION['idList']) ) {
-		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado una lista');
 	}
 	if( isset($_SESSION['idItem']) ) {
-		$idItem = $_SESSION["idItem"]; //obtenemos el id del item a partir de la variable POST
+		$idItem = $_SESSION["idItem"]; //obtenemos el id del item a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST["itemName"]) ) {
-		$itemName = $_POST["itemName"]; //obtenemos el nombre del item a partir de la variable POST
+		$itemName = $_POST["itemName"]; //obtenemos el nombre del item a partir de la variable SESSION
+	}
+	else {
+		die ('No se ha seleccionado un item');
+	}
+	if( isset($_POST['quantity']) ) {
+		$quantity = $_POST["quantity"]; //obtenemos la cantidad del item a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST['metric']) ) {
-		$metric = $_POST["metric"]; //obtenemos la unidad metrica del item a partir de la variable POST
+		$metric = $_POST["metric"]; //obtenemos la unidad metrica del item a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado un item');

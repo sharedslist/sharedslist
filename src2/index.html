@@ -499,11 +499,12 @@
         </script>
 		<div data-role="header" data-theme="b">
 			<a href="#menuListItems" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
-			<h1 id="list_name"></h1>
-			<a href="#" id="btnOptions" data-icon="gear" class="ui-btn-right">Opciones</a>
+			<h1 id="listItems_list_name"></h1>
+			<a href="#" id="listItems_btnOptions" data-icon="gear" class="ui-btn-right">Opciones</a>
 		</div>
 		<div data-role="content">
 			<div id="itemlist"></div>
+			<div id="mobiscrollQuantityB"><select id="mobiscrollQuantityBought"></select></div>
 				<h4 id="messageListItems"></h4>
 		</div>	
 		<!-- menu -->
@@ -530,38 +531,38 @@
 		<!-- El popup que muestra el menú de las opciones sobre una lista -->
         <div data-role="popup" id="popupListItems">
             <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Cerrar</a>
-            <ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
-                <li id="popupItemtName" data-role="list-divider" role="heading"> </li>
-                <li id="popupBtnView" data-inset="true" role="heading">
-                    <a href="#" class="btnCreateItem">
+            <ul id="listItems_ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li id="listItems_popupItemtName" data-role="list-divider" role="heading"> </li>
+                <li id="listItems_popupBtnView" data-inset="true" role="heading">
+                    <a href="#" class="listItems_btnCreateItem">
                         Nuevo producto
                     </a>
                 </li>
 				<li data-inset="true" role="heading">
-					<a href="#" class="confirmOpt" opt="open">
+					<a href="#" class="listItems_confirmOpt" opt="open">
 						Reiniciar lista
 					</a>
 				</li>
                 <li data-inset="true" role="heading">
-                    <a href="#" class="confirmOpt" opt="close">
+                    <a href="#" class="listItems_confirmOpt" opt="close">
                         Completar lista
                     </a>
                 </li>
                 <li data-inset="true" role="heading">
-                    <a href="#" class="confirmOpt" opt="delete">
+                    <a href="#" class="listItems_confirmOpt" opt="delete">
                         Borrar lista
                     </a>
                 </li>
             </ul>
         </div>                  
         <!-- El popup para confirmar la operación -->
-        <div data-role="popup" id="popupConfirmItems" data-overlay-theme="a">
+        <div data-role="popup" id="listItems_popupConfirmItems" data-overlay-theme="a">
 			<div data-role="content" style="text-align: center;">
 				<h3>¿Estás seguro?</h3>
-                <p id="txtConfirmItems"></p>
+                <p id="listItems_txtConfirmItems"></p>
                 <fieldset class="ui-grid-a">
 					<div class="ui-block-a">
-						<a href="#" id="btnConfirmItems" class="btnConfirmItems" data-role="button" data-transition="flow" data-theme="c">
+						<a href="#" id="listItems_btnConfirmItems" class="listItems_btnConfirmItems" data-role="button" data-transition="flow" data-theme="c">
 						   Sí
 						</a>
 					</div>
@@ -588,8 +589,23 @@
 				<div data-role="fieldcontain">
 					<input type="text" name="itemName" id="itemName" value="Nombre producto" required autofocus data-clear-btn="true" />
 				</div>
-				<div id="newProduct" style="width:75px;">
-					<select name="Cantidad" id="quantity" data-role="none" value="Cantidad"></select>
+				<div class="ui-grid-a" id="quantityGrid">
+					<div class="ui-block-a" id="newProduct" style="width:75px;">
+						<select name="Cantidad" id="quantity" data-role="none" value="Cantidad"></select>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-select" style="width:150px;">
+							<select name="Unidad" id="metric" data-native-menu="false">
+								<option value="u">Unidades</option>
+								<option value="kg">Kg</option>
+								<option value="g">g</option>
+								<option value="l">L</option>
+								<option value="ml">ml</option>
+								<option value="m">m</option>
+								<option value="cm">cm</option>
+							</select>
+						</div>
+					</div>
 				</div>
 				<h4 id="messageCreateItem"></h4>
 				<br/>
@@ -611,7 +627,7 @@
 		<div data-role="content">
 			<form id="editItemForm">
 				<div data-role="fieldcontain">
-					<input type="text" name="itemNameEdit" id="itemNameEdit" value="Nombre producto" required data-clear-btn="true"/>
+					<input type="text" name="edit_itemName" id="edit_itemName" value="Nombre producto" required data-clear-btn="true"/>
 				</div>
 				<div class="ui-grid-a" id="edit_quantityGrid">
 					<div class="ui-block-a" style="width:75px;">

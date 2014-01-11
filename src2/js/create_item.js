@@ -59,9 +59,9 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function createItem(){
-	var idList =  getUrlVars()['idList'];
 	var itemName = $("#itemName").val();
 	var quantity = $("#quantity").val();
+	var metric = $("#metric").val();
 	if(!validateItemName(itemName)){
 		$('#messageCreateItem').html('Nombre del producto inválido');
 	}
@@ -69,24 +69,15 @@ function createItem(){
 		$('#messageCreateItem').html('Cantidad del producto inválida');
 	}
 	else {
-		var parameters = { "idList" : idList, "itemName" : itemName, "quantity" : quantity };
+		var parameters = { "itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
 			url:   'php/create_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function () {
-						var form = document.createElement('form');
-						form.setAttribute('method', 'GET');
-						form.setAttribute('action', '#list_items');
-						inputIdList = document.createElement('input');
-						inputIdList.setAttribute('name', 'idList');
-						inputIdList.setAttribute('type', 'hidden');
-						inputIdList.setAttribute('value', idList);
-						form.appendChild(inputIdList);
-						document.body.appendChild(form);
-						form.submit();
-				   },
+						window.location.href = '#list_items';
+				    },
 			error: function () {
 						$('#messageCreateItem').html('An error occurred, please try again.');
 					}

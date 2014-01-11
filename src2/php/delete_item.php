@@ -4,13 +4,13 @@
 	
 	session_start();
 	if ( isset($_SESSION['idList']) ) {
-		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado una lista');
 	}
 	if( isset($_SESSION['idItem']) ) {
-		$idItem = $_SESSION["idItem"]; //obtenemos el id del item a partir de la variable POST
+		$idItem = $_SESSION["idItem"]; //obtenemos el id del item a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado un item');

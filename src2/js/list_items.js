@@ -44,7 +44,7 @@ function list_items(listAndItems){
 	}
 	aux = aux + '>';
 	$.each(listAndItems.items, function(i, item) {
-		aux = aux + '<li data-icon="edit" idItem="'+item.idItem+'"><div class="ui-block-a div_check"><label class="label_check" data-corners="false"><fieldset class="fieldset_check" data-role="controlgroup"><input class="item_check" type="checkbox"';
+		aux = aux + '<li data-icon="edit" idItem="'+item.idItem+'"  quantity="'+item.quantity+'" quantityBought="'+item.quantityBought+'"><div class="ui-block-a div_check"><label class="label_check" data-corners="false"><fieldset class="fieldset_check" data-role="controlgroup"><input class="item_check" type="checkbox"';
 		if(item.itemState==true){
 			aux = aux + ' checked';
 		}
@@ -54,7 +54,7 @@ function list_items(listAndItems){
 		if(listAndItems.listState==true){
 			aux = aux + ' disabled="true"';
 		}
-		aux = aux + ' value="'+item.itemState+'"/></fieldset></label></div><a href="#" class="btnEditItem">'+item.itemName+'</a><span id="span'+item.idItem+'" class="ui-li-count">'+item.quantityBought+'/'+item.quantity+'</span></li>';
+		aux = aux + ' value="'+item.itemState+'"/></fieldset></label></div><a href="#" class="btnEditItem">'+item.itemName+'</a><span id="span'+item.idItem+'" class="ui-li-count">'+item.quantityBought+'/'+item.quantity+' '+item.metric+'</span></li>';
 	});
 	aux = aux + '</ul>';
 	$("#itemlist").html(aux);
@@ -69,53 +69,70 @@ function list_items(listAndItems){
 $(document).on('change', '.item_check', function() {
 		var input = $(this);
 		var idItem = input.closest("li").attr('idItem');
-		var parameters = { "idItem" : idItem };
-        if(input.attr('value')=="false"){
-			$.ajax({
-				url: 'php/check_item.php',
-				dataType: 'text',
-				data: parameters,
-				type:  'post',
-				success: function (response) {
-							listItems();
-							if( response.trim()=='closed' ) {
-								confirmCloseList();
-							}
-						},
-				error: 	function() {
-							$("#messageListItems").html("Ha ocurrido un error intentando marcar el item como comprado");
-						}
-			});
-		}
-		else{
-			$.ajax({
-				url: 'php/uncheck_item.php',
-				dataType: 'text',
-				data: parameters,
-				type:  'post',
-				success:  function () {
-							listItems();
-						},
-				error: 	function() {
-							$("#messageListItems").html("Ha ocurrido un error intentando marcar el item como no comprado");
-						}
-			});
-        }
+		var quantity = input.closest("li").attr('quantity');
+		var quantityBought = input.closest("li").attr('quantityBought');
+		//Desplegar selector de cantidad comprada
+		mobiscroll(idItem, quantity, quantityBought);
+	}
 });
+
+
+function mobiscroll( idItem, quantity, quantityBought) {
+	// cargamos las opciones de cantidad para el nuevo producto
+	for (var i = 0; i <= quantity; i++) {
+		$('<option/>', {
+			value : i,
+			text : i
+		}).appendTo('#mobiscrollQuantityBought');
+	};
+	// cargamos la extensión mobiscroll para la cantidad
+	$('#mobiscrollQuantityBought').mobiscroll().select({
+		theme : 'jqm',
+		lang : 'es',
+		display : 'bottom',
+		mode : 'mixed',
+		inputClass : quantityBought
+	});
+	// enviamos el evento create para que jQuery Mobile cambie el estilo
+	$("#mobiscrollQuantityB").trigger('create');
+
+	
+	$(document).on('change', '#mobiscrollQuantityBought', function() {
+	//Cambiar cantidad comprada en la base de datos
+	var parameters = { "idItem" : idItem, "quantityBought" : $(this).attr('value') };
+	$.ajax({
+		url: 'php/buy_item.php',
+		dataType: 'text',
+		data: parameters,
+		type:  'post',
+			success: function (response) {
+				$("#mobiscrollQuantityBought").html("");
+				$("#mobiscrollQuantityB").trigger('create');
+				listItems();
+				if( response.trim()=='closed' ) {
+					confirmCloseList();
+				}
+		},
+		error: 	function() {
+				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
+		}
+	});
+
+
 
 /*
  * Pide confirmación antes de completar la lista automáticamente
  */
 function confirmCloseList() {
 	//guardamos la operación close en el atributo 'opt' del botón de confirmación
-	$("#btnConfirm").attr("opt", "close");
+	$("#listItems_btnConfirm").attr("opt", "close");
 	var warning = "Esta operación va a completar la lista automáticamente";
 	warning += " y redirigirte al listado de tus listas de compra";
-	$("#txtConfirm").html(warning);
+	$("#listItems_txtConfirm").html(warning);
 	//cerramos el popup de las opciones
-	$('#popupListSLists').popup("close");
+	$('#listItems_popupListSLists').popup("close");
 	//mostramos el popup de la confirmación
-	setTimeout( function(){ $('#popupConfirm').popup( 'open', { transition: "pop" } ) }, 100 );
+	setTimeout( function(){ $('#listItems_popupConfirm').popup( 'open', { transition: "pop" } ) }, 100 );
 }
 
 /*
@@ -123,7 +140,7 @@ function confirmCloseList() {
  * esta función que redirecciona al usuario a la pagina donde podra editar
  * el item seleccionado, pasando el identificador del item por GET.
  */
-$(document).on('click', '.btnEditItem', function() {
+$(document).on('click', '.listItems_btnEditItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
 		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
 		$.ajax({
@@ -144,7 +161,7 @@ $(document).on('click', '.btnEditItem', function() {
  * esta función que redirecciona al usuario a la pagina donde podra crear
  * un item , pasando el identificador de la lista por GET.
  */
-$(document).on('click', '.btnCreateItem', function() {
+$(document).on('click', '.listItems_btnCreateItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
 		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
 		$.ajax({
@@ -161,7 +178,7 @@ $(document).on('click', '.btnCreateItem', function() {
 
 
 // Asigna el evento click al botón de las opciones de la lista.
-$(document).on('click', '#btnOptions', tapholdHandler);
+$(document).on('click', '#listItems_btnOptions', tapholdHandler);
 
 
 /**
@@ -170,21 +187,21 @@ $(document).on('click', '#btnOptions', tapholdHandler);
  */
 function tapholdHandler(){
 	//asociamos el nombre de la lista al popup
-	$("#popupListName").html($(this).attr('listName'));
+	$("#listItems_popupListName").html($(this).attr('listName'));
 	//mostramos u ocultamos la opción de completar lista dependiendo del estado de la misma
 	if( $(this).attr('listState')==0) {
 		//mostramos la opción crear producto y completar lista para las listas pendientes
-		$('.confirmOpt[opt="open"]').closest("li").hide();
-		$('.btnCreateItem').closest("li").show();
-		$('.confirmOpt[opt="close"]').closest("li").show();
+		$('.listItems_confirmOpt[opt="open"]').closest("li").hide();
+		$('.listItems_btnCreateItem').closest("li").show();
+		$('.listItems_confirmOpt[opt="close"]').closest("li").show();
 	} else {
 		//ocultamos la opción crear producto y completar lista para las listas completadas
-		$('.confirmOpt[opt="open"]').closest("li").show();
-		$('.btnCreateItem').closest("li").hide();
-		$('.confirmOpt[opt="close"]').closest("li").hide();
+		$('.listItems_confirmOpt[opt="open"]').closest("li").show();
+		$('.listItems_btnCreateItem').closest("li").hide();
+		$('.listItems_confirmOpt[opt="close"]').closest("li").hide();
 	}
 	//mostramos el popup con las opciones de la lista
-	$('#popupListItems').popup("open");
+	$('#listItems_popupListItems').popup("open");
 }
 
 
@@ -192,11 +209,11 @@ function tapholdHandler(){
  * Asociamos el evento 'click' a los elementos de la clase '.confirmOpt' con
  * esta función que averigua la operación seleccionada y solicita confirmación.
  */
-$(document).on('click', '.confirmOpt', function() {
+$(document).on('click', '.listItems_confirmOpt', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 	//guardamos la operación en el atributo 'opt' del botón de confirmación
-	$("#btnConfirm").attr("opt", operation);
+	$("#listItems_btnConfirm").attr("opt", operation);
 	var confirmMessage = "";
 	switch(operation) {
 		case "close":
@@ -213,11 +230,11 @@ $(document).on('click', '.confirmOpt', function() {
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirm").html(confirmMessage);
+	$("#listItems_txtConfirm").html(confirmMessage);
 	//cerramos el popup de las opciones
-	$('#popupListSLists').popup("close");
+	$('#listItems_popupListSLists').popup("close");
 	//mostramos el popup de la confirmación
-	setTimeout( function(){ $('#popupConfirm').popup( 'open', { transition: "pop" } ) }, 100 );
+	setTimeout( function(){ $('#listItems_popupConfirm').popup( 'open', { transition: "pop" } ) }, 100 );
 
 });
 
@@ -227,7 +244,7 @@ $(document).on('click', '.confirmOpt', function() {
  * el menú de las opciones sobre una lista con esta función que averigua la operación 
  * seleccionada y procede a realizarla.
  */
-$(document).on('click', '.btnConfirm', function() {
+$(document).on('click', '.listItems_btnConfirm', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 
@@ -286,14 +303,14 @@ $(document).on('click', '.btnConfirm', function() {
 			break;
 	};
 	//cerramos el popup de la confirmación
-	$('#popupConfirm').popup('close');
+	$('#listItems_popupConfirm').popup('close');
 });
 
 
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
 $(document).on("pageshow", "#list_items", function() {
 	listItems();
-    $("#ulPopupListSLists").listview("refresh");
-	$('#popupListSLists').popup();
-	$('#popupConfirm').popup();
+    $("#listItems_ulPopupListSLists").listview("refresh");
+	$('#listItems_popupListSLists').popup();
+	$('#listItems_popupConfirm').popup();
 });

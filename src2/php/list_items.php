@@ -5,7 +5,7 @@
 	
 	session_start();
 	if ( isset($_SESSION['idList']) ) {
-		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable POST
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado una lista');

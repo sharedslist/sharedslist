@@ -40,6 +40,7 @@ CREATE TABLE `Item` (
 	itemState 						boolean NOT NULL,
 	quantity 						int unsigned NOT NULL,
 	quantityBought 					int unsigned NOT NULL,
+	metric	 						varchar(20) NOT NULL DEFAULT 'Unidades',
 	
 	PRIMARY KEY (idItem)
 );
