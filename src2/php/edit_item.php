@@ -16,19 +16,19 @@
 		die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST["itemName"]) ) {
-		$itemName = $_POST["itemName"]; //obtenemos el nombre del item a partir de la variable SESSION
+		$itemName = $_POST["itemName"]; //obtenemos el nombre del item a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST['quantity']) ) {
-		$quantity = $_POST["quantity"]; //obtenemos la cantidad del item a partir de la variable SESSION
+		$quantity = $_POST["quantity"]; //obtenemos la cantidad del item a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado un item');
 	}
 	if( isset($_POST['metric']) ) {
-		$metric = $_POST["metric"]; //obtenemos la unidad metrica del item a partir de la variable SESSION
+		$metric = $_POST["metric"]; //obtenemos la unidad metrica del item a partir de la variable POST
 	}
 	else {
 		die ('No se ha seleccionado un item');

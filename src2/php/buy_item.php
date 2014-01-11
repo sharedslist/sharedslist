@@ -15,8 +15,8 @@
 	else {
 		//die ('No se ha seleccionado un item');
 	}
-	if ( isset($_SESSION[['quantityBought']) ) {
-		$idItem = $_SESSION[['quantityBought']; //obtenemos la cantidad comprada del item a partir de la variable SESSION
+	if ( isset($_POST[['quantityBought']) ) {
+		$idItem = $_POST[['quantityBought']; //obtenemos la cantidad comprada del item a partir de la variable POST
 	}
 	else {
 		//die ('No se ha seleccionado una cantidad comprada');
