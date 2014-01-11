@@ -113,8 +113,8 @@ function mostrarNoRegistrados (noRegistrados) {
 		$('#messageAddMember').html('');
 	}
 
-	$("#page1").hide();
-	$("#page2").show();
+	$("#divAddMember").hide();
+	$("#divInviteMembers").show();
 
 };
 
@@ -153,4 +153,12 @@ function inviteUsers () {
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
 $(document).ready(function() {
 	isConnected() ;
+});
+
+
+$(document).on("pageshow", "#add_member", function() {
+	$("#divAddMember").show();
+	$("#divInviteMembers").hide();
+	$("#checkNoRegistrados").html('');
+	$("#check2").html('');
 });

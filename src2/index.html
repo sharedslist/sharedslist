@@ -266,6 +266,7 @@
          <!-- panel content goes here -->
         </div><!-- /menu -->
 		<div data-role="content">
+		<div id = "divAddMember">
 		<form id="addMember" >			
 			<div data-role="fieldcontain">
 				<input data-clear-btn="true" data-inline="true"  id="addMemberEmail" placeholder="Correo electrónico"/>
@@ -279,9 +280,25 @@
 				<input type="button" data-mini="true" name="create" id="create" value="Añadir miembros" data-theme="b" onclick="addMembers()"/>
 			</div>
 			<div>
-				<input type="button" data-mini="true" name="create" id="import_mobile_contact" value="Importar contactos desde móvil" data-theme="b" onclick="onPhone()"/>
+				<input type="button" data-mini="true" name="create" id="import_mobile_contact" value="Importar contactos desde móvil" data-theme="b" onclick="onPhone() display="false"/>
 			</div>
 		</form>	
+		</div>
+		<div id = "divInviteMembers" style="display:none">
+			<h3>Los siguientes emails no están registrados, ¿quieres invitarlos a usar la aplicación?</h3>
+
+			<form id="inviteform" >	
+			<div id="noRegistrados" data-role="fieldcontain">
+				<fieldset data-role="controlgroup" id="checkNoRegistrados">
+
+				</fieldset> 
+			</div>
+			<input type="button" data-mini="true" name="create" id="create" value="Invitar" data-theme="b" onclick="inviteUsers()"/>
+			<div id="boton-importarcontactos" style="display:none;">
+				<input type="button" data-mini="true" name="create" id="import_mobile_contact" value="Importar contactos desde móvil" data-theme="b" onclick="onPhone()" />
+			</div>
+			</form>
+		</div>
 		<h4 id="messageAddMember"></h4>
 		</div>
 	</div><!-- /page -->
