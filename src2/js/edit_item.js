@@ -22,7 +22,7 @@ $(document).on("pageshow", "#edit_items", function() {
 
 $(document).on("pageshow", "#edit_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 1; i <= 999; i++) {
+	for (var i = 1; i <= 50; i++) {
 		$('<option/>', {
 			value : i,
 			text : i
