@@ -160,20 +160,11 @@ $(document).on('click', '.listItems_btnEditItem', function() {
 /*
  * Asociamos el evento 'click' a los elementos de la clase '.btnCreateItem' con
  * esta función que redirecciona al usuario a la pagina donde podra crear
- * un item , pasando el identificador de la lista por GET.
+ * un item.
  */
 $(document).on('click', '.listItems_btnCreateItem', function() {
 	if($(this).closest("ul").attr("listState")==0){
-		var parameter = {"idItem" : $(this).closest("li").attr('idItem')};
-		$.ajax({
-		url: 'php/select_item.php',
-		data: parameter,
-		type:  'post',
-		success:  function (response)
-		{
-			window.location.href = '#create_items';
-		}
-		});
+		window.location.href = '#create_items';
 	}
 });
 
