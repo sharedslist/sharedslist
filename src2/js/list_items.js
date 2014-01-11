@@ -78,6 +78,8 @@ $(document).on('change', '.item_check', function() {
 
 function mobiscroll( idItem, quantity, quantityBought) {
 	// cargamos las opciones de cantidad para el nuevo producto
+	$("#mobiscrollQuantityB").html('<select name="Cantidad comprada" id="mobiscrollQuantityBought">');
+	$("#mobiscrollQuantityB").trigger('create');
 	for (var i = 0; i <= quantity; i++) {
 		$('<option/>', {
 			value : i,
@@ -94,31 +96,29 @@ function mobiscroll( idItem, quantity, quantityBought) {
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#mobiscrollQuantityB").trigger('create');
-
-	
-	$(document).on('change', '#mobiscrollQuantityBought', function() {
-		//Cambiar cantidad comprada en la base de datos
-		var parameters = { "idItem" : idItem, "quantityBought" : $(this).attr('value') };
-		$.ajax({
-			url: 'php/buy_item.php',
-			dataType: 'text',
-			data: parameters,
-			type:  'post',
-				success: function (response) {
-					$("#mobiscrollQuantityBought").html("");
-					$("#mobiscrollQuantityB").trigger('create');
-					listItems();
-					if( response.trim()=='closed' ) {
-						confirmCloseList();
-					}
-			},
-			error: 	function() {
-					$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
-			}
-		});
-	}
 }
 
+$("#mobiscrollQuantityBought").on("rrrreload", function() {
+	//Cambiar cantidad comprada en la base de datos
+	var parameters = { "idItem" : idItem, "quantityBought" : $(this).closest("select").attr('value') };
+	$.ajax({
+		url: 'php/buy_item.php',
+		dataType: 'text',
+		data: parameters,
+		type:  'post',
+			success: function (response) {
+				$("#mobiscrollQuantityB").html("");
+				$("#mobiscrollQuantityB").trigger('create');
+				listItems();
+				if( response.trim()=='closed' ) {
+					confirmCloseList();
+				}
+		},
+		error: 	function() {
+				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
+		}
+	});
+}
 
 
 /*
