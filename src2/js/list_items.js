@@ -67,13 +67,12 @@ function list_items(listAndItems){
  * de no comprado a comprado, campiando con ello la cantidad comprada.
  */
 $(document).on('change', '.item_check', function() {
-		var input = $(this);
-		var idItem = input.closest("li").attr('idItem');
-		var quantity = input.closest("li").attr('quantity');
-		var quantityBought = input.closest("li").attr('quantityBought');
-		//Desplegar selector de cantidad comprada
-		mobiscroll(idItem, quantity, quantityBought);
-	}
+	var input = $(this);
+	var idItem = input.closest("li").attr('idItem');
+	var quantity = input.closest("li").attr('quantity');
+	var quantityBought = input.closest("li").attr('quantityBought');
+	//Desplegar selector de cantidad comprada
+	mobiscroll(idItem, quantity, quantityBought);
 });
 
 
@@ -98,25 +97,27 @@ function mobiscroll( idItem, quantity, quantityBought) {
 
 	
 	$(document).on('change', '#mobiscrollQuantityBought', function() {
-	//Cambiar cantidad comprada en la base de datos
-	var parameters = { "idItem" : idItem, "quantityBought" : $(this).attr('value') };
-	$.ajax({
-		url: 'php/buy_item.php',
-		dataType: 'text',
-		data: parameters,
-		type:  'post',
-			success: function (response) {
-				$("#mobiscrollQuantityBought").html("");
-				$("#mobiscrollQuantityB").trigger('create');
-				listItems();
-				if( response.trim()=='closed' ) {
-					confirmCloseList();
-				}
-		},
-		error: 	function() {
-				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
-		}
-	});
+		//Cambiar cantidad comprada en la base de datos
+		var parameters = { "idItem" : idItem, "quantityBought" : $(this).attr('value') };
+		$.ajax({
+			url: 'php/buy_item.php',
+			dataType: 'text',
+			data: parameters,
+			type:  'post',
+				success: function (response) {
+					$("#mobiscrollQuantityBought").html("");
+					$("#mobiscrollQuantityB").trigger('create');
+					listItems();
+					if( response.trim()=='closed' ) {
+						confirmCloseList();
+					}
+			},
+			error: 	function() {
+					$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
+			}
+		});
+	}
+}
 
 
 
