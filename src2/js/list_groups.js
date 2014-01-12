@@ -71,9 +71,10 @@ function list(groups)
 	for(var i=0; i< groups.name.length; i++)
 	{
 		var li = '<li id="'+groups.id[i]+'"><a href="#" class="groupName">'+groups.name[i]+'</a>';
-		li += '<a href="#" class="btnListGroupsOpts">Opciones del grupo</a></li>';
+		li += '<a href="#" class="btnListGroupsOpts" data-i18n="listGroups.btnOptions"></a></li>';
 		$("#mylist").append(li);
 	}
+	$("#mylist").i18n();
 	$("#mylist").listview('refresh');
 }
 
@@ -106,7 +107,7 @@ function longPress (event){
  */
 $(document).on('click', '.confirmOptListGroups', function() {
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirmGroups").html("Vd. va a abandonar el grupo, si Vd. es el administrador tenga en cuenta que el grupo será eliminado.Esta acción es irreversible");
+	$("#txtConfirmGroups").html( i18n.t('listGroups.popup.warning') );
 	//cerramos el popup de las opciones
 	$('#popupBasic').popup("close");
 	//mostramos el popup de la confirmación
@@ -161,20 +162,20 @@ function tapholdHandlerGroups( groupName ){
 	var cabecera = document.createElement('li');
 		cabecera.setAttribute("data-role","list-divider");
 		cabecera.setAttribute("role","heading");
-		$(cabecera).html("Grupo: " + groupName);
+		$(cabecera).html(i18n.t('listGroups.popup.group') + groupName);
 		ul.appendChild(cabecera);
 		
 
 	var Miembros = document.createElement('li');
 		Miembros.setAttribute("data-inset","true");
 		Miembros.setAttribute("role","heading");
-		$(Miembros).html('<a href="#list_members">Miembros del grupo</a>');
+		$(Miembros).html('<a href="#list_members">' + i18n.t('listGroups.popup.members') + '</a>');
 		ul.appendChild(Miembros);
 
 	var Abandonar = document.createElement('li');
 		Abandonar.setAttribute("data-inset","true");
 		Abandonar.setAttribute("role","heading");
-		$(Abandonar).html('<a href="#" class="confirmOptListGroups">Abandonar grupo</a>');
+		$(Abandonar).html('<a href="#" class="confirmOptListGroups">' + i18n.t('listGroups.popup.leave') + '</a>');
 		ul.appendChild(Abandonar);
 
 	$('#popupBasic').append(ul);

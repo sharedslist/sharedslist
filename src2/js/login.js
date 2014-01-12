@@ -24,7 +24,13 @@ function doLogin () {
 					   {
 						var code = data.trim();
 					
-						if(code == 'Conectado correctamente') {
+						if(code.search('Conectado correctamente') == 0) {
+							//averiguamos el idioma del usuario
+							var lang = code.split(";")[1];
+							//traducimos la interfaz si está en otro idioma que el del usuario
+							i18n.setLng(lang, function(){
+								$("html").i18n();
+							});
 							$.mobile.changePage('#list_groups');
 							$('#message').html(' Se ha autenticado correctamente.');
 						}

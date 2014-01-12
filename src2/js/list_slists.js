@@ -8,8 +8,7 @@ function listSLists() {
 			   {
 					try {
 						var groupAndSLists = JSON.parse(response.trim());
-						$("#list_slists_header > h1").html('');
-						$("#list_slists_header > h1").html('Las listas de compra del grupo: ' + groupAndSLists.groupName);
+						$("#list_slists_header > h1").html( i18n.t('listSLists.title') + ' : ' + groupAndSLists.groupName);
 						list_slists(groupAndSLists.slists);
 					}
 					catch(e) {
@@ -28,8 +27,8 @@ function list_slists(slists) {
 	$("#close_list").html("");
 	$.each(slists, function(i, slist) {
 		var divider = '<li data-theme = "d" idList="' + slist.idList + '">';
-		var name_date = '<a class="btnViewList"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
-		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
+		var name_date = '<a class="btnViewList"><h2>'+ slist.listName + '</h2><p>' + i18n.t('listSLists.created') + slist.listCreated+'</p></a>';
+		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">' + i18n.t('listSLists.listOptions') + '</a>';
 		divider = divider + name_date + options + '</li>';
 		if(slist.listState == 0){
 			//Lista pendiente
@@ -41,10 +40,10 @@ function list_slists(slists) {
 		}
 	});
 	if($("#open_list").html() == ""){
-		$("#open_list").html("<li> No hay listas pendientes </li>");
+		$("#open_list").html("<li>" + i18n.t('listSLists.noOpenLists') + "</li>");
 	}
 	if($("#close_list").html() == ""){
-		$("#close_list").html("<li> No hay listas completadas </li>");
+		$("#close_list").html("<li>" + i18n.t('listSLists.noClosedLists') + "</li>");
 	}
 	$("#open_list").listview( "refresh" );
 	$("#close_list").listview( "refresh" );
@@ -84,15 +83,15 @@ $(document).on('click', '.confirmOpt', function() {
 	switch(operation) {
 		case "close":
 			//cerrar lista
-			confirmMessage = "Esta operación va a marcar la lista como completada";
+			confirmMessage = i18n.t('listSLists.popup.closeWarn');
 			break;
 		case "open":
 			//completar lista
-			confirmMessage = "Esta operación va a reiniciar la lista";
+			confirmMessage = i18n.t('listSLists.popup.resetWarn');
 			break;
 		case "delete":
 			//borrar lista
-			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
+			confirmMessage = i18n.t('listSLists.popup.removeWarn');
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar
@@ -188,7 +187,7 @@ $(document).on('click', '.btnSListOptions', tapholdHandler);
  */
 function tapholdHandler(){
 	//asociamos el nombre de la lista al popup
-	$("#popupListName").html("Lista : " + $(this).closest("li").find("h2").html());
+	$("#popupListName > p").html(i18n.t('listSLists.popup.list') + ' : ' + $(this).closest("li").find("h2").html());
 	//asignamos el id de la lista seleccionada para que lo sepan los popups
 	var idList = $(this).closest("li").attr('idList');
 	//mostramos u ocultamos la opción de cerrar lista dependiendo del estado de la misma

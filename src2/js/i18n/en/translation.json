@@ -1,0 +1,153 @@
+﻿{
+	"login": {
+		"title": "Login",
+		"actions": "Access to your personal account or sign up",
+		"email": "Email",
+		"password": "Password",
+		"remember": "Remember username and password",
+		"login": "Access",
+		"register": "Sign up",
+		"btnRemember": "Did you forget your password?"
+	},
+	"register": {
+		"title": "Sign up",
+		"helpText": "Welcome to the application, you have to sign up to begin using the application, entering your personal email that you will need to rocover your password.",
+		"username": "Username",
+		"email": "Email",
+		"password": "Password",
+		"btnRegister": "Sign up"
+	},
+	"listGroups": {
+		"title": "My groups",
+		"btnCreate": "Create",
+		"btnOptions": "Group options",
+		"popup": {
+			"members": "Members of the group",
+			"leave": "Leave group",
+			"group": "Group: ",
+			"warning": "You are about to leave the group, be aware that if you´re the administrator of the group - it will be removed.This action cannot be undone!"
+		}
+	},
+	"createGroup": {
+		"title": "New group",
+		"helpText": "Please, provide a name for the group. Add members entering their emails.",
+		"groupName": "Group's name",
+		"email": "Email",
+		"btnCreate": "Create the group"
+	},
+	"addMember": {
+		"title": "Add members",
+		"email": "Email",
+		"btnAdd": "Add members",
+		"import": "Import contacts from the device",
+		"unregisteredEmails": "The following emails have not signed up, do you wish to invite them to use the app?"
+	},
+	"listMembers": {
+		"title": "Members of the group",
+		"btnAdd": "Add member",
+		"btnDelete": "Remove member"
+	},
+	"listSLists": {
+		"title": "The shopping lists of the group",
+		"btnCreate": "Create",
+		"openLists": "Pending lists",
+		"noOpenLists": "There are no pending lists",
+		"closedLists": "Completed lists",
+		"noClosedLists": "There are no completed lists",
+		"listOptions": "List's options",
+		"created": "Created ",
+		"popup": {
+			"list": "List",
+			"btnView": "View & edit",
+			"btnDelete": "Remove list",
+			"btnClose": "Complete list",
+			"btnReopen": "Reset list",
+			"closeWarn": "This action will mark the list as completed",
+			"resetWarn": "This action will reset the list",
+			"removeWarn": "This action will remove the list, it cannot be undone"
+		}
+	},
+	"createSList": {
+		"title": "New shopping list",
+		"listName": "List's name",
+		"helpText": "Optionally, you can provide an initial list of items for the new shopping list. Enter the item's name in the field \"Item's name\", pick a quantity and tap \"+\"",
+		"productName": "Item's name",
+		"btnCreate": "Create",
+		"initialProducts": "Initial items"
+	},
+	"listItems": {
+		"popup": {
+			"btnNewProduct": "New item",
+			"options": "Options",
+			"whatQuantity": "What quantity did you buy?"
+		}
+	},
+	"createItem": {
+		"title": "New product",
+		"productName": "Item's name",
+		"btnCreate": "Save",
+		"units": "Units"
+	},
+	"editItem": {
+		"title": "Edit item",
+		"btnSave": "Save",
+		"btnDelete": "Remove"
+	},
+	"userConfig": {
+		"title": "Configuration",
+		"helpText": "Here you can change your username and password. You´ll have to enter your current password to save the changes. Leave a field blank if you don't want to modify it.",
+		"currentName": "Current username: ",
+		"newUsername": "New username",
+		"newPass": "New password",
+		"oldPass": "Old password",
+		"btnUpdate": "Update profile",
+		"lang": "Language",
+		"unknown": "Unknown"
+	},
+	"rememberPassword": {
+		"title": "Remember password",
+		"email": "Correo electrónico",
+		"btnRemember": "Recordar"
+	},
+	"message": {
+		"authenticationOK": "You have been authenticated successfully.",
+		"wrongGroupName": "Wrong group's name",
+		"incorrectEmail": "Wrong email",
+		"invalidProdName": "Item's name is invalid",
+		"invalidaProdQuant": "Item's quantity is invalid",
+		"withoutName": "Without name",
+		"wrongUsername": "Wrong username",
+		"profileUpdated": "Profile updated",
+		"profileNotUpdated": "Update failed",
+		"wrongPass": "Wrong password",
+		"rememberPassSuccess": "A random password has been generated and sent to your email.",
+		"inexistantEmail": "The user with the specified email doesn't exist",
+		"sendPassFailed": "We couldn't send you the new password.\n\t Please, try again.",
+		"emptyPass": "Empty password",
+		"invitationError": "There has been an error with your invitation. Please, try again.",
+		"emailAlreadyRegistered": "Error: E-mail already in use",
+		"invitationTimeout": "We can't find your invitation or it has expired, please, request another one or just Sign Up.",
+		"userLoggedOut": "The user has been logged out"
+	},
+	"popups": {
+		"areYouSure": "¿Are you sure?",
+		"yes": "Yes",
+		"no": "No",
+		"irreversible": "This action cannot be undone",
+		"close": "Close",
+		"expel": "This action will expel the member from the group",
+		"accept": "Accept",
+		"cancel": "Cancel"
+	},
+	"general": {
+		"filterItems": "Filer items...",
+		"clearText": "clear text"
+	},
+	"menu" : {
+		"back": "Back",
+		"groups": "My groups",
+		"profile": "My profile",
+		"refresh": "Refresh",
+		"signout": "Sign out"
+	}
+}

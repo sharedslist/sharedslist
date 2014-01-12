@@ -43,7 +43,7 @@
 	
 	//Crea objeto usuario y llama a la funcion insertar
 	
-	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
+	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p, 'lang' => 'en' ) );
     $user->encryptPassword();
     $user->insert();
 	$user->createLoginSession();

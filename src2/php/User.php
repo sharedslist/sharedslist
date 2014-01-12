@@ -33,6 +33,11 @@ class User
   * @var string La contraseña encriptada
   */
   public $password = null;
+  
+  /**
+  * @var string La contraseña encriptada
+  */
+  public $lang = null;
 
 
   /**
@@ -46,6 +51,7 @@ class User
     if ( isset( $data['emailAddress'] ) ) $this->emailAddress = preg_replace ( "/[^\.\-\_\@a-zA-Z0-9]/", "", $data['emailAddress'] );
     if ( isset( $data['plaintextPassword'] ) ) $this->plaintextPassword = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['plaintextPassword'] );
     if ( isset( $data['password'] ) ) $this->password = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['password'] );
+	if ( isset( $data['lang'] ) ) $this->lang = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['lang'] );
   }
 
 
@@ -246,6 +252,27 @@ class User
 	mysqli_close($con);
    
   }
+  
+	/**
+	* Actualiza el idioma del Usuario actual en la base de datos.
+	*/
+	public function updateLanguage() {
+
+		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
+		if (!$con) {
+			die('Could not connect: ' . mysqli_error($con));
+		}
+		// Se limpia el idioma de caracteres inseguros antes de hacer la consulta
+		$this->lang = mysqli_real_escape_string($con,$this->lang);
+		$sql = "UPDATE `User` SET lang='".$this->lang."' WHERE emailAddress='".$this->emailAddress."'";
+
+		mysqli_query($con, $sql);
+
+		$this->id = mysqli_insert_id($con); //asocia al objeto User la id que se ha a�adido en la bd
+		
+		mysqli_close($con);
+
+	}  
 
     /**
   * Actualiza el nombre de usuario del Usuario actual en la base de datos.
@@ -269,6 +296,8 @@ class User
   mysqli_close($con);
    
   }
+  
+  
 
 
   /**

@@ -19,11 +19,13 @@
 	}
 
 	//En caso de que llame la función updateProfile, actualiza el perfil,
-	// cambiando nombre de usuario y contraseña. Si un campo esta vacío no se cambia.
+	// cambiando nombre de usuario, contraseña y el idioma. Si un campo esta vacío no se cambia.
 	else {
 		$newName = $_POST['userName'];
 		$newPassword = $_POST['newPassword'];
 		$currentPassword = $_POST['currentPassword'];
+		$language = $_POST['lang'];
+		$langUpdated = false;
 
 		// Se comprueba que la contraseña actual sea correcta para poder continuar.
 		if ( $user->checkPassword( $currentPassword ) ) {
@@ -48,9 +50,21 @@
 
 			}
 
+			//Se comprueba si se tiene que actualizar el idioma y se actualiza de ser así
+			if($user->lang !== $language){
+				$user -> lang = $language;
+				$user -> updateLanguage();
+				$langUpdated = true;
+			}
+			
+			
 			//se informa al usuario si ha habido actualización
-			if($newName !== '' OR $newPassword !== ''){ 
-				die('Perfil actualizado');
+			if($newName !== '' OR $newPassword !== '' OR $langUpdated = true){
+				if($langUpdated) {
+					die('lang=' . $user->lang . ';Perfil actualizado');
+				} else {
+					die('Perfil actualizado');
+				}
 			}
 			else {
 				die('No se ha actualizado');

@@ -1,0 +1,153 @@
+﻿{
+	"login": {
+		"title": "Login",
+		"actions": "Accede a tu cuenta personal o regístrate",
+		"email": "Correo electrónico",
+		"password": "Contraseña",
+		"remember": "Recordar usuario y contraseña",
+		"login": "Acceder",
+		"register": "Registrar",
+		"btnRemember": "¿Has olvidado tu contraseña?"
+	},
+	"register": {
+		"title": "Registro",
+		"helpText": "Bienvenido a la aplicacación, para poder empezar necesitas registrarte como usuario, introduciendo tu correo electrónico habitual, que necesitarás para recuperar tu contraseña.",
+		"username": "Nombre de usuario",
+		"email": "Correo electrónico",
+		"password": "Contraseña",
+		"btnRegister": "Registrar"
+	},
+	"listGroups": {
+		"title": "Mis grupos",
+		"btnCreate": "Crear",
+		"btnOptions": "Opciones del grupo",
+		"popup": {
+			"members": "Miembros del grupo",
+			"leave": "Abandonar grupo",
+			"group": "Grupo: ",
+			"warning": "Vd. va a abandonar el grupo, si Vd. es el administrador tenga en cuenta que el grupo será eliminado.Esta acción es irreversible"
+		}
+	},
+	"createGroup": {
+		"title": "Nuevo grupo",
+		"helpText": "Por favor proporciona un nombre para el grupo. Añada usuarios introduciendo su correo electrónico.",
+		"groupName": "Nombre de grupo",
+		"email": "Correo electrónico",
+		"btnCreate": "Crear grupo"
+	},
+	"addMember": {
+		"title": "Añadir Miembros",
+		"email": "Correo electrónico",
+		"btnAdd": "Añadir miembros",
+		"import": "Importar contactos desde móvil",
+		"unregisteredEmails": "Los siguientes emails no están registrados, ¿quieres invitarlos a usar la aplicación?"
+	},
+	"listMembers": {
+		"title": "Miembros del grupo",
+		"btnAdd": "Añadir miembro",
+		"btnDelete": "BorrarMiembro"
+	},
+	"listSLists": {
+		"title": "Las listas de compra del grupo",
+		"btnCreate": "Crear",
+		"openLists": "Listas pendientes",
+		"noOpenLists": "No hay listas pendientes",
+		"closedLists": "Listas completadas",
+		"noClosedLists": "No hay listas completadas",
+		"listOptions": "Opciones de la lista",
+		"created": "Creada ",
+		"popup": {
+			"list": "Lista",
+			"btnView": "Ver y editar",
+			"btnDelete": "Borrar lista",
+			"btnClose": "Completar lista",
+			"btnReopen": "Reiniciar lista",
+			"closeWarn": "Esta operación va a marcar la lista como completada",
+			"resetWarn": "Esta operación va a reiniciar la lista",
+			"removeWarn": "Esta acción va a eliminar la lista, la acción es irreversible"
+		}
+	},
+	"createSList": {
+		"title": "Nueva lista de compras",
+		"listName": "Nombre de la lista",
+		"helpText": "Opcionalmente, puedes indicar los productos iniciales de la nueva lista de compras. Introduce el nombre del producto en el campo \"Nombre del producto\", seleccione una cantidad y pulse el botón \"+\"",
+		"productName": "Nombre del producto",
+		"btnCreate": "Crear",
+		"initialProducts": "Productos iniciales"
+	},
+	"listItems": {
+		"popup": {
+			"btnNewProduct": "Nuevo producto",
+			"options": "Opciones",
+			"whatQuantity": "¿Cuánta cantidad ha sido comprada?"
+		}
+	},
+	"createItem": {
+		"title": "Nuevo producto",
+		"productName": "Nombre producto",
+		"btnCreate": "Guardar",
+		"units": "Unidades"
+	},
+	"editItem": {
+		"title": "Editar producto",
+		"btnSave": "Guardar",
+		"btnDelete": "Eliminar"
+	},
+	"userConfig": {
+		"title": "Configuración",
+		"helpText": "Aquí puedes cambiar tu nombre de usuario y contraseña. Deberás introducir tu antigua contraseña para poder realizar los cambios. Si no deseas cambiar un campo dejalo vacío.",
+		"currentName": "Nombre actual: ",
+		"newUsername": "Nuevo nombre de usuario",
+		"newPass": "Contraseña nueva",
+		"oldPass": "Contraseña actual",
+		"btnUpdate": "Actualizar perfil",
+		"lang": "Idioma",
+		"unknown": "Desconocido"
+	},
+	"rememberPassword": {
+		"title": "Recordar Contraseña",
+		"email": "Correo electrónico",
+		"btnRemember": "Recordar"
+	},
+	"message": {
+		"authenticationOK": "Se ha autenticado correctamente.",
+		"wrongGroupName": "﻿﻿Nombre de grupo incorrecto",
+		"incorrectEmail": "Email incorrecto",
+		"invalidProdName": "Nombre del producto inválido",
+		"invalidaProdQuant": "Cantidad del producto inválida",
+		"withoutName": "Sin nombre",
+		"wrongUsername": "Nombre de usuario incorrecto",
+		"profileUpdated": "Perfil actualizado",
+		"profileNotUpdated": "No se ha actualizado",
+		"wrongPass": "Contraseña incorrecta",
+		"rememberPassSuccess": "Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.",
+		"inexistantEmail": "No existe un usuario con el e-mail introducido",
+		"sendPassFailed": "No se ha podido enviar la nueva contraseña.\n\t Por favor intentelo de nuevo.",
+		"emptyPass": "Contraseña vacía",
+		"invitationError": "Ha ocurrido un error con su invitación. Por favor intentelo de nuevo.",
+		"emailAlreadyRegistered": "Error: E-mail ya registrado",
+		"invitationTimeout": "No se encuentra su invitación o ha expirado, por favor solicite otra o puede registrarse.",
+		"userLoggedOut": "La sesión del usuario ha sido cerrada"
+	},
+	"popups": {
+		"areYouSure": "¿Estás seguro?",
+		"yes": "Sí",
+		"no": "No",
+		"irreversible": "Esta acción es irreversible",
+		"close": "Cerrar",
+		"expel": "Está acción expulsará al usuario del grupo",
+		"accept": "Aceptar",
+		"cancel": "Cancelar"
+	},
+	"general": {
+		"filterItems": "Filtrar items...",
+		"clearText": "Limpiar texto"
+	},
+	"menu" : {
+		"back": "Atrás",
+		"groups": "Mis grupos",
+		"profile": "Mi perfil",
+		"refresh": "Refrescar",
+		"signout": "Cerrar sesión"
+	}
+}
