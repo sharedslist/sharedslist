@@ -1,31 +1,32 @@
-Sin empezar;;;En proceso;;;;Terminadas;;;;
-Tarea;Estimaci髇;;Tarea;Estimaci髇;Responsable;;Tarea;Estimaci髇;Esfuerzo real;Responsable;Fecha finalizaci髇
-Crear aplicaci髇 para Android (Phonegap): Pruebas y documentaci髇;2:00:00;;Unir HTML  identidicadores 鷑icos y precargar funciones js necesarias: Pruebas;1:30:00;羖varo;;Cerrar lista (autom醫icamente): Interfaz y l骻ica;1:00:00;1:00:00;Lukas;15/12/2013
-Internacionalizaci髇 de la interfaz: Pruebas y documentaci髇;2:30:00;;Internacionalizaci髇 de la interfaz: Interfaz y l骻ica;16:00:00;Lukas;;Cerrar lista (autom醫icamente): Pruebas y documentaci髇;1:00:00;1:00:00;Lukas;15/12/2013
-Importar contactos desde el m髒il: Pruebas y documentaci髇;3:00:00;;;;;;Recordar usuario y contrase馻: Interfaz y l骻ica;2:00:00;2:00:00;Ricardo;18/12/2013
-;;;;;;;A馻dir usuario a grupo: A馻dir comentarios php;0:00:00;0:00:00;Ricardo;24/12/2013
-;;;;;;;Borrar lista: Corregir ortograf韆 y cambiar estado;0:00:00;0:00:00;Ricardo;24/12/2013
-;;;;;;;Usuario abandonar grupo: Corregir ortograf韆;0:00:00;0:00:00;Ricardo;24/12/2013
-;;;;;;;Cerrar lista manualmente: Corregir ortograf韆;0:00:00;0:00:00;Ricardo;24/12/2013
-;;;;;;;Configuraci髇 cuenta: A馻dir comentarios js;0:00:00;0:00:00;Ricardo;24/12/2013
-;;;;;;;Mecanismos de usabilidad: Terminolog韆 de la p醙ina;0:30:00;0:30:00;羖varo;02/01/2014
-;;;;;;;Mecanismos de usabilidad: Interfaz pop-up;1:30:00;1:00:00;羖varo;02/01/2014
-;;;;;;;Recordar usuario y contrase馻: Pruebas y documentaci髇;1:00:00;1:00:00;Ricardo;24/12/2013
-;;;;;;;Cerrar sesi髇: Interfaz y l骻ica;1:00:00;0:30:00;Ricardo;05/01/2014
-;;;;;;;Mecanismos de usabilidad: Informar error formulario;1:00:00;1:00:00;羖varo;06/01/2014
-;;;;;;;Abrir listas: Interfaz y l骻ica;1:00:00;0:30:00;羖varo;06/01/2014
-;;;;;;;Internalizaci髇 de la interfaz: Modelo de datos;0:30:00;0:30:00;Lukas;06/01/2013
-;;;;;;;Navegaci髇: Pruebas y documentaci髇;2:00:00;0:30:00;Ricardo;11/01/2014
-;;;;;;;Navegaci髇: Interfaz y l骻ica;4:00:00;2:30:00;Ricardo;11/01/2014
-;;;;;;;Cerrar sesi髇: Pruebas y documentaci髇;1:00:00;0:30:00;Ricardo;11/01/2014
-;;;;;;;Abrir listas: Pruebas y documentaci髇;1:30:00;1:00:00;羖varo;11/01/2014
-;;;;;;;Unir HTML identidicadores 鷑icos y precargar funciones js necesarias: Encapsulaci髇;3:30:00;8:00:00;羖varo;11/01/2014
-;;;;;;;Invitar a gente por e-mail: Modelo de datos;0:30:00;0:30:00;Claudiu;27/1272013
-;;;;;;;Invitar a gente por e-mail: Interfaz y l骻ica;4:00:00;4:00:00;Claudiu;05/01/2014
-;;;;;;;Invitar a gente por e-mail: Pruebas y documentaci髇;2:00:00;1:30:00;Claudiu;05/01/2014
-;;;;;;;Crear aplicaci髇 para Android (Phonegap): Encapsulaci髇;1:30:00;1:00:00;Claudiu;11/01/2014
-;;;;;;;Importar contactos desde el m髒il: Interfaz y l骻ica;4:00:00;9:00:00;Claudiu;11/01/2014
-;;;;;;;Mecanismos de usabilidad: Editar items separado del proceso compra;5:00:00;8:00:00;Marta;12/01/2014
-;;;;;;;Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos;0:30:00;0:30:00;Marta;08/01/2014
-;;;;;;;Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y l骻ica;2:00:00;3:00:00;Marta;11/01/2014
-;;;;;;;Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentaci髇;1:30:00;1:30:00;Marta;12/01/2014
+Sin empezar,,,En proceso,,,,Terminadas,,,,
+Tarea,Estimaci贸n,,Tarea,Estimaci贸n,Responsable,,Tarea,Estimaci贸n,Esfuerzo real,Responsable,Fecha finalizaci贸n
+Crear aplicaci贸n para Android (Phonegap): Pruebas y documentaci贸n,2:00:00,,Internacionalizaci贸n de la interfaz: Interfaz y l贸gica,16:00:00,Lukas,,Cerrar lista (autom谩ticamente): Interfaz y l贸gica,1:00:00,1:00:00,Lukas,15/12/2013
+Internacionalizaci贸n de la interfaz: Pruebas y documentaci贸n,2:30:00,,,,,,Cerrar lista (autom谩ticamente): Pruebas y documentaci贸n,1:00:00,1:00:00,Lukas,15/12/2013
+Importar contactos desde el m贸vil: Pruebas y documentaci贸n,3:00:00,,,,,,Recordar usuario y contrase帽a: Interfaz y l贸gica,2:00:00,2:00:00,Ricardo,18/12/2013
+,,,,,,,A帽adir usuario a grupo: A帽adir comentarios php,0:00:00,0:00:00,Ricardo,24/12/2013
+,,,,,,,Borrar lista: Corregir ortograf铆a y cambiar estado,0:00:00,0:00:00,Ricardo,24/12/2013
+,,,,,,,Usuario abandonar grupo: Corregir ortograf铆a,0:00:00,0:00:00,Ricardo,24/12/2013
+,,,,,,,Cerrar lista manualmente: Corregir ortograf铆a,0:00:00,0:00:00,Ricardo,24/12/2013
+,,,,,,,Configuraci贸n cuenta: A帽adir comentarios js,0:00:00,0:00:00,Ricardo,24/12/2013
+,,,,,,,Mecanismos de usabilidad: Terminolog铆a de la p谩gina,0:30:00,0:30:00,脕lvaro,02/01/2014
+,,,,,,,Mecanismos de usabilidad: Interfaz pop-up,1:30:00,1:00:00,脕lvaro,02/01/2014
+,,,,,,,Recordar usuario y contrase帽a: Pruebas y documentaci贸n,1:00:00,1:00:00,Ricardo,24/12/2013
+,,,,,,,Cerrar sesi贸n: Interfaz y l贸gica,1:00:00,0:30:00,Ricardo,05/01/2014
+,,,,,,,Mecanismos de usabilidad: Informar error formulario,1:00:00,1:00:00,脕lvaro,06/01/2014
+,,,,,,,Abrir listas: Interfaz y l贸gica,1:00:00,0:30:00,脕lvaro,06/01/2014
+,,,,,,,Internalizaci贸n de la interfaz: Modelo de datos,0:30:00,0:30:00,Lukas,06/01/2013
+,,,,,,,Navegaci贸n: Pruebas y documentaci贸n,2:00:00,0:30:00,Ricardo,11/01/2014
+,,,,,,,Navegaci贸n: Interfaz y l贸gica,4:00:00,2:30:00,Ricardo,11/01/2014
+,,,,,,,Cerrar sesi贸n: Pruebas y documentaci贸n,1:00:00,0:30:00,Ricardo,11/01/2014
+,,,,,,,Abrir listas: Pruebas y documentaci贸n,1:30:00,1:00:00,脕lvaro,11/01/2014
+,,,,,,,Unir HTML identidicadores 煤nicos y precargar funciones js necesarias: Encapsulaci贸n,3:30:00,8:00:00,脕lvaro,11/01/2014
+,,,,,,,Invitar a gente por e-mail: Modelo de datos,0:30:00,0:30:00,Claudiu,27/1272013
+,,,,,,,Invitar a gente por e-mail: Interfaz y l贸gica,4:00:00,4:00:00,Claudiu,05/01/2014
+,,,,,,,Invitar a gente por e-mail: Pruebas y documentaci贸n,2:00:00,1:30:00,Claudiu,05/01/2014
+,,,,,,,Crear aplicaci贸n para Android (Phonegap): Encapsulaci贸n,1:30:00,1:00:00,Claudiu,11/01/2014
+,,,,,,,Importar contactos desde el m贸vil: Interfaz y l贸gica,4:00:00,9:00:00,Claudiu,11/01/2014
+,,,,,,,Mecanismos de usabilidad: Editar items separado del proceso compra,5:00:00,8:00:00,Marta,12/01/2014
+,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos,0:30:00,0:30:00,Marta,08/01/2014
+,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y l贸gica,2:00:00,3:00:00,Marta,11/01/2014
+,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentaci贸n,1:30:00,1:30:00,Marta,12/01/2014
+,,,,,,,Unir HTML  identidicadores 煤nicos y precargar funciones js necesarias: Pruebas,1:30:00,4:30:00,脕lvaro,11/01/2014
