@@ -117,24 +117,24 @@ class Item {
 	  * Si [quantityBought] es mayor que la cantidad a comprar o menor que 0,
 	  * no se realiza la operación.
       */
-	public static function buyItem( $idItem, $quantityBought ) {
+	public function buyItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$idItem = mysqli_real_escape_string($con,$idItem);
-		$quantityBought = mysqli_real_escape_string($con,$quantityBought);
-		$sql = "SELECT `quantity` FROM `Item` WHERE idItem='".$idItem."'";
-		$result = mysqli_query($con, $sql);
-		$quantity = mysqli_fetch_array($result);
-		if($quantityBought==$quantity){
-			$itemState=1;
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
+		$quantity = mysqli_real_escape_string($con,$this->quantity);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		if($quantityBought<=$quantity && $quantityBought>=0){
+			if($quantityBought==$quantity){
+				$itemState=1;
+			}
+			else{
+				$itemState=0;
+			}
+			$sql = "UPDATE `Item` SET itemState='".$itemState."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
+			mysqli_query($con, $sql);
 		}
-		else{
-			$itemState=0;
-		}
-		$sql = "UPDATE `Item` SET itemState='".$itemState."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
-		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 	

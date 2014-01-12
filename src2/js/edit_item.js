@@ -66,9 +66,6 @@ function editItem(){
 	if(!validateItemName(itemName)){
 		$('#messageEditItem').html('Nombre del producto inválido');
 	}
-	else if(!validateQuantity(quantity)){
-		$('#messageEditItem').html('Cantidad del producto inválida');
-	}
 	else {
 		var parameters = {"itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({

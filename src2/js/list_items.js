@@ -71,8 +71,9 @@ $(document).on('change', '.item_check', function() {
 	mobiscroll(idItem, quantity, quantityBought);
 });
 
+
 function mobiscroll( idItem, quantity, quantityBought) {
-	$("#mobiscrollQuantityB").html('<select name="Cantidad comprada" id="mobiscrollQuantityBought" idItem="'+idItem+'">');
+	$("#mobiscrollQuantityB").html('<select name="Cantidad comprada" id="mobiscrollQuantityBought" value="'+quantityBought+'" idItem="'+idItem+'" quantity="'+quantity+'" data-role="none">');
 	$("#mobiscrollQuantityB").trigger('create');
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 0; i <= quantity; i++) {
@@ -90,22 +91,34 @@ function mobiscroll( idItem, quantity, quantityBought) {
 			}).appendTo('#mobiscrollQuantityBought');
 		}
 	};
+	
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#mobiscrollQuantityBought').mobiscroll().select({
 		theme : 'jqm',
 		lang : 'es',
 		display : 'bottom',
 		mode : 'mixed',
-		inputClass : 'mobiscrollQuantityBoughtText'
+		inputClass : 'mobiscrollQuantityBoughtText',
+		onShow:function(html,inst) {
+				$('#popupBuyItem').popup("close");
+		},
+		onSelect:function(html,inst) {
+				$('#popupBuyItem').popup("open");
+		}
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#mobiscrollQuantityB").trigger('create');
+	//mostramos el popup con las opciones de la lista
+	$('#popupBuyItem').popup("open");
 }
 
 
-$("#mobiscrollQuantityBought").on("rrrreload", function() {
-	//Cambiar cantidad comprada en la base de datos
-	var parameters = { "idItem" : $(this).attr('idItem'), "quantityBought" : $(this).attr('value') };
+/*
+ * Asociamos el evento 'click' al botón de confirmación de la cantidad indicada
+ * y procede a realizar la acción de marcar dicha cantidad como comprada.
+ */
+$(document).on('click', '.listItems_buy_btnConfirm', function() {
+	var parameters = { "idItem" : $('#mobiscrollQuantityBought').attr('idItem'), "quantity" : $('#mobiscrollQuantityBought').attr('quantity'), "quantityBought" : $('#mobiscrollQuantityBought').val() };
 	$.ajax({
 		url: URL_SERVER +'php/buy_item.php',
 		dataType: 'text',
@@ -123,6 +136,8 @@ $("#mobiscrollQuantityBought").on("rrrreload", function() {
 				$("#messageListItems").html("Ha ocurrido un error al marcar la compra");
 		}
 	})
+	//cerramos el popup
+	$('#popupBuyItem').popup('close');
 });
 
 
@@ -139,6 +154,7 @@ function confirmCloseList() {
 	//mostramos el popup de la confirmación
 	setTimeout( function(){ $('#popupConfirmItems').popup( 'open', { transition: "pop" } ) }, 100 );
 }
+
 
 /*
  * Asociamos el evento 'click' a los elementos de la clase '.btnEditItem' con
@@ -308,4 +324,5 @@ $(document).on("pageshow", "#list_items", function() {
     $("#ulPopupListItems").listview("refresh");
 	$('#popupListItems').popup();
 	$('#popupConfirmItems').popup();
+	$('#popupBuyItem').popup();
 });

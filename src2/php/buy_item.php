@@ -9,14 +9,20 @@
 	else {
 		//die ('No se ha seleccionado una lista');
 	}
-	if ( isset($_SESSION[['idItem']) ) {
-		$idItem = $_SESSION[['idItem']; //obtenemos el id del item a partir de la variable SESSION
+	if ( isset($_POST['idItem']) ) {
+		$idItem = $_POST['idItem']; //obtenemos el id del item a partir de la variable POST
 	}
 	else {
 		//die ('No se ha seleccionado un item');
 	}
-	if ( isset($_POST[['quantityBought']) ) {
-		$idItem = $_POST[['quantityBought']; //obtenemos la cantidad comprada del item a partir de la variable POST
+	if ( isset($_POST['quantity']) ) {
+		$quantity = $_POST['quantity']; //obtenemos la cantidad a comprar del item a partir de la variable POST
+	}
+	else {
+		//die ('No se ha seleccionado una cantidad comprada');
+	}
+	if ( isset($_POST['quantityBought']) ) {
+		$quantityBought = $_POST['quantityBought']; //obtenemos la cantidad comprada del item a partir de la variable POST
 	}
 	else {
 		//die ('No se ha seleccionado una cantidad comprada');
@@ -29,7 +35,12 @@
 	if( !Item::userBelongsToGroupOfItemList($currentUser->id, $idList, $idItem) ) {
 		die ("No perteneces al grupo de la lista cuyos productos quieres listar");
 	}
-	Item::buyItem($idItem,$quantityBougth);
+	
+	$item = new Item;
+	$item->idItem = $idItem;
+	$item->quantity = $quantity;
+	$item->quantityBought = $quantityBought;
+	$item->buyItem();
 	//comprobamos si el item que se acaba de comprar ha completado la lista
 	if( ShoppingList::isCompleted($idList) ) {
 		//informamos de que se han marcado todos los items como comprados
