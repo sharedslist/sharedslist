@@ -72,6 +72,7 @@
 		"listName": "List's name",
 		"helpText": "Optionally, you can provide an initial list of items for the new shopping list. Enter the item's name in the field \"Item's name\", pick a quantity and tap \"+\"",
 		"productName": "Item's name",
+		"quantity": "Quantity",
 		"btnCreate": "Create",
 		"initialProducts": "Initial items"
 	},

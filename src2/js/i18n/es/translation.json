@@ -72,6 +72,7 @@
 		"listName": "Nombre de la lista",
 		"helpText": "Opcionalmente, puedes indicar los productos iniciales de la nueva lista de compras. Introduce el nombre del producto en el campo \"Nombre del producto\", seleccione una cantidad y pulse el botón \"+\"",
 		"productName": "Nombre del producto",
+		"quantity": "Cantidad",
 		"btnCreate": "Crear",
 		"initialProducts": "Productos iniciales"
 	},
