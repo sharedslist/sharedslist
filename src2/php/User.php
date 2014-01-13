@@ -99,19 +99,33 @@ class User
   */
 
   public function sendPassword() {
-    $headers = "From: noreply@sharedslist.hol.es";
+	$headers = "From: noreply@sharedslist.hol.es";
 	$to = $this->emailAddress;
-	$subject = "Nueva contraseña";
-	$message = "Hola ";
-	$message .= $this->userName;
-	$message .="\n Te enviamos tu nueva contrase�a generada aleatoriamente.\nContraseña:";
-	$message .=$this->plaintextPassword;
-	$message .="\nPuedes cambiarla por una nueva en la configuración de usuario.\n\n";
-	$message .="Un saludo,\n el equipo de Shared Shopping List.";
-	// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
-	// de envio de correos.
-	$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
-	return $enviado;
+	if( $user -> lang == 'en' ) {
+		$subject = "New password";
+		$message = "Hello ";
+		$message .= $this->userName;
+		$message .="\n We send you the new random password.\nPassword:";
+		$message .=$this->plaintextPassword;
+		$message .="\nYou can change it in the user configuration.\n\n";
+		$message .="Greetings,\n the Shared Shopping List's team.";
+		// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
+		// de envio de correos.
+		$enviado = mail($to,$subject,$message,$headers) or die("We could not connect with the mailserver");
+		return $enviado;
+	} else {
+		$subject = "Nueva contraseña";
+		$message = "Hola ";
+		$message .= $this->userName;
+		$message .="\n Te enviamos tu nueva contrase�a generada aleatoriamente.\nContraseña:";
+		$message .=$this->plaintextPassword;
+		$message .="\nPuedes cambiarla por una nueva en la configuración de usuario.\n\n";
+		$message .="Un saludo,\n el equipo de Shared Shopping List.";
+		// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
+		// de envio de correos.
+		$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
+		return $enviado;
+	}
   }
 
 
