@@ -6,6 +6,7 @@
 
 	// Se recupera el usuario actual
 	$user = User::getLoggedInUser();
+	$message = "Perfil actualizado";
 	
 	// En caso de que llame la función getName, devuelve el nombre
 	if ( isset( $_POST['getUser']) ) {
@@ -60,10 +61,14 @@
 			
 			//se informa al usuario si ha habido actualización
 			if($newName !== '' OR $newPassword !== '' OR $langUpdated = true){
+			
+				if($user -> lang == 'en' ){
+					$message = "Profile updated";
+				}
 				if($langUpdated) {
-					die('lang=' . $user->lang . ';Perfil actualizado');
+					die('lang=' . $user->lang . ';' . $message);
 				} else {
-					die('Perfil actualizado');
+					die($message);
 				}
 			}
 			else {
