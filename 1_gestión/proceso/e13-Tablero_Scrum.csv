@@ -1,32 +1,32 @@
-Sin empezar,,,En proceso,,,,Terminadas,,,,
-Tarea,Estimación,,Tarea,Estimación,Responsable,,Tarea,Estimación,Esfuerzo real,Responsable,Fecha finalización
-Crear aplicación para Android (Phonegap): Pruebas y documentación,2:00:00,,Internacionalización de la interfaz: Interfaz y lógica,16:00:00,Lukas,,Cerrar lista (automáticamente): Interfaz y lógica,1:00:00,1:00:00,Lukas,15/12/2013
-Internacionalización de la interfaz: Pruebas y documentación,2:30:00,,,,,,Cerrar lista (automáticamente): Pruebas y documentación,1:00:00,1:00:00,Lukas,15/12/2013
-Importar contactos desde el móvil: Pruebas y documentación,3:00:00,,,,,,Recordar usuario y contraseña: Interfaz y lógica,2:00:00,2:00:00,Ricardo,18/12/2013
-,,,,,,,Añadir usuario a grupo: Añadir comentarios php,0:00:00,0:00:00,Ricardo,24/12/2013
-,,,,,,,Borrar lista: Corregir ortografía y cambiar estado,0:00:00,0:00:00,Ricardo,24/12/2013
-,,,,,,,Usuario abandonar grupo: Corregir ortografía,0:00:00,0:00:00,Ricardo,24/12/2013
-,,,,,,,Cerrar lista manualmente: Corregir ortografía,0:00:00,0:00:00,Ricardo,24/12/2013
-,,,,,,,Configuración cuenta: Añadir comentarios js,0:00:00,0:00:00,Ricardo,24/12/2013
-,,,,,,,Mecanismos de usabilidad: Terminología de la página,0:30:00,0:30:00,Álvaro,02/01/2014
-,,,,,,,Mecanismos de usabilidad: Interfaz pop-up,1:30:00,1:00:00,Álvaro,02/01/2014
-,,,,,,,Recordar usuario y contraseña: Pruebas y documentación,1:00:00,1:00:00,Ricardo,24/12/2013
-,,,,,,,Cerrar sesión: Interfaz y lógica,1:00:00,0:30:00,Ricardo,05/01/2014
-,,,,,,,Mecanismos de usabilidad: Informar error formulario,1:00:00,1:00:00,Álvaro,06/01/2014
-,,,,,,,Abrir listas: Interfaz y lógica,1:00:00,0:30:00,Álvaro,06/01/2014
-,,,,,,,Internalización de la interfaz: Modelo de datos,0:30:00,0:30:00,Lukas,06/01/2013
-,,,,,,,Navegación: Pruebas y documentación,2:00:00,0:30:00,Ricardo,11/01/2014
-,,,,,,,Navegación: Interfaz y lógica,4:00:00,2:30:00,Ricardo,11/01/2014
-,,,,,,,Cerrar sesión: Pruebas y documentación,1:00:00,0:30:00,Ricardo,11/01/2014
-,,,,,,,Abrir listas: Pruebas y documentación,1:30:00,1:00:00,Álvaro,11/01/2014
-,,,,,,,Unir HTML identidicadores únicos y precargar funciones js necesarias: Encapsulación,3:30:00,8:00:00,Álvaro,11/01/2014
-,,,,,,,Invitar a gente por e-mail: Modelo de datos,0:30:00,0:30:00,Claudiu,27/1272013
-,,,,,,,Invitar a gente por e-mail: Interfaz y lógica,4:00:00,4:00:00,Claudiu,05/01/2014
-,,,,,,,Invitar a gente por e-mail: Pruebas y documentación,2:00:00,1:30:00,Claudiu,05/01/2014
-,,,,,,,Crear aplicación para Android (Phonegap): Encapsulación,1:30:00,1:00:00,Claudiu,11/01/2014
-,,,,,,,Importar contactos desde el móvil: Interfaz y lógica,4:00:00,9:00:00,Claudiu,11/01/2014
-,,,,,,,Mecanismos de usabilidad: Editar items separado del proceso compra,5:00:00,8:00:00,Marta,12/01/2014
-,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos,0:30:00,0:30:00,Marta,08/01/2014
-,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y lógica,2:00:00,3:00:00,Marta,11/01/2014
-,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentación,1:30:00,1:30:00,Marta,12/01/2014
-,,,,,,,Unir HTML  identidicadores únicos y precargar funciones js necesarias: Pruebas,1:30:00,4:30:00,Álvaro,11/01/2014
+"Sin empezar",,,"En proceso",,,,"Terminadas",,,,
+"Tarea","Estimación",,"Tarea","Estimación","Responsable",,"Tarea","Estimación","Esfuerzo real","Responsable","Fecha finalización"
+,,,"Internacionalización de la interfaz: Interfaz y lógica","16:00:00","Lukas",,"Cerrar lista (automáticamente): Interfaz y lógica","1:00:00","1:00:00","Lukas","15/12/2013"
+"Internacionalización de la interfaz: Pruebas y documentación","2:30:00",,"Crear aplicación para Android (Phonegap): Pruebas y documentación","2:00:00","Ricardo",,"Cerrar lista (automáticamente): Pruebas y documentación","1:00:00","1:00:00","Lukas","15/12/2013"
+"Importar contactos desde el móvil: Pruebas y documentación","3:00:00",,,,,,"Recordar usuario y contraseña: Interfaz y lógica","2:00:00","2:00:00","Ricardo","18/12/2013"
+,,,,,,,"Añadir usuario a grupo: Añadir comentarios php","0:00:00","0:00:00","Ricardo","24/12/2013"
+,,,,,,,"Borrar lista: Corregir ortografía y cambiar estado","0:00:00","0:00:00","Ricardo","24/12/2013"
+,,,,,,,"Usuario abandonar grupo: Corregir ortografía","0:00:00","0:00:00","Ricardo","24/12/2013"
+,,,,,,,"Cerrar lista manualmente: Corregir ortografía","0:00:00","0:00:00","Ricardo","24/12/2013"
+,,,,,,,"Configuración cuenta: Añadir comentarios js","0:00:00","0:00:00","Ricardo","24/12/2013"
+,,,,,,,"Mecanismos de usabilidad: Terminología de la página","0:30:00","0:30:00","Álvaro","02/01/2014"
+,,,,,,,"Mecanismos de usabilidad: Interfaz pop-up","1:30:00","1:00:00","Álvaro","02/01/2014"
+,,,,,,,"Recordar usuario y contraseña: Pruebas y documentación","1:00:00","1:00:00","Ricardo","24/12/2013"
+,,,,,,,"Cerrar sesión: Interfaz y lógica","1:00:00","0:30:00","Ricardo","05/01/2014"
+,,,,,,,"Mecanismos de usabilidad: Informar error formulario","1:00:00","1:00:00","Álvaro","06/01/2014"
+,,,,,,,"Abrir listas: Interfaz y lógica","1:00:00","0:30:00","Álvaro","06/01/2014"
+,,,,,,,"Internalización de la interfaz: Modelo de datos","0:30:00","0:30:00","Lukas","06/01/2013"
+,,,,,,,"Navegación: Pruebas y documentación","2:00:00","0:30:00","Ricardo","11/01/2014"
+,,,,,,,"Navegación: Interfaz y lógica","4:00:00","2:30:00","Ricardo","11/01/2014"
+,,,,,,,"Cerrar sesión: Pruebas y documentación","1:00:00","0:30:00","Ricardo","11/01/2014"
+,,,,,,,"Abrir listas: Pruebas y documentación","1:30:00","1:00:00","Álvaro","11/01/2014"
+,,,,,,,"Unir HTML identidicadores únicos y precargar funciones js necesarias: Encapsulación","3:30:00","8:00:00","Álvaro","11/01/2014"
+,,,,,,,"Invitar a gente por e-mail: Modelo de datos","0:30:00","0:30:00","Claudiu","27/1272013"
+,,,,,,,"Invitar a gente por e-mail: Interfaz y lógica","4:00:00","4:00:00","Claudiu","05/01/2014"
+,,,,,,,"Invitar a gente por e-mail: Pruebas y documentación","2:00:00","1:30:00","Claudiu","05/01/2014"
+,,,,,,,"Crear aplicación para Android (Phonegap): Encapsulación","1:30:00","1:00:00","Claudiu","11/01/2014"
+,,,,,,,"Importar contactos desde el móvil: Interfaz y lógica","4:00:00","9:00:00","Claudiu","11/01/2014"
+,,,,,,,"Mecanismos de usabilidad: Editar items separado del proceso compra","5:00:00","8:00:00","Marta","12/01/2014"
+,,,,,,,"Establecer cantidades de producto en unidades (kg metro unidad ...): Modelo de datos","0:30:00","0:30:00","Marta","08/01/2014"
+,,,,,,,"Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y lógica","2:00:00","3:00:00","Marta","11/01/2014"
+,,,,,,,"Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentación","1:30:00","1:30:00","Marta","12/01/2014"
+,,,,,,,"Unir HTML  identidicadores únicos y precargar funciones js necesarias: Pruebas","1:30:00","4:30:00","Álvaro","11/01/2014"
