@@ -131,7 +131,7 @@
 		"userLoggedOut": "The user has been logged out"
 	},
 	"popups": {
-		"areYouSure": "¿Are you sure?",
+		"areYouSure": "Are you sure?",
 		"yes": "Yes",
 		"no": "No",
 		"irreversible": "This action cannot be undone",
