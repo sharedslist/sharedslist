@@ -79,7 +79,7 @@
 				<label for="loginRemember"><span data-i18n="login.remember"></span></label>
 				<input type="checkbox" id="loginRemember" name="loginRemember" data-theme="d">
 					<h4 id="message"> </h4>		
-				<button name="loginButton" id="loginButton" onClick="doLogin()"><span data-i18n="login.login"></span></button>
+				<button type="button" name="loginButton" id="loginButton" onClick="doLogin()"><span data-i18n="login.login"></span></button>
 			</form>
 			<a href="#register" data-role="button" data-theme="d"><span data-i18n="login.register"></span></a>
 			<a href="#remember_password" data-i18n="login.btnRemember"></a>
@@ -109,7 +109,7 @@
 					<input type="password" name="registerPassword" id="registerPassword" data-i18n="[placeholder]register.password" required maxlength="30">
 				</div>
 				<h4 id="messageRegister"></h4>
-				<button name="register" id="register" onClick="registrar()"><span data-i18n="register.btnRegister"></span></button>
+				<button type="button" name="register" id="register" onClick="registrar()"><span data-i18n="register.btnRegister"></span></button>
 			</form>
 		</div>		
 	</div><!-- /page -->
@@ -123,7 +123,7 @@
 		<div data-role="content">
 			<form method="post" id="formRememberPassword">
 				<input type="email" name="rememberEmail" id="rememberEmail" data-i18n="[placeholder]rememberPassword.email" data-clear-btn="true" />
-				<button name="remember" id="remember" onClick="remember_password()"><span data-i18n="rememberPassword.btnRemember"></span></button>
+				<button type="button" name="remember" id="remember" onClick="remember_password()"><span data-i18n="rememberPassword.btnRemember"></span></button>
 			</form>	 
 			<h4 id="messageRememberPassword"></h4>
 		</div>
@@ -233,7 +233,7 @@
 				</fieldset> 
 			</div>
 			<div>
-				<button data-mini="true" name="create" id="create" data-theme="b" onclick="createGroup()"><span data-i18n="createGroup.btnCreate"></span></button>
+				<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="createGroup()"><span data-i18n="createGroup.btnCreate"></span></button>
 			</div>
 		</form>
 		<h4 id="messageCreateGroups"></h4>
@@ -279,10 +279,10 @@
 				</fieldset> 
 			</div>	
 			<div>
-				<button data-mini="true" name="create" id="create" data-theme="b" onclick="addMembers()"><span data-i18n="addMember.btnAdd"></span></button>
+				<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="addMembers()"><span data-i18n="addMember.btnAdd"></span></button>
 			</div>
 			<div>
-				<button data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()" display="false"><span data-i18n="addMember.import"></span></button>
+				<button type="button" data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()" display="false"><span data-i18n="addMember.import"></span></button>
 			</div>
 		</form>	
 		</div>
@@ -295,9 +295,9 @@
 
 				</fieldset> 
 			</div>
-			<button data-mini="true" name="create" id="create" value="Invitar" data-theme="b" onclick="inviteUsers()"><span data-i18n="addMember.btnAdd"></span></button>
+			<button type="button" data-mini="true" name="create" id="create" value="Invitar" data-theme="b" onclick="inviteUsers()"><span data-i18n="addMember.btnAdd"></span></button>
 			<div id="boton-importarcontactos" style="display:none;">
-				<button data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()"><span data-i18n="addMember.import"></span></button>
+				<button type="button" data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()"><span data-i18n="addMember.import"></span></button>
 			</div>
 			</form>
 		</div>
@@ -468,7 +468,7 @@
 				</ul>
 				<br/>
 				<h4 id="messageCreateList"></h4>
-				<button id="createListBtn" data-theme="b" onClick="createList()"><span data-i18n="createSList.btnCreate"></span></button>
+				<button type="button" id="createListBtn" data-theme="b" onClick="createList()"><span data-i18n="createSList.btnCreate"></span></button>
 			</form>
 		</div><!-- /content -->	
 		<!-- menu -->
@@ -639,7 +639,7 @@
 				<h4 id="messageCreateItem"></h4>
 				<br/>
 				<div>
-					<button data-mini="true" name="create" id="create" data-theme="b" onclick="createItem()"><span data-i18n="createItem.btnCreate"></span></button>
+					<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="createItem()"><span data-i18n="createItem.btnCreate"></span></button>
 				</div>
 			</form><!-- /createform -->
 		</div><!-- /content -->
@@ -703,8 +703,8 @@
 				<h4 id="messageEditItem"></h4>
 				<br/>
 				<div>
-					<button data-mini="true" name="edit" id="edit" data-theme="b" onclick="editItem()"><span data-i18n="editItem.btnSave"></span></button>
-					<button data-mini="true" name="delete" id="delete" data-theme="c" onclick="deleteItem()"><span data-i18n="editItem.btnDelete"></span></button>
+					<button type="button" data-mini="true" name="edit" id="edit" data-theme="b" onclick="editItem()"><span data-i18n="editItem.btnSave"></span></button>
+					<button type="button" data-mini="true" name="delete" id="delete" data-theme="c" onclick="deleteItem()"><span data-i18n="editItem.btnDelete"></span></button>
 				</div>
 			</form><!-- /createform -->
 		</div><!-- /content -->
@@ -765,7 +765,7 @@
 					</div>					
 				</div>				
 				<h4 id="messageUserConfig"></h4>	
-				<button name="submit" id="submit" onClick="updateProfile()"><span data-i18n="userConfig.btnUpdate"></span></button>
+				<button type="button" name="submit" id="submit" onClick="updateProfile()"><span data-i18n="userConfig.btnUpdate"></span></button>
 			</form>
 			<!-- Script que recupera el nombre -->
 			<script>
