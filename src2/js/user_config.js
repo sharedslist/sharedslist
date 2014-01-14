@@ -24,7 +24,6 @@ function getName()
 function updateProfile (e) {
 	//e.preventDefault();
 	$('#messageUserConfig').slideUp('fast');
-	alert($('#formUserConfig').serialize());
 
 	$.ajax({
 		data:  $('#formUserConfig').serialize(),
