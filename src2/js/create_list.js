@@ -39,6 +39,10 @@ $(document).on("pageshow", "#create_list", function() {
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#create_list").trigger('create');
+	//limpiamos la basura que podria haberse producido con mobiscroll
+	$("#newProduct .ui-block-b .ui-input-text").hide();
+	$("#newProduct .ui-block-b .ui-input-text .textoCantidad").parent().show();
+	$("#newProduct .ui-block-b .ui-input-text .textoCantidad").show();
 
 });
 
@@ -130,7 +134,7 @@ function createLiItem(name){
  */
 function createList() {
 	if(!validateListName()){
-		$('#messageCreateList').html('Intoduce el nombre de la lista correctamente');
+		$('#messageCreateList').html( i18n.t('message.wrongListName') );
 	}
 	else {
 		var newList = [];
@@ -165,7 +169,7 @@ function createList() {
 				   },
 			error: function () 
 					{
-						$('#messageCreateList').html('Ha ocurrido un error, intentalo de nuevo');
+						$('#messageCreateList').html( i18n.t('message.genericError') );
 					}
 		});				
 	}

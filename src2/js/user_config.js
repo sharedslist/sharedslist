@@ -55,6 +55,8 @@ function updateProfile (e) {
 
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
 $(document).on("pageshow", "#user_config", function() {
+	//recuperamos el nombre del usuario y lo mostramos
+	getName();
 	//obtenemos el idioma de la página
 	var lang = i18n.lng();
 	//marcamos como seleccionado el idioma actual

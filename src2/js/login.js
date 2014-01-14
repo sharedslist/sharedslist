@@ -32,7 +32,7 @@ function doLogin () {
 								$("html").i18n();
 							});
 							$.mobile.changePage('#list_groups');
-							$('#message').html(' Se ha autenticado correctamente.');
+							$('#message').html( i18n.t('message.authenticationOK') );
 						}
 						else {
 							$('#message').html(data);

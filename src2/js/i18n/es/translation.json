@@ -128,7 +128,9 @@
 		"invitationError": "Ha ocurrido un error con su invitación. Por favor intentelo de nuevo.",
 		"emailAlreadyRegistered": "Error: E-mail ya registrado",
 		"invitationTimeout": "No se encuentra su invitación o ha expirado, por favor solicite otra o puede registrarse.",
-		"userLoggedOut": "La sesión del usuario ha sido cerrada"
+		"userLoggedOut": "La sesión del usuario ha sido cerrada",
+		"wrongListName": "Intoduce el nombre de la lista correctamente",
+		"genericError": "Ha ocurrido un error, intentalo de nuevo"
 	},
 	"popups": {
 		"areYouSure": "¿Estás seguro?",

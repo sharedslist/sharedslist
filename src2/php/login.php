@@ -17,7 +17,7 @@
 
 		// Login exitoso: Crea la sesión y redirige a la pantalla de grupos.
 		$user->createLoginSession();
-			die('Conectado correctamente');
+			die('Conectado correctamente;'.$user->lang);
 
 		} 
 		  

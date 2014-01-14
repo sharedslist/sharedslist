@@ -128,7 +128,9 @@
 		"invitationError": "There has been an error with your invitation. Please, try again.",
 		"emailAlreadyRegistered": "Error: E-mail already in use",
 		"invitationTimeout": "We can't find your invitation or it has expired, please, request another one or just Sign Up.",
-		"userLoggedOut": "The user has been logged out"
+		"userLoggedOut": "The user has been logged out",
+		"wrongListName": "Please, enter a correct name for the new shopping list",
+		"genericError": "There was a problem, please try again."
 	},
 	"popups": {
 		"areYouSure": "Are you sure?",
