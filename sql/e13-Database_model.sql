@@ -3,6 +3,7 @@
   userName						  varchar(50) NOT NULL,                 # The name of the user
   emailAddress		              varchar(50) NOT NULL UNIQUE,          # The email address of the user
   password               		  varchar(50) NOT NULL,                 # The encrypted password
+  lang						  	  varchar(10) NOT NULL,					# The prefered language
 
   PRIMARY KEY (idUser)
 );
@@ -11,7 +12,6 @@ CREATE TABLE `Group` (
 	idGroup 					  int unsigned NOT NULL AUTO_INCREMENT,
 	groupName 					  varchar(50) NOT NULL,
 	idAdmin 					  int unsigned NOT NULL,
-	lang						  varchar(10) NOT NULL,
 	
 	PRIMARY KEY (idGroup)
 );
