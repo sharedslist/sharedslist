@@ -21,6 +21,10 @@ $(document).on("pageshow", "#create_items", function() {
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#create_items").trigger('create');
+	//limpiamos la basura que podria haberse producido con mobiscroll
+        $("#createItemForm .ui-block-a .ui-input-text").hide();
+        $("#createItemForm .ui-block-a .ui-input-text .quantityText").parent().show();
+        $("#createItemForm .ui-block-a .ui-input-text .quantityText").show();
 });
 
 
