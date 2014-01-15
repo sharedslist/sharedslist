@@ -39,3 +39,8 @@
 .btnItem{
 	padding-left: -5px;
 }
+
+#userConfigHelp {
+	text-align: center;
+	margin-bottom: 15px;
+}
