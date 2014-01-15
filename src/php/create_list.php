@@ -59,7 +59,7 @@
 	
 	//insertamos todos los productos iniciales para la lista anteriormente creada
 	foreach($newList[1] as $product) {
-		$item = new Item( array( 'idList' => $list->idList, 'itemName' => $product->prodName, 'quantity' => $product->prodQt ) );
+		$item = new Item( array( 'idList' => $list->idList, 'itemName' => $product->prodName, 'quantity' => $product->prodQt, 'metric' => 'u' ) );
 		$item->insertItem();
 	}
 	
