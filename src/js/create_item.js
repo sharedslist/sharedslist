@@ -3,9 +3,9 @@ $(document).ready(function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#create_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 1; i <= 999; i++) {
+	for (var i = 1; i <= 50; i++) {
 		$('<option/>', {
 			value : i,
 			text : i
@@ -20,7 +20,7 @@ $(document).on("pageshow", function() {
 		inputClass : 'quantityText'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
-	$("#create_item").trigger('create');
+	$("#create_items").trigger('create');
 });
 
 
@@ -59,9 +59,9 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function createItem(){
-	var idList =  getUrlVars()['idList'];
 	var itemName = $("#itemName").val();
 	var quantity = $("#quantity").val();
+	var metric = $("#metric").val();
 	if(!validateItemName(itemName)){
 		$('#messageCreateItem').html('Nombre del producto inválido');
 	}
@@ -69,24 +69,15 @@ function createItem(){
 		$('#messageCreateItem').html('Cantidad del producto inválida');
 	}
 	else {
-		var parameters = { "idList" : idList, "itemName" : itemName, "quantity" : quantity };
+		var parameters = { "itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
-			url:   'php/create_item.php',
+			url:   URL_SERVER +'php/create_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function () {
-						var form = document.createElement('form');
-						form.setAttribute('method', 'GET');
-						form.setAttribute('action', 'list_items.html');
-						inputIdList = document.createElement('input');
-						inputIdList.setAttribute('name', 'idList');
-						inputIdList.setAttribute('type', 'hidden');
-						inputIdList.setAttribute('value', idList);
-						form.appendChild(inputIdList);
-						document.body.appendChild(form);
-						form.submit();
-				   },
+						window.location.href = '#list_items';
+				    },
 			error: function () {
 						$('#messageCreateItem').html('An error occurred, please try again.');
 					}

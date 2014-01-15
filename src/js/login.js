@@ -1,8 +1,8 @@
-function login () {
+function doLogin () {
 
-            var checkbox = $('#remember'),
-            emailField = $('#emailAddress'),
-            passwordField = $('#password'),
+            var checkbox = $('#loginRemember'),
+            emailField = $('#loginEmail'),
+            passwordField = $('#loginPassword'),
             keyUser = 'savedEmail',
             keyPassword = 'savedPassword';
 
@@ -18,15 +18,23 @@ function login () {
 			$('#message').slideUp('fast');
 			$.ajax({
 				data:  $('#formLogin').serialize(),
-				url:   'php/login.php',
+				url:   URL_SERVER + 'php/login.php',
 				type:  'post',
 				success:  function (data)
 					   {
 						var code = data.trim();
 					
-						if(code == 'Conectado correctamente') {
-							window.location.href = 'list_groups.html';
-							$('#message').html(' Se ha autenticado correctamente.');
+						if(code.search('Conectado correctamente') == 0) {
+							//averiguamos el idioma del usuario
+							var lang = code.split(";")[1];
+							//traducimos la interfaz si está en otro idioma que el del usuario
+							if( i18n.lng() != lang ) {
+								i18n.setLng(lang, function(){
+									$("html").i18n();
+								});
+							}
+							$.mobile.changePage('#list_groups');
+							$('#message').html( i18n.t('message.authenticationOK') );
 						}
 						else {
 							$('#message').html(data);
@@ -34,7 +42,7 @@ function login () {
 						$('#message').slideDown('fast');	
 					   },
 				error: function () {
-						$('#message').html('Ha ocurrido un error, por favor pruebe de nuevo.');
+						$('#message').html( i18n.t('message.genericError') );
 						$('#message').slideDown('fast');
 					}
 			});
@@ -47,9 +55,9 @@ function login () {
 
     //Comprueba que esten guardados el usuario y la contraseña
     function checkLogin() {
-        var checkbox = $('#remember'),
-            emailField = $('#emailAddress'),
-            passwordField = $('#password'),
+        var checkbox = $('#loginRemember'),
+            emailField = $('#loginEmail'),
+            passwordField = $('#loginPassword'),
  
         // assign the key name to a variable
         // so we don't have to type it up every time

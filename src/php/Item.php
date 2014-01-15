@@ -73,7 +73,7 @@ class Item {
 		$quantity = mysqli_real_escape_string($con,$this->quantity);
 		$metric = mysqli_real_escape_string($con,$this->metric);
 		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
-		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$metric."', '".$quantityBought."')";
+		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought, metric) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$quantityBought."', '".$metric."')";
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
@@ -96,7 +96,6 @@ class Item {
 		mysqli_close($con);
 	}
 
-
 	/**
       * Elimina el objeto Item actual de la base de datos
       */
@@ -118,24 +117,24 @@ class Item {
 	  * Si [quantityBought] es mayor que la cantidad a comprar o menor que 0,
 	  * no se realiza la operación.
       */
-	public static function buyItem( $idItem, $quantityBought ) {
+	public function buyItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
-		$idItem = mysqli_real_escape_string($con,$idItem);
-		$quantityBought = mysqli_real_escape_string($con,$quantityBought);
-		$sql = "SELECT `quantity` FROM `Item` WHERE idItem='".$idItem."'";
-		$result = mysqli_query($con, $sql);
-		$quantity = mysqli_fetch_array($result);
-		if($quantityBought==$quantity){
-			$itemState=1;
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
+		$quantity = mysqli_real_escape_string($con,$this->quantity);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		if($quantityBought<=$quantity && $quantityBought>=0){
+			if($quantityBought==$quantity){
+				$itemState=1;
+			}
+			else{
+				$itemState=0;
+			}
+			$sql = "UPDATE `Item` SET itemState='".$itemState."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
+			mysqli_query($con, $sql);
 		}
-		else{
-			$itemState=0;
-		}
-		$sql = "UPDATE `Item` SET itemState='".$itemState."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
-		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 	
@@ -216,6 +215,17 @@ class Item {
 		else{
 			return false;
 		}
+	}
+	
+	/**
+	 * Crea una variable de sesión para el ID de un item.
+	 */
+	public static function createItemSession($idItem) {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idItem'] = $idItem;
 	}
 
 }

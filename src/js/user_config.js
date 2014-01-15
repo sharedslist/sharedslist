@@ -4,7 +4,7 @@ function getName()
 	$('#currentUserName').slideUp('fast');
 	$.ajax({
 		data:  {getUser : "usuario"},
-		url:   'php/userConfig.php',
+		url:   URL_SERVER +'php/userConfig.php',
 		type:  'post',
 		success:  function (data)
 					{
@@ -27,11 +27,19 @@ function updateProfile (e) {
 
 	$.ajax({
 		data:  $('#formUserConfig').serialize(),
-		url:   'php/userConfig.php',
+		url:   URL_SERVER +'php/userConfig.php',
 		type:  'post',
 		success:  function (data)
 			   {
 				var code = data.trim();
+				if( code.search('lang=') == 0 ) {
+					var lang = code.substring(5,7);
+					//traducimos la interfaz
+					i18n.setLng(lang, function(){
+						$("html").i18n();
+					});
+					code = code.substring(8);
+				}
 				$('#messageUserConfig').html(code);
 				$('#messageUserConfig').slideDown('fast');
 				getName();	
@@ -44,3 +52,13 @@ function updateProfile (e) {
 			
 	return false;
 }
+
+// lo que se va a ejecutar cuando la página esté lista para ser visualizada
+$(document).on("pageshow", "#user_config", function() {
+	//recuperamos el nombre del usuario y lo mostramos
+	getName();
+	//obtenemos el idioma de la página
+	var lang = i18n.lng();
+	//marcamos como seleccionado el idioma actual
+	$('#select_lang').val(lang);
+});

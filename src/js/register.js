@@ -1,12 +1,36 @@
-window.idinvitation = -1;
-		  function registrar (e) {
-			//e.preventDefault();
-			$('#messageRegister').slideUp('fast');
-			if (window.idinvitation == -1) {
-
-				$.ajax({
+﻿window.idinvitation = -1;		 
+	function registrar (e) {
+		//e.preventDefault();
+		$('#messageRegister').slideUp('fast');
+		if (window.idinvitation == -1) {
+			$.ajax({
 				data:  $('#formRegistro').serialize(),
-				url:   'php/register.php',
+				url:   URL_SERVER +'php/register.php',
+				type:  'post',
+				success:  function (data)
+				   {
+					var code = data.trim();
+					if(code == 'success') {
+						$('#messageRegister').html(' Registrado correcamente.');
+						//redirects to welcome page
+						window.location.href = "#list_groups";
+					}
+					else {
+						$('#messageRegister').html(data);
+					}
+					$('#messageRegister').slideDown('fast');	
+				   },
+				error: function () {
+					$('#messageRegister').html('An error occurred, please try again.');
+					$('#messageRegister').slideDown('fast');
+				}
+			});
+		}
+		else {
+			var parameters = $('#formRegistro').serialize() + "&idinvitation=" + window.idinvitation;
+			$.ajax({
+				data:  parameters,
+				url:   URL_SERVER +'php/accept_invitation.php',
 				type:  'post',
 				success:  function (data)
 					   {
@@ -14,7 +38,7 @@ window.idinvitation = -1;
 						if(code == 'success') {
 							$('#messageRegister').html(' Registrado correcamente.');
 							//redirects to welcome page
-							window.location.href = "list_groups.html";
+							window.location.href = "#list_groups";
 						}
 						else {
 							$('#messageRegister').html(data);
@@ -25,36 +49,12 @@ window.idinvitation = -1;
 						$('#messageRegister').html('An error occurred, please try again.');
 						$('#messageRegister').slideDown('fast');
 					}
-				});
-			}else {
-				var parameters = $('#formRegistro').serialize() + "&idinvitation=" + window.idinvitation;
-				$.ajax({
-					data:  parameters,
-					url:   'php/accept_invitation.php',
-					type:  'post',
-					success:  function (data)
-						   {
-							var code = data.trim();
-							if(code == 'success') {
-								$('#messageRegister').html(' Registrado correcamente.');
-								//redirects to welcome page
-								window.location.href = "list_groups.html";
-							}
-							else {
-								$('#messageRegister').html(data);
-							}
-							$('#messageRegister').slideDown('fast');	
-						   },
-					error: function () {
-							$('#messageRegister').html('An error occurred, please try again.');
-							$('#messageRegister').slideDown('fast');
-						}
-				});
-
-			}	
-			return false;
-		  };
-/**
+			});
+		}	
+		return false;
+  };
+  
+  /**
  * Solicita los parametros de la url y completa el formulario
  * con los mismos. Solo es necesario asegurarse del correo y el id
  * de la invitacion.

@@ -1,14 +1,14 @@
 ﻿// función que hace una llamada AJAX al servidor por las listas de un grupo
 function listSLists() {
 	$.ajax({
-		url: 'php/list_slists.php',
+		url: URL_SERVER +'php/list_slists.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response)
 			   {
 					try {
 						var groupAndSLists = JSON.parse(response.trim());
-						$("#list_slists_header > h1").append(': ' + groupAndSLists.groupName);
+						$("#list_slists_header > h1").html( i18n.t('listSLists.title') + ' : ' + groupAndSLists.groupName);
 						list_slists(groupAndSLists.slists);
 					}
 					catch(e) {
@@ -27,8 +27,8 @@ function list_slists(slists) {
 	$("#close_list").html("");
 	$.each(slists, function(i, slist) {
 		var divider = '<li data-theme = "d" idList="' + slist.idList + '">';
-		var name_date = '<a class="btnViewList"><h2>'+ slist.listName + '</h2><p>Creada ' + slist.listCreated+'</p></a>';
-		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">Opciones de la lista</a>';
+		var name_date = '<a class="btnViewList"><h2>'+ slist.listName + '</h2><p>' + i18n.t('listSLists.created') + slist.listCreated+'</p></a>';
+		var options = '<a class="btnSListOptions" idList="'+slist.idList+'">' + i18n.t('listSLists.listOptions') + '</a>';
 		divider = divider + name_date + options + '</li>';
 		if(slist.listState == 0){
 			//Lista pendiente
@@ -40,15 +40,16 @@ function list_slists(slists) {
 		}
 	});
 	if($("#open_list").html() == ""){
-		$("#open_list").html("<li> No hay listas pendientes </li>");
+		$("#open_list").html("<li>" + i18n.t('listSLists.noOpenLists') + "</li>");
 	}
 	if($("#close_list").html() == ""){
-		$("#close_list").html("<li> No hay listas completadas </li>");
+		$("#close_list").html("<li>" + i18n.t('listSLists.noClosedLists') + "</li>");
 	}
 	$("#open_list").listview( "refresh" );
 	$("#close_list").listview( "refresh" );
 	$("#slists").trigger('create');
 }
+
 
 /*
  * Asociamos el evento 'click' a los elementos de la clase '.btnViewList' con
@@ -56,16 +57,16 @@ function list_slists(slists) {
  * la lista seleccionada, pasando el identificador de la lista por GET.
  */
 $(document).on('click', '.btnViewList', function() {
-	var form = document.createElement('form');
-	form.setAttribute('method', 'GET');
-	form.setAttribute('action', 'list_items.html');
-	inputIdList = document.createElement('input');
-	inputIdList.setAttribute('name', 'idList');
-	inputIdList.setAttribute('type', 'hidden');
-	inputIdList.setAttribute('value', $(this).closest("li").attr('idList'));
-	form.appendChild(inputIdList);
-	document.body.appendChild(form);
-	form.submit();
+	var parameter = {"idList" : $(this).closest("li").attr('idList')};
+	$.ajax({
+	url: URL_SERVER +'php/select_slist.php',
+	data: parameter,
+	type:  'post',
+	success:  function (response)
+	{
+		window.location.href = '#list_items';
+	}
+	});
 });
 
 /*
@@ -76,25 +77,25 @@ $(document).on('click', '.confirmOpt', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 	//guardamos la operación en el atributo 'opt' del botón de confirmación
-	$("#btnConfirm").attr("opt", operation);
+	$("#btnConfirmList").attr("opt", operation);
 	var confirmMessage = "";
 
 	switch(operation) {
 		case "close":
 			//cerrar lista
-			confirmMessage = "Esta operación va a marcar la lista como completada";
+			confirmMessage = i18n.t('listSLists.popup.closeWarn');
 			break;
 		case "open":
 			//completar lista
-			confirmMessage = "Esta operación va a reiniciar la lista";
+			confirmMessage = i18n.t('listSLists.popup.resetWarn');
 			break;
 		case "delete":
 			//borrar lista
-			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
+			confirmMessage = i18n.t('listSLists.popup.removeWarn');
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar
-	$("#txtConfirm").html(confirmMessage);
+	$("#txtConfirmLists").html(confirmMessage);
 	//cerramos el popup de las opciones
 	$('#popupListSLists').popup("close");
 	//mostramos el popup de la confirmación
@@ -107,7 +108,7 @@ $(document).on('click', '.confirmOpt', function() {
  * el menú de las opciones sobre una lista con esta función que averigua la operación 
  * seleccionada y procede a realizarla.
  */
-$(document).on('click', '.btnConfirm', function() {
+$(document).on('click', '.btnConfirmList', function() {
 	//obtenemos la operación solicitada
 	var operation = $(this).attr('opt');
 	var idList = $('#popup_confirm').attr("idList");
@@ -116,14 +117,14 @@ $(document).on('click', '.btnConfirm', function() {
 		case "close":
 			//cerrar lista
 			$.ajax({
-				url: 'php/close_list.php',
+				url: URL_SERVER +'php/close_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
 				success:  function (response)
 					   {
-							//reiniciamos la página
-							location.reload();
+							//actualizamos los datos
+							listSLists();
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando cerrar la lista");
@@ -133,14 +134,14 @@ $(document).on('click', '.btnConfirm', function() {
 		case "open":
 			//reiniciar lista
 			$.ajax({
-				url: 'php/open_list.php',
+				url: URL_SERVER +'php/open_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
 				success:  function (response)
 					   {
-							//reiniciamos la página
-							location.reload();
+							//actualizamos los datos
+							listSLists();
 					   },
 				error: 	function() {
 							$("#messageListSList").html("Ha ocurrido un error intentando reiniciar la lista");
@@ -150,7 +151,7 @@ $(document).on('click', '.btnConfirm', function() {
 		case "delete":
 			//borrar lista
 			$.ajax({
-				url: 'php/delete_list.php',
+				url: URL_SERVER +'php/delete_list.php',
 				dataType: 'text',
 				data: {"idList" : idList},
 				type:  'post',
@@ -158,8 +159,8 @@ $(document).on('click', '.btnConfirm', function() {
 					   {
 							var status = response.trim();
 							if(status == 'success') {
-								//reiniciamos la página
-								location.reload();
+								//actualizamos los datos
+								listSLists();
 							} else {
 								$('#messageListSList').html(status);
 							}
@@ -186,7 +187,7 @@ $(document).on('click', '.btnSListOptions', tapholdHandler);
  */
 function tapholdHandler(){
 	//asociamos el nombre de la lista al popup
-	$("#popupListName").html("Lista : " + $(this).closest("li").find("h2").html());
+	$("#popupListName > p").html(i18n.t('listSLists.popup.list') + ' : ' + $(this).closest("li").find("h2").html());
 	//asignamos el id de la lista seleccionada para que lo sepan los popups
 	var idList = $(this).closest("li").attr('idList');
 	//mostramos u ocultamos la opción de cerrar lista dependiendo del estado de la misma
@@ -197,7 +198,7 @@ function tapholdHandler(){
 	} else {
 		//ocultamos la opción cerrar lista para las listas completadas
 		$('.confirmOpt[opt="open"]').closest("li").show();
-		$('.confirmOpt[opt="close"]').closest("li").hide();
+		$('.confirmOpt[opt="close"]').closest("li").hide();;
 	}
 	$('#popupBtnView').attr("idList", idList);
 	$('#popup_confirm').attr("idList", idList);
@@ -206,7 +207,7 @@ function tapholdHandler(){
 }
 
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#list_slists", function() {
 	listSLists();
 	$("#ulPopupListSLists").listview("refresh");
 	$('#popupListSLists').popup();

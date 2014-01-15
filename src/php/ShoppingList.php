@@ -176,6 +176,19 @@ class ShoppingList
 		mysqli_close($con);
 		return $row[0] == 0;
 	}
+	
+		
+	/**
+	 * Crea una variable de sesión para el ID de una lista de compra.
+	 */
+
+	public static function createSListSession($idList) {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idList'] = $idList;
+	}
 }
 
 ?>

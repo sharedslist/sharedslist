@@ -1,18 +1,18 @@
 ﻿var id = 1; // Identificador de los checkbox
 
 /*
- * Añade el correo del campo #text-2 a la lista de correo
+ * Añade el correo del campo #CreateGroupEmails a la lista de correo
  * si y sólo si es un correo válido.
  */
 function addUsers()
 {
-	var txt = $("#text-2");
+	var txt = $("#CreateGroupEmails");
 	var val = txt.val();
 	if(validateEmail(val)){
-		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
-		$("#check").trigger("create");
+		$("#CreateGroupCheck2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
+		$("#CreateGroupCheck").trigger("create");
 		id = id +1;
-		$("#text-2").val("");
+		$("#CreateGroupEmails").val("");
 		$('#messageCreateGroups').html('');
 	}
 	else{
@@ -53,9 +53,9 @@ function validateName(name)
 function createGroup()
 {
 	var users = new Array();
-	var group_name = $("#text-1").val();
+	var group_name = $("#CreateGroupName").val();
 	if(validateName(group_name)){
-		var n = $('form#createform').find('input:checked');
+		var n = $('form#createGroupForm').find('input:checked');
 		var email;
 		for(var i=1; i< n.length+1; i++)
 		{	
@@ -65,14 +65,14 @@ function createGroup()
 		var parameters = { "users" : users, "group_name" : group_name};
 		$.ajax({
 			data:  parameters,
-			url:   document.URL+'/../php/create_groups.php',
+			url:   URL_SERVER +'php/create_groups.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
 				   {
 					var code = response.trim();
 					if(code == 'success') {
-						window.location.href = 'list_groups.html';
+						window.location.href = '#list_groups';
 					}
 					else{
 						$('#messageCreateGroups').html(response);
@@ -83,7 +83,7 @@ function createGroup()
 			});
 	}
 	else{
-		$('#messageCreateGroups').html('Nombre de grupo incorrecto');
+		$('#messageCreateGroups').html('Nombre de grupo vacío');
 	}
 }
 

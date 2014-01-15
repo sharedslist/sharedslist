@@ -3,14 +3,14 @@
 	require_once("User.php");
 	
 	session_start();
-	if ( isset($_POST['idList']) ) {
-		$idList = $_POST['idList']; //obtenemos el id de la lista a partir de la variable POST
+	if ( isset($_SESSION['idList']) ) {
+		$idList = $_SESSION['idList']; //obtenemos el id de la lista a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado una lista');
 	}
-	if( isset($_POST['idItem']) ) {
-		$idItem = $_POST["idItem"]; //obtenemos el id del item a partir de la variable POST
+	if( isset($_SESSION['idItem']) ) {
+		$idItem = $_SESSION["idItem"]; //obtenemos el id del item a partir de la variable SESSION
 	}
 	else {
 		die ('No se ha seleccionado un item');
@@ -49,14 +49,4 @@
 	$item->quantity = $quantity;
 	$item->metric = $metric;
 	$item->editItem();
-	if($itemComprado){
-		//comprobamos si el item que se acaba de marcar como comprado 
-		//fue el último que faltaba por comprar en la lista
-		if( ShoppingList::isCompleted($idList) ) {
-			//cerramos la lista
-			ShoppingList::closeList($idList);
-			//informamos de que se ha cerrado la lista de compra
-			echo "closed";
-		}
-	}
 ?>

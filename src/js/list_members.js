@@ -2,7 +2,7 @@ var admin = false;
 
 function listMembers() {
 	$.ajax({
-		url: 'php/list_members.php',
+		url: URL_SERVER +'php/list_members.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response) {
@@ -10,6 +10,7 @@ function listMembers() {
 						var obj1 = JSON.parse(response.trim());
 						admin=obj1.admin;
 						listarMiembros(obj1);
+						$("#messageListMembers").html("");
 					}catch (err){
 						$("#messageListMembers").html("");
 						$("#messageListMembers").html("Ha ocurrido un error. Pruebe de nuevo.");
@@ -37,8 +38,8 @@ function listarMiembros(response)
 		
 		$("#miembros").append(divider);
 		//$("#miembros").append('<li id="'+ response.ids[i]+'"><a href ="#">'+response.miembros[i]+'</a></li>');
-		$("#miembros").listview('refresh');
 	}
+	$("#miembros").listview('refresh');
 	$("#miembros").trigger("create");
 }
 
@@ -63,7 +64,7 @@ $(document).on('click', '.btnConfirmDelete', function() {
 
 	//abandonar grupo
 	$.ajax({
-		url: 'php/delete_member.php',
+		url: URL_SERVER +'php/delete_member.php',
 		dataType: 'text',
 		data: {"idMember" : idMember},
 		type:  'post',
@@ -71,8 +72,8 @@ $(document).on('click', '.btnConfirmDelete', function() {
 				{
 					var status = response.trim();
 					if(status == 'success') {
-						//refrescamos la página
-						location.reload();
+						// actualizamos la lista
+						listMembers();
 					} else {
 						$('#messageListMembers').html(status);
 					}
@@ -83,4 +84,9 @@ $(document).on('click', '.btnConfirmDelete', function() {
 	});
 	//cerramos el popup de la confirmación
 	$('#popupConfirmDeleteMember').popup('close');
+});
+
+// lo que se va a ejecutar cuando la página esté lista para ser visualizada
+$(document).on("pageshow", "#list_members", function() {
+	listMembers();
 });

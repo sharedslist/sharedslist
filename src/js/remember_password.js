@@ -1,13 +1,13 @@
 ﻿	function remember_password () {
-		var email = $("#email").val();
+		var email = $("#rememberEmail").val();
 		var parameters = { "emailAddress" : email};
 		$.ajax({
 		data:  parameters,
-		url:   'php/remember_password.php',
+		url:   URL_SERVER +'php/remember_password.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (response){
-				if(response == 'success') {
+				if(response.trim() == 'success') {
 					$('#messageRememberPassword').html('Se ha generado una nueva contraseña aleatoria y se ha enviado a su email.');
 					
 				}else {

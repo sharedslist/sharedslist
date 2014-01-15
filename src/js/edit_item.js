@@ -3,18 +3,16 @@
 });
 
 // Rellena los campos del formulario con la información del item
-$(document).on("pageshow", function() {
-	var parameters = { "idItem" : getUrlVars()["idItem"], "idList" : getUrlVars()["idList"] };
+$(document).on("pageshow", "#edit_items", function() {
 	$.ajax({
-		url: 'php/get_item_info.php',
+		url: URL_SERVER +'php/get_item_info.php',
 		dataType: 'text',
-		data: parameters,
 		type:  'post',
 		success:  function (response){
 						var item = JSON.parse(response.trim());
-						$('#itemName').attr('value', item.itemName);
-						$('#quantity').val(item.quantity).change();
-						$('#metric').val(item.metric).change();
+						$('#edit_itemName').attr('value', item.itemName);
+						$('#edit_quantity').val(item.quantity).change();
+						$('#edit_metric').val(item.metric).change();;
 					},
 			error: function () {
 						$('#messageEditItem').html('No ha sido posible obtener los datos del producto');
@@ -22,19 +20,18 @@ $(document).on("pageshow", function() {
 		});
 });
 
-
-$(document).on("pageshow", function() {
+$(document).on("pageshow", "#edit_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 1; i <= 999; i++) {
+	for (var i = 1; i <= 50; i++) {
 		$('<option/>', {
 			value : i,
 			text : i
-		}).appendTo('#quantity');
+		}).appendTo('#edit_quantity');
 	};
 	// cargamos la extensión mobiscroll para la cantidad
-	$('#quantity').mobiscroll().select({
+	$('#edit_quantity').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
@@ -47,26 +44,15 @@ $(document).on("pageshow", function() {
 /*
  * Carga la extensión mobiscroll para la cantidad
  */
-$('#quantity').on("rrrreload", function() {
-	$('#quantity').mobiscroll().select({
+$('#edit_quantity').on("rrrreload", function() {
+	$('#edit_quantity').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
 	});
 });
-
-
-//parsea la URL para obtener los parámetros GET;
-function getUrlVars(){
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
 
 /*
  * Obtiene datos del formulario de la página html, los valida y envía los datos a edit_item.php
@@ -74,47 +60,27 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function editItem(){
-	var itemName = $("#itemName").val();
-	var itemState;
-	var quantity = $("#quantity").val();
-	var metric = $("#metric").val();
+	var itemName = $("#edit_itemName").val();
+	var quantity = $("#edit_quantity").val();
+	var metric = $("#edit_metric").val();
 	if(!validateItemName(itemName)){
 		$('#messageEditItem').html('Nombre del producto inválido');
 	}
-	else if(!validateQuantity(quantity)){
-		$('#messageEditItem').html('Cantidad del producto inválida');
-	}
 	else {
-		var parameters = { "idList" : getUrlVars()["idList"], "idItem" : getUrlVars()["idItem"], "itemName" : itemName, "quantity" : quantity, "metric" : metric };
+		var parameters = {"itemName" : itemName, "quantity" : quantity, "metric" : metric };
 		$.ajax({
 			data:  parameters,
-			url:   'php/edit_item.php',
+			url:   URL_SERVER +'php/edit_item.php',
 			dataType: 'text',
 			type:  'post',
 			success:  function (response){
-						var closed = response.trim()=='closed';
-						var form = document.createElement('form');
-						form.setAttribute('method', 'GET');
-						form.setAttribute('action', 'list_items.html');
-						inputIdList = document.createElement('input');
-						inputIdList.setAttribute('name', 'idList');
-						inputIdList.setAttribute('type', 'hidden');
-						inputIdList.setAttribute('value', getUrlVars()['idList']);
-						form.appendChild(inputIdList);
-						if(closed) {
-							var inputListClosed = document.createElement('input');
-							inputListClosed.setAttribute('name', 'listClosed');
-							inputListClosed.setAttribute('type', 'hidden');
-							inputListClosed.setAttribute('value', closed);
-							form.appendChild(inputListClosed);
-						}
-						document.body.appendChild(form);
-						form.submit();
+						window.location.href = '#list_items';
 					},
 			error: function (){
 						$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
 					}
 		});
+		
 	}
 }
 
@@ -125,23 +91,12 @@ function editItem(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function deleteItem(){
-	var parameters = { "idList" : getUrlVars()["idList"], "idItem" : getUrlVars()["idItem"] };
 	$.ajax({
-		data:  parameters,
-		url:   'php/delete_item.php',
+		url:   URL_SERVER +'php/delete_item.php',
 		dataType: 'text',
 		type:  'post',
 		success:  function (){
-					var form = document.createElement('form');
-					form.setAttribute('method', 'GET');
-					form.setAttribute('action', 'list_items.html');
-					inputIdList = document.createElement('input');
-					inputIdList.setAttribute('name', 'idList');
-					inputIdList.setAttribute('type', 'hidden');
-					inputIdList.setAttribute('value', getUrlVars()['idList']);
-					form.appendChild(inputIdList);
-					document.body.appendChild(form);
-					form.submit();
+					window.location.href = '#list_items';
 				},
 		error: function (){
 					$('#messageEditItem').html('Ha ocurrido un error, por favor vuelva a intentarlo.');
@@ -164,17 +119,3 @@ function validateItemName(name) {
 	}
 }
 
-
-/*
- * Verifica que la cantidad del item es válida
- * 
- * @return boolean True si la cantidad del item es válida, un número mayor que 0.False en caso contrario
- */
-function validateQuantity(quantity) { 	
-	if(($.trim(quantity) == "") || parseInt(quantity)<0){
-		return false;
-	}
-	else{
-		return true;
-	}
-}
