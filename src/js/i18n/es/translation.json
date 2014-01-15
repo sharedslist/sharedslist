@@ -98,7 +98,7 @@
 	},
 	"userConfig": {
 		"title": "Configuración",
-		"helpText": "Aquí puedes cambiar tu nombre de usuario y contraseña. Deberás introducir tu antigua contraseña para poder realizar los cambios. Si no deseas cambiar un campo dejalo vacío.",
+		"helpText": "Aquí puedes cambiar tu nombre de usuario, contraseña y el idioma. Deberás introducir tu antigua contraseña para poder realizar los cambios. Si no deseas cambiar un campo dejalo vacío.",
 		"currentName": "Nombre actual: ",
 		"newUsername": "Nuevo nombre de usuario",
 		"newPass": "Contraseña nueva",

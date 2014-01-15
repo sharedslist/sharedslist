@@ -98,7 +98,7 @@
 	},
 	"userConfig": {
 		"title": "Configuration",
-		"helpText": "Here you can change your username and password. You´ll have to enter your current password to save the changes. Leave a field blank if you don't want to modify it.",
+		"helpText": "Here you can change your username, password and the language. You´ll have to enter your current password to save the changes. Leave a field blank if you don't want to modify it.",
 		"currentName": "Current username: ",
 		"newUsername": "New username",
 		"newPass": "New password",
