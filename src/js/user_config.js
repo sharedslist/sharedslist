@@ -60,5 +60,5 @@ $(document).on("pageshow", "#user_config", function() {
 	//obtenemos el idioma de la página
 	var lang = i18n.lng();
 	//marcamos como seleccionado el idioma actual
-	$('#select_lang').val(lang);
+	$('#select_lang').val(lang).change();
 });
