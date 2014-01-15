@@ -8,6 +8,8 @@ function listItems(){
 					var listAndItems = JSON.parse(response.trim());
 					$("#list_name").html("");
 					$("#list_name").append(listAndItems.listName);
+					$("#listItems_list_name").html("");
+					$("#listItems_list_name").append(listAndItems.listName);
 					$("#list_name").trigger('create');
 					$("#btnOptions").attr('listName', listAndItems.listName);
 					$("#btnOptions").attr('listState', listAndItems.listState);
