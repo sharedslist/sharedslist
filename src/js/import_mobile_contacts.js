@@ -8,7 +8,7 @@ function initapp () {
 }
 
 function onDeviceReady () {
-	  $("#boton-importarcontactos").show();
+	  $("#divOnPhone").show();
 }
 
 
