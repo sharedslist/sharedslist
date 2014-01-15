@@ -73,7 +73,7 @@ $(document).on('change', '.item_check', function() {
 
 
 function mobiscroll( idItem, quantity, quantityBought) {
-	$("#mobiscrollQuantityB").html('<select name="Cantidad comprada" id="mobiscrollQuantityBought" value="'+quantityBought+'" idItem="'+idItem+'" quantity="'+quantity+'" data-role="none">');
+	$("#mobiscrollQuantityB").html('<select name="' + i18n.t('listItems.quantityBought') + '" id="mobiscrollQuantityBought" value="'+quantityBought+'" idItem="'+idItem+'" quantity="'+quantity+'" data-role="none">');
 	$("#mobiscrollQuantityB").trigger('create');
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 0; i <= quantity; i++) {
@@ -95,7 +95,7 @@ function mobiscroll( idItem, quantity, quantityBought) {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#mobiscrollQuantityBought').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next,
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'mobiscrollQuantityBoughtText',
@@ -147,7 +147,7 @@ $(document).on('click', '.listItems_buy_btnConfirm', function() {
 function confirmCloseList() {
 	//guardamos la operación close en el atributo 'opt' del botón de confirmación
 	$("#listItems_btnConfirm").attr("opt", "close");
-	var warning = "Esta operación va a completar la lista automáticamente y redirigirte al listado de tus listas de compra";
+	var warning = i18n.t('listItems.autoCloseWarn');
 	$("#listItems_txtConfirm").html(warning);
 	//cerramos el popup de las opciones
 	$('#popupListItems').popup("close");
@@ -228,15 +228,15 @@ $(document).on('click', '.listItems_confirmOpt', function() {
 	switch(operation) {
 		case "close":
 			//completar lista
-			confirmMessage = "Esta operación va a marcar la lista como completada";
+			confirmMessage = i18n.t('listSLists.popup.closeWarn');
 			break;
 		case "open":
 			//completar lista
-			confirmMessage = "Esta operación va a reiniciar la lista";
+			confirmMessage = i18n.t('listSLists.popup.resetWarn');
 			break;
 		case "delete":
 			//borrar lista
-			confirmMessage = "Esta acción va a eliminar la lista, la acción es irreversible";
+			confirmMessage = i18n.t('listSLists.popup.removeWarn');
 			break;
 	};
 	//mostramos un mensaje informando de la operación a realizar

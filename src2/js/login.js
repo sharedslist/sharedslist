@@ -28,9 +28,11 @@ function doLogin () {
 							//averiguamos el idioma del usuario
 							var lang = code.split(";")[1];
 							//traducimos la interfaz si está en otro idioma que el del usuario
-							i18n.setLng(lang, function(){
-								$("html").i18n();
-							});
+							if( i18n.lng() != lang ) {
+								i18n.setLng(lang, function(){
+									$("html").i18n();
+								});
+							}
 							$.mobile.changePage('#list_groups');
 							$('#message').html( i18n.t('message.authenticationOK') );
 						}
@@ -40,7 +42,7 @@ function doLogin () {
 						$('#message').slideDown('fast');	
 					   },
 				error: function () {
-						$('#message').html('Ha ocurrido un error, por favor pruebe de nuevo.');
+						$('#message').html( i18n.t('message.genericError') );
 						$('#message').slideDown('fast');
 					}
 			});

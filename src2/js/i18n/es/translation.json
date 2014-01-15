@@ -77,10 +77,12 @@
 		"initialProducts": "Productos iniciales"
 	},
 	"listItems": {
+		"quantityBought": "Cantidad comprada",
 		"popup": {
 			"btnNewProduct": "Nuevo producto",
 			"options": "Opciones",
-			"whatQuantity": "¿Cuánta cantidad ha sido comprada?"
+			"whatQuantity": "¿Cuánta cantidad ha sido comprada?",
+			"autoCloseWarn": "Esta operación va a completar la lista automáticamente y redirigirte al listado de tus listas de compra"
 		}
 	},
 	"createItem": {
@@ -138,7 +140,7 @@
 		"no": "No",
 		"irreversible": "Esta acción es irreversible",
 		"close": "Cerrar",
-		"expel": "Está acción expulsará al usuario del grupo",
+		"expel": "Esta acción expulsará al usuario del grupo",
 		"accept": "Aceptar",
 		"cancel": "Cancelar"
 	},

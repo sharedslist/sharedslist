@@ -77,10 +77,12 @@
 		"initialProducts": "Initial items"
 	},
 	"listItems": {
+		"quantityBought": "Bought quantity",
 		"popup": {
 			"btnNewProduct": "New item",
 			"options": "Options",
-			"whatQuantity": "What quantity did you buy?"
+			"whatQuantity": "What quantity did you buy?",
+			"autoCloseWarn": "This action will automatically mark the list as completed and forward you to the list of your selected Group's shopping lists"
 		}
 	},
 	"createItem": {
@@ -107,8 +109,8 @@
 	},
 	"rememberPassword": {
 		"title": "Remember password",
-		"email": "Correo electrónico",
-		"btnRemember": "Recordar"
+		"email": "Email",
+		"btnRemember": "Remember"
 	},
 	"message": {
 		"authenticationOK": "You have been authenticated successfully.",

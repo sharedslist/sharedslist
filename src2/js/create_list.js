@@ -32,7 +32,7 @@ $(document).on("pageshow", "#create_list", function() {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#quantityNewProduct').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next,
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'textoCantidad'
@@ -64,7 +64,7 @@ function addProduct() {
 		// cargamos la extensión mobiscroll para el producto añadido
 		$("#initialProducts li:last-child select").mobiscroll().select({
 			theme : 'jqm',
-			lang : 'es',
+			lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next,
 			display : 'bottom',
 			mode : 'mixed',
 			inputClass : 'textoCantidad'
@@ -160,6 +160,10 @@ function createList() {
 				   {
 						var code = response.trim();
 						if(code == 'success'){
+							//limpiamos los datos de la página
+							$("#initialProducts").hide();
+							$("#initialProducts li:not(:first)").remove();
+							//redireccionamos al listado de listas de compra
 							window.location.href = "#list_slists";
 							return false;
 						}
