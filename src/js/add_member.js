@@ -161,4 +161,5 @@ $(document).on("pageshow", "#add_member", function() {
 	$("#divInviteMembers").hide();
 	$("#checkNoRegistrados").html('');
 	$("#check2").html('');
+	initapp();
 });
