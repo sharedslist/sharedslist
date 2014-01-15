@@ -9,8 +9,19 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<script src="js/jquery.min.js"></script>
 	<script type='text/javascript' > 
-		//var URL_SERVER= 'http://sharedslist.hol.es/'; // para conectarse al servidor de sahred
-		var URL_SERVER= ''; //para usarla en local como relativa  
+		//var URL_SERVER= 'http://sharedslist.hol.es/'; // para conectarse al servidor de shared
+		var URL_SERVER= ''; //para usarla en local como relativa
+		//función que recarga la página actual dinámicamente
+		function refreshPage() {
+		  $.mobile.changePage(
+			'#' + $.mobile.activePage.attr('id'),
+			{
+			  allowSamePageTransition : true,
+			  transition : 'none',
+			  changeHash : false
+			}
+		  );
+		}		
 	</script>	
 	<script src="js/i18n/i18next.min.js"></script>
 	<script src="js/jquery.mobile.min.js"></script>
@@ -153,7 +164,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -204,7 +215,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -253,7 +264,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -325,7 +336,7 @@
 			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
 			</li>
 			<li data-icon="refresh">
-			  <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
 			</li>
 			<li data-icon="delete" style="background-color:#111;">
 			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -376,7 +387,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -478,7 +489,7 @@
 			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
 			</li>
 			<li data-icon="refresh">
-			  <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
 			</li>
 			<li data-icon="delete" style="background-color:#111;">
 			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -515,7 +526,7 @@
 			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
 			</li>
 			<li data-icon="refresh">
-			  <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
 			</li>
 			<li data-icon="delete" style="background-color:#111;">
 			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -598,7 +609,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -662,7 +673,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
@@ -726,7 +737,7 @@
               <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
             </li>
             <li data-icon="refresh">
-              <a href="#" onClick="location.reload(true)" data-i18n="menu.refresh"></a>
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
             </li>
             <li data-icon="delete" style="background-color:#111;">
               <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
