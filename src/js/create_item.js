@@ -14,7 +14,7 @@ $(document).on("pageshow", "#create_items", function() {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
@@ -30,7 +30,7 @@ $(document).on("pageshow", "#create_items", function() {
 $('#quantity').on("rrrreload", function() {
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
-		lang : 'es',
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
