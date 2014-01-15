@@ -30,7 +30,7 @@ function listarMiembros(response)
 		var divider = '<li data-theme = "d" idMember="' + response.ids[i] + '"> ';
 		var member = '<a href="#">'+ response.miembros[i] + '</a>';
 		if (admin){
-			var options = '<a href ="#" class="btnBorrar" idMember="'+response.ids[i]+'">BorrarMiembro</a>';
+			var options = '<a href ="#" class="btnBorrar" idMember="'+response.ids[i]+'">' + i18n.t('listMembers.btnDelete') + '</a>';
 			divider = divider + member + options + '</li>';
 		}else {
 			divider = divider + member + '</li>';
