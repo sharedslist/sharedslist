@@ -147,7 +147,7 @@ $(document).on('click', '.listItems_buy_btnConfirm', function() {
 function confirmCloseList() {
 	//guardamos la operación close en el atributo 'opt' del botón de confirmación
 	$("#listItems_btnConfirm").attr("opt", "close");
-	var warning = i18n.t('listItems.autoCloseWarn');
+	var warning = i18n.t('listItems.popup.autoCloseWarn');
 	$("#listItems_txtConfirm").html(warning);
 	//cerramos el popup de las opciones
 	$('#popupListItems').popup("close");
