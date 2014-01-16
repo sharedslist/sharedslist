@@ -1,7 +1,7 @@
 Sin empezar,,,En proceso,,,,Terminadas,,,,
 Tarea,Estimación,,Tarea,Estimación,Responsable,,Tarea,Estimación,Esfuerzo real,Responsable,Fecha finalización
 ,,,,,,,Cerrar lista (automáticamente): Interfaz y lógica,1:00:00,1:00:00,Lukas,15/12/2013
-Internacionalización de la interfaz: Pruebas y documentación,2:30:00,,,,,,Cerrar lista (automáticamente): Pruebas y documentación,1:00:00,1:00:00,Lukas,15/12/2013
+,,,,,,,Cerrar lista (automáticamente): Pruebas y documentación,1:00:00,1:00:00,Lukas,15/12/2013
 ,,,,,,,Recordar usuario y contraseña: Interfaz y lógica,2:00:00,2:00:00,Ricardo,18/12/2013
 ,,,,,,,Añadir usuario a grupo: Añadir comentarios php,0:00:00,0:00:00,Ricardo,24/12/2013
 ,,,,,,,Borrar lista: Corregir ortografía y cambiar estado,0:00:00,0:00:00,Ricardo,24/12/2013
@@ -31,6 +31,7 @@ Internacionalización de la interfaz: Pruebas y documentación,2:30:00,,,,,,Cerr
 ,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Interfaz y lógica,2:00:00,3:00:00,Marta,11/01/2014
 ,,,,,,,Establecer cantidades de producto en unidades (kg metro unidad ...): Pruebas y documentación,1:30:00,1:30:00,Marta,12/01/2014
 ,,,,,,,Unir HTML  identidicadores únicos y precargar funciones js necesarias: Pruebas,1:30:00,4:30:00,Álvaro,11/01/2014
-,,,,,,,Internacionalización de la interfaz: Interfaz y lógica,16:00:00,16:00:00,Lukas,12/01/14
-,,,,,,,Crear aplicación para Android (Phonegap): Pruebas y documentación,2:00:00,01:30:00,Ricardo,12/01/14
-,,,,,,,Importar contactos desde el móvil: Pruebas y documentación,3:00:00,00:30:00,Claudiu,14/01/14
+,,,,,,,Internacionalización de la interfaz: Interfaz y lógica,16:00:00,16:00:00,Lukas,12/01/2014
+,,,,,,,Crear aplicación para Android (Phonegap): Pruebas y documentación,2:00:00,01:30:00,Ricardo,12/01/2014
+,,,,,,,Importar contactos desde el móvil: Pruebas y documentación,3:00:00,00:30:00,Claudiu,14/01/2014
+,,,,,,,Internacionalización de la interfaz: Pruebas y documentación,2:30:00,02:00:00,Ricardo,15/01/14
