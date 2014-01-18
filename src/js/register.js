@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-﻿		  function registrar (e) {
-			//e.preventDefault();
-			$('#message').slideUp('fast');
-
-			$.ajax({
-				data:  $('#formRegistro').serialize(),
-				url:   'php/register.php',
-=======
 ﻿window.idinvitation = -1;		 
 	function registrar (e) {
 		//e.preventDefault();
@@ -40,31 +31,11 @@
 			$.ajax({
 				data:  parameters,
 				url:   URL_SERVER +'php/accept_invitation.php',
->>>>>>> origin/develop
 				type:  'post',
 				success:  function (data)
 					   {
 						var code = data.trim();
 						if(code == 'success') {
-<<<<<<< HEAD
-							$('#message').html(' Registrado correcamente.');
-							//redirects to welcome page
-							window.location.href = "list_groups.html";
-						}
-						else {
-							$('#message').html(data);
-						}
-						$('#message').slideDown('fast');	
-					   },
-				error: function () {
-						$('#message').html('An error occurred, please try again.');
-						$('#message').slideDown('fast');
-					}
-			});
-			
-			return false;
-		  };
-=======
 							$('#messageRegister').html(' Registrado correcamente.');
 							//redirects to welcome page
 							window.location.href = "#list_groups";
@@ -115,4 +86,3 @@ function getUrlVars()
     }
     return vars;
 }
->>>>>>> origin/develop

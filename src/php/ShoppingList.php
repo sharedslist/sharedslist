@@ -123,8 +123,6 @@ class ShoppingList
 	}
 	
 	/**
-<<<<<<< HEAD
-=======
       * Pone el estado de la lista actual a false, es decir, abre la lista.
 	  * Desmarca todos los items.
       */
@@ -142,7 +140,6 @@ class ShoppingList
 	
 	
 	/**
->>>>>>> origin/develop
       * Comprueba si el usuario 'idUser' pertenece al grupo al que pertenece la lista'idList'
       *
       * @param int $idUser El ID del usuario que se quiere comprobar
@@ -179,8 +176,6 @@ class ShoppingList
 		mysqli_close($con);
 		return $row[0] == 0;
 	}
-<<<<<<< HEAD
-=======
 	
 		
 	/**
@@ -194,7 +189,6 @@ class ShoppingList
 		catch (Exception $e){}
 		$_SESSION['idList'] = $idList;
 	}
->>>>>>> origin/develop
 }
 
 ?>

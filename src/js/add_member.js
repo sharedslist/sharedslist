@@ -1,38 +1,21 @@
 var id = 1; // Identificador de los checkbox
 
 /*
-<<<<<<< HEAD
- * Añade el correo del campo #text-2 a la lista de correo
-=======
  * Añade el correo del campo #addMemberEmail a la lista de correo
->>>>>>> origin/develop
  * si y sólo si es un correo válido.
  */
 function addCorreos()
 {
-<<<<<<< HEAD
-	var txt = $("#text-2");
-	var val = txt.val();
-	if(validateEmail(val)){
-		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
-		$("#check").trigger("create");
-		id = id +1;
-		$("#text-2").val("");
-		$('#messageAddMember').html('');
-=======
 	var txt = $("#addMemberEmail");
 	var val = txt.val();
 	if(validateEmail(val)){
 		appendCorreo(val);
->>>>>>> origin/develop
 	}
 	else{
 		$('#messageAddMember').html('Email incorrecto');
 	}
 }
 
-<<<<<<< HEAD
-=======
 function appendCorreo(val){
 		$("#check2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
 		$("#check").trigger("create");
@@ -42,7 +25,6 @@ function appendCorreo(val){
 
 
 }
->>>>>>> origin/develop
 /*
  * Devuelve cierto si y solo si el parámetro de entrada 
  * email tiene la estructura de un correo electrónico. 
@@ -63,12 +45,7 @@ function validateEmail(email)
 function addMembers()
 {
 	var users = new Array();
-<<<<<<< HEAD
-	var group_name = $("#text-1").val();
-		var n = $('form#createform').find('input:checked');
-=======
 		var n = $('form#addMember').find('input:checked');
->>>>>>> origin/develop
 		var email;
 		for(var i=1; i< n.length+1; i++)
 		{	
@@ -78,23 +55,15 @@ function addMembers()
 		var parameters = { "users" : users};
 		$.ajax({
 			data:  parameters,
-<<<<<<< HEAD
-			url:   document.URL+'/../php/add_members.php',
-=======
 			url:   URL_SERVER + 'php/add_members.php',
->>>>>>> origin/develop
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
 				   {
 					var code = response.trim();
 					if(code == 'success') {
-<<<<<<< HEAD
-						window.location.href = 'list_members.html';
-=======
 						$('#messageAddMember').html("");
 						getNotInvited(parameters);
->>>>>>> origin/develop
 					}
 					else{
 						$('#messageAddMember').html(response);
@@ -107,8 +76,6 @@ function addMembers()
 
 }
 
-<<<<<<< HEAD
-=======
 /*
 * De la lista de los correos anteriores devuelve cuales no están registrados
 * en la base de datos.
@@ -183,13 +150,10 @@ function inviteUsers () {
 }
 
 
->>>>>>> origin/develop
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
 $(document).ready(function() {
 	isConnected() ;
 });
-<<<<<<< HEAD
-=======
 
 
 $(document).on("pageshow", "#add_member", function() {
@@ -199,4 +163,3 @@ $(document).on("pageshow", "#add_member", function() {
 	$("#check2").html('');
 	initapp();
 });
->>>>>>> origin/develop

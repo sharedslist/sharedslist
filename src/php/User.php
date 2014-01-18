@@ -33,14 +33,11 @@ class User
   * @var string La contraseña encriptada
   */
   public $password = null;
-<<<<<<< HEAD
-=======
   
   /**
   * @var string La contraseña encriptada
   */
   public $lang = null;
->>>>>>> origin/develop
 
 
   /**
@@ -54,10 +51,7 @@ class User
     if ( isset( $data['emailAddress'] ) ) $this->emailAddress = preg_replace ( "/[^\.\-\_\@a-zA-Z0-9]/", "", $data['emailAddress'] );
     if ( isset( $data['plaintextPassword'] ) ) $this->plaintextPassword = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['plaintextPassword'] );
     if ( isset( $data['password'] ) ) $this->password = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['password'] );
-<<<<<<< HEAD
-=======
 	if ( isset( $data['lang'] ) ) $this->lang = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['lang'] );
->>>>>>> origin/develop
   }
 
 
@@ -105,21 +99,6 @@ class User
   */
 
   public function sendPassword() {
-<<<<<<< HEAD
-    $headers = "From: noreply@sharedslist.hol.es";
-	$to = $this->emailAddress;
-	$subject = "Nueva contraseña";
-	$message = "Hola ";
-	$message .= $this->userName;
-	$message .="\n Te enviamos tu nueva contrase�a generada aleatoriamente.\nContraseña:";
-	$message .=$this->plaintextPassword;
-	$message .="\nPuedes cambiarla por una nueva en la configuración de usuario.\n\n";
-	$message .="Un saludo,\n el equipo de Shared Shopping List.";
-	// la función mail consulta en el fichero php.ini los datos necesarios para consultarse al servidor
-	// de envio de correos.
-	$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
-	return $enviado;
-=======
 	$headers = "From: noreply@sharedslist.hol.es";
 	$to = $this->emailAddress;
 	if( $user -> lang == 'en' ) {
@@ -147,7 +126,6 @@ class User
 		$enviado = mail($to,$subject,$message,$headers) or die("No se puede conectar al servidor de correo");
 		return $enviado;
 	}
->>>>>>> origin/develop
   }
 
 
@@ -206,10 +184,7 @@ class User
 	$result = mysqli_query($con, $sql);
 
 	$row = mysqli_fetch_array($result);
-<<<<<<< HEAD
-=======
 	mysqli_close($con);
->>>>>>> origin/develop
     if ( $row ) return new User( $row );
   }
   
@@ -291,8 +266,6 @@ class User
 	mysqli_close($con);
    
   }
-<<<<<<< HEAD
-=======
   
 	/**
 	* Actualiza el idioma del Usuario actual en la base de datos.
@@ -314,7 +287,6 @@ class User
 		mysqli_close($con);
 
 	}  
->>>>>>> origin/develop
 
     /**
   * Actualiza el nombre de usuario del Usuario actual en la base de datos.
@@ -338,11 +310,8 @@ class User
   mysqli_close($con);
    
   }
-<<<<<<< HEAD
-=======
   
   
->>>>>>> origin/develop
 
 
   /**

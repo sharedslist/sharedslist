@@ -21,11 +21,7 @@ $(document).on('click', '.removeProduct', function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
-<<<<<<< HEAD
-$(document).on("pageshow", function() {
-=======
 $(document).on("pageshow", "#create_list", function() {
->>>>>>> origin/develop
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 1; i <= maxProducts; i++) {
 		$('<option/>', {
@@ -36,25 +32,18 @@ $(document).on("pageshow", "#create_list", function() {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#quantityNewProduct').mobiscroll().select({
 		theme : 'jqm',
-<<<<<<< HEAD
-		lang : 'es',
-=======
 		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next,
->>>>>>> origin/develop
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'textoCantidad'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
 	$("#create_list").trigger('create');
-<<<<<<< HEAD
-=======
 	//limpiamos la basura que podria haberse producido con mobiscroll
 	$("#newProduct .ui-block-b .ui-input-text").hide();
 	$("#newProduct .ui-block-b .ui-input-text .textoCantidad").parent().show();
 	$("#newProduct .ui-block-b .ui-input-text .textoCantidad").show();
 
->>>>>>> origin/develop
 });
 
 /*
@@ -75,11 +64,7 @@ function addProduct() {
 		// cargamos la extensión mobiscroll para el producto añadido
 		$("#initialProducts li:last-child select").mobiscroll().select({
 			theme : 'jqm',
-<<<<<<< HEAD
-			lang : 'es',
-=======
 			lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next,
->>>>>>> origin/develop
 			display : 'bottom',
 			mode : 'mixed',
 			inputClass : 'textoCantidad'
@@ -149,11 +134,7 @@ function createLiItem(name){
  */
 function createList() {
 	if(!validateListName()){
-<<<<<<< HEAD
-		$('#message').html('Intoduce el nombre de la lista correctamente');
-=======
 		$('#messageCreateList').html( i18n.t('message.wrongListName') );
->>>>>>> origin/develop
 	}
 	else {
 		var newList = [];
@@ -173,22 +154,12 @@ function createList() {
 		var newListJSON = JSON.stringify(newList);
 		$.ajax({
 			data:  { "newList" : newListJSON },
-<<<<<<< HEAD
-			url:   'php/create_list.php',
-=======
 			url:   URL_SERVER +'php/create_list.php',
->>>>>>> origin/develop
 			type:  'post',
 			success:  function (response)
 				   {
 						var code = response.trim();
 						if(code == 'success'){
-<<<<<<< HEAD
-							window.location.href = "list_slists.html";
-						}
-						else{
-							$("#message").html(response);
-=======
 							//limpiamos los datos de la página
 							$("#initialProducts").hide();
 							$("#initialProducts li:not(:first)").remove();
@@ -198,16 +169,11 @@ function createList() {
 						}
 						else{
 							$("#messageCreateList").html(response);
->>>>>>> origin/develop
 						}
 				   },
 			error: function () 
 					{
-<<<<<<< HEAD
-						$('#message').html('Ha ocurrido un error, intentalo de nuevo');
-=======
 						$('#messageCreateList').html( i18n.t('message.genericError') );
->>>>>>> origin/develop
 					}
 		});				
 	}

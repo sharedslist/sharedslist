@@ -5,11 +5,7 @@
 function listGroups()
 {
 	$.ajax({
-<<<<<<< HEAD
-		url: document.URL+'/../php/list_groups.php',
-=======
 		url: URL_SERVER + 'php/list_groups.php',
->>>>>>> origin/develop
 		dataType: 'text',
 		type:  'post',
 		success:  function (response)
@@ -19,39 +15,24 @@ function listGroups()
 		});
 }
 
-<<<<<<< HEAD
-=======
 $('#list_groups').bind('pageinit', function() {
   listGroups();
 });
 
->>>>>>> origin/develop
 function selectGroup()
 {
 	var parameter = {"idGroup" : $(this).closest("li").attr('id')};
 	$.ajax({
-<<<<<<< HEAD
-	url: 'php/select_group.php',
-=======
 	url: URL_SERVER +'php/select_group.php',
->>>>>>> origin/develop
 	data: parameter,
 	type:  'post',
 	success:  function (response)
 	{
-<<<<<<< HEAD
-		window.location.href = 'list_slists.html';
-	},
-	error: 	function() 
-	{
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
-=======
 		window.location.href = '#list_slists';
 	},
 	error: 	function() 
 	{
 		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
->>>>>>> origin/develop
 	}
 	});
 }
@@ -65,11 +46,7 @@ function selectGroupLongPress(id)
 {
 	var parameter = {"idGroup" : id};
 	$.ajax({
-<<<<<<< HEAD
-	url: 'php/select_group.php',
-=======
 	url: URL_SERVER +'php/select_group.php',
->>>>>>> origin/develop
 	data: parameter,
 	type:  'post',
 	success:  function (response)
@@ -78,11 +55,7 @@ function selectGroupLongPress(id)
 	},
 	error: 	function() 
 	{
-<<<<<<< HEAD
-		$("#message").html("Ha ocurrido un error recuperando las listas de la compra");
-=======
 		$("#messageListGroups").html("Ha ocurrido un error recuperando las listas de la compra");
->>>>>>> origin/develop
 	}
 	});
 }
@@ -94,15 +67,6 @@ function list(groups)
 {
 	var name;
 	var id;
-<<<<<<< HEAD
-	for(var i=0; i< groups.name.length; i++)
-	{
-		var li = '<li id="'+groups.id[i]+'"><a href="#" class="groupName">'+groups.name[i]+'</a>';
-		li += '<a href="#" class="btnListGroupsOpts">Opciones del grupo</a></li>';
-		$("#mylist").append(li);
-		$("#mylist").listview('refresh');
-	}
-=======
 	$("#mylist").children().remove('li');
 	for(var i=0; i< groups.name.length; i++)
 	{
@@ -112,7 +76,6 @@ function list(groups)
 	}
 	$("#mylist").i18n();
 	$("#mylist").listview('refresh');
->>>>>>> origin/develop
 }
 
 // Asigna el evento taphold a los elementos de la lista.
@@ -134,11 +97,7 @@ function longPress (event){
 	if ( $('#ulPopUP').length > 0){
 		$('#ulPopUP').remove();
 	}
-<<<<<<< HEAD
-	tapholdHandler(groupName);
-=======
 	tapholdHandlerGroups(groupName);
->>>>>>> origin/develop
 	
 }
 
@@ -148,11 +107,7 @@ function longPress (event){
  */
 $(document).on('click', '.confirmOptListGroups', function() {
 	//mostramos un mensaje informando de la operación a realizar
-<<<<<<< HEAD
-	$("#txtConfirm").html("Esta acción es irreversible");
-=======
 	$("#txtConfirmGroups").html( i18n.t('listGroups.popup.warning') );
->>>>>>> origin/develop
 	//cerramos el popup de las opciones
 	$('#popupBasic').popup("close");
 	//mostramos el popup de la confirmación
@@ -168,11 +123,7 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 
 	//abandonar grupo
 	$.ajax({
-<<<<<<< HEAD
-		url: 'php/delete_group.php',
-=======
 		url: URL_SERVER +'php/delete_group.php',
->>>>>>> origin/develop
 		dataType: 'text',
 		data: {"idGroup" : idGroup},
 		type:  'post',
@@ -181,15 +132,6 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 					var status = response.trim();
 					if(status == 'success') {
 						//refrescamos la página
-<<<<<<< HEAD
-						location.reload();
-					} else {
-						$('#message').html(status);
-					}
-				},
-		error: 	function() {
-					$("#message").html("Ha ocurrido un error intentando abandonar el grupo");
-=======
 						listGroups();
 					} else {
 						$('#messageListGroups').html(status);
@@ -197,7 +139,6 @@ $(document).on('click', '.btnConfirmListGroups', function() {
 				},
 		error: 	function() {
 					$("#messageListGroups").html("Ha ocurrido un error intentando abandonar el grupo");
->>>>>>> origin/develop
 				}
 	});
 	//cerramos el popup de la confirmación
@@ -209,11 +150,7 @@ $(document).on('click', '.btnConfirmListGroups', function() {
  * crea el menu popup.
  * @param event
  */
-<<<<<<< HEAD
-function tapholdHandler( groupName ){
-=======
 function tapholdHandlerGroups( groupName ){
->>>>>>> origin/develop
 	//event.preventDefault();
 	//alert(event.currentTarget.attributes.idGroup.value);			
 	var ul = document.createElement('ul');
@@ -225,40 +162,25 @@ function tapholdHandlerGroups( groupName ){
 	var cabecera = document.createElement('li');
 		cabecera.setAttribute("data-role","list-divider");
 		cabecera.setAttribute("role","heading");
-<<<<<<< HEAD
-		$(cabecera).html("Grupo: " + groupName);
-=======
 		$(cabecera).html(i18n.t('listGroups.popup.group') + groupName);
->>>>>>> origin/develop
 		ul.appendChild(cabecera);
 		
 
 	var Miembros = document.createElement('li');
 		Miembros.setAttribute("data-inset","true");
 		Miembros.setAttribute("role","heading");
-<<<<<<< HEAD
-		$(Miembros).html('<a href="list_members.html">Miembros del grupo</a>');
-=======
 		$(Miembros).html('<a href="#list_members">' + i18n.t('listGroups.popup.members') + '</a>');
->>>>>>> origin/develop
 		ul.appendChild(Miembros);
 
 	var Abandonar = document.createElement('li');
 		Abandonar.setAttribute("data-inset","true");
 		Abandonar.setAttribute("role","heading");
-<<<<<<< HEAD
-		$(Abandonar).html('<a href="#" class="confirmOptListGroups">Abandonar grupo</a>');
-=======
 		$(Abandonar).html('<a href="#" class="confirmOptListGroups">' + i18n.t('listGroups.popup.leave') + '</a>');
->>>>>>> origin/develop
 		ul.appendChild(Abandonar);
 
 	$('#popupBasic').append(ul);
 	$("#popupBasic").trigger("create");
 	$('#popupBasic').popup("open");
-<<<<<<< HEAD
-}
-=======
 }
 
 // lo que se va a ejecutar cuando la página esté lista para ser visualizada
@@ -267,4 +189,3 @@ $(document).on("pageshow", "#list_groups", function() {
 	$('#popupConfirmListGroups').popup();
 	$('#popupBasic').popup();
 });
->>>>>>> origin/develop

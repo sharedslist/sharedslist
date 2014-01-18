@@ -3,15 +3,9 @@ $(document).ready(function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
-<<<<<<< HEAD
-$(document).on("pageshow", function() {
-	// cargamos las opciones de cantidad para el nuevo producto
-	for (var i = 1; i <= 999; i++) {
-=======
 $(document).on("pageshow", "#create_items", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 1; i <= 50; i++) {
->>>>>>> origin/develop
 		$('<option/>', {
 			value : i,
 			text : i
@@ -20,25 +14,17 @@ $(document).on("pageshow", "#create_items", function() {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
-<<<<<<< HEAD
-		lang : 'es',
-=======
 		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
->>>>>>> origin/develop
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
-<<<<<<< HEAD
-	$("#create_item").trigger('create');
-=======
 	$("#create_items").trigger('create');
 	//limpiamos la basura que podria haberse producido con mobiscroll
         $("#createItemForm .ui-block-a .ui-input-text").hide();
         $("#createItemForm .ui-block-a .ui-input-text .quantityText").parent().show();
         $("#createItemForm .ui-block-a .ui-input-text .quantityText").show();
->>>>>>> origin/develop
 });
 
 
@@ -48,11 +34,7 @@ $(document).on("pageshow", "#create_items", function() {
 $('#quantity').on("rrrreload", function() {
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
-<<<<<<< HEAD
-		lang : 'es',
-=======
 		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
->>>>>>> origin/develop
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
@@ -81,38 +63,6 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function createItem(){
-<<<<<<< HEAD
-	var idList =  getUrlVars()['idList'];
-	var itemName = $("#itemName").val();
-	var quantity = $("#quantity").val();
-	if(!validateItemName(itemName)){
-		$('#message').html('Nombre del producto inválido');
-	}
-	else if(!validateQuantity(quantity)){
-		$('#message').html('Cantidad del producto inválida');
-	}
-	else {
-		var parameters = { "idList" : idList, "itemName" : itemName, "quantity" : quantity };
-		$.ajax({
-			data:  parameters,
-			url:   'php/create_item.php',
-			dataType: 'text',
-			type:  'post',
-			success:  function () {
-						var form = document.createElement('form');
-						form.setAttribute('method', 'GET');
-						form.setAttribute('action', 'list_items.html');
-						inputIdList = document.createElement('input');
-						inputIdList.setAttribute('name', 'idList');
-						inputIdList.setAttribute('type', 'hidden');
-						inputIdList.setAttribute('value', idList);
-						form.appendChild(inputIdList);
-						document.body.appendChild(form);
-						form.submit();
-				   },
-			error: function () {
-						$('#message').html('An error occurred, please try again.');
-=======
 	var itemName = $("#itemName").val();
 	var quantity = $("#quantity").val();
 	var metric = $("#metric").val();
@@ -134,7 +84,6 @@ function createItem(){
 				    },
 			error: function () {
 						$('#messageCreateItem').html('An error occurred, please try again.');
->>>>>>> origin/develop
 					}
 		});
 	}

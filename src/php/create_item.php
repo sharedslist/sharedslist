@@ -4,13 +4,8 @@
 	require_once("ShoppingList.php");
 
 	session_start();
-<<<<<<< HEAD
-	if( isset($_POST['idList']) ) {
-		$idList = $_POST["idList"]; //obtenemos el id del item a partir de la variable POST
-=======
 	if( isset($_SESSION['idList']) ) {
 		$idList = $_SESSION["idList"]; //obtenemos el id del item a partir de la variable SESSION
->>>>>>> origin/develop
 	}
 	else {
 		//die ('No se ha seleccionado un item');
@@ -27,15 +22,12 @@
 	else {
 		//die ('No se ha seleccionado un item');
 	}
-<<<<<<< HEAD
-=======
 	if( isset($_POST['metric']) ) {
 		$metric = $_POST["metric"]; //obtenemos la cantidad del item a partir de la variable POST
 	}
 	else {
 		//die ('No se ha seleccionado un item');
 	}
->>>>>>> origin/develop
 	
 	//comprobamos que el usuario se ha autenticado y pertenece al grupo en cuya lista se encuentra el item eliminar
 	$currentUser = User::getLoggedInUser();
@@ -52,9 +44,6 @@
 	$item->itemState = false;
 	$item->quantity = $quantity;
 	$item->quantityBought = 0;
-<<<<<<< HEAD
-=======
 	$item->metric = $metric;
->>>>>>> origin/develop
 	$item->insertItem();
 ?>

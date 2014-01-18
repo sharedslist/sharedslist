@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-﻿function login () {
-=======
 function doLogin () {
 
             var checkbox = $('#loginRemember'),
@@ -17,26 +14,16 @@ function doLogin () {
                 window.localStorage.clear();
             }
 
->>>>>>> origin/develop
 			
 			$('#message').slideUp('fast');
 			$.ajax({
 				data:  $('#formLogin').serialize(),
-<<<<<<< HEAD
-				url:   'php/login.php',
-=======
 				url:   URL_SERVER + 'php/login.php',
->>>>>>> origin/develop
 				type:  'post',
 				success:  function (data)
 					   {
 						var code = data.trim();
 					
-<<<<<<< HEAD
-						if(code == 'Conectado correctamente') {
-							window.location.href = 'list_groups.html';
-							$('#message').html(' Se ha autenticado correctamente.');
-=======
 						if(code.search('Conectado correctamente') == 0) {
 							//averiguamos el idioma del usuario
 							var lang = code.split(";")[1];
@@ -48,7 +35,6 @@ function doLogin () {
 							}
 							$.mobile.changePage('#list_groups');
 							$('#message').html( i18n.t('message.authenticationOK') );
->>>>>>> origin/develop
 						}
 						else {
 							$('#message').html(data);
@@ -56,19 +42,12 @@ function doLogin () {
 						$('#message').slideDown('fast');	
 					   },
 				error: function () {
-<<<<<<< HEAD
-						$('#message').html('Ha ocurrido un error, por favor pruebe de nuevo.');
-=======
 						$('#message').html( i18n.t('message.genericError') );
->>>>>>> origin/develop
 						$('#message').slideDown('fast');
 					}
 			});
 			
 			return false;
-<<<<<<< HEAD
-		  };
-=======
 		  };
 
 
@@ -107,4 +86,3 @@ function doLogin () {
         }
 
     };
->>>>>>> origin/develop
