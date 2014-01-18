@@ -6,6 +6,10 @@
 
 	// Se recupera el usuario actual
 	$user = User::getLoggedInUser();
+<<<<<<< HEAD
+=======
+	$message = "Perfil actualizado";
+>>>>>>> origin/develop
 	
 	// En caso de que llame la función getName, devuelve el nombre
 	if ( isset( $_POST['getUser']) ) {
@@ -19,11 +23,20 @@
 	}
 
 	//En caso de que llame la función updateProfile, actualiza el perfil,
+<<<<<<< HEAD
 	// cambiando nombre de usuario y contraseña. Si un campo esta vacío no se cambia.
+=======
+	// cambiando nombre de usuario, contraseña y el idioma. Si un campo esta vacío no se cambia.
+>>>>>>> origin/develop
 	else {
 		$newName = $_POST['userName'];
 		$newPassword = $_POST['newPassword'];
 		$currentPassword = $_POST['currentPassword'];
+<<<<<<< HEAD
+=======
+		$language = $_POST['lang'];
+		$langUpdated = false;
+>>>>>>> origin/develop
 
 		// Se comprueba que la contraseña actual sea correcta para poder continuar.
 		if ( $user->checkPassword( $currentPassword ) ) {
@@ -48,9 +61,31 @@
 
 			}
 
+<<<<<<< HEAD
 			//se informa al usuario si ha habido actualización
 			if($newName !== '' OR $newPassword !== ''){ 
 				die('Perfil actualizado');
+=======
+			//Se comprueba si se tiene que actualizar el idioma y se actualiza de ser así
+			if($user->lang !== $language){
+				$user -> lang = $language;
+				$user -> updateLanguage();
+				$langUpdated = true;
+			}
+			
+			
+			//se informa al usuario si ha habido actualización
+			if($newName !== '' OR $newPassword !== '' OR $langUpdated = true){
+			
+				if($user -> lang == 'en' ){
+					$message = "Profile updated";
+				}
+				if($langUpdated) {
+					die('lang=' . $user->lang . ';' . $message);
+				} else {
+					die($message);
+				}
+>>>>>>> origin/develop
 			}
 			else {
 				die('No se ha actualizado');

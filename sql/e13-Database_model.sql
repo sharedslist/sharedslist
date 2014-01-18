@@ -3,6 +3,10 @@
   userName						  varchar(50) NOT NULL,                 # The name of the user
   emailAddress		              varchar(50) NOT NULL UNIQUE,          # The email address of the user
   password               		  varchar(50) NOT NULL,                 # The encrypted password
+<<<<<<< HEAD
+=======
+  lang						  	  varchar(10) NOT NULL,					# The prefered language
+>>>>>>> origin/develop
 
   PRIMARY KEY (idUser)
 );
@@ -39,10 +43,27 @@ CREATE TABLE `Item` (
 	itemState 						boolean NOT NULL,
 	quantity 						int unsigned NOT NULL,
 	quantityBought 					int unsigned NOT NULL,
+<<<<<<< HEAD
+=======
+	metric	 						varchar(20) NOT NULL DEFAULT 'Unidades',
+>>>>>>> origin/develop
 	
 	PRIMARY KEY (idItem)
 );
 
+<<<<<<< HEAD
+=======
+CREATE TABLE `Invitation` (
+	idInvitation					int unsigned NOT NULL AUTO_INCREMENT,
+	email							varchar(50) NOT NULL UNIQUE,
+	expireDate						timestamp NOT NULL,
+	idGroup							int unsigned NOT NULL,
+	security						varchar(25) NOT NULL,
+	
+	PRIMARY KEY (idInvitation)
+);
+
+>>>>>>> origin/develop
 #Creación de los triggers que mantengan la integridad de la base de datos
 
 delimiter |

@@ -1,11 +1,16 @@
 ﻿var id = 1; // Identificador de los checkbox
 
 /*
+<<<<<<< HEAD
  * Añade el correo del campo #text-2 a la lista de correo
+=======
+ * Añade el correo del campo #CreateGroupEmails a la lista de correo
+>>>>>>> origin/develop
  * si y sólo si es un correo válido.
  */
 function addUsers()
 {
+<<<<<<< HEAD
 	var txt = $("#text-2");
 	var val = txt.val();
 	if(validateEmail(val)){
@@ -17,6 +22,19 @@ function addUsers()
 	}
 	else{
 		$('#message').html('Email incorrecto');
+=======
+	var txt = $("#CreateGroupEmails");
+	var val = txt.val();
+	if(validateEmail(val)){
+		$("#CreateGroupCheck2").append('<input type="checkbox" checked id="cb'+id+'"/><label id="cb'+id+'"for="cb'+id+'">'+val+'</label>');
+		$("#CreateGroupCheck").trigger("create");
+		id = id +1;
+		$("#CreateGroupEmails").val("");
+		$('#messageCreateGroups').html('');
+	}
+	else{
+		$('#messageCreateGroups').html('Email incorrecto');
+>>>>>>> origin/develop
 	}
 }
 
@@ -53,9 +71,15 @@ function validateName(name)
 function createGroup()
 {
 	var users = new Array();
+<<<<<<< HEAD
 	var group_name = $("#text-1").val();
 	if(validateName(group_name)){
 		var n = $('form#createform').find('input:checked');
+=======
+	var group_name = $("#CreateGroupName").val();
+	if(validateName(group_name)){
+		var n = $('form#createGroupForm').find('input:checked');
+>>>>>>> origin/develop
 		var email;
 		for(var i=1; i< n.length+1; i++)
 		{	
@@ -65,13 +89,18 @@ function createGroup()
 		var parameters = { "users" : users, "group_name" : group_name};
 		$.ajax({
 			data:  parameters,
+<<<<<<< HEAD
 			url:   document.URL+'/../php/create_groups.php',
+=======
+			url:   URL_SERVER +'php/create_groups.php',
+>>>>>>> origin/develop
 			dataType: 'text',
 			type:  'post',
 			success:  function (response)
 				   {
 					var code = response.trim();
 					if(code == 'success') {
+<<<<<<< HEAD
 						window.location.href = 'list_groups.html';
 					}
 					else{
@@ -79,11 +108,24 @@ function createGroup()
 					}},
 			error: function () {
 					$('#message').html('An error occurred, please try again.');
+=======
+						window.location.href = '#list_groups';
+					}
+					else{
+						$('#messageCreateGroups').html(response);
+					}},
+			error: function () {
+					$('#messageCreateGroups').html('An error occurred, please try again.');
+>>>>>>> origin/develop
 			}
 			});
 	}
 	else{
+<<<<<<< HEAD
 		$('#message').html('Nombre de grupo incorrecto');
+=======
+		$('#messageCreateGroups').html('Nombre de grupo vacío');
+>>>>>>> origin/develop
 	}
 }
 

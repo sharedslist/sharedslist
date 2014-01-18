@@ -25,17 +25,35 @@ class Item {
 	public $itemName = null;
   
 	/**
+<<<<<<< HEAD
       * @var string El estado del item: 1 -> comprado, 0 -> no comprado
+=======
+      * @var boolean El estado del item: 1 -> comprado, 0 -> no comprado
+>>>>>>> origin/develop
       */
 	public $itemState = null;
 
 	/**
+<<<<<<< HEAD
       * @var string La cantidad de items que hay que comprar
       */
 	public $quantity = null;
 
 	/**
       * @var string La cantidad de items que se han comprado
+=======
+      * @var int La cantidad de items que hay que comprar
+      */
+	public $quantity = null;
+	
+	/**
+      * @var string La unidad de medida del item
+      */
+	public $metric = null;
+
+	/**
+      * @var int La cantidad de items que se han comprado
+>>>>>>> origin/develop
       */
 	public $quantityBought = null;
 
@@ -51,6 +69,10 @@ class Item {
 		if ( isset( $data['itemName'] ) ) $this->itemName = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['itemName'] );
 		if ( isset( $data['itemState'] ) ) $this->itemState = (boolean) $data['itemState'];
 		if ( isset( $data['quantity'] ) ) $this->quantity = (int) $data['quantity'];
+<<<<<<< HEAD
+=======
+		if ( isset( $data['metric'] ) ) $this->metric = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$\/ a-zA-Z0-9()]/", "", $data['metric'] );
+>>>>>>> origin/develop
 		if ( isset( $data['quantityBought'] ) ) $this->quantityBought = (int) $data['quantityBought'];
 	}
 
@@ -65,15 +87,25 @@ class Item {
 		}
 		$itemName = mysqli_real_escape_string($con,$this->itemName);
 		$quantity = mysqli_real_escape_string($con,$this->quantity);
+<<<<<<< HEAD
 		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
 		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$quantityBought."')";
+=======
+		$metric = mysqli_real_escape_string($con,$this->metric);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		$sql = "INSERT INTO `Item` (idList, itemName, itemState, quantity, quantityBought, metric) values ('".$this->idList."','".$itemName."', '".$this->itemState."', '".$quantity."', '".$quantityBought."', '".$metric."')";
+>>>>>>> origin/develop
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
 
 	/**
+<<<<<<< HEAD
       * Actualiza el objeto Item actual en la base de datos
+=======
+      * Actualiza el nombre, la cantidad y la unidad de medida del objeto Item actual en la base de datos
+>>>>>>> origin/develop
 	  */
 	public function editItem() {
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
@@ -83,13 +115,21 @@ class Item {
 		$idItem = mysqli_real_escape_string($con,$this->idItem);
 		$itemName = mysqli_real_escape_string($con,$this->itemName);
 		$quantity = mysqli_real_escape_string($con,$this->quantity);
+<<<<<<< HEAD
 		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
 		$sql = "UPDATE `Item` SET itemName='".$itemName."', itemState='".$this->itemState."', quantity='".$quantity."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
+=======
+		$metric = mysqli_real_escape_string($con,$this->metric);
+		$sql = "UPDATE `Item` SET itemName='".$itemName."', quantity='".$quantity."', metric='".$metric."' WHERE idItem='".$idItem."'";
+>>>>>>> origin/develop
 		mysqli_query($con, $sql);
 		mysqli_close($con);
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop
 	/**
       * Elimina el objeto Item actual de la base de datos
       */
@@ -106,13 +146,23 @@ class Item {
 
 	
 	/**
+<<<<<<< HEAD
       * Pone a 1 (comprado) el estado del item con identificador [idItem]
       */
 	public static function checkItem( $idItem ) {
+=======
+      * Compra [quantityBought] items del item con identificador [idItem]
+	  * y pone a 1 el estado si se ha comprado la cantidad que se necesitaba.
+	  * Si [quantityBought] es mayor que la cantidad a comprar o menor que 0,
+	  * no se realiza la operación.
+      */
+	public function buyItem() {
+>>>>>>> origin/develop
 		$con = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DBNAME);
 		if (!$con) {
 			die('Could not connect: ' . mysqli_error($con));
 		}
+<<<<<<< HEAD
 		$sql = "SELECT `quantity` FROM `Item` WHERE idItem='".$idItem."'";
 		$result = mysqli_query($con, $sql);
 		$item = mysqli_fetch_array($result);
@@ -132,6 +182,21 @@ class Item {
 		}
 		$sql = "UPDATE `Item` SET itemState='0', quantityBought='0' WHERE idItem='".$idItem."'";
 		mysqli_query($con, $sql);
+=======
+		$idItem = mysqli_real_escape_string($con,$this->idItem);
+		$quantity = mysqli_real_escape_string($con,$this->quantity);
+		$quantityBought = mysqli_real_escape_string($con,$this->quantityBought);
+		if($quantityBought<=$quantity && $quantityBought>=0){
+			if($quantityBought==$quantity){
+				$itemState=1;
+			}
+			else{
+				$itemState=0;
+			}
+			$sql = "UPDATE `Item` SET itemState='".$itemState."', quantityBought='".$quantityBought."' WHERE idItem='".$idItem."'";
+			mysqli_query($con, $sql);
+		}
+>>>>>>> origin/develop
 		mysqli_close($con);
 	}
 	
@@ -213,6 +278,20 @@ class Item {
 			return false;
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * Crea una variable de sesión para el ID de un item.
+	 */
+	public static function createItemSession($idItem) {
+		try{
+			session_start();
+		}
+		catch (Exception $e){}
+		$_SESSION['idItem'] = $idItem;
+	}
+>>>>>>> origin/develop
 
 }
 

@@ -12,9 +12,15 @@
 	}
 	
 	// Se guardan los datos en variables
+<<<<<<< HEAD
     $u = $_POST['userName'];
 	$e = $_POST['emailAddress'];
 	$p = $_POST['password']; 
+=======
+    $u = $_POST['registerUserName'];
+	$e = $_POST['registerEmail'];
+	$p = $_POST['registerPassword']; 
+>>>>>>> origin/develop
 	
 	//Comprobar email bien formado
 	if( !preg_match("^[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+(\.[a-z0-9,!#\$%&'\*\+/=\?\^_`\{\|}~-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.([a-z]{2,})$^", $e) ) {
@@ -43,7 +49,11 @@
 	
 	//Crea objeto usuario y llama a la funcion insertar
 	
+<<<<<<< HEAD
 	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p ) );
+=======
+	$user = new User( array( 'userName' => $u, 'emailAddress' => $e, 'plaintextPassword' => $p, 'lang' => 'en' ) );
+>>>>>>> origin/develop
     $user->encryptPassword();
     $user->insert();
 	$user->createLoginSession();

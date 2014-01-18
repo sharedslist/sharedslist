@@ -3,9 +3,15 @@ $(document).ready(function() {
 });
 
 // lo que se va a ejecutar cuando la página esté cargada
+<<<<<<< HEAD
 $(document).on("pageshow", function() {
 	// cargamos las opciones de cantidad para el nuevo producto
 	for (var i = 1; i <= 999; i++) {
+=======
+$(document).on("pageshow", "#create_items", function() {
+	// cargamos las opciones de cantidad para el nuevo producto
+	for (var i = 1; i <= 50; i++) {
+>>>>>>> origin/develop
 		$('<option/>', {
 			value : i,
 			text : i
@@ -14,13 +20,25 @@ $(document).on("pageshow", function() {
 	// cargamos la extensión mobiscroll para la cantidad
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
+<<<<<<< HEAD
 		lang : 'es',
+=======
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
+>>>>>>> origin/develop
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
 	});
 	// enviamos el evento create para que jQuery Mobile cambie el estilo
+<<<<<<< HEAD
 	$("#create_item").trigger('create');
+=======
+	$("#create_items").trigger('create');
+	//limpiamos la basura que podria haberse producido con mobiscroll
+        $("#createItemForm .ui-block-a .ui-input-text").hide();
+        $("#createItemForm .ui-block-a .ui-input-text .quantityText").parent().show();
+        $("#createItemForm .ui-block-a .ui-input-text .quantityText").show();
+>>>>>>> origin/develop
 });
 
 
@@ -30,7 +48,11 @@ $(document).on("pageshow", function() {
 $('#quantity').on("rrrreload", function() {
 	$('#quantity').mobiscroll().select({
 		theme : 'jqm',
+<<<<<<< HEAD
 		lang : 'es',
+=======
+		lang : i18n.lng(), //obtenemos el lenguaje actual del plugin i18next
+>>>>>>> origin/develop
 		display : 'bottom',
 		mode : 'mixed',
 		inputClass : 'quantityText'
@@ -59,6 +81,7 @@ function getUrlVars(){
  * usuario, de lo contrario se redirige a la página list_items.html.
  */
 function createItem(){
+<<<<<<< HEAD
 	var idList =  getUrlVars()['idList'];
 	var itemName = $("#itemName").val();
 	var quantity = $("#quantity").val();
@@ -89,6 +112,29 @@ function createItem(){
 				   },
 			error: function () {
 						$('#message').html('An error occurred, please try again.');
+=======
+	var itemName = $("#itemName").val();
+	var quantity = $("#quantity").val();
+	var metric = $("#metric").val();
+	if(!validateItemName(itemName)){
+		$('#messageCreateItem').html('Nombre del producto inválido');
+	}
+	else if(!validateQuantity(quantity)){
+		$('#messageCreateItem').html('Cantidad del producto inválida');
+	}
+	else {
+		var parameters = { "itemName" : itemName, "quantity" : quantity, "metric" : metric };
+		$.ajax({
+			data:  parameters,
+			url:   URL_SERVER +'php/create_item.php',
+			dataType: 'text',
+			type:  'post',
+			success:  function () {
+						window.location.href = '#list_items';
+				    },
+			error: function () {
+						$('#messageCreateItem').html('An error occurred, please try again.');
+>>>>>>> origin/develop
 					}
 		});
 	}

@@ -1,0 +1,790 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+	<title>SShopping List</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset="utf-8">
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.min.css" />
+	<link href="css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+	<link href="css/mobiscroll.scroller.jqm.css" rel="stylesheet" type="text/css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.min.js"></script>
+	<script type='text/javascript' > 
+		//var URL_SERVER= 'http://sharedslist.hol.es/'; // para conectarse al servidor de shared
+		var URL_SERVER= ''; //para usarla en local como relativa
+		//función que recarga la página actual dinámicamente
+		function refreshPage() {
+		  $.mobile.changePage(
+			'#' + $.mobile.activePage.attr('id'),
+			{
+			  allowSamePageTransition : true,
+			  transition : 'none',
+			  changeHash : false
+			}
+		  );
+		}		
+	</script>	
+	<script src="js/i18n/i18next.min.js"></script>
+	<script src="js/jquery.mobile.min.js"></script>
+	<script src="js/mobiscroll/mobiscroll.jqmobi.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.core.js"></script>
+	<script src="js/mobiscroll/mobiscroll.scroller.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.select.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.scroller.jqm.js" type="text/javascript"></script>
+	<script src="js/mobiscroll/mobiscroll.i18n.es.js" type="text/javascript"></script>
+	<script src="js/login.js"></script>
+	<script src="js/list_groups.js"></script>
+	<script src="js/register.js"></script>
+	<script src="js/add_member.js"></script>
+	<script src="js/list_members.js"></script>
+	<script src="js/connected.js"></script>
+	<script src="js/remember_password.js"></script>
+	<script src="js/create_groups.js"></script>
+	<script src="js/list_slists.js"></script>
+	<script src="js/create_list.js"></script>
+	<script src="js/list_items.js"></script>
+	<script src="js/edit_item.js"></script>
+	<script src="js/create_item.js"></script>
+	<script src="js/user_config.js"></script>
+	<script src="js/connected.js"></script>
+	<script src="js/logout.js"></script>
+	<script src="js/import_mobile_contacts.js"></script>
+	<script src="cordova.js"></script>
+	
+</head>
+<script>
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-46151859-1', 'hol.es');
+	ga('send', 'pageview');
+
+</script>
+<body>
+	<!-- Start of login page -->
+	<div data-role="page" id="login" data-theme="b">
+		<div data-role="header" data-theme="b">
+			<h1 data-i18n="login.title"></h1>
+		</div>
+		
+		<div data-role="content">
+			<div style="text-align: center;">
+				<h2>Shared Shopping List</h2>
+				<p data-i18n="login.actions"></p>
+			</div>
+			<form method="post" id="formLogin">
+				<div data-role="fieldcontain">
+					<input type="email" name="loginEmail" id="loginEmail" data-i18n="[placeholder]login.email" required autofocus maxlength="50">
+				</div>
+				<div data-role="fieldcontain">
+					<input type="password" name="loginPassword" id="loginPassword" data-i18n="[placeholder]login.password" required maxlength="30">
+				</div>
+				<label for="loginRemember"><span data-i18n="login.remember"></span></label>
+				<input type="checkbox" id="loginRemember" name="loginRemember" data-theme="d">
+					<h4 id="message"> </h4>		
+				<button type="button" name="loginButton" id="loginButton" onClick="doLogin()"><span data-i18n="login.login"></span></button>
+			</form>
+			<a href="#register" data-role="button" data-theme="d"><span data-i18n="login.register"></span></a>
+			<a href="#remember_password" data-i18n="login.btnRemember"></a>
+		</div>
+		<script>checkLogin();</script>	
+	</div><!-- /page -->
+	
+	<!-- Start of register page -->
+	<div data-role="page" id="register" data-theme="b">
+		<div data-role="header" data-theme="b">
+		  <h1 data-i18n="register.title"></h1>
+		</div>
+
+		<div data-role="content">
+			<div style="text-align: center;">
+				<h2>Shared Shopping List</h2>
+				<p data-i18n="register.helpText"></p>
+			</div>
+		  	<form method="post" id="formRegistro">
+				<div data-role="fieldcontain">
+					<input type="text" name="registerUserName" id="registerUserName" data-i18n="[placeholder]register.username" required autofocus maxlength="50">
+				</div>
+				<div data-role="fieldcontain">
+					<input type="email" name="registerEmail" id="registerEmail" data-i18n="[placeholder]register.email" required maxlength="50">
+				</div>
+				<div data-role="fieldcontain">
+					<input type="password" name="registerPassword" id="registerPassword" data-i18n="[placeholder]register.password" required maxlength="30">
+				</div>
+				<h4 id="messageRegister"></h4>
+				<button type="button" name="register" id="register" onClick="registrar()"><span data-i18n="register.btnRegister"></span></button>
+			</form>
+		</div>		
+	</div><!-- /page -->
+	
+	<!-- Start of remember password page -->
+	<div data-role="page" id="remember_password" data-theme="b">
+		<div data-role="header" data-theme="b">
+		  <h1 data-i18n="rememberPassword.title"></h1>
+		</div>
+		
+		<div data-role="content">
+			<form method="post" id="formRememberPassword">
+				<input type="email" name="rememberEmail" id="rememberEmail" data-i18n="[placeholder]rememberPassword.email" data-clear-btn="true" />
+				<button type="button" name="remember" id="remember" onClick="remember_password()"><span data-i18n="rememberPassword.btnRemember"></span></button>
+			</form>	 
+			<h4 id="messageRememberPassword"></h4>
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of list groups page -->
+	<div data-role="page" id="list_groups" data-theme="c">
+		<script>
+			isConnected();
+		</script>
+			<div data-role="header" data-theme="b">
+				<a href="#menuListGroups" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+				<h1 data-i18n="listGroups.title"></h1>
+				<a href="#create_groups" data-icon="gear" class="ui-btn-right"><span data-i18n="listGroups.btnCreate"></span></a>
+			</div>
+			
+		<div id="list" data-role="content">
+			<ul id="mylist" class="customIconColor" data-role="listview" data-filter="true" data-split-icon="gear" data-split-theme="b">
+				<li data-role="list-divider" role="heading" data-i18n="listGroups.title"></li>
+			</ul>
+			<h4 id="messageListGroups"></h4>
+		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="popup" id="popupBasic">
+				<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right"><span  data-i18n="popups.close"></span></a>					
+		</div>
+		
+		<!-- El popup para confirmar la operación -->
+		<div data-role="popup" id="popupConfirmListGroups" data-overlay-theme="a">
+			 <div data-role="content" style="text-align: center;">
+				<h3 data-i18n="popups.areYouSure"></h3>
+				<p id="txtConfirmGroups"></p>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="btnConfirmListGroups" class="btnConfirmListGroups" data-role="button" data-transition="flow" data-theme="c"><span data-i18n="popups.yes"></span></a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button" data-rel="back" data-theme="b"><span data-i18n="popups.no"></span></a>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of create groups page -->
+	<div data-role="page" id="create_groups" data-theme="c">
+		<script>
+			isConnected();
+		</script>	
+		<div data-role="header" data-theme="b">
+			<a href="#menuCreateGroups" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="createGroup.title"></h1>
+		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuCreateGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="content">
+		<div data-role="fieldcontain" style="text-align: center;" data-i18n="createGroup.helpText"></div>
+		<form id="createGroupForm" >	
+			<div data-role="fieldcontain">
+				<input type="text" data-clear-btn="true" id="CreateGroupName" data-i18n="[placeholder]createGroup.groupName"/>
+			</div>	
+			<div data-role="fieldcontain">
+				<input data-clear-btn="true" data-inline="true"  id="CreateGroupEmails" data-i18n="[placeholder]createGroup.email"/>
+				<input type="button" data-icon="plus" data-iconpos="notext" data-inline="true" data-role="button" onclick="addUsers()"/>
+			</div>	
+			<div id="CreateGroupCheck" data-role="fieldcontain">
+				<fieldset data-role="controlgroup" id="CreateGroupCheck2">
+				</fieldset> 
+			</div>
+			<div>
+				<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="createGroup()"><span data-i18n="createGroup.btnCreate"></span></button>
+			</div>
+		</form>
+		<h4 id="messageCreateGroups"></h4>
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of add member page -->
+	<div data-role="page" id="add_member" data-theme="c">
+		<div data-role="header" data-theme="b">
+			<a href="#menuAddMembers" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="addMember.title"></h1>
+		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuAddMembers" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="content">
+		<div id = "divAddMember">
+		<form id="addMember" >			
+			<div data-role="fieldcontain">
+				<input data-clear-btn="true" data-inline="true"  id="addMemberEmail"  data-i18n="[placeholder]addMember.email"/>
+				<input type="button" data-icon="plus" data-iconpos="notext" data-inline="true" data-role="button" onclick="addCorreos()"/>
+			</div>		
+			<div id="check" data-role="fieldcontain">
+				<fieldset data-role="controlgroup" id="check2">
+				</fieldset> 
+			</div>	
+			<div>
+				<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="addMembers()"><span data-i18n="addMember.btnAdd"></span></button>
+			</div>
+			<div style="display:none" id="divOnPhone">
+				<button type="button" data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()" ><span data-i18n="addMember.import"></span></button>
+			</div>
+		</form>	
+		</div>
+		<div id = "divInviteMembers" style="display:none">
+			<h3 data-i18n="addMember.unregisteredEmails"></h3>
+
+			<form id="inviteform" >	
+			<div id="noRegistrados" data-role="fieldcontain">
+				<fieldset data-role="controlgroup" id="checkNoRegistrados">
+
+				</fieldset> 
+			</div>
+			<button type="button" data-mini="true" name="create" id="create" value="Invitar" data-theme="b" onclick="inviteUsers()"><span data-i18n="addMember.btnAdd"></span></button>
+			<div id="boton-importarcontactos" style="display:none;">
+				<button type="button" data-mini="true" name="create" id="import_mobile_contact" data-theme="b" onclick="onPhone()"><span data-i18n="addMember.import"></span></button>
+			</div>
+			</form>
+		</div>
+		<h4 id="messageAddMember"></h4>
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of list member page -->
+	<div data-role="page" id="list_members" data-theme="b">
+		<script>
+			isConnected();
+		</script>
+		<div data-role="header" data-theme="b">
+			<a href="#menuLisMembers" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="listMembers.title"></h1>
+			<a href="#add_member" data-icon="gear" class="ui-btn-right"><span data-i18n="listMembers.btnAdd"></span></a>
+		</div>	
+		<div id="list" data-role="content">
+			<ul id="miembros"  data-role="listview" data-filter="true" data-theme="c" data-split-icon="delete" data-split-theme="b"></ul>
+		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuLisMembers" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back" data-i18n="menu.back"></a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
+		
+		<!-- El popup para confirmar la operación -->
+		<div data-role="popup" id="popupConfirmDeleteMember" data-overlay-theme="a">
+			 <div data-role="content" style="text-align: center;">
+				<h3 data-i18n="popups.areYouSure"></h3>
+				<p data-i18n="popups.expel"></p>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="btnConfirmDelete" class="btnConfirmDelete" data-role="button"  data-transition="flow" data-theme="c"><span data-i18n="popups.yes"></span></a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button" data-rel="back" data-theme="b"><span data-i18n="popups.no"></span></a>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<div id="messageListMembers">
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of list slist page -->
+	<div data-role="page" id="list_slists">
+		<script>
+			isConnected();
+		</script>	
+		<div id="list_slists_header" data-role="header" data-theme="b">
+			<a href="#menuListSList" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="listSLists.title"></h1>
+			<a href="#create_list" data-icon="plus" class="ui-btn-right"><span data-i18n="listSLists.btnCreate"></span></a>
+		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListSList" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		
+		<div data-role="content">
+			<div id="slists" data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-content-theme="b">
+				<div id="open" data-role="collapsible" data-collapsed="false" data-theme="b">
+					<h3><span data-i18n="listSLists.openLists"></span></h3>
+					<ul id="open_list" data-role="listview" data-split-icon="gear" data-split-theme="b"></ul>
+				</div>
+				<div id="close" data-role="collapsible" data-theme="b">
+					<h3><span data-i18n="listSLists.closedLists"></span></h3>
+					<ul id="close_list" data-role="listview" data-split-icon="gear" data-split-theme="b"></ul>
+				</div>
+			</div>
+			<h4 id="messageListSList"></h4>
+		</div><!-- /content -->	
+		<!-- El popup que muestra el menú de las opciones sobre una lista -->
+		<div data-role="popup" id="popupListSLists">
+			<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right"><span data-i18n="popups.close"></span></a>
+			<ul id="ulPopupListSLists" data-role="listview" data-inset="true" data-divider-theme="b">
+				<li id="popupListName" data-role="list-divider" role="heading" data-i18n="listSLists.popup.list"></li>
+				<li id="popupBtnView" data-inset="true" role="heading">
+					<a href="#" class="btnViewList" data-i18n="listSLists.popup.btnView"></a>
+				</li>
+				<li data-inset="true" role="heading">
+					<a href="#" class="confirmOpt" opt="open" data-i18n="listSLists.popup.btnReopen"></a>
+				</li>
+				<li data-inset="true" role="heading">
+					<a href="#" class="confirmOpt" opt="close" data-i18n="listSLists.popup.btnClose"></a>
+				</li>
+				<li data-inset="true" role="heading">
+					<a href="#" class="confirmOpt" opt="delete" data-i18n="listSLists.popup.btnDelete"></a>
+				</li>
+			</ul>
+		</div>
+		<!-- El popup para confirmar la operación -->
+		<div data-role="popup" id="popup_confirm" data-overlay-theme="a">
+			 <div data-role="content" style="text-align: center;">
+				<h3 data-i18n="popups.areYouSure"></h3>
+				<p id="txtConfirmLists"></p>
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="btnConfirmList" class="btnConfirmList" data-role="button"  data-transition="flow" data-theme="c"><span data-i18n="popups.yes"></span></a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button" data-rel="back" data-theme="b"><span data-i18n="popups.no"></span></a>
+					</div>
+				</fieldset>
+			</div>
+		</div>				
+		
+	</div><!-- /page -->
+	
+	<!-- Start of create slist page -->
+	<div data-role="page" id="create_list" date-theme="b">
+		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuCresteSList" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="createSList.title"></h1>
+		</div><!-- /header -->
+		<div data-role="content">
+			<form id="createListForm" method="post">
+				<input type="text" name="listName" id="listName" data-clear-btn="true" data-i18n="[placeholder]createSList.listName" required/>
+				<hr/>
+				<p data-i18n="createSList.helpText"></p>
+				<div class="ui-grid-b" id="newProduct">
+					<div class="ui-block-a" style="width:80%;">
+						<input type="text" name="productName" id="productName" data-clear-btn="true" data-i18n="[placeholder]createSList.productName" />
+					</div>
+					<div class="ui-block-b" style="width:10%;">
+						<select data-i18n="[name]createSList.quantity" id="quantityNewProduct" data-role="none"></select>
+					</div>
+					<div class="ui-block-c" style="width:10%;">
+						<a href="#" data-role="button" data-icon="plus" data-iconpos="notext" data-inline="true" onClick="addProduct()" ></a>
+					</div>
+				</div>
+				<ul style="display:none;" name="initialProducts" id="initialProducts" data-role="listview" data-inset="true" data-divider-theme="b" data-split-icon="delete" >
+					<li data-role="list-divider" role="header" data-i18n="createSList.initialProducts"></li>
+				</ul>
+				<br/>
+				<h4 id="messageCreateList"></h4>
+				<button type="button" id="createListBtn" data-theme="b" onClick="createList()"><span data-i18n="createSList.btnCreate"></span></button>
+			</form>
+		</div><!-- /content -->	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuCresteSList" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back" data-i18n="menu.back"></a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
+	</div><!-- /page -->
+	
+	<!-- Start of list items page -->
+	<div data-role="page" id="list_items" data-theme="c">
+		<script>
+            isConnected();
+        </script>
+		<div data-role="header" data-theme="b">
+			<a href="#menuListItems" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 id="listItems_list_name"></h1>
+			<a href="#" id="btnOptions" data-icon="gear" class="ui-btn-right"><span data-i18n="listItems.popup.options"></span></a>
+		</div>
+		<div data-role="content">
+			<div id="itemlist"></div>
+			<h4 id="messageListItems"></h4>
+		</div>	
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListItems" data-theme="b">
+		  <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+			<li data-icon="back">
+			  <a href="#" data-rel="back" data-i18n="menu.back"></a>
+			</li>
+			<li data-icon="home">
+			  <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+			</li>
+			<li data-icon="gear">
+			  <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+			</li>
+			<li data-icon="refresh">
+			  <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+			</li>
+			<li data-icon="delete" style="background-color:#111;">
+			  <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+			</li> 
+		  </ul>
+		 <!-- panel content goes here -->
+		</div><!-- /menu -->
+		<!-- El popup que muestra el menú de las opciones sobre una lista -->
+        <div data-role="popup" id="popupListItems">
+            <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right"><span  data-i18n="popups.close"></span></a>
+            <ul id="ulPopupListItems" data-role="listview" data-inset="true" data-divider-theme="b">
+                <li id="popupItemtName" data-role="list-divider" role="heading"> </li>
+                <li id="listItems_popupBtnView" data-inset="true" role="heading">
+                    <a href="#" class="btnCreateItem"><span data-i18n="listItems.popup.btnNewProduct"></span></a>
+                </li>
+				<li data-inset="true" role="heading">
+					<a href="#" class="listItems_confirmOpt" opt="open"><span data-i18n="listSLists.popup.btnReopen"></span></a>
+				</li>
+                <li data-inset="true" role="heading">
+                    <a href="#" class="listItems_confirmOpt" opt="close"><span data-i18n="listSLists.popup.btnClose"></span></a>
+                </li>
+                <li data-inset="true" role="heading">
+                    <a href="#" class="listItems_confirmOpt" opt="delete"><span data-i18n="listSLists.popup.btnDelete"></span></a>
+                </li>
+            </ul>
+        </div>                  
+        <!-- El popup para confirmar la operación -->
+        <div data-role="popup" id="popupConfirmItems" data-overlay-theme="a">
+			<div data-role="content" style="text-align: center;">
+				<h3 data-i18n="popups.areYouSure"></h3>
+                <p id="listItems_txtConfirm"></p>
+                <fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" id="listItems_btnConfirm" class="listItems_btnConfirm" data-role="button" data-transition="flow" data-theme="c"><span data-i18n="popups.yes"></span></a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button" data-rel="back" data-theme="b"><span data-i18n="popups.no"></span></a>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<!-- El popup para obtener cantidad comprada -->
+		<div data-role="popup" id="popupBuyItem" data-overlay-theme="a">
+			<div data-role="content" style="text-align: center;">
+				<h3 data-i18n="listItems.popup.whatQuantity"></h3>
+                <p id="listItems_buy_txtConfirm"></p>
+                <fieldset class="ui-grid-a">
+					<div id="mobiscrollQuantityB"></div>
+					<div class="ui-block-a">
+						<a href="#" id="listItems_buy_btnConfirm" class="listItems_buy_btnConfirm" data-role="button" data-transition="flow" data-theme="c"><span data-i18n="popups.accept"></span></a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#" data-role="button" data-rel="back" data-theme="b"><span data-i18n="popups.cancel"></span></a>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div><!-- /page -->
+	
+	<!-- Start of create items page -->
+	<div data-role="page" id="create_items" data-theme="b">
+		<script>
+            isConnected();
+        </script>
+		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="createItem.title"></h1>
+		</div><!-- /header -->
+
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		
+		<div data-role="content">
+			<form id="createItemForm" >
+				<div data-role="fieldcontain">
+					<input type="text" name="itemName" id="itemName"  data-i18n="[placeholder]createItem.productName" required autofocus data-clear-btn="true" />
+				</div>
+				<div class="ui-grid-a" id="quantityGrid">
+					<div class="ui-block-a" id="newProduct" style="width:75px;">
+						<select name="Cantidad" id="quantity" data-role="none" value="Cantidad"></select>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-select" style="width:150px;">
+							<select name="Unidad" id="metric" data-native-menu="false">
+								<option value="u" data-i18n="createItem.units"></option>
+								<option value="kg">Kg</option>
+								<option value="g">g</option>
+								<option value="l">L</option>
+								<option value="ml">ml</option>
+								<option value="m">m</option>
+								<option value="cm">cm</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<h4 id="messageCreateItem"></h4>
+				<br/>
+				<div>
+					<button type="button" data-mini="true" name="create" id="create" data-theme="b" onclick="createItem()"><span data-i18n="createItem.btnCreate"></span></button>
+				</div>
+			</form><!-- /createform -->
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	<!-- Start of edit items page -->
+	<div data-role="page" id="edit_items" data-theme="b">
+		<script>
+            isConnected();
+        </script>
+		<div data-role="header" data-position="inline" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="editItem.title"></h1>
+		</div><!-- /header -->
+
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuListGroups" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+
+		<div data-role="content">
+			<form id="editItemForm">
+				<div data-role="fieldcontain">
+					<input type="text" name="edit_itemName" id="edit_itemName" placeholder="Nombre producto" required data-clear-btn="true"/>
+				</div>
+				<div class="ui-grid-a" id="edit_quantityGrid">
+					<div class="ui-block-a" style="width:75px;">
+						<select name="Cantidad" id="edit_quantity" data-role="none"></select>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-select" style="width:150px;">
+							<select name="Unidad" id="edit_metric" data-native-menu="false">
+								<option value="u" data-i18n="createItem.units"></option>
+								<option value="kg">Kg</option>
+								<option value="g">g</option>
+								<option value="l">L</option>
+								<option value="ml">ml</option>
+								<option value="m">m</option>
+								<option value="cm">cm</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<h4 id="messageEditItem"></h4>
+				<br/>
+				<div>
+					<button type="button" data-mini="true" name="edit" id="edit" data-theme="b" onclick="editItem()"><span data-i18n="editItem.btnSave"></span></button>
+					<button type="button" data-mini="true" name="delete" id="delete" data-theme="c" onclick="deleteItem()"><span data-i18n="editItem.btnDelete"></span></button>
+				</div>
+			</form><!-- /createform -->
+		</div><!-- /content -->
+	</div><!-- /page -->
+	
+	<!-- Start of user config page -->
+	<div data-role="page" id="user_config" data-theme="b">
+		<script>
+            isConnected();
+        </script>
+		<div data-role="header" data-theme="b">
+			<a href="#menuUserConfig" data-icon="bars" class="ui-btn-left" data-iconpos="notext">Menu</a>
+			<h1 data-i18n="userConfig.title"></h1>
+		</div>
+		<!-- menu -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="menuUserConfig" data-theme="b">
+          <ul data-role="listview" data-theme="b" data-divider-theme="b" style="margin-top:-16px;" class="nav-search">
+            <li data-icon="back">
+              <a href="#" data-rel="back" data-i18n="menu.back"></a>
+            </li>
+            <li data-icon="home">
+              <a href="#list_groups" rel="external" data-i18n="menu.groups"></a>
+            </li>
+            <li data-icon="gear">
+              <a href="#user_config" rel="external" data-i18n="menu.profile"></a>
+            </li>
+            <li data-icon="refresh">
+              <a href="#" onClick="refreshPage()" data-i18n="menu.refresh"></a>
+            </li>
+            <li data-icon="delete" style="background-color:#111;">
+              <a href="#" onclick="logout()" data-rel="close" data-i18n="menu.signout"></a>
+            </li> 
+          </ul>
+         <!-- panel content goes here -->
+        </div><!-- /menu -->
+		<div data-role="content">
+			<div id="userConfigHelp" data-i18n="userConfig.helpText"></div>	  
+			<!-- Formulario de registro -->	  
+			<form method="post" id="formUserConfig">
+				<fieldset>
+					<p data-i18n="userConfig.currentName" style="float:left;margin:0;"></p>
+					<b id="currentUserName" style="float:left;"></b>
+				</fieldset>
+				<div data-role="fieldcontain">
+					<input type="text" name="userName" id="userName" data-i18n="[placeholder]userConfig.newUsername" required autofocus maxlength="50">
+					</p>
+					<input type="password" name="newPassword" id="newPassword" data-i18n="[placeholder]userConfig.newPass" required maxlength="30">
+				</div>
+				<div data-role="fieldcontain">
+					<input type="password" name="currentPassword" id="currentPassword" data-i18n="[placeholder]userConfig.oldPass" required maxlength="30">
+				</div>
+				<div data-role="fieldcontain">
+					<div class="ui-select">
+						<select name="lang" id="select_lang" data-native-menu="false" data-theme="c">
+							<option value="en">English</option>
+							<option value="es">Español</option>
+						</select>
+					</div>					
+				</div>				
+				<h4 id="messageUserConfig"></h4>	
+				<button type="button" name="submit" id="submit" onClick="updateProfile()"><span data-i18n="userConfig.btnUpdate"></span></button>
+			</form>
+		</div>
+	</div><!-- /page -->
+	<script type="text/javascript">
+		var i18nOpts = { 
+			resGetPath: 'js/i18n/__lng__/__ns__.json',
+			lng: 'en',
+			fallbackLng: false,
+			getAsync: false
+		};
+		i18n.init(i18nOpts, function () {
+			$("html").i18n();
+		});
+	</script>
+</body>
+</html>

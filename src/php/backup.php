@@ -8,7 +8,11 @@ $lastBackupLogExists = FALSE;
 
 if (file_exists ( HOME . "/../TEMP/LastBackup.txt" )) {
 	$lastBackupLogExists = TRUE;
+<<<<<<< HEAD
 	$time_24h_ago = time () - (60 * 60 * 24);
+=======
+	$time_24h_ago = time () - (60 * 55 * 24);
+>>>>>>> origin/develop
 	$timeLastBackup = date ( 'Y-m-d H:i:s', strtotime ( file_get_contents ( HOME . "/../TEMP/LastBackup.txt" ) ) );
 	if ($time_24h_ago >= strtotime ( $timeLastBackup )) {
 		$timeToDoBackup = TRUE;

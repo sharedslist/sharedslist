@@ -12,7 +12,11 @@
 	
 	$user = User::getByEmailAddress($e);
 	if ( $user== FALSE){
+<<<<<<< HEAD
 		die ("No existe un usuario con el e-mail indicado");
+=======
+		die ("No existe un usuario con el e-mail introducido");
+>>>>>>> origin/develop
 	}
 	$user -> generatePassword();
 	$enviado = ($user -> sendPassword());
